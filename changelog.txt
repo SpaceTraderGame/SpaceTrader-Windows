@@ -22,4 +22,3 @@ TODO:
 	kidnapped "princess" quest
 	create images & descriptions for equipment
 	create images for trade goods
-	special resources should be unknown until visited
