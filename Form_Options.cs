@@ -400,13 +400,13 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnLoad_Click(object sender, System.EventArgs e)
 		{
-			Options.LoadFromDefaults(true);
+			Options.LoadFromDefaults(true, this);
 			UpdateAll();
 		}
 
 		private void btnSave_Click(object sender, System.EventArgs e)
 		{
-			Options.SaveAsDefaults();
+			Options.SaveAsDefaults(this);
 		}
 
 		private void controlChanged(object sender, System.EventArgs e)

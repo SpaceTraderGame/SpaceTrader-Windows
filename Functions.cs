@@ -112,24 +112,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		public static HighScoreRecord[] GetHighScores(System.Windows.Forms.IWin32Window owner)
 		{
-			HighScoreRecord[]	highScores	= null;
+			HighScoreRecord[]	highScores	= new HighScoreRecord[3];
 
-			try
-			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(Consts.HighScoreFile, FileMode.Open);
-				highScores								= (HighScoreRecord[])STSerializableObject.ArrayListToArray((ArrayList)formatter.Deserialize(stream), "HighScoreRecord");
-				stream.Close();
-			}
-			catch (FileNotFoundException)
-			{
-				highScores								= new HighScoreRecord[3];
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorOpen, owner, Consts.HighScoreFile, ex.Message);
-				highScores								= new HighScoreRecord[3];
-			}
+			object						obj					= LoadFile(Consts.HighScoreFile, true, owner);
+			if (obj != null)
+				highScores	= (HighScoreRecord[])STSerializableObject.ArrayListToArray((ArrayList)obj, "HighScoreRecord");
 
 			return highScores;
 		}
@@ -171,6 +158,40 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			return isInt;
+		}
+
+		public static object LoadFile(string fileName, bool ignoreMissingFile, System.Windows.Forms.IWin32Window owner)
+		{
+			object					obj				= null;
+			FileStream			inStream	= null;
+
+			try
+			{
+				inStream	= new FileStream(fileName, FileMode.Open);
+				obj				= (new BinaryFormatter()).Deserialize(inStream);
+				inStream.Close();
+				inStream	= null;
+			}
+			catch (FileNotFoundException ex)
+			{
+				if (!ignoreMissingFile)
+					FormAlert.Alert(AlertType.FileErrorOpen, owner, fileName, ex.Message);
+			}
+			catch (IOException ex)
+			{
+				FormAlert.Alert(AlertType.FileErrorOpen, owner, fileName, ex.Message);
+			}
+			catch (System.Runtime.Serialization.SerializationException)
+			{
+				FormAlert.Alert(AlertType.FileErrorOpen, owner, fileName, Strings.FileFormatBad);
+			}
+			finally
+			{
+				if (inStream != null)
+					inStream.Close();
+			}
+
+			return obj;
 		}
 
 		public static string Multiples(int num, string unit)
@@ -231,6 +252,34 @@ namespace Fryz.Apps.SpaceTrader
 				SeedY	= seed2;
 			else
 				SeedY	= DEFSEEDY;
+		}
+
+		public static bool SaveFile(string fileName, object toSerialize, System.Windows.Forms.IWin32Window owner)
+		{
+			FileStream	outStream	= null;
+			bool				saveOk		= false;
+
+			try
+			{
+				outStream	= new FileStream(fileName, FileMode.Create);
+				(new BinaryFormatter()).Serialize(outStream, toSerialize);
+
+				outStream.Close();
+				outStream	= null;
+
+				saveOk		= true;
+			}
+			catch (IOException ex)
+			{
+				FormAlert.Alert(AlertType.FileErrorSave, owner, fileName, ex.Message);
+			}
+			finally
+			{
+				if (outStream != null)
+					outStream.Close();
+			}
+
+			return saveOk;
 		}
 
 		public static string StringVars(string toParse, string[] vars)

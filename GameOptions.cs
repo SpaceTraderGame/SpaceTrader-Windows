@@ -24,9 +24,6 @@
  ******************************************************************************/
 using System;
 using System.Collections;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -97,44 +94,25 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void LoadFromDefaults(bool errorIfFileNotFound)
 		{
-			GameOptions	defaults;
-			try
-			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(Consts.DefaultSettingsFile, FileMode.Open);
-				Hashtable				hash			= (Hashtable)formatter.Deserialize(stream);
-				stream.Close();
-				defaults									= new GameOptions(hash);
-			}
-			catch (FileNotFoundException ex)
-			{
-				defaults									= new GameOptions(false);
-				if (errorIfFileNotFound && Game.CurrentGame != null)
-					FormAlert.Alert(AlertType.FileErrorOpen, Game.CurrentGame.ParentWindow, Consts.DefaultSettingsFile, ex.Message);
-			}
-			catch (Exception ex)
-			{
-				defaults									= new GameOptions(false);
-				if (Game.CurrentGame != null)
-					FormAlert.Alert(AlertType.FileErrorOpen, Game.CurrentGame.ParentWindow, Consts.DefaultSettingsFile, ex.Message);
-			}
+			LoadFromDefaults(errorIfFileNotFound, null);
+		}
+
+		public void LoadFromDefaults(bool errorIfFileNotFound, System.Windows.Forms.IWin32Window owner)
+		{
+			GameOptions	defaults	= null;
+
+			object			obj				= Functions.LoadFile(Consts.DefaultSettingsFile, !errorIfFileNotFound, owner);
+			if (obj == null)
+				defaults						= new GameOptions(false);
+			else
+				defaults						= new GameOptions((Hashtable)obj);
 
 			CopyValues(defaults);
 		}
 
-		public void SaveAsDefaults()
+		public void SaveAsDefaults(System.Windows.Forms.IWin32Window owner)
 		{
-			try
-			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(Consts.DefaultSettingsFile, FileMode.Create);
-				formatter.Serialize(stream, Serialize());
-				stream.Close();
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorSave, Game.CurrentGame.ParentWindow, Consts.DefaultSettingsFile, ex.Message);
-			}
+			Functions.SaveFile(Consts.DefaultSettingsFile, Serialize(), owner);
 		}
 
 		public override Hashtable Serialize()

@@ -27,7 +27,6 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -2763,17 +2762,7 @@ namespace Fryz.Apps.SpaceTrader
 			highScores[0]									= highScore;
 			Array.Sort(highScores);
 
-			try
-			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(Consts.HighScoreFile, FileMode.Create);
-				formatter.Serialize(stream, STSerializableObject.ArrayToArrayList(highScores));
-				stream.Close();
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorSave, this, Consts.HighScoreFile, ex.Message);
-			}
+			Functions.SaveFile(Consts.HighScoreFile, STSerializableObject.ArrayToArrayList(highScores), this);
 		}
 
 		private void CargoBuy(int tradeItem, bool max)
@@ -2794,18 +2783,7 @@ namespace Fryz.Apps.SpaceTrader
 		private void ClearHighScores()
 		{
 			HighScoreRecord[]	highScores	= new HighScoreRecord[3];
-
-			try
-			{
-				BinaryFormatter	formatter		= new BinaryFormatter();
-				FileStream			stream			= new FileStream(Consts.HighScoreFile, FileMode.Create);
-				formatter.Serialize(stream, STSerializableObject.ArrayToArrayList(highScores));
-				stream.Close();
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorSave, this, Consts.HighScoreFile, ex.Message);
-			}
+			Functions.SaveFile(Consts.HighScoreFile, STSerializableObject.ArrayToArrayList(highScores), this);
 		}
 
 		private void GameEnd()
@@ -2874,24 +2852,15 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			try
 			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(fileName, FileMode.Open);
-				Hashtable				hash			= (Hashtable)formatter.Deserialize(stream);
-				stream.Close();
+				object		obj		= Functions.LoadFile(fileName, false, this);
+				if (obj != null)
+				{
+					game					= new Game((Hashtable)obj, this);
+					SaveGameFile	= dlgOpen.FileName;
 
-				game											= new Game(hash, this);
-				SaveGameFile							= dlgOpen.FileName;
-
-				SetInGameControlsEnabled(true);
-				UpdateAll();
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorOpen, this, fileName, ex.Message);
-			}
-			catch (System.Runtime.Serialization.SerializationException)
-			{
-				FormAlert.Alert(AlertType.FileErrorOpen, this, fileName, Strings.FileFormatBad);
+					SetInGameControlsEnabled(true);
+					UpdateAll();
+				}
 			}
 			catch (FutureVersionException)
 			{
@@ -2901,20 +2870,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void SaveGame(string fileName, bool saveFileName)
 		{
-			try
-			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(fileName, FileMode.Create);
-				formatter.Serialize(stream, game.Serialize());
-				stream.Close();
-
-				if (saveFileName)
-					SaveGameFile						= fileName;
-			}
-			catch (IOException ex)
-			{
-				FormAlert.Alert(AlertType.FileErrorSave, this, dlgSave.FileName, ex.Message);
-			}
+			if (Functions.SaveFile(fileName, game.Serialize(), this) && saveFileName)
+				SaveGameFile	= fileName;
 		}
 
 		private void SetInGameControlsEnabled(bool enabled)
