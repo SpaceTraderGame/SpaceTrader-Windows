@@ -105,9 +105,9 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_easyEncounters",							_easyEncounters);
 			hash.Add("_endStatus",									(int)_endStatus);
 			hash.Add("_encounterType",							(int)_encounterType);
-			hash.Add("_selectedSystem",							(int)(_selectedSystem == null ? StarSystemId.NA : _selectedSystem.Id));
-			hash.Add("_warpSystem",									(int)(_warpSystem == null ? StarSystemId.NA : _warpSystem.Id));
-			hash.Add("_trackedSystem",							(int)(_trackedSystem == null ? StarSystemId.NA : _trackedSystem.Id));
+			hash.Add("_selectedSystemId",						(int)(_selectedSystem == null ? StarSystemId.NA : _selectedSystem.Id));
+			hash.Add("_warpSystemId",								(int)(_warpSystem == null ? StarSystemId.NA : _warpSystem.Id));
+			hash.Add("_trackedSystemId",						(int)(_trackedSystem == null ? StarSystemId.NA : _trackedSystem.Id));
 			hash.Add("_targetWormhole",							_targetWormhole);
 			hash.Add("_priceCargoBuy",							_priceCargoBuy);
 			hash.Add("_priceCargoSell",							_priceCargoSell);
