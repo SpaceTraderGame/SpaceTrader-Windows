@@ -89,7 +89,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_dragonfly",									_dragonfly.Serialize());
 			hash.Add("_scarab",											_scarab.Serialize());
 			hash.Add("_spaceMonster",								_spaceMonster.Serialize());
-			hash.Add("_opponent",										(_opponent == null ? null : _opponent.Serialize()));
+			hash.Add("_opponent",										(_opponent == null ? _dragonfly : _opponent).Serialize());
 			hash.Add("_chanceOfTradeInOrbit",				_chanceOfTradeInOrbit);
 			hash.Add("_clicks",											_clicks);
 			hash.Add("_raided",											_raided);
