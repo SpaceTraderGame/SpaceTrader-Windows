@@ -303,7 +303,7 @@ namespace Fryz.Apps.SpaceTrader
 			"SpaceMonster",		// dummy crew member used in opponent ship
 			"Aragorn",				// My first son's middle name, and from Lord of the Rings
 			"Brady",					// My third son's middle name, and QB of the New England Patriots
-			"Eight Of Nine",	// From Star Trek ;) - Seven's younger sibling
+			"Eight of Nine",	// From Star Trek ;) - Seven's younger sibling
 			"Fangorn",				// From Lord of the Rings
 			"Gagarin",				// The first man in space
 			"Hoshi",					// From ST: Enterprise
