@@ -903,8 +903,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			ShipSpec	spec	= Consts.ShipSpecs[id];
 
-			picShip.Image		= game.ParentWindow.ShipImages.Images[id * Consts.ImagesPerShip];
-
+			picShip.Image		= spec.Image;
 			lblName.Text		= spec.Name;
 			lblSize.Text		= Strings.Sizes[(int)spec.Size];
 			lblBays.Text		= Functions.FormatNumber(spec.CargoBays);
