@@ -513,19 +513,24 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			for (int i = 0; i < Consts.TradeItems.Length; i++)
 			{
-				_priceCargoSell[i]		= Consts.TradeItems[i].StandardPrice(system);
+				int price	= Consts.TradeItems[i].StandardPrice(system);
 
-				// In case of a special status, adapt price accordingly
-				if (Consts.TradeItems[i].PressurePriceHike == system.SystemPressure)
-					_priceCargoSell[i]	= _priceCargoSell[i] * 3 / 2;
+				if (price > 0)
+				{
+					// In case of a special status, adapt price accordingly
+					if (Consts.TradeItems[i].PressurePriceHike == system.SystemPressure)
+						price	= price * 3 / 2;
 
-				// Randomize price a bit
-				int	variance					= Consts.TradeItems[i].PriceVariance;
-				_priceCargoSell[i]		= _priceCargoSell[i] + Functions.GetRandom(-variance + 1, variance);
+					// Randomize price a bit
+					int	variance	= Math.Min(Consts.TradeItems[i].PriceVariance, price - 1);
+					price					= price + Functions.GetRandom(-variance, variance + 1);
 
-				// Criminals have to pay off an intermediary
-				if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious)
-					_priceCargoSell[i]	= _priceCargoSell[i] * 90 / 100;
+					// Criminals have to pay off an intermediary
+					if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious)
+						price	= price * 90 / 100;
+				}
+
+				_priceCargoSell[i]	= price;
 			}
 
 			RecalculateBuyPrices(system);
