@@ -25,6 +25,16 @@ namespace Fryz.Apps.SpaceTrader
 	[Serializable()]
 	public abstract class STSerializableObject
 	{
+		public static int[] ArrayListToIntArray(ArrayList list)
+		{
+			int[]	array	= new int[list.Count];
+
+			for (int index = 0; index < array.Length; index++)
+				array[index]	= (int)list[index];
+
+			return array;
+		}
+
 		public static ArrayList ArrayToArrayList(STSerializableObject[] array)
 		{
 			ArrayList list	= null;

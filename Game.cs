@@ -332,7 +332,7 @@ namespace Fryz.Apps.SpaceTrader
 			// Check for Large Debt - 06/30/01 SRA
 			if (Commander.Debt >= Consts.DebtWarning)
 				FormAlert.Alert(AlertType.DebtWarning, ParentWindow);
-			// Debt Reminder
+				// Debt Reminder
 			else if (Commander.Debt > 0 && Options.RemindLoans && Commander.Days % 5 == 0)
 				FormAlert.Alert(AlertType.DebtReminder, ParentWindow, Functions.Multiples(Commander.Debt, Strings.MoneyUnit));
 		}
@@ -381,10 +381,10 @@ namespace Fryz.Apps.SpaceTrader
 				// now they know the quest has a time constraint!
 				if (QuestStatusReactor == SpecialEvent.StatusReactorFuelOk + 1)
 					FormAlert.Alert(AlertType.ReactorWarningFuel, ParentWindow);
-				// better deliver it soon!
+					// better deliver it soon!
 				else if (QuestStatusReactor == SpecialEvent.StatusReactorDate - 4)
 					FormAlert.Alert(AlertType.ReactorWarningFuelGone, ParentWindow);
-				// last warning!
+					// last warning!
 				else if (QuestStatusReactor == SpecialEvent.StatusReactorDate - 2)
 					FormAlert.Alert(AlertType.ReactorWarningTemp, ParentWindow);
 			}
@@ -577,7 +577,7 @@ namespace Fryz.Apps.SpaceTrader
 					int				chance	= item.Illegal ? 45 : 10;
 					double		adj			= Functions.GetRandom(100) < chance ? 1.1 : (item.Illegal ? 0.8 : 0.9);
 					unitPrice					= Math.Min(item.MaxTradePrice, Math.Max(item.MinTradePrice,
-															(int)Math.Round(PriceCargoBuy[tradeItem] * adj / item.RoundOff) * item.RoundOff));
+						(int)Math.Round(PriceCargoBuy[tradeItem] * adj / item.RoundOff) * item.RoundOff));
 					break;
 				case CargoBuyOp.Plunder:
 					items			= Opponent.Cargo;
@@ -664,7 +664,7 @@ namespace Fryz.Apps.SpaceTrader
 					int				chance	= item.Illegal ? 45 : 10;
 					double		adj			= Functions.GetRandom(100) < chance ? (item.Illegal ? 0.8 : 0.9) : 1.1;
 					unitPrice					= Math.Min(item.MaxTradePrice, Math.Max(item.MinTradePrice,
-														(int)Math.Round(PriceCargoSell[tradeItem] * adj / item.RoundOff) * item.RoundOff));
+						(int)Math.Round(PriceCargoSell[tradeItem] * adj / item.RoundOff) * item.RoundOff));
 					break;
 				default:
 					unitPrice	= 0;
@@ -785,7 +785,7 @@ namespace Fryz.Apps.SpaceTrader
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.SpaceMonsterIgnore : EncounterType.SpaceMonsterAttack;
 				showEncounter				= true;
 			}
-			// Encounter with the stolen Scarab
+				// Encounter with the stolen Scarab
 			else if (ArrivedViaWormhole && Clicks == 20 && WarpSystem.SpecialEventType != SpecialEventType.NA &&
 				WarpSystem.SpecialEvent.Type == SpecialEventType.ScarabDestroyed &&
 				QuestStatusScarab == SpecialEvent.StatusScarabHunting)
@@ -794,7 +794,7 @@ namespace Fryz.Apps.SpaceTrader
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.ScarabIgnore : EncounterType.ScarabAttack;
 				showEncounter				= true;
 			}
-			// Encounter with stolen Dragonfly
+				// Encounter with stolen Dragonfly
 			else if (Clicks == 1 && WarpSystem.Id == StarSystemId.Zalkon &&
 				QuestStatusDragonfly == SpecialEvent.StatusDragonflyFlyZalkon)
 			{
@@ -802,7 +802,7 @@ namespace Fryz.Apps.SpaceTrader
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.DragonflyIgnore : EncounterType.DragonflyAttack;
 				showEncounter				= true;
 			}
-			// Encounter with kidnappers in the Scorpion
+				// Encounter with kidnappers in the Scorpion
 			else if (Clicks == 1 && WarpSystem.Id == StarSystemId.Qonos &&
 				QuestStatusPrincess == SpecialEvent.StatusPrincessFlyQonos)
 			{
@@ -810,7 +810,7 @@ namespace Fryz.Apps.SpaceTrader
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.ScorpionIgnore : EncounterType.ScorpionAttack;
 				showEncounter				= true;
 			}
-			// ah, just when you thought you were gonna get away with it...
+				// ah, just when you thought you were gonna get away with it...
 			else if (Clicks == 1 && JustLootedMarie)
 			{
 				GenerateOpponent(OpponentType.Police);
@@ -981,7 +981,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (!Commander.Ship.Cloaked && Commander.PoliceRecordScore <= Consts.PoliceRecordScoreCriminal &&
 					Functions.GetRandom(Consts.ReputationScoreElite) <= (Commander.ReputationScore * 10) / (1 + (int)Opponent.Type))
 					EncounterType = EncounterType.TraderFlee;
-				// Will there be trade in orbit?
+					// Will there be trade in orbit?
 				else if (Functions.GetRandom(1000) < ChanceOfTradeInOrbit)
 				{
 					if (Commander.Ship.FreeCargoBays > 0 && Opponent.HasTradeableItems())
@@ -1092,8 +1092,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			// Set up the encounter variables.
 			EncounterContinueFleeing		=
-			EncounterContinueAttacking	=
-			OpponentDisabled						= false;
+				EncounterContinueAttacking	=
+				OpponentDisabled						= false;
 		}
 
 		private void EncounterDefeatDragonfly()
@@ -1323,7 +1323,7 @@ namespace Fryz.Apps.SpaceTrader
 					else
 					{
 						int	damage	= attackerWeapons == 0 ? 0 :
-													Functions.GetRandom(attackerWeapons * (100 + 2 * attacker.Fighter) / 100);
+							Functions.GetRandom(attackerWeapons * (100 + 2 * attacker.Fighter) / 100);
 
 						if (damage > 0)
 						{
@@ -1358,7 +1358,7 @@ namespace Fryz.Apps.SpaceTrader
 								// (3 on Easy, 4 on Beginner, 1 on Hard or Impossible). For opponents,
 								// it is always 2.
 								damage				= Math.Min(damage, defender.HullStrength /
-																(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
+									(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
 
 								defender.Hull	= Math.Max(0, defender.Hull - damage);
 
@@ -1426,7 +1426,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				// Add points to the appropriate skill - two points if beginner-normal, one otherwise.
 				Commander.Skills[skill]	= Math.Min(Consts.MaxSkill, Commander.Skills[skill] +
-																	(Difficulty <= Difficulty.Normal ? 2 : 1));
+					(Difficulty <= Difficulty.Normal ? 2 : 1));
 
 				FormAlert.Alert(AlertType.SpecialTrainingCompleted, owner);
 			}
@@ -1562,9 +1562,9 @@ namespace Fryz.Apps.SpaceTrader
 							else
 								EncounterType	= EncounterType.TraderFlee;
 						}
-						// If you get damaged a lot, the trader tends to keep shooting; if
-						// you get damaged a little, the trader may keep shooting; if you
-						// get damaged very little or not at all, the trader will flee.
+							// If you get damaged a lot, the trader tends to keep shooting; if
+							// you get damaged a little, the trader may keep shooting; if you
+							// get damaged very little or not at all, the trader will flee.
 						else if (Opponent.Hull < (prevOppHull * 9) / 10 &&
 							(Commander.Ship.Hull < (prevCmdrHull * 2) / 3 && chance < 20 ||
 							Commander.Ship.Hull < (prevCmdrHull * 9) / 10 && chance < 60 ||
@@ -1735,7 +1735,7 @@ namespace Fryz.Apps.SpaceTrader
 				int	passMod	= Commander.Ship.IllegalSpecialCargo ? (Difficulty <= Difficulty.Normal ? 2 : 3) : 1;
 
 				int	bribe		= Math.Max(100, Math.Min(10000, (int)Math.Ceiling(Commander.Worth /
-											WarpSystem.PoliticalSystem.BribeLevel / diffMod / 100) * 100 * passMod));
+					WarpSystem.PoliticalSystem.BribeLevel / diffMod / 100) * 100 * passMod));
 
 				if (FormAlert.Alert(AlertType.EncounterPoliceBribe, owner, Functions.Multiples(bribe, Strings.MoneyUnit)) ==
 					DialogResult.Yes)
@@ -1766,9 +1766,9 @@ namespace Fryz.Apps.SpaceTrader
 					FormAlert.Alert(AlertType.EncounterPostMarieFlee, owner) == DialogResult.Yes)
 				{
 					int	scoreMod								= EncounterType == EncounterType.PoliceInspect ?
-																				Consts.ScoreFleePolice : Consts.ScoreAttackPolice;
+						Consts.ScoreFleePolice : Consts.ScoreAttackPolice;
 					int	scoreMin								= EncounterType == EncounterType.PoliceInspect ? Consts.PoliceRecordScoreDubious -
-																				(Difficulty < Difficulty.Normal ? 0 : 1) : Consts.PoliceRecordScoreCriminal;
+						(Difficulty < Difficulty.Normal ? 0 : 1) : Consts.PoliceRecordScoreCriminal;
 
 					EncounterType								= EncounterType.PoliceAttack;
 					Commander.PoliceRecordScore	= Math.Min(Commander.PoliceRecordScore + scoreMod, scoreMin);
@@ -1797,7 +1797,7 @@ namespace Fryz.Apps.SpaceTrader
 						Commander.Ship.RemoveIllegalGoods();
 
 						int fine				= (int)Math.Max(100, Math.Min(10000, Math.Ceiling(Commander.Worth /
-															((Difficulty.Impossible - Difficulty + 2) * 10) / 50) * 50));
+							((Difficulty.Impossible - Difficulty + 2) * 10) / 50) * 50));
 						int	cashPayment	= Math.Min(Commander.Cash, fine);
 						Commander.Debt	+= fine - cashPayment;
 						Commander.Cash	-= cashPayment;
@@ -2589,7 +2589,7 @@ namespace Fryz.Apps.SpaceTrader
 				SpaceMonster.Hull	= Math.Min(SpaceMonster.HullStrength, (int)(SpaceMonster.Hull * Math.Pow(1.05, num)));
 
 			if (QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
-					QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate)
+				QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate)
 			{
 				QuestStatusGemulon	= Math.Min(QuestStatusGemulon + num, SpecialEvent.StatusGemulonTooLate);
 				if (QuestStatusGemulon == SpecialEvent.StatusGemulonTooLate)
@@ -2605,7 +2605,7 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusReactor	= Math.Min(QuestStatusReactor + num, SpecialEvent.StatusReactorDate);
 
 			if (QuestStatusExperiment > SpecialEvent.StatusExperimentNotStarted &&
-					QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed)
+				QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed)
 			{
 				QuestStatusExperiment	= Math.Min(QuestStatusExperiment + num, SpecialEvent.StatusExperimentPerformed);
 				if (QuestStatusExperiment == SpecialEvent.StatusExperimentPerformed)
@@ -2741,7 +2741,7 @@ namespace Fryz.Apps.SpaceTrader
 						break;
 					case SpecialEventType.ExperimentStopped:
 						if (QuestStatusExperiment > SpecialEvent.StatusExperimentNotStarted &&
-								QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed)
+							QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed)
 							NewsAddEvent(NewsEvent.ExperimentStopped);
 						break;
 					case SpecialEventType.Gemulon:
@@ -3054,7 +3054,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_arrivedViaWormhole",					_arrivedViaWormhole);
 			hash.Add("_paidForNewspaper",						_paidForNewspaper);
 			hash.Add("_litterWarning",							_litterWarning);
-			hash.Add("_newsEvents",									(int[])_newsEvents.ToArray(typeof(int)));
+			hash.Add("_newsEvents",									ArrayListToIntArray(_newsEvents));
 			hash.Add("_difficulty",									(int)_difficulty);
 			hash.Add("_cheatEnabled",								_cheatEnabled);
 			hash.Add("_autoSave",										_autoSave);
@@ -3084,7 +3084,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_justLootedMarie",						_justLootedMarie);
 			hash.Add("_canSuperWarp",								_canSuperWarp);
 			hash.Add("_chanceOfVeryRareEncounter",	_chanceOfVeryRareEncounter);
-			hash.Add("_veryRareEncounters",					(int[])_veryRareEncounters.ToArray(typeof(int)));
+			hash.Add("_veryRareEncounters",					ArrayListToIntArray(_veryRareEncounters));
 			hash.Add("_options",										_options.Serialize());
 
 			return hash;
@@ -3157,7 +3157,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (Commander.Ship.WildOnBoard && !Commander.Ship.HasWeapon(WeaponType.BeamLaser, false))
 				{
 					if (FormAlert.Alert(AlertType.WildWontStayAboardLaser, ParentWindow, Commander.CurrentSystem.Name) ==
-							DialogResult.Cancel)
+						DialogResult.Cancel)
 						wildOk	= false;
 					else
 					{
@@ -3911,7 +3911,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				for (IEnumerator en = NewsEvents.GetEnumerator(); en.MoveNext();)
 					items.Add(Functions.StringVars(Strings.NewsEvent[(int)en.Current], new string[] { Commander.Name,
-						Commander.CurrentSystem.Name, Commander.Ship.Name }));
+																																														Commander.CurrentSystem.Name, Commander.Ship.Name }));
 
 				if (curSys.SystemPressure != SystemPressure.None)
 					items.Add(Strings.NewsPressureInternal[(int)curSys.SystemPressure]);
