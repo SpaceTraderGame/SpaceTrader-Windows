@@ -93,6 +93,7 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Button btnWarp;
 		private System.Windows.Forms.ImageList ilChartImages;
 		private System.Windows.Forms.ImageList ilDirectionImages;
+		private System.Windows.Forms.ImageList ilEquipmentImages;
 		private System.Windows.Forms.ImageList ilShipImages;
 		private System.Windows.Forms.Label lblBuy;
 		private System.Windows.Forms.Label lblBuyPrice0;
@@ -245,6 +246,8 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.StatusBarPanel statusBarPanelCash;
 		private System.Windows.Forms.StatusBarPanel statusBarPanelCosts;
 		private System.Windows.Forms.StatusBarPanel statusBarPanelExtra;
+		private System.Windows.Forms.ToolTip tipSpecial;
+		private System.Windows.Forms.ToolTip tipMerc;
 
 		private System.ComponentModel.IContainer components;
 
@@ -281,11 +284,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Pen						DEFAULT_PEN		= new Pen(Color.Black);
 		private	Brush					DEFAULT_BRUSH	= new SolidBrush(Color.White);
-		private System.Windows.Forms.ToolTip tipSpecial;
-		private System.Windows.Forms.ToolTip tipMerc;
-		private System.Windows.Forms.ImageList ilEquipmentImages;
 
 		private string				SaveGameFile	= null;
+		private int						SaveGameDays	= -1;
 
 		#endregion
 
@@ -2891,6 +2892,7 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					game					= new Game((Hashtable)obj, this);
 					SaveGameFile	= dlgOpen.FileName;
+					SaveGameDays	= game.Commander.Days;
 
 					SetInGameControlsEnabled(true);
 					UpdateAll();
@@ -2906,6 +2908,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			if (Functions.SaveFile(fileName, game.Serialize(), this) && saveFileName)
 				SaveGameFile	= fileName;
+
+			SaveGameDays	= game.Commander.Days;
 		}
 
 		private void SetInGameControlsEnabled(bool enabled)
@@ -3230,7 +3234,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void SpaceTrader_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			if (game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes)
+			if (game == null || game.Commander.Days == SaveGameDays ||
+				FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes)
 			{
 				if (this.WindowState == FormWindowState.Normal)
 				{
@@ -3681,12 +3686,14 @@ namespace Fryz.Apps.SpaceTrader
 		private void mnuGameNew_Click(object sender, System.EventArgs e)
 		{
 			FormNewCommander	form	= new FormNewCommander();
-			if ((game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
+			if ((game == null || game.Commander.Days == SaveGameDays ||
+				FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
 				form.ShowDialog(this) == DialogResult.OK)
 			{
-				game											= new Game(form.CommanderName, form.Difficulty, form.Pilot, form.Fighter, form.Trader,
-																		form.Engineer, this);
-				SaveGameFile							= null;
+				game					= new Game(form.CommanderName, form.Difficulty, form.Pilot, form.Fighter, form.Trader,
+												form.Engineer, this);
+				SaveGameFile	= null;
+				SaveGameDays	= 0;
 
 				SetInGameControlsEnabled(true);
 				UpdateAll();
@@ -3698,7 +3705,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void mnuGameLoad_Click(object sender, System.EventArgs e)
 		{
-			if ((game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
+			if ((game == null || game.Commander.Days == SaveGameDays ||
+				FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
 				dlgOpen.ShowDialog(this) == DialogResult.OK)
 				LoadGame(dlgOpen.FileName);
 		}

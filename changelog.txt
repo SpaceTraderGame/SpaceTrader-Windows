@@ -13,6 +13,7 @@
 	Added 1 new quest and 1 new gadget
 	Numerous bug fixes
 	Added lots more images for equipment, etc.
+	Require confirmation when loading a game, starting a new game, or quitting game (but only when at least one day has passed since the last save)
 
 
 TODO:
