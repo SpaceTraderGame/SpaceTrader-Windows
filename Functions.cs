@@ -100,6 +100,11 @@ namespace Fryz.Apps.SpaceTrader
 			return String.Format("{0:n0}", num);
 		}
 
+		public static string FormatList(string[] listItems)
+		{
+			return StringVars(Strings.ListStrings[listItems.Length], listItems);
+		}
+
 		public static string FormatMoney(int num)
 		{
 			return String.Format("{0:n0} cr.", num);

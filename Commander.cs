@@ -142,7 +142,8 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					Consts.Weapons[(int)WeaponType.MorgansLaser],
 					Consts.Shields[(int)ShieldType.Lightning],
-					Consts.Gadgets[(int)GadgetType.FuelCompactor]
+					Consts.Gadgets[(int)GadgetType.FuelCompactor],
+					Consts.Gadgets[(int)GadgetType.HiddenCargoBays]
 				};
 				bool[]			add			= new bool[special.Length];
 

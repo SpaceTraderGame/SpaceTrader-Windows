@@ -83,6 +83,7 @@ namespace Fryz.Apps.SpaceTrader
 		EncounterPiratesBounty,
 		EncounterPiratesExamineReactor,
 		EncounterPiratesFindNoCargo,
+		EncounterPiratesTakeSculpture,
 		EncounterPoliceBribe,
 		EncounterPoliceBribeCant,
 		EncounterPoliceBribeLowCash,
@@ -107,6 +108,7 @@ namespace Fryz.Apps.SpaceTrader
 		EquipmentEscapePod,
 		EquipmentExtraBaysInUse,
 		EquipmentFuelCompactor,
+		EquipmentHiddenCompartments,
 		EquipmentIF,
 		EquipmentLightningShield,
 		EquipmentMorgansLaser,
@@ -130,6 +132,7 @@ namespace Fryz.Apps.SpaceTrader
 		InsuranceStop,
 		JailConvicted,
 		JailFleaReceived,
+		JailHiddenCargoBaysRemoved,
 		JailIllegalGoodsImpounded,
 		JailInsuranceLost,
 		JailMercenariesLeave,
@@ -152,6 +155,8 @@ namespace Fryz.Apps.SpaceTrader
 		ReactorWarningFuelGone,
 		ReactorWarningTemp,
 		RegistryError,
+		SculptureConfiscated,
+		SculptureSaved,
 		ShipBuyConfirm,
 		ShipBuyCrewQuarters,
 		ShipBuyIF,
@@ -197,6 +202,7 @@ namespace Fryz.Apps.SpaceTrader
 		WildChatsPirates,
 		WildGoesPirates,
 		WildLeavesShip,
+		WildSculpture,
 		WildWontBoardLaser,
 		WildWontBoardReactor,
 		WildWontStayAboardLaser,
@@ -357,7 +363,8 @@ namespace Fryz.Apps.SpaceTrader
 		NavigatingSystem		= 2,
 		TargetingSystem			= 3,
 		CloakingDevice			= 4,
-		FuelCompactor				= 5
+		FuelCompactor				= 5,
+		HiddenCargoBays			= 6
 	};
 	#endregion
 
@@ -404,7 +411,9 @@ namespace Fryz.Apps.SpaceTrader
 		SpaceMonster				= 27,
 		SpaceMonsterKilled	= 28,
 		WildArrested				= 29,
-		WildGetsOut					= 30
+		WildGetsOut					= 30,
+		SculptureStolen			= 31,
+		SculptureTracked		= 32
 	};
 	#endregion
 
@@ -580,7 +589,10 @@ namespace Fryz.Apps.SpaceTrader
 		Tribble							= 33,
 		TribbleBuyer				= 34,
 		Wild								= 35,
-		WildGetsOut					= 36
+		WildGetsOut					= 36,
+		Sculpture						= 37,
+		SculptureDelivered	= 38,
+		SculptureHiddenBays	= 39
 	};
 	#endregion
 

@@ -84,8 +84,13 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterPoliceSubmitArrested		= "You will be arrested!";
 		public static string	EncounterPoliceSubmitGoods			= "illegal goods";
 		public static string	EncounterPoliceSubmitReactor		= "an illegal Ion Reactor";
-		public static string	EncounterPoliceSubmitSeparator	= " and ";
+		public static string	EncounterPoliceSubmitSculpture	= "a stolen sculpture";
 		public static string	EncounterPoliceSubmitWild				= "Jonathan Wild";
+		public static string	EncounterPoliceSurrenderCargo		= "You have ^1 on board! ";
+		public static string	EncounterPoliceSurrenderAction	= "They will ^1. ";
+		public static string	EncounterPoliceSurrenderReactor	= "destroy the reactor";
+		public static string	EncounterPoliceSurrenderSculpt	= "confiscate the sculpture";
+		public static string	EncounterPoliceSurrenderWild		= "arrest Wild, too";
 		public static string	EncounterPretextAlien						= "an alien";
 		public static string	EncounterPretextBottle					= "a floating";
 		public static string	EncounterPretextCaptainAhab			= "the famous Captain Ahab in a";
@@ -165,6 +170,8 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	QuestScarabFind									= "Find and destroy the Scarab (which is hiding at the exit to a wormhole).";
 		public static string	QuestScarabHull									= "Get your hull upgraded at ^1.";
 		public static string	QuestScarabNotify								= "Notify the authorities at ^1 that the Scarab has been destroyed.";
+		public static string	QuestSculpture									= "Deliver the stolen sculpture to Endor.";
+		public static string	QuestSculptureHiddenBays				= "Have hidden compartments installed at Endor.";
 		public static string	QuestSpaceMonsterKill						= "Kill the space monster at Acamar.";
 		public static string	QuestTribbles										= "Get rid of those pesky tribbles.";
 		public static string	QuestWild												= "Smuggle Jonathan Wild to Kravat.";
@@ -201,6 +208,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	SpecialCargoJarek								= "A haggling computer.";
 		public static string	SpecialCargoNone								= "No special items.";
 		public static string	SpecialCargoReactor							= "An unstable reactor taking up 5 bays.";
+		public static string	SpecialCargoSculpture						= "A stolen plastic sculpture of a man holding some kind of light sword.";
 		public static string	SpecialCargoReactorBays					= " of enriched fuel.";
 		public static string	SpecialCargoTribblesInfest			= "An infestation of tribbles.";
 		public static string	SpecialCargoTribblesCute				= "cute, furry tribble";
@@ -301,15 +309,6 @@ namespace Fryz.Apps.SpaceTrader
 		};
 		#endregion
 
-		#region EncounterPoliceSurrender
-		public static string[][]	EncounterPoliceSurrender	= new string[][]
-		{
-			new string[] { "", "" },
-			new string[] { "You have an illegal Reactor on board! ", "They will destroy the reactor. " },
-			new string[] { "You have Jonathan Wild on board! ", "Wild will be arrested, too. " }
-		};
-		#endregion
-
 		#region EquipmentDescriptions
 		public static string[][]     EquipmentDescriptions     = new string[][]
 		{
@@ -355,7 +354,8 @@ namespace Fryz.Apps.SpaceTrader
 			"Navigating System",
 			"Targeting System",
 			"Cloaking Device",
-			"Fuel Compactor"
+			"Fuel Compactor",
+			"5 Hidden Cargo Bays"
 		};
 		#endregion
 
@@ -368,7 +368,23 @@ namespace Fryz.Apps.SpaceTrader
 		};
 		#endregion
 
+		#region ListStrings
+		public static string[]	ListStrings	= new string[]
+		{
+			"",
+			"^1",
+			"^1 and ^2",
+			"^1, ^2, and ^3",
+			"^1, ^2, ^3, and ^4"
+		};
+		#endregion
+
 		#region NewsEvent
+		/* In News Events, the following variables can be used:
+		 * ^1 Commander Name
+		 * ^2 Current System
+		 * ^3 Commander's Ship Type
+		 */
 		public static string[]	NewsEvent	= new string[]
 		{
 			"Scientist Adds Alien Artifact to Museum Collection.",
@@ -401,7 +417,9 @@ namespace Fryz.Apps.SpaceTrader
 			"Space Monster Threatens Homeworld!",
 			"Hero Slays Space Monster! Parade, Honors Planned for Today.",
 			"Notorious Criminal Jonathan Wild Arrested!",
-			"Rumors Suggest Known Criminal J. Wild May Come to Kravat!"
+			"Rumors Suggest Known Criminal J. Wild May Come to Kravat!",
+			"Priceless collector's item stolen from home of Geurge Locas!",
+			"Space Corps follows ^3 with alleged stolen sculpture to ^2."
 		};
 		#endregion
 
@@ -690,7 +708,10 @@ namespace Fryz.Apps.SpaceTrader
 			"A merchant prince offers you a very special and wondrous item for the sum of 1000 credits. Do you accept?",
 			"An eccentric alien billionaire wants to buy your collection of tribbles and offers half a credit for each of them. Do you accept his offer?",
 			"Law Enforcement is closing in on notorious criminal kingpin Jonathan Wild. He would reward you handsomely for smuggling him home to Kravat. You'd have to avoid capture by the Police on the way. Are you willing to give him a berth?",
-			"Jonathan Wild is most grateful to you for spiriting him to safety. As a reward, he has one of his Cyber Criminals hack into the Police Database, and clean up your record. He also offers you the opportunity to take his talented nephew Zeethibal along as a Mercenary with no pay."
+			"Jonathan Wild is most grateful to you for spiriting him to safety. As a reward, he has one of his Cyber Criminals hack into the Police Database, and clean up your record. He also offers you the opportunity to take his talented nephew Zeethibal along as a Mercenary with no pay.",
+			"A hooded figure approaches you and asks if you'd be willing to deliver some recently aquired merchandise to Endor. He's holding a small sculpture of a man holding some kind of light sword that you strongly suspect was stolen. It appears to be made of plastic and not very valuable. \"I'll pay you 2,000 credits now, plus 15,000 on delivery,\" the figure says. After seeing the look on your face he adds, \"It's a collector's item. Will you deliver it or not?\"",
+			"Yet another dark, hooded figure approaches. \"Do you have the action fig- umm, the sculpture?\" You hand it over and hear what sounds very much like a giggle from under the hood. \"I know you were promised 15,000 credits on delivery, but I'm strapped for cash right now. However, I have something better for you. I have an acquaintance who can install hidden compartments in your ship.\" Return with an empty gadget slot when you're ready to have it installed.",
+			"You're taken to a warehouse and whisked through the door. A grubby alien of some humanoid species - you're not sure which one - approaches. \"So you're the being who needs Hidden Compartments. Should I install them in your ship?\" (It requires a free gadget slot.)"
 		};
 		#endregion
 
@@ -733,7 +754,10 @@ namespace Fryz.Apps.SpaceTrader
 			"Merchant Prince",
 			"Tribble Buyer",
 			"Jonathan Wild",
-			"Wild Gets Out"
+			"Wild Gets Out",
+			"Stolen Sculpture",
+			"Sculpture Delivered",
+			"Install Hidden Compartments"
 		};
 		#endregion
 
@@ -759,7 +783,7 @@ namespace Fryz.Apps.SpaceTrader
 		// *************************************************************************
 		// Many of these names are from Star Trek: The Next Generation, or are small changes
 		// to names of this series. A few have different origins.
-		// JAF - These comments are the previous author's.
+		// JAF - Except where noted these comments are the previous author's.
 		// *************************************************************************
 		#region SystemNames
 		public static string[]	SystemNames	= new string[]

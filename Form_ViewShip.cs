@@ -235,7 +235,7 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
 
-					if (i == (int)GadgetType.ExtraCargoBays)
+					if (i == (int)GadgetType.ExtraCargoBays || i == (int)GadgetType.HiddenCargoBays)
 					{
 						count	*= 5;
 						lblEquip.Text			+= Functions.FormatNumber(count) + Consts.Gadgets[i].Name.Substring(1) + Environment.NewLine;
@@ -297,6 +297,9 @@ namespace Fryz.Apps.SpaceTrader
 				specialCargo.Add(Functions.Multiples(10 - ((game.QuestStatusReactor - 1) / 2), "bay") +
 					Strings.SpecialCargoReactorBays);
 			}
+
+			if (ship.SculptureOnBoard)
+				specialCargo.Add(Strings.SpecialCargoSculpture);
 
 			if (game.CanSuperWarp)
 				specialCargo.Add(Strings.SpecialCargoExperiment);

@@ -150,7 +150,8 @@ namespace Fryz.Apps.SpaceTrader
 			new Gadget(GadgetType.TargetingSystem,   25000, TechLevel.PostIndustrial,  20), // Increases fighter's effectivity
 			new Gadget(GadgetType.CloakingDevice,   100000, TechLevel.HiTech,           5), // If you have a good engineer, neither pirates nor police will notice you
 			// The gadgets below can't be bought
-			new Gadget(GadgetType.FuelCompactor,     30000, TechLevel.Unavailable,      0)
+			new Gadget(GadgetType.FuelCompactor,     30000, TechLevel.Unavailable,      0),
+			new Gadget(GadgetType.HiddenCargoBays,   60000, TechLevel.Unavailable,      0)
 		};
 		#endregion
 
@@ -315,7 +316,10 @@ namespace Fryz.Apps.SpaceTrader
 			new SpecialEvent(SpecialEventType.Tribble,              1000, 1, false),
 			new SpecialEvent(SpecialEventType.TribbleBuyer,            0, 3, false),
 			new SpecialEvent(SpecialEventType.Wild,                    0, 1, false),
-			new	SpecialEvent(SpecialEventType.WildGetsOut,             0, 0, true)
+			new	SpecialEvent(SpecialEventType.WildGetsOut,             0, 0, true),
+			new SpecialEvent(SpecialEventType.Sculpture,           -2000, 0, false),
+			new SpecialEvent(SpecialEventType.SculptureDelivered,  -2000, 0, true),
+			new SpecialEvent(SpecialEventType.SculptureHiddenBays,     0, 0, false)
 		};
 		#endregion
 

@@ -123,7 +123,8 @@ namespace Fryz.Apps.SpaceTrader
 				if (equip[i] == null)
 					slot	= i;
 
-			equip[slot]	= item.Clone();
+			if (slot >= 0)
+				equip[slot]	= item.Clone();
 		}
 
 		public int BaseWorth(bool forInsurance)
@@ -191,13 +192,27 @@ namespace Fryz.Apps.SpaceTrader
 			return equip;
 		}
 
+		public void Fire(CrewMemberId crewId)
+		{
+			bool	found	= false;
+			for (int i = 0; i < Crew.Length && !found; i++)
+			{
+				if (Crew[i] != null && Crew[i].Id == crewId)
+				{
+					Fire(i);
+					found	= true;
+				}
+			}
+		}
+
 		public void Fire(int crewId)
 		{
 			int	skill			= Trader;
 
-			if (crewId < Crew.Length - 1)
-				Crew[crewId]	= Crew[crewId + 1];
-			Crew[Crew.Length - 1]	= null;
+			int	last			= Crew.Length - 1;
+			for (int i = crewId; i < last; i++)
+				Crew[i]	= Crew[i + 1];
+			Crew[last]	= null;
 
 			if (Trader != skill)
 				Game.CurrentGame.RecalculateBuyPrices(Game.CurrentGame.Commander.CurrentSystem);
@@ -581,10 +596,56 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			int	skill	= Trader;
 
-			Crew[Crew[1] == null ? 1 : 2]	= merc;
+			int	slot	= -1;
+			for (int i = 0; i < Crew.Length && slot == -1; i++)
+				if (Crew[i] == null)
+					slot	= i;
+
+			if (slot >= 0)
+				Crew[slot]	= merc;
 
 			if (Trader != skill)
 				Game.CurrentGame.RecalculateBuyPrices(Game.CurrentGame.Commander.CurrentSystem);
+		}
+
+		public string IllegalSpecialCargoActions()
+		{
+			ArrayList	actions	= new ArrayList();
+
+			if (ReactorOnBoard)
+				actions.Add(Strings.EncounterPoliceSurrenderReactor);
+			else if (WildOnBoard)
+				actions.Add(Strings.EncounterPoliceSurrenderWild);
+
+			if (SculptureOnBoard)
+				actions.Add(Strings.EncounterPoliceSurrenderSculpt);
+
+			return actions.Count == 0 ? "" : Functions.StringVars(Strings.EncounterPoliceSurrenderAction,
+				Functions.FormatList(Functions.ArrayListToStringArray(actions)));
+		}
+
+		public string IllegalSpecialCargoDescription(string wrapper, bool includePassengers, bool includeTradeItems)
+		{
+			ArrayList	items	= new ArrayList();
+
+			if (includePassengers && WildOnBoard)
+				items.Add(Strings.EncounterPoliceSubmitWild);
+			
+			if (ReactorOnBoard)
+				items.Add(Strings.EncounterPoliceSubmitReactor);
+
+			if (SculptureOnBoard)
+				items.Add(Strings.EncounterPoliceSubmitSculpture);
+
+			if (includeTradeItems && DetectableIllegalCargo)
+				items.Add(Strings.EncounterPoliceSubmitGoods);
+
+			string	allItems	= Functions.FormatList(Functions.ArrayListToStringArray(items));
+
+			if (allItems.Length > 0 && wrapper.Length > 0)
+				allItems	= Functions.StringVars(wrapper, allItems);
+
+			return allItems;
 		}
 
 		public void PerformRepairs()
@@ -636,6 +697,18 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					RemoveEquipment(type, i);
 					found	= true;
+				}
+			}
+		}
+
+		public void RemoveIllegalGoods()
+		{
+			for (int i = 0; i < Consts.TradeItems.Length; i++)
+			{
+				if (Consts.TradeItems[i].Illegal)
+				{
+					Cargo[i]																	= 0;
+					Game.CurrentGame.Commander.PriceCargo[i]	= 0;
 				}
 			}
 		}
@@ -703,6 +776,21 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
+		public bool AnyIllegalCargo
+		{
+			get
+			{
+				int	illegalCargo	= 0;
+				for (int i = 0; i < Consts.TradeItems.Length; i++)
+				{
+					if (Consts.TradeItems[i].Illegal)
+						illegalCargo	+= Cargo[i];
+				}
+
+				return illegalCargo > 0;
+			}
+		}
+
 		public bool ArtifactOnBoard
 		{
 			get
@@ -729,10 +817,11 @@ namespace Fryz.Apps.SpaceTrader
 				int	bays	= base.CargoBays;
 
 				for (int i = 0; i < Gadgets.Length; i++)
-					if (Gadgets[i] != null && Gadgets[i].Type == GadgetType.ExtraCargoBays)
+					if (Gadgets[i] != null && (Gadgets[i].Type == GadgetType.ExtraCargoBays ||
+						Gadgets[i].Type == GadgetType.HiddenCargoBays))
 						bays	+= 5;
 
-				return bays;
+				return base.CargoBays + ExtraCargoBays + HiddenCargoBays;
 			}
 		}
 
@@ -773,6 +862,21 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public bool DetectableIllegalCargo
+		{
+			get
+			{
+				int	illegalCargo	= 0;
+				for (int i = 0; i < Consts.TradeItems.Length; i++)
+				{
+					if (Consts.TradeItems[i].Illegal)
+						illegalCargo	+= Cargo[i];
+				}
+
+				return (illegalCargo - HiddenCargoBays) > 0;
+			}
+		}
+
 		public int Engineer
 		{
 			get
@@ -801,6 +905,20 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_pod	= value;
+			}
+		}
+
+		public int ExtraCargoBays
+		{
+			get
+			{
+				int bays	= 0;
+
+				for (int i = 0; i < Gadgets.Length; i++)
+					if (Gadgets[i] != null && Gadgets[i].Type == GadgetType.ExtraCargoBays)
+						bays	+= 5;
+
+				return bays;
 			}
 		}
 
@@ -955,6 +1073,20 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int HiddenCargoBays
+		{
+			get
+			{
+				int bays	= 0;
+
+				for (int i = 0; i < Gadgets.Length; i++)
+					if (Gadgets[i] != null && Gadgets[i].Type == GadgetType.HiddenCargoBays)
+						bays	+= 5;
+
+				return bays;
+			}
+		}
+
 		public int Hull
 		{
 			get
@@ -964,6 +1096,22 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_hull	= value;
+			}
+		}
+
+		public bool IllegalCargoOrPassengers
+		{
+			get
+			{
+				return DetectableIllegalCargo || IllegalSpecialCargo;
+			}
+		}
+
+		public bool IllegalSpecialCargo
+		{
+			get
+			{
+				return WildOnBoard || ReactorOnBoard || SculptureOnBoard;
 			}
 		}
 
@@ -1005,6 +1153,14 @@ namespace Fryz.Apps.SpaceTrader
 				int	status	= Game.CurrentGame.QuestStatusReactor;
 				return CommandersShip && status > SpecialEvent.StatusReactorNotStarted &&
 					status < SpecialEvent.StatusReactorDelivered;
+			}
+		}
+
+		public bool SculptureOnBoard
+		{
+			get
+			{
+				return CommandersShip && Game.CurrentGame.QuestStatusSculpture == SpecialEvent.StatusSculptureInTransit;
 			}
 		}
 

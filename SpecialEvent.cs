@@ -82,6 +82,11 @@ namespace Fryz.Apps.SpaceTrader
 		public const int StatusScarabDestroyed				= 2;
 		public const int StatusScarabDone							= 3;
 
+		public const int StatusSculptureNotStarted		= 0;
+		public const int StatusSculptureInTransit			= 1;
+		public const int StatusSculptureDelivered			= 2;
+		public const int StatusSculptureDone					= 3;
+
 		public const int StatusSpaceMonsterNotStarted	= 0;
 		public const int StatusSpaceMonsterAtAcamar		= 1;
 		public const int StatusSpaceMonsterDestroyed	= 2;

@@ -280,7 +280,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Antidote", "Ten of your cargo bays now contain antidote for the Japori system.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.AntidoteDestroyed:
-					result	= (new FormAlert("Antidote Destroyed", "The antidote for the Japori system has been destroyed with your ship. You should get some more.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Antidote Destroyed", "The antidote for the Japori system has been destroyed with your ship. You should return to ^1 and get some more.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.AntidoteTaken:
 					result	= (new FormAlert("Antidote Taken", "The Space Corps removed the antidote for Japori from your ship and delivered it, fulfilling your assignment.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -431,10 +431,13 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Bounty", "You destroyed the pirate ship and earned a bounty of ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPiratesExamineReactor:
-					result	= (new FormAlert("Pirates Examine Reactor", "The Pirates poke around the Ion Reactor while trying to figure out if it's valuable. They finally conclude that the Reactor is worthless, not to mention dangerous, and leave it on your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Pirates Examine Reactor", "The pirates poke around the Ion Reactor while trying to figure out if it's valuable. They finally conclude that the Reactor is worthless, not to mention dangerous, and leave it on your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPiratesFindNoCargo:
 					result	= (new FormAlert("Pirates Find No Cargo", "The pirates are very angry that they find no cargo on your ship. To stop them from destroying you, you have no choice but to pay them an amount equal to 5% of your current worth - ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.EncounterPiratesTakeSculpture:
+					result	= (new FormAlert("Pirates Take Sculpture", "As the pirates ransack your ship, they find the stolen sculpture. \"This is worth thousands!\" one pirate exclaims, as he stuffs it into his pack.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPoliceBribe:
 					result	= (new FormAlert("Bribe", "These police officers are willing to forego inspection for the amount of ^1.", "Offer Bribe", DialogResult.Yes, "Forget It", DialogResult.No, args)).ShowDialog(owner);
@@ -455,7 +458,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("You Have Nothing Illegal", "Are you sure you want to do that? You are not carrying illegal goods, so you have nothing to fear!", "Yes, I still want to", DialogResult.Yes, "OK, I won't", DialogResult.No, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPoliceSubmit:
-					result	= (new FormAlert("You Have Illegal Goods", "Are you sure you want to let the police search you? You are carrying ^1! ^2", "Yes, I let them", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
+					result	= (new FormAlert("You Have Illegal Goods", "Are you sure you want to let the police search you? You are carrying ^1! ^2", "Yes, let them", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPoliceSurrender:
 					result	= (new FormAlert("Surrender", "^1If you surrender, you will spend some time in prison and will have to pay a hefty fine. ^2Are you sure you want to do that?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
@@ -507,6 +510,9 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.EquipmentFuelCompactor:
 					result	= (new FormAlert("Fuel Compactor", "You now have a fuel compactor installed on your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.EquipmentHiddenCompartments:
+					result	= (new FormAlert("Hidden Compartments", "You now have hidden compartments equivalent to 5 extra cargo bays installed in your ship. Police won't find illegal cargo hidden in these compartments.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EquipmentIF:
 					result	= (new FormAlert("Not Enough Money", "You don't have enough money to spend on this item.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -577,6 +583,9 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.JailFleaReceived:
 					result	= (new FormAlert("Flea Received", "When you leave prison, the police have left a second-hand Flea for you so you can continue your travels.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
+				case AlertType.JailHiddenCargoBaysRemoved:
+					result	= (new FormAlert("Hidden Compartments Removed", "When your ship is impounded, the police go over it with a fine-toothed comb. You hidden compartments are found and removed.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.JailIllegalGoodsImpounded:
 					result	= (new FormAlert("Illegal Goods Impounded", "The police also impound all of the illegal goods you have on board.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
@@ -620,7 +629,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("No Game Active", "You don't have a game open, so you can only change the default options.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ReactorConfiscated:
-					result	= (new FormAlert("Police Confiscate Reactor", "The Police confiscate the Ion Reactor as evidence of your dealings with unsavory characters.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Police Confiscate Reactor", "The Police confiscate the Ion reactor as evidence of your dealings with unsavory characters.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ReactorDestroyed:
 					result	= (new FormAlert("Reactor Destroyed", "The destruction of your ship was made much more spectacular by the added explosion of the Ion Reactor.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -629,7 +638,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Reactor", "Five of your cargo bays now contain the unstable Ion Reactor, and ten of your bays contain enriched fuel.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ReactorMeltdown:
-					result	= (new FormAlert("Reactor Meltdown!", "Just as you approach the docking bay,  the reactor explodes into a huge radioactive fireball!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Reactor Meltdown!", "Just as you approach the docking bay, the reactor explodes into a huge radioactive fireball!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ReactorWarningFuel:
 					result	= (new FormAlert("Reactor Warning", "You notice the Ion Reactor has begun to consume fuel rapidly. In a single day, it has burned up nearly half a bay of fuel!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -642,6 +651,12 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.RegistryError:
 					result	= (new FormAlert("Error...", "Error accessing the Registry: ^1", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.SculptureConfiscated:
+					result	= (new FormAlert("Police Confiscate Sculpture", "The Police confiscate the stolen sculpture and return it to its rightful owner.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.SculptureSaved:
+					result	= (new FormAlert("Sculpture Saved", "On your way to the escape pod, you grab the stolen sculpture. Oh well, at least you saved something.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ShipBuyConfirm:
 					result	= (new FormAlert("Buy New Ship", "Are you sure you wish to trade in your ^1 for a new ^2^3?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
@@ -671,7 +686,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Shipyard Engineer", "Sorry! We can't take your ship as a trade-in. That Ion Reactor looks dangerous, and we have no way of removing it. Come back when you've gotten rid of it.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ShipBuyTransfer:
-					result	= (new FormAlert("Transfer ^1", "I see you have a ^2. I'll transfer it to your new ship for ^3 credits.", "Do it!", DialogResult.Yes, "No thanks", DialogResult.No, args)).ShowDialog(owner);
+					result	= (new FormAlert("Transfer ^1", "I see you have ^2 installed. I'll transfer it to your new ship for ^3 credits.", "Do it!", DialogResult.Yes, "No thanks", DialogResult.No, args)).ShowDialog(owner);
 					break;
 				case AlertType.ShipDesignIF:
 					result	= (new FormAlert("Not Enough Money", "You don't have enough money to create this design.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -777,6 +792,9 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.WildLeavesShip:
 					result	= (new FormAlert("Wild Leaves Ship", "Jonathan Wild leaves your ship, and goes into hiding on ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.WildSculpture:
+					result	= (new FormAlert("Wild Eyes Sculpture", "Jonathan Wild sees the stolen sculpture. \"Wow, I only know of one of these left in the whole Universe!\" he exclaims, \"Geurge Locas must be beside himself with it being stolen.\" He seems very impressed with you, which makes you feel much better about the item your delivering.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.WildWontBoardLaser:
 					result	= (new FormAlert("Wild Won't Board Ship", "Jonathan Wild isn't willing to go with you if you're not armed with at least a Beam Laser. He'd rather take his chances hiding out here." + Environment.NewLine, "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);

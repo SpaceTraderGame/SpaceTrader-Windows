@@ -192,6 +192,7 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.GemulonInvaded:
 				case SpecialEventType.Lottery:
 				case SpecialEventType.ReactorLaser:
+				case SpecialEventType.SculptureHiddenBays:
 				case SpecialEventType.Skill:
 				case SpecialEventType.SpaceMonster:
 				case SpecialEventType.Tribble:
@@ -241,6 +242,14 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.ScarabDestroyed:
 				case SpecialEventType.ScarabUpgradeHull:
 					show	= game.QuestStatusScarab == SpecialEvent.StatusScarabDestroyed;
+					break;
+				case SpecialEventType.Sculpture:
+					show	= game.QuestStatusSculpture					== SpecialEvent.StatusSculptureNotStarted &&
+									game.Commander.PoliceRecordScore	<  Consts.PoliceRecordScoreDubious &&
+									game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
+					break;
+				case SpecialEventType.SculptureDelivered:
+					show	= game.QuestStatusSculpture	== SpecialEvent.StatusSculptureInTransit;
 					break;
 				case SpecialEventType.SpaceMonsterKilled:
 					show	= game.QuestStatusSpaceMonster == SpecialEvent.StatusSpaceMonsterDestroyed;

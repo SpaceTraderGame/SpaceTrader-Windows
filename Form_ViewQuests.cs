@@ -202,6 +202,11 @@ Claim your moon at Utopia.";
 						Consts.SpecialEvents[(int)SpecialEventType.ScarabUpgradeHull].Location.Name));
 			}
 
+			if (game.Commander.Ship.SculptureOnBoard)
+				quests.Add(Strings.QuestSculpture);
+			else if (game.QuestStatusReactor == SpecialEvent.StatusReactorDelivered)
+				quests.Add(Strings.QuestSculptureHiddenBays);
+
 			if (game.QuestStatusArtifact == SpecialEvent.StatusArtifactOnBoard)
 				quests.Add(Strings.QuestArtifact);
 
