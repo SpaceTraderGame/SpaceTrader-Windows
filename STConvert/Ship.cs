@@ -60,7 +60,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_weapons",				ArrayToArrayList(_weapons));
 			hash.Add("_shields",				ArrayToArrayList(_shields));
 			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
-			hash.Add("_crew",						crewIds);
+			hash.Add("_crewIds",				crewIds);
 			hash.Add("_pod",						_pod);
 
 			return hash;
