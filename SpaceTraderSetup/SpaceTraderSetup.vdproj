@@ -15,14 +15,26 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:spacetraderc:\\documents and settings\\jfrench\\my documents\\visual studio projects\\fryz\\apps\\spacetrader\\stconvert\\obj\\debug\\spacetrader.exe"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2E15012B3E214D4CB02C0B3936F167DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:spacetraderc:\\documents and settings\\jfrench\\my documents\\visual studio projects\\fryz\\apps\\spacetrader\\obj\\release\\spacetrader.exe"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E33407B529FB4168A4186594C1845308"
+        "MsmKey" = "8:_592751F5B91E4A0F95B19601ABA4BDF1"
         "OwnerKey" = "8:_2E15012B3E214D4CB02C0B3936F167DD"
+        "MsmSig" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_592751F5B91E4A0F95B19601ABA4BDF1"
+        "OwnerKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
         "MsmSig" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
         }
     }
@@ -294,6 +306,35 @@
         }
         "ProjectOutput"
         {
+            "{B1E2BB22-187D-11D3-8E02-00C04F6837D0}:_286C9D30FD3747FC98C4827F04C47B82"
+            {
+            "SourcePath" = "8:..\\STConvert\\obj\\Debug\\SpaceTrader.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_45ED1A3BDB6A42A5928990043BF0F672"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectCanonicalName" = "8:STConvert\\STConvert.csproj"
+            "OutputProjectGuid" = "8:{F5B9876B-38E4-468A-8780-3621A6901695}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
             "{B1E2BB22-187D-11D3-8E02-00C04F6837D0}:_2E15012B3E214D4CB02C0B3936F167DD"
             {
             "SourcePath" = "8:..\\obj\\Debug\\SpaceTrader.exe"
@@ -384,7 +425,7 @@
         }
         "MergeModule"
         {
-            "{AC8774A4-3E09-11D3-8E14-00C04F6837D0}:_E33407B529FB4168A4186594C1845308"
+            "{AC8774A4-3E09-11D3-8E14-00C04F6837D0}:_592751F5B91E4A0F95B19601ABA4BDF1"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
