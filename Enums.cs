@@ -163,6 +163,7 @@ namespace Fryz.Apps.SpaceTrader
 		ShipBuyReactor,
 		ShipBuyTransfer,
 		ShipDesignIF,
+		ShipDesignThanks,
 		ShipHullUpgraded,
 		SpecialCleanRecord,
 		SpecialExperimentPerformed,
