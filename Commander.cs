@@ -113,7 +113,12 @@ namespace Fryz.Apps.SpaceTrader
 
 		public bool TradeShip(ShipSpec specToBuy, int netPrice, IWin32Window owner)
 		{
-			bool					traded			= false;
+			return TradeShip(specToBuy, netPrice, specToBuy.Name, owner);
+		}
+
+		public bool TradeShip(ShipSpec specToBuy, int netPrice, string newShipName, IWin32Window owner)
+		{
+			bool	traded	= false;
 
 			if (netPrice > 0 && Debt > 0)
 				FormAlert.Alert(AlertType.DebtNoBuy, owner);
@@ -148,7 +153,7 @@ namespace Fryz.Apps.SpaceTrader
 					if (Ship.HasEquipment(special[i]))
 					{
 						if (specToBuy.Slots(special[i].EquipmentType) == 0)
-							FormAlert.Alert(AlertType.ShipBuyNoSlots, owner, specToBuy.Name, special[i].Name,
+							FormAlert.Alert(AlertType.ShipBuyNoSlots, owner, newShipName, special[i].Name,
 								Strings.EquipmentTypes[(int)special[i].EquipmentType]);
 						else
 						{
@@ -177,7 +182,7 @@ namespace Fryz.Apps.SpaceTrader
 					}
 				}
 
-				if (FormAlert.Alert(AlertType.ShipBuyConfirm, owner, Ship.Name, specToBuy.Name,
+				if (FormAlert.Alert(AlertType.ShipBuyConfirm, owner, Ship.Name, newShipName,
 					(add[0] || add[1] || add[2] ? Strings.ShipBuyTransfer : "")) == DialogResult.Yes)
 				{
 					CrewMember[]	oldCrew	 = Ship.Crew;
