@@ -28,13 +28,13 @@ using System.Drawing;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class ShipTemplate : STSerializableObject
+	public class ShipTemplate : STSerializableObject, IComparable
 	{
 		#region Member Variables
 
 		private string	_name					= null;
 		private Size		_size					= Size.Tiny;
-		private int			_imageIndex		= Consts.ShipImgUseDefault;
+		private int			_imageIndex		= (int)ShipType.Custom;
 		private int			_cargoBays		= 0;
 		private int			_weaponSlots	= 0;
 		private int			_shieldSlots	= 0;
@@ -48,11 +48,18 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Methods
 
-		public ShipTemplate(ShipSpec spec)
+		public ShipTemplate(Size size, string name)
 		{
-			_name					= spec.Name;
+			_name		= name;
+			_size		= size;
+			_images	= Game.CurrentGame.ParentWindow.CustomShipImages;
+		}
+
+		public ShipTemplate(ShipSpec spec, string name)
+		{
+			_name					= name;
 			_size					= spec.Size;
-			_imageIndex		= (spec.ImageIndex == (int)ShipType.Custom ? Consts.ShipImgUseDefault : spec.ImageIndex);
+			_imageIndex		= spec.ImageIndex;
 			_cargoBays		= spec.CargoBays;
 			_weaponSlots	= spec.WeaponSlots;
 			_shieldSlots	= spec.ShieldSlots;
@@ -79,7 +86,19 @@ namespace Fryz.Apps.SpaceTrader
 			_hullStrength	= (int)hash["_hullStrength"];
 
 			if (hash.ContainsKey("_images"))
-				_images			= (Image[])hash["images"];
+				_images			= (Image[])hash["_images"];
+		}
+
+		public int CompareTo(object value)
+		{
+			int	compared	= 0;
+
+			if (value == null)
+				compared	= 1;
+			else
+				compared	= Name.CompareTo(((ShipTemplate)value).Name);
+
+			return compared;
 		}
 
 		public override Hashtable Serialize()

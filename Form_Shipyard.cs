@@ -96,7 +96,6 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Label lblTradeInLabel;
 		private System.Windows.Forms.Label lblTradeIn;
 		private System.Windows.Forms.Label lblUnitsUsed;
-		private System.Windows.Forms.Label lblDisabledName;
 		private System.Windows.Forms.Label lblDisabledPct;
 		private System.Windows.Forms.SaveFileDialog dlgSave;
 
@@ -110,6 +109,7 @@ namespace Fryz.Apps.SpaceTrader
 		private ArrayList		sizes					= null;
 		private Image[]			customImages	= new Image[Consts.ImagesPerShip];
 		private int					imgIndex			= 0;
+		private System.Windows.Forms.Label lblDisabledName;
 		private ShipType[]	imgTypes			= new ShipType[]
 																				{
 																					ShipType.Flea,
@@ -139,11 +139,14 @@ namespace Fryz.Apps.SpaceTrader
 			lblSkillDescription.Text	= Strings.ShipyardSkillDescriptions[(int)shipyard.Skill];
 			lblWarning.Text						= Functions.StringVars(Strings.ShipyardWarning, Shipyard.PENALTY_FIRST_PCT.ToString(),
 																	Shipyard.PENALTY_SECOND_PCT.ToString());
+
 			dlgOpen.InitialDirectory	= Consts.CustomImagesDirectory;
 			dlgSave.InitialDirectory	= Consts.CustomTemplatesDirectory;
+			lblDisabledName.Image			= game.ParentWindow.DirectionImages.Images[Consts.DirectionDown];
+			lblDisabledPct.Image			= game.ParentWindow.DirectionImages.Images[Consts.DirectionDown];
 
-			LoadTemplateList();
 			LoadSizes();
+			LoadTemplateList();
 			LoadSelectedTemplate();
 		}
 
@@ -223,9 +226,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblWeaponsSlots = new System.Windows.Forms.Label();
 			this.ilShipyardLogos = new System.Windows.Forms.ImageList(this.components);
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-			this.lblDisabledName = new System.Windows.Forms.Label();
 			this.lblDisabledPct = new System.Windows.Forms.Label();
 			this.dlgSave = new System.Windows.Forms.SaveFileDialog();
+			this.lblDisabledName = new System.Windows.Forms.Label();
 			this.boxWelcome.SuspendLayout();
 			this.boxInfo.SuspendLayout();
 			this.boxCosts.SuspendLayout();
@@ -363,6 +366,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSave.TabIndex = 4;
 			this.btnSave.Text = "Save";
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			this.btnSave.MouseEnter += new System.EventHandler(this.btnSave_MouseEnter);
+			this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
 			// 
 			// btnLoad
 			// 
@@ -881,28 +886,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.dlgOpen.Filter = "Windows Bitmaps (*.bmp)|*bmp";
 			this.dlgOpen.Title = "Open Ship Image";
 			// 
-			// lblDisabledName
-			// 
-			this.lblDisabledName.BackColor = System.Drawing.SystemColors.Info;
-			this.lblDisabledName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lblDisabledName.Location = new System.Drawing.Point(224, 248);
-			this.lblDisabledName.Name = "lblDisabledName";
-			this.lblDisabledName.Size = new System.Drawing.Size(170, 20);
-			this.lblDisabledName.TabIndex = 7;
-			this.lblDisabledName.Text = "<- You must enter a Ship Name.";
-			this.lblDisabledName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.lblDisabledName.Visible = false;
-			// 
 			// lblDisabledPct
 			// 
 			this.lblDisabledPct.BackColor = System.Drawing.SystemColors.Info;
 			this.lblDisabledPct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lblDisabledPct.Location = new System.Drawing.Point(104, 200);
+			this.lblDisabledPct.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblDisabledPct.Location = new System.Drawing.Point(154, 182);
 			this.lblDisabledPct.Name = "lblDisabledPct";
-			this.lblDisabledPct.Size = new System.Drawing.Size(288, 20);
+			this.lblDisabledPct.Size = new System.Drawing.Size(276, 20);
 			this.lblDisabledPct.TabIndex = 8;
-			this.lblDisabledPct.Text = "Your % of Max must be less than or equal to 100%. ->";
-			this.lblDisabledPct.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblDisabledPct.Text = "Your % of Max must be less than or equal to 100%.";
+			this.lblDisabledPct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lblDisabledPct.Visible = false;
 			// 
 			// dlgSave
@@ -911,6 +905,19 @@ namespace Fryz.Apps.SpaceTrader
 			this.dlgSave.FileName = "CustomShip.sst";
 			this.dlgSave.Filter = "SpaceTrader Ship Template Files (*.sst)|*.sst";
 			this.dlgSave.Title = "Save Ship Template";
+			// 
+			// lblDisabledName
+			// 
+			this.lblDisabledName.BackColor = System.Drawing.SystemColors.Info;
+			this.lblDisabledName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lblDisabledName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblDisabledName.Location = new System.Drawing.Point(96, 222);
+			this.lblDisabledName.Name = "lblDisabledName";
+			this.lblDisabledName.Size = new System.Drawing.Size(170, 20);
+			this.lblDisabledName.TabIndex = 7;
+			this.lblDisabledName.Text = "You must enter a Ship Name.";
+			this.lblDisabledName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblDisabledName.Visible = false;
 			// 
 			// Form_Shipyard
 			// 
@@ -973,17 +980,22 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void LoadSelectedTemplate()
 		{
-			if (selTemplate.SelectedIndex > 0)
+			if (typeof(ShipTemplate).IsInstanceOfType(selTemplate.SelectedItem))
 			{
 				loading									= true;
 
 				ShipTemplate	template	= (ShipTemplate)selTemplate.SelectedItem;
 
-				txtName.Text						= template.Name == Strings.ShipNameCurrentShip ? game.Commander.Ship.Name : template.Name;
+				if (template.Name == Strings.ShipNameCurrentShip)
+					txtName.Text					= game.Commander.Ship.Name;
+				else if (template.Name.EndsWith(Strings.ShipNameTemplateSuffixDefault) ||
+					template.Name.EndsWith(Strings.ShipNameTemplateSuffixMinimum))
+					txtName.Text					= "";
+				else
+					txtName.Text					= template.Name;
+
 				selSize.SelectedIndex		= (int)template.Size;
-				imgIndex								= template.ImageIndex == Consts.ShipImgUseDefault ?
-																	imgTypes.Length - 1 :
-																	template.ImageIndex;
+				imgIndex								= template.ImageIndex == (int)ShipType.Custom ? imgTypes.Length - 1 : template.ImageIndex;
 
 				if (template.Images != null)
 					customImages	= template.Images;
@@ -991,15 +1003,18 @@ namespace Fryz.Apps.SpaceTrader
 					customImages	= game.ParentWindow.CustomShipImages;
 
 				numCargoBays.Value			= template.CargoBays;
-				numFuelTanks.Value			= template.FuelTanks;
-				numHullStrength.Value		= template.HullStrength;
+				numFuelTanks.Value			= Math.Max(numFuelTanks.Minimum, template.FuelTanks);
+				numHullStrength.Value		= Math.Max(numHullStrength.Minimum, template.HullStrength);
 				numWeaponSlots.Value		= template.WeaponSlots;
 				numShieldSlots.Value		= template.ShieldSlots;
 				numGadgetSlots.Value		= template.GadgetSlots;
-				numCrewQuarters.Value		= template.CrewQuarters;
+				numCrewQuarters.Value		= Math.Max(numCrewQuarters.Minimum, template.CrewQuarters);
 
 				UpdateShip();
 				UpdateCalculatedFigures();
+
+				if (selTemplate.Items[0].ToString() == Strings.ShipNameModified)
+					selTemplate.Items.RemoveAt(0);
 
 				loading	= false;
 			}
@@ -1019,22 +1034,50 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void LoadTemplateList()
 		{
-			selTemplate.Items.Add("");
-
-			ShipTemplate	currentShip	= new ShipTemplate(game.Commander.Ship);
-			currentShip.Name	= Strings.ShipNameCurrentShip;
+			ShipTemplate	currentShip	= new ShipTemplate(game.Commander.Ship, Strings.ShipNameCurrentShip);
 			selTemplate.Items.Add(currentShip);
 
-			foreach (string fileName in Directory.GetFiles(Consts.CustomTemplatesDirectory, "*.sst"))
-				selTemplate.Items.Add(new ShipTemplate((Hashtable)Functions.LoadFile(fileName, true, this)));
+			selTemplate.Items.Add(Consts.ShipTemplateSeparator);
 
-			selTemplate.SelectedIndex	= 1;
+			// Add the minimal sizes templates.
+			foreach (Size size in sizes)
+				selTemplate.Items.Add(new ShipTemplate(size, Strings.Sizes[(int)size] + Strings.ShipNameTemplateSuffixMinimum));
+
+			selTemplate.Items.Add(Consts.ShipTemplateSeparator);
+
+			// Add the buyable ship spec templates.
+			foreach (ShipSpec spec in Consts.ShipSpecs)
+			{
+				if (sizes.Contains(spec.Size) && (int)spec.Type <= Consts.MaxShip)
+					selTemplate.Items.Add(new ShipTemplate(spec, spec.Name + Strings.ShipNameTemplateSuffixDefault));
+			}
+
+			selTemplate.Items.Add(Consts.ShipTemplateSeparator);
+
+			// Add the user-created templates.
+			ArrayList	userTemplates	= new ArrayList();
+			foreach (string fileName in Directory.GetFiles(Consts.CustomTemplatesDirectory, "*.sst"))
+				userTemplates.Add(new ShipTemplate((Hashtable)Functions.LoadFile(fileName, true, this)));
+			userTemplates.Sort();
+			selTemplate.Items.AddRange((ShipTemplate[])userTemplates.ToArray(typeof(ShipTemplate)));
+
+			selTemplate.SelectedIndex	= 0;
 		}
 
-		private void SelectBlankTemplate()
+		private bool SaveButtonEnabled()
+		{
+			return (txtName.Text.Length > 0);
+		}
+
+		private void SetTemplateModified()
 		{
 			if (!loading)
+			{
+				if (selTemplate.Items[0].ToString() != Strings.ShipNameModified)
+					selTemplate.Items.Insert(0, Strings.ShipNameModified);
+
 				selTemplate.SelectedIndex	= 0;
+			}
 		}
 
 		private void UpdateAllocation()
@@ -1057,11 +1100,6 @@ namespace Fryz.Apps.SpaceTrader
 			numShieldSlots.Maximum		= Consts.MaxSlots;
 			numGadgetSlots.Maximum		= Consts.MaxSlots;
 			numCrewQuarters.Maximum		= Consts.MaxSlots;
-		}
-
-		private void UpdateBuildButtonEnabled()
-		{
-			btnConstruct.ForeColor	= ConstructButtonEnabled() ? Color.Black : Color.Gray;
 		}
 
 		private void UpdateCalculatedFigures()
@@ -1111,7 +1149,13 @@ namespace Fryz.Apps.SpaceTrader
 			lblTradeIn.Text									= Functions.FormatMoney(-shipyard.TradeIn);
 			lblTotalCost.Text								= Functions.FormatMoney(shipyard.TotalCost);
 
-			UpdateBuildButtonEnabled();
+			UpdateButtonEnabledState();
+		}
+
+		private void UpdateButtonEnabledState()
+		{
+			btnConstruct.ForeColor	= ConstructButtonEnabled() ? Color.Black : Color.Gray;
+			btnSave.ForeColor				= SaveButtonEnabled() ? Color.Black : Color.Gray;
 		}
 
 		private void UpdateShip()
@@ -1164,28 +1208,49 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnNextImage_Click(object sender, System.EventArgs e)
 		{
-			SelectBlankTemplate();
+			SetTemplateModified();
 			imgIndex	= (imgIndex + 1) % imgTypes.Length;
 			UpdateShip();
 		}
 
 		private void btnPrevImage_Click(object sender, System.EventArgs e)
 		{
-			SelectBlankTemplate();
+			SetTemplateModified();
 			imgIndex	= (imgIndex + imgTypes.Length - 1) % imgTypes.Length;
 			UpdateShip();
 		}
 
 		private void btnSave_Click(object sender, System.EventArgs e)
 		{
-			if (dlgSave.ShowDialog(this) == DialogResult.OK)
+			if (SaveButtonEnabled())
 			{
-				ShipTemplate	template	= new ShipTemplate(shipyard.ShipSpec);
-				if (imgIndex == Consts.ShipImgUseDefault)
-					template.Images	= customImages;
+				if (dlgSave.ShowDialog(this) == DialogResult.OK)
+				{
+					ShipTemplate	template	= new ShipTemplate(shipyard.ShipSpec, txtName.Text);
 
-				Functions.SaveFile(dlgSave.FileName, template.Serialize(), this);
+					if (imgIndex > Consts.MaxShip)
+					{
+						template.ImageIndex	= (int)ShipType.Custom;
+						template.Images			= customImages;
+					}
+					else
+						template.ImageIndex	= imgIndex;
+
+					Functions.SaveFile(dlgSave.FileName, template.Serialize(), this);
+
+					LoadTemplateList();
+				}
 			}
+		}
+
+		private void btnSave_MouseEnter(object sender, System.EventArgs e)
+		{
+			lblDisabledName.Visible	= txtName.Text.Length == 0;
+		}
+
+		private void btnSave_MouseLeave(object sender, System.EventArgs e)
+		{
+			lblDisabledName.Visible	= false;
 		}
 
 		private void btnSetCustomImage_Click(object sender, System.EventArgs e)
@@ -1215,7 +1280,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void num_ValueChanged(object sender, System.EventArgs e)
 		{
-			SelectBlankTemplate();
+			SetTemplateModified();
 			UpdateCalculatedFigures();
 		}
 
@@ -1226,7 +1291,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void selSize_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			SelectBlankTemplate();
+			SetTemplateModified();
 			shipyard.ShipSpec.Size	= (Size)sizes[selSize.SelectedIndex];
 			UpdateAllocation();
 			UpdateCalculatedFigures();
@@ -1234,8 +1299,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void txtName_TextChanged(object sender, System.EventArgs e)
 		{
-			SelectBlankTemplate();
-			UpdateBuildButtonEnabled();
+			SetTemplateModified();
+			UpdateButtonEnabledState();
 		}
 
 		#endregion
