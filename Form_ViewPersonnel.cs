@@ -59,6 +59,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Game				game								= Game.CurrentGame;
 		private CrewMember	selectedCrewMember	= null;
+		private System.Windows.Forms.Label lblCrewNoQuarters;
+		private System.Windows.Forms.Label lblForHireNone;
 		private bool				handlingSelect			= false;
 
 		#endregion
@@ -103,6 +105,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTraderLabel = new System.Windows.Forms.Label();
 			this.lblFighterLabel = new System.Windows.Forms.Label();
 			this.lblPilotLabel = new System.Windows.Forms.Label();
+			this.lblCrewNoQuarters = new System.Windows.Forms.Label();
+			this.lblForHireNone = new System.Windows.Forms.Label();
 			this.boxCurrentCrew.SuspendLayout();
 			this.boxForHire.SuspendLayout();
 			this.boxInfo.SuspendLayout();
@@ -120,6 +124,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxCurrentCrew
 			// 
+			this.boxCurrentCrew.Controls.Add(this.lblCrewNoQuarters);
 			this.boxCurrentCrew.Controls.Add(this.lstCrew);
 			this.boxCurrentCrew.Location = new System.Drawing.Point(8, 8);
 			this.boxCurrentCrew.Name = "boxCurrentCrew";
@@ -140,6 +145,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxForHire
 			// 
+			this.boxForHire.Controls.Add(this.lblForHireNone);
 			this.boxForHire.Controls.Add(this.lstForHire);
 			this.boxForHire.Location = new System.Drawing.Point(160, 8);
 			this.boxForHire.Name = "boxForHire";
@@ -273,6 +279,24 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblPilotLabel.TabIndex = 88;
 			this.lblPilotLabel.Text = "Pilot:";
 			// 
+			// lblCrewNoQuarters
+			// 
+			this.lblCrewNoQuarters.Location = new System.Drawing.Point(16, 24);
+			this.lblCrewNoQuarters.Name = "lblCrewNoQuarters";
+			this.lblCrewNoQuarters.Size = new System.Drawing.Size(120, 16);
+			this.lblCrewNoQuarters.TabIndex = 7;
+			this.lblCrewNoQuarters.Text = "No quarters available";
+			this.lblCrewNoQuarters.Visible = false;
+			// 
+			// lblForHireNone
+			// 
+			this.lblForHireNone.Location = new System.Drawing.Point(16, 24);
+			this.lblForHireNone.Name = "lblForHireNone";
+			this.lblForHireNone.Size = new System.Drawing.Size(120, 16);
+			this.lblForHireNone.TabIndex = 8;
+			this.lblForHireNone.Text = "No one for hire";
+			this.lblForHireNone.Visible = false;
+			// 
 			// FormViewPersonnel
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -314,7 +338,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void UpdateCurrentCrew()
 		{
-			CrewMember[]	crew	= game.Commander.Ship.Crew;
+			CrewMember[]	crew				= game.Commander.Ship.Crew;
 
 			lstCrew.Items.Clear();
 			for (int i = 1; i < crew.Length; i++)
@@ -325,24 +349,36 @@ namespace Fryz.Apps.SpaceTrader
 					lstCrew.Items.Add(crew[i]);
 			}
 
-			if (lstCrew.Items.Count == 0)
-				lstCrew.Items.Add(Strings.PersonnelNoQuarters);
+			bool					entries			= (lstCrew.Items.Count > 0);
 
-			lstCrew.Height	= lstCrew.ItemHeight * Math.Min(lstCrew.Items.Count, 6) + 2;
+			lstCrew.Visible						= entries;
+			lblCrewNoQuarters.Visible	= !entries;
+
+			if (entries)
+				lstCrew.Height					= lstCrew.ItemHeight * Math.Min(lstCrew.Items.Count, 6) + 2;
+			else
+				// TODO: remove this when strings are moved to resource.
+				lblCrewNoQuarters.Text	= Strings.PersonnelNoQuarters;
 		}
 
 		private void UpdateForHire()
 		{
-			CrewMember[]	mercs	= game.Commander.CurrentSystem.MercenariesForHire;
+			CrewMember[]	mercs			= game.Commander.CurrentSystem.MercenariesForHire;
 
 			lstForHire.Items.Clear();
 			for (int i = 0; i < mercs.Length; i++)
 				lstForHire.Items.Add(mercs[i]);
 
-			if (lstForHire.Items.Count == 0)
-				lstForHire.Items.Add(Strings.PersonnelNoMercenaries);
+			bool					entries		= (lstForHire.Items.Count > 0);
 
-			lstForHire.Height	= lstForHire.ItemHeight * Math.Min(lstForHire.Items.Count, 6) + 2;
+			lstForHire.Visible			= entries;
+			lblForHireNone.Visible	= !entries;
+
+			if (entries)
+				lstForHire.Height			= lstForHire.ItemHeight * Math.Min(lstForHire.Items.Count, 6) + 2;
+			else
+				// TODO: remove this when strings are moved to resource.
+				lblForHireNone.Text		= Strings.PersonnelNoMercenaries;
 		}
 
 		private void UpdateInfo()
