@@ -738,7 +738,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Ship's Comm.", "Commander? Jarek here. Do you require any assitance in charting a course to Devidia?", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerConcernedPrincess:
-					result	= (new FormAlert("Ship's Comm.", "Oh Captain? (giggles) Would it help if I got out and pushed?", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Ship's Comm.", "[Ziyal] Oh Captain? (giggles) Would it help if I got out and pushed?", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerConcernedWild:
 					result	= (new FormAlert("Ship's Comm.", "Bridge? This is Jonathan. Are we there yet? Heh, heh. Sorry, I couldn't resist.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -747,13 +747,13 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Ship's Comm.", "Captain! This is the Ambassador speaking. We should have been there by now?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerImpatientPrincess:
-					result	= (new FormAlert("Ship's Comm.", "Sir! Are you taking me home or merely replacing my previous captors in their crime?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Ship's Comm.", "Sir! Are you taking me home or merely taking the place of my previous captors?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerImpatientWild:
 					result	= (new FormAlert("Ship's Comm.", "Commander! Wild here. What's taking us so long?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerOnBoard:
-					result	= (new FormAlert("Passenger On Board", "You have taken ^1 on board. While he is on board he'll lend his expertise, but may stop helping if the journey takes too long.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Passenger On Board", "You have taken ^1 on board. While they are on board they'll lend their expertise, but may stop helping if the journey takes too long.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialSealedCanisters:
 					result	= (new FormAlert("Sealed Canisters", "You bought the sealed canisters and put them in your cargo bays.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
