@@ -1245,7 +1245,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (!(Difficulty == Difficulty.Beginner && defender.CommandersShip && fleeing) &&
 				(attacker.CommandersShip && OpponentDisabled && attacker.HasGadget(GadgetType.TargetingSystem) ||
 				Functions.GetRandom(attacker.Fighter + (int)defender.Size) >=
-				(fleeing ? 2 : 1) * Functions.GetRandom(5 + (defender.Pilot / 2))))
+				(fleeing ? 2 : 1) * Functions.GetRandom(5 + defender.Pilot / 2)))
 			{
 				// If the defender is disabled, it only takes one shot to destroy it completely.
 				if (attacker.CommandersShip && OpponentDisabled)
@@ -1267,7 +1267,7 @@ namespace Fryz.Apps.SpaceTrader
 
 					// Attempt to disable the opponent if they're not already disabled, their shields are down,
 					// we have disabling weapons, and the option is checked.
-					if (attacker.CommandersShip && defender.ShieldCharge == 0 && !OpponentDisabled &&
+					if (defender.Disableable && defender.ShieldCharge == 0 && !OpponentDisabled &&
 						Options.DisableOpponents && attackerDisruptors > 0)
 					{
 						disrupt	= Functions.GetRandom(attackerDisruptors * (100 + 2 * attacker.Fighter) / 100);
@@ -1879,7 +1879,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void EncounterWon(IWin32Window owner)
 		{
-			if (EncounterType >= EncounterType.PirateAttack && EncounterType <= EncounterType.PirateSurrender &&
+			if (EncounterType >= EncounterType.PirateAttack && EncounterType <= EncounterType.PirateDisabled &&
 				Opponent.Type != ShipType.Mantis && Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious)
 				FormAlert.Alert(AlertType.EncounterPiratesBounty, owner, Strings.EncounterPiratesDestroyed, "",
 					Functions.Multiples(Opponent.Bounty(), Strings.MoneyUnit));
