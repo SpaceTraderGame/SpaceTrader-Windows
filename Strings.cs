@@ -136,6 +136,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	NA															= "N/A";
 
 		public static string	NewsMoonForSale									= "Seller in ^1 System has Utopian Moon available.";
+		public static string	NewsShipyard										= "Shipyard in ^1 System offers to design custom ships.";
 		public static string	NewsTribbleBuyer								= "Collector in ^1 System seeks to purchase Tribbles.";
 
 		public static string	PersonnelNoMercenaries					= "No one for hire";

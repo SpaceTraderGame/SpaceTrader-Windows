@@ -2404,7 +2404,7 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					if (Universe[i].DestOk && Universe[i] != curSys)
 					{
-						// Special stories that always get shown: moon, millionaire
+						// Special stories that always get shown: moon, millionaire, shipyard
 						if (Universe[i].SpecialEventType != SpecialEventType.NA)
 						{
 							if (Universe[i].SpecialEventType == SpecialEventType.Moon)
@@ -2412,6 +2412,8 @@ namespace Fryz.Apps.SpaceTrader
 							else if (Universe[i].SpecialEventType == SpecialEventType.TribbleBuyer)
 								items.Add(Functions.StringVars(Strings.NewsTribbleBuyer, Universe[i].Name));
 						}
+						if (Universe[i].ShipyardId != ShipyardId.NA)
+							items.Add(Functions.StringVars(Strings.NewsShipyard, Universe[i].Name));
 
 						// And not-always-shown stories
 						if (Universe[i].SystemPressure != SystemPressure.None &&
