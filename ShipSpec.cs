@@ -207,6 +207,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _fuelCost;
 			}
+			set
+			{
+				_fuelCost	= value;
+			}
 		}
 
 		public virtual int FuelTanks
@@ -335,6 +339,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _price;
 			}
+			set
+			{
+				_price	= value;
+			}
 		}
 
 		public int RepairCost
@@ -342,6 +350,10 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _repairCost;
+			}
+			set
+			{
+				_repairCost	= value;
 			}
 		}
 
