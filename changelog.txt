@@ -15,3 +15,4 @@ in Form_Encounter.cs: move as much code as possible out of the GUI class
 in the news system : add a news item explaining where the shipyards are
 in Form_Shipyard.cs : allow saving ship templates
 hidden compartments gadget
+auto-show newspaper option
