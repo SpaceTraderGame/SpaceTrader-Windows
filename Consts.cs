@@ -94,6 +94,11 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			StoryProbability							= 50/8;
 		public const	int			FabricRipInitialProbability		= 25;
 
+		public const	int			DirectionUp										= 0;
+		public const	int			DirectionDown									= 1;
+		public const	int			DirectionLeft									= 2;
+		public const	int			DirectionRight								= 3;
+
 		public const	int			MaxTribbles										= 100000;
 
 		public const	int			PoliceRecordScorePsychopath		= -100;
