@@ -105,15 +105,19 @@ namespace Fryz.Apps.SpaceTrader
 			_hullUpgraded	= (bool)GetValueFromHash(hash, "_hullUpgraded", _hullUpgraded);
 			_imageIndex		= (int)GetValueFromHash(hash, "_imageIndex", Consts.ShipImgUseDefault);
 
-			// Get the name if the ship is a custom design.
-			if (Type == ShipType.Custom)
-				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name",
-																									Strings.ShipNames[(int)ShipType.Custom]);
-
 			// Get the images if the ship uses the custom images.
 			if (ImageIndex == (int)ShipType.Custom)
 				Game.CurrentGame.ParentWindow.CustomShipImages	= (Image[])GetValueFromHash(hash, "_images",
 																													Game.CurrentGame.ParentWindow.CustomShipImages);
+
+			// Get the name if the ship is a custom design.
+			if (Type == ShipType.Custom)
+			{
+				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name",
+																									Strings.ShipNames[(int)ShipType.Custom]);
+
+				UpdateCustomImageOffsetConstants();
+			}
 		}
 
 		public override Hashtable Serialize()
@@ -197,6 +201,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			return count;
+		}
+
+		public void UpdateCustomImageOffsetConstants()
+		{
+			Image		image															= Game.CurrentGame.ParentWindow.CustomShipImages[0];
+			int			custIndex													= (int)ShipType.Custom;
+
+			// Find the first column of pixels that has a non-white pixel for the X value, and the last column for the width.
+			int			x																	= Functions.GetColumnOfFirstNonWhitePixel(image, 1);
+			int			width															= Functions.GetColumnOfFirstNonWhitePixel(image, -1) - x + 1;
+			Consts.ShipImageOffsets[custIndex].X			= Math.Max(2, x);
+			Consts.ShipImageOffsets[custIndex].Width	= Math.Min(62 - Consts.ShipImageOffsets[custIndex].X, width);
 		}
 
 		#endregion

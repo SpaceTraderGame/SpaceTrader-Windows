@@ -1188,7 +1188,11 @@ namespace Fryz.Apps.SpaceTrader
 
 					// Replace the current custom images with the new ones.
 					if (game.Commander.Ship.ImageIndex == (int)ShipType.Custom)
+					{
 						game.ParentWindow.CustomShipImages	= customImages;
+
+						game.Commander.Ship.UpdateCustomImageOffsetConstants();
+					}
 
 					FormAlert.Alert(AlertType.ShipDesignThanks, this, shipyard.Name);
 					Close();
