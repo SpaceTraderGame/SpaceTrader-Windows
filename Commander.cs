@@ -101,7 +101,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_days",								_days);
 			hash.Add("_insurance",					_insurance);
 			hash.Add("_noclaim",						_noclaim);
-//			hash.Add("_ship",								(_ship == null ? null : _ship.Serialize()));
+			hash.Add("_ship",								_ship.Serialize());
 			hash.Add("_priceCargo",					_priceCargo);
 			hash.Add("_name",								Name);
 
