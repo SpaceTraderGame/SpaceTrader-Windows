@@ -460,6 +460,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "STSerializableObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "TradeItem.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
