@@ -28,6 +28,184 @@ namespace Fryz.Apps.SpaceTrader
 {
 	public class Strings
 	{
+		#region Individual String Constants
+
+		public static string	BankInsuranceButtonText					= "^1 Insurance";
+		public static string	BankInsuranceButtonBuy					= "Buy";
+		public static string	BankInsuranceButtonStop					= "Stop";
+		public static string	BankLoanStatementBorrow					= "You can borrow up to ^1.";
+		public static string	BankLoanStatementDebt						= "You have a debt of ^1.";
+
+		public static string	ChartDistance										= "^1 to ^2.";
+
+		public static string	CargoBuyAfford									= "You can afford to buy ^1.";
+		public static string	CargoBuyAvailable								= "The trader has ^1 for sale.";
+		public static string	CargoBuying											= "buying";
+		public static string	CargoBuyNA											= "not sold";
+		public static string	CargoBuyQuestion								= "How many do you want to ^1?";
+		public static string	CargoBuyStatement								= "At ^1 each, you can buy up to ^2.";
+		public static string	CargoBuyStatementSteal					= "Your victim has ^1 of these goods.";
+		public static string	CargoBuyStatementTrader					= "The trader wants to sell ^1 for the price of ^2 each.";
+		public static string	CargoSellDumpCost								= "It costs ^1 per unit for disposal.";
+		public static string	CargoSelling										= "selling";
+		public static string	CargoSellNA											= "no trade";
+		public static string	CargoSellPaid										= "You paid about ^1 per unit.";
+		public static string	CargoSellPaidTrader							= "You paid about ^1 per unit, and have ^2.";
+		public static string	CargoSellProfit									= "Your ^1 per unit is ^2";
+		public static string	CargoSellQuestion								= "How many do you want to ^1?";
+		public static string	CargoSellStatement							= "You can sell up to ^1 at ^2 each.";
+		public static string	CargoSellStatementDump					= "You can ^1 up to ^2.";
+		public static string	CargoSellStatementTrader				= "The trader wants to buy ^1 and offers ^2 each.";
+		public static string	CargoTitle											= "^1 ^2";
+		public static string	CargoUnit												= "unit";
+
+		public static string	CopyrightChar										= char.ToString((char)169);
+
+		public static string	DistanceUnit										= "parsec";
+		public static string	DistanceSubunit									= "click";
+
+		public static string	DockFuelCost										= "A full tank costs ^1";
+		public static string	DockFuelFull										= "Your tank is full.";
+		public static string	DockFuelStatus									= "You have fuel to fly ^1.";
+		public static string	DockHullCost										= "Full repairs will cost ^1";
+		public static string	DockHullFull										= "No repairs are needed.";
+		public static string	DockHullStatus									= "Your hull strength is at ^1%.";
+
+		public static string	EncounterActionCmdrChased				= "The ^1 is still following you.";
+		public static string	EncounterActionCmdrHit					= "The ^1 hits you.";
+		public static string	EncounterActionCmdrMissed				= "The ^1 missed you.";
+		public static string	EncounterActionOppAttacks				= "The ^1 attacks.";
+		public static string	EncounterActionOppChased				= "The ^1 didn't get away.";
+		public static string	EncounterActionOppFleeing				= "The ^1 is fleeing.";
+		public static string	EncounterActionOppHit						= "You hit the ^1.";
+		public static string	EncounterActionOppMissed				= "You missed the ^1.";
+		public static string	EncounterActionOppSurrender			= "The ^1 hails that they wish to surrender to you.";
+		public static string	EncounterHullStrength						= "Hull at ^1%";
+		public static string	EncounterPoliceSubmitArrested		= "You will be arrested!";
+		public static string	EncounterPoliceSubmitGoods			= "illegal goods";
+		public static string	EncounterPoliceSubmitReactor		= "an illegal Ion Reactor";
+		public static string	EncounterPoliceSubmitSeparator	= " and ";
+		public static string	EncounterPoliceSubmitWild				= "Jonathan Wild";
+		public static string	EncounterPretextAlien						= "an alien";
+		public static string	EncounterPretextBottle					= "a floating";
+		public static string	EncounterPretextCaptainAhab			= "the famous Captain Ahab in a";
+		public static string	EncounterPretextCaptainConrad		= "the famous Captain Conrad in a";
+		public static string	EncounterPretextCaptainHuie			= "the famous Captain Huie in a";
+		public static string	EncounterPretextMarie						= "a drifting";
+		public static string	EncounterPretextMariePolice			= "the Customs Police in a";
+		public static string	EncounterPretextPirate					= "a pirate";
+		public static string	EncounterPretextPolice					= "a police";
+		public static string	EncounterPretextSpaceMonster		= "a horrifying";
+		public static string	EncounterPretextStolen					= "a stolen";
+		public static string	EncounterPretextTrader					= "a trader";
+		public static string	EncounterShieldStrength					= "Shields at ^1%";
+		public static string	EncounterShieldNone							= "No Shields";
+		public static string	EncounterShipCaptain						= "Captain";
+		public static string	EncounterShipMantis							= "alien ship";
+		public static string	EncounterShipPirate							= "pirate ship";
+		public static string	EncounterShipPolice							= "police ship";
+		public static string	EncounterShipTrader							= "trader ship";
+		public static string	EncounterText										= "At ^1 from ^2 you encounter ^3 ^4.";
+		public static string	EncounterTextBottle							= "It appears to be a rare bottle of Captain Marmoset's Skill Tonic!";
+		public static string	EncounterTextFamousCaptain			= "The Captain requests a brief meeting with you.";
+		public static string	EncounterTextMarieCeleste				= "The Marie Celeste appears to be completely abandoned.";
+		public static string	EncounterTextOpponentAttack			= "Your opponent attacks.";
+		public static string	EncounterTextOpponentFlee				= "Your opponent is fleeing.";
+		public static string	EncounterTextOpponentIgnore			= "It ignores you.";
+		public static string	EncounterTextOpponentNoNotice		= "It doesn't notice you.";
+		public static string	EncounterTextOpponentSurrender	= "Your opponent hails that he surrenders to you.";
+		public static string	EncounterTextPoliceInspection		= "The police summon you to submit to an inspection.";
+		public static string	EncounterTextPolicePostMarie		= "\"We know you removed illegal goods from the Marie Celeste. You must give them up at once!\"";
+		public static string	EncounterTextPoliceSurrender		= "The police hail they want you to surrender.";
+		public static string	EncounterTextTrader							= "You are hailed with an offer to trade goods.";
+
+		public static string	EquipmentNone										= "No ^1s";
+		public static string	EquipmentFreeSlot								= " - FREE SLOT - ";
+
+		public static string	FileFormatBad										= "The file is not a Space Trader for Windows file, or is the wrong version or has been corrupted.";
+		public static string	FileFutureVersion								= "The version of the file is greater than the current version. You should upgrade to the latest version of Space Trader for Windows.";
+
+		public static string	HighScoreStatus									= "^1 in ^2, worth ^3 on ^4 level.";
+
+		public static string	MercOnBoard											= " (on board ship)";
+		public static string	MercSystemUnknown								= "Unknown";
+
+		public static string	MoneyRateSuffix									= "^1 daily";
+		public static string	MoneyUnit												= "credit";
+
+		public static string	NA															= "N/A";
+
+		public static string	NewsMoonForSale									= "Seller in ^1 System has Utopian Moon available.";
+		public static string	NewsTribbleBuyer								= "Collector in ^1 System seeks to purchase Tribbles.";
+
+		public static string	PersonnelNoMercenaries					= "No one for hire";
+		public static string	PersonnelNoQuarters							= "No quarters available";
+		public static string	PersonnelVacancy								= "Vacancy";
+
+		public static string	QuestNone												= "There are no open quests.";
+		public static string	QuestArtifact										= "Deliver the alien artifact to Professor Berger at some hi-tech system.";
+		public static string	QuestDragonflyBaratas						= "Follow the Dragonfly to Baratas.";
+		public static string	QuestDragonflyMelina						= "Follow the Dragonfly to Melina.";
+		public static string	QuestDragonflyRegulas						= "Follow the Dragonfly to Regulas.";
+		public static string	QuestDragonflyShield						= "Get your lightning shield at Zalkon.";
+		public static string	QuestDragonflyZalkon						= "Follow the Dragonfly to Zalkon.";
+		public static string	QuestExperimentInformDays				= "Stop Dr. Fehler's experiment at Daled within ^1.";
+		public static string	QuestExperimentInformTomorrow		= "Stop Dr. Fehler's experiment at Daled by tomorrow.";
+		public static string	QuestGemulonFuel								= "Get your fuel compactor at Gemulon.";
+		public static string	QuestGemulonInformDays					= "Inform Gemulon about alien invasion within ^1.";
+		public static string	QuestGemulonInformTomorrow			= "Inform Gemulon about alien invasion by tomorrow.";
+		public static string	QuestJarek											= "Bring ambassador Jarek to Devidia.";
+		public static string	QuestJarekImpatient							= QuestJarek + "\r\nJarek is wondering why the journey is taking so long, and is no longer of much help in negotiating trades.";
+		public static string	QuestJaporiDeliver							= "Deliver antidote to Japori.";
+		public static string	QuestMoon												= "Claim your moon at Utopia.";
+		public static string	QuestReactor										= "Deliver the unstable reactor to Nix for Henry Morgan.";
+		public static string	QuestReactorFuel								= "Deliver the unstable reactor to Nix before it consumes all its fuel.";
+		public static string	QuestReactorLaser								= "Get your special laser at Nix.";
+		public static string	QuestScarabFind									= "Find and destroy the Scarab (which is hiding at the exit to a wormhole).";
+		public static string	QuestScarabHull									= "Get your hull upgraded at ^1.";
+		public static string	QuestScarabNotify								= "Notify the authorities at ^1 that the Scarab has been destroyed.";
+		public static string	QuestSpaceMonsterKill						= "Kill the space monster at Acamar.";
+		public static string	QuestTribbles										= "Get rid of those pesky tribbles.";
+		public static string	QuestWild												= "Smuggle Jonathan Wild to Kravat.";
+		public static string	QuestWildImpatient							= QuestWild + "\r\nWild is getting impatient, and will no longer aid your crew along the way.";
+
+		public static string	ShipBuyGotOne										= "got one";
+		public static string	ShipBuyTransfer									= ", and transfer your unique equipment to the new ship";
+
+		public static string	ShipInfoEscapePod								= "An Escape Pod";
+
+		public static string	ShipNameCurrentShip							= "<current ship>";
+		public static string	ShipNameCustomShip							= "Custom Ship";
+
+		public static string	ShipyardEquipForSale						= "There is equipment for sale.";
+		public static string	ShipyardEquipNoSale							= "No equipment for sale.";
+		public static string	ShipyardPodCost									= "You can buy an escape pod for 2,000 cr.";
+		public static string	ShipyardPodIF										= "You need 2,000 cr. to buy an escape pod.";
+		public static string	ShipyardPodInstalled						= "You have an escape pod installed.";
+		public static string	ShipyardPodNoSale								= "No escape pods for sale.";
+		public static string	ShipyardShipForSale							= "There are ships for sale.";
+		public static string	ShipyardShipNoSale							= "No ships for sale.";
+		public static string	ShipyardSizeItem								= "^1 (Max ^2)";
+		public static string	ShipyardTitle										= "Ship Design at ^1 Shipyards";
+		public static string	ShipyardUnit										= "Unit";
+		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty\" due to the engineering difficulty of squeezing everything in.  There is a modest penalty at 80%, and a more severe one at 90%.";
+
+		public static string	SpecialCargoArtifact						= "An alien artifact.";
+		public static string	SpecialCargoExperiment					= "A portable singularity.";
+		public static string	SpecialCargoJapori							= "10 bays of antidote.";
+		public static string	SpecialCargoJarek								= "A haggling computer.";
+		public static string	SpecialCargoNone								= "No special items.";
+		public static string	SpecialCargoReactor							= "An unstable reactor taking up 5 bays.";
+		public static string	SpecialCargoReactorBays					= " of enriched fuel.";
+		public static string	SpecialCargoTribblesInfest			= "An infestation of tribbles.";
+		public static string	SpecialCargoTribblesCute				= "cute, furry tribble";
+
+		public static string	TimeUnit												= "day";
+
+		public static string	TribbleDangerousNumber					= "a dangerous number of";
+
+		#endregion
+
 		#region String Arrays
 
 		#region ActivityLevels
@@ -408,7 +586,7 @@ namespace Fryz.Apps.SpaceTrader
 			"Mantis",
 			"Scarab",
 			"Bottle",
-			"Custom Ship"
+			ShipNameCustomShip
 		};
 		#endregion
 
@@ -769,181 +947,6 @@ namespace Fryz.Apps.SpaceTrader
 			"Morgan's Laser"
 		};
 		#endregion
-
-		#endregion
-
-		#region Individual String Constants
-
-		public static string	BankInsuranceButtonText					= "^1 Insurance";
-		public static string	BankInsuranceButtonBuy					= "Buy";
-		public static string	BankInsuranceButtonStop					= "Stop";
-		public static string	BankLoanStatementBorrow					= "You can borrow up to ^1.";
-		public static string	BankLoanStatementDebt						= "You have a debt of ^1.";
-
-		public static string	ChartDistance										= "^1 to ^2.";
-
-		public static string	CargoBuyAfford									= "You can afford to buy ^1.";
-		public static string	CargoBuyAvailable								= "The trader has ^1 for sale.";
-		public static string	CargoBuying											= "buying";
-		public static string	CargoBuyNA											= "not sold";
-		public static string	CargoBuyQuestion								= "How many do you want to ^1?";
-		public static string	CargoBuyStatement								= "At ^1 each, you can buy up to ^2.";
-		public static string	CargoBuyStatementSteal					= "Your victim has ^1 of these goods.";
-		public static string	CargoBuyStatementTrader					= "The trader wants to sell ^1 for the price of ^2 each.";
-		public static string	CargoSellDumpCost								= "It costs ^1 per unit for disposal.";
-		public static string	CargoSelling										= "selling";
-		public static string	CargoSellNA											= "no trade";
-		public static string	CargoSellPaid										= "You paid about ^1 per unit.";
-		public static string	CargoSellPaidTrader							= "You paid about ^1 per unit, and have ^2.";
-		public static string	CargoSellProfit									= "Your ^1 per unit is ^2";
-		public static string	CargoSellQuestion								= "How many do you want to ^1?";
-		public static string	CargoSellStatement							= "You can sell up to ^1 at ^2 each.";
-		public static string	CargoSellStatementDump					= "You can ^1 up to ^2.";
-		public static string	CargoSellStatementTrader				= "The trader wants to buy ^1 and offers ^2 each.";
-		public static string	CargoTitle											= "^1 ^2";
-		public static string	CargoUnit												= "unit";
-
-		public static string	CopyrightChar										= char.ToString((char)169);
-
-		public static string	DistanceUnit										= "parsec";
-		public static string	DistanceSubunit									= "click";
-
-		public static string	DockFuelCost										= "A full tank costs ^1";
-		public static string	DockFuelFull										= "Your tank is full.";
-		public static string	DockFuelStatus									= "You have fuel to fly ^1.";
-		public static string	DockHullCost										= "Full repairs will cost ^1";
-		public static string	DockHullFull										= "No repairs are needed.";
-		public static string	DockHullStatus									= "Your hull strength is at ^1%.";
-
-		public static string	EncounterActionCmdrChased				= "The ^1 is still following you.";
-		public static string	EncounterActionCmdrHit					= "The ^1 hits you.";
-		public static string	EncounterActionCmdrMissed				= "The ^1 missed you.";
-		public static string	EncounterActionOppAttacks				= "The ^1 attacks.";
-		public static string	EncounterActionOppChased				= "The ^1 didn't get away.";
-		public static string	EncounterActionOppFleeing				= "The ^1 is fleeing.";
-		public static string	EncounterActionOppHit						= "You hit the ^1.";
-		public static string	EncounterActionOppMissed				= "You missed the ^1.";
-		public static string	EncounterActionOppSurrender			= "The ^1 hails that they wish to surrender to you.";
-		public static string	EncounterHullStrength						= "Hull at ^1%";
-		public static string	EncounterPoliceSubmitArrested		= "You will be arrested!";
-		public static string	EncounterPoliceSubmitGoods			= "illegal goods";
-		public static string	EncounterPoliceSubmitReactor		= "an illegal Ion Reactor";
-		public static string	EncounterPoliceSubmitSeparator	= " and ";
-		public static string	EncounterPoliceSubmitWild				= "Jonathan Wild";
-		public static string	EncounterPretextAlien						= "an alien";
-		public static string	EncounterPretextBottle					= "a floating";
-		public static string	EncounterPretextCaptainAhab			= "the famous Captain Ahab in a";
-		public static string	EncounterPretextCaptainConrad		= "the famous Captain Conrad in a";
-		public static string	EncounterPretextCaptainHuie			= "the famous Captain Huie in a";
-		public static string	EncounterPretextMarie						= "a drifting";
-		public static string	EncounterPretextMariePolice			= "the Customs Police in a";
-		public static string	EncounterPretextPirate					= "a pirate";
-		public static string	EncounterPretextPolice					= "a police";
-		public static string	EncounterPretextSpaceMonster		= "a horrifying";
-		public static string	EncounterPretextStolen					= "a stolen";
-		public static string	EncounterPretextTrader					= "a trader";
-		public static string	EncounterShieldStrength					= "Shields at ^1%";
-		public static string	EncounterShieldNone							= "No Shields";
-		public static string	EncounterShipCaptain						= "Captain";
-		public static string	EncounterShipMantis							= "alien ship";
-		public static string	EncounterShipPirate							= "pirate ship";
-		public static string	EncounterShipPolice							= "police ship";
-		public static string	EncounterShipTrader							= "trader ship";
-		public static string	EncounterText										= "At ^1 from ^2 you encounter ^3 ^4.";
-		public static string	EncounterTextBottle							= "It appears to be a rare bottle of Captain Marmoset's Skill Tonic!";
-		public static string	EncounterTextFamousCaptain			= "The Captain requests a brief meeting with you.";
-		public static string	EncounterTextMarieCeleste				= "The Marie Celeste appears to be completely abandoned.";
-		public static string	EncounterTextOpponentAttack			= "Your opponent attacks.";
-		public static string	EncounterTextOpponentFlee				= "Your opponent is fleeing.";
-		public static string	EncounterTextOpponentIgnore			= "It ignores you.";
-		public static string	EncounterTextOpponentNoNotice		= "It doesn't notice you.";
-		public static string	EncounterTextOpponentSurrender	= "Your opponent hails that he surrenders to you.";
-		public static string	EncounterTextPoliceInspection		= "The police summon you to submit to an inspection.";
-		public static string	EncounterTextPolicePostMarie		= "\"We know you removed illegal goods from the Marie Celeste. You must give them up at once!\"";
-		public static string	EncounterTextPoliceSurrender		= "The police hail they want you to surrender.";
-		public static string	EncounterTextTrader							= "You are hailed with an offer to trade goods.";
-
-		public static string	EquipmentNone										= "No ^1s";
-		public static string	EquipmentFreeSlot								= " - FREE SLOT - ";
-
-		public static string	FileFormatBad										= "The file is not a Space Trader for Windows file, or is the wrong version or has been corrupted.";
-		public static string	FileFutureVersion								= "The version of the file is greater than the current version. You should upgrade to the latest version of Space Trader for Windows.";
-
-		public static string	HighScoreStatus									= "^1 in ^2, worth ^3 on ^4 level.";
-
-		public static string	MercOnBoard											= " (on board ship)";
-		public static string	MercSystemUnknown								= "Unknown";
-
-		public static string	MoneyRateSuffix									= "^1 daily";
-		public static string	MoneyUnit												= "credit";
-
-		public static string	NA															= "N/A";
-
-		public static string	NewsMoonForSale									= "Seller in ^1 System has Utopian Moon available.";
-		public static string	NewsTribbleBuyer								= "Collector in ^1 System seeks to purchase Tribbles.";
-
-		public static string	PersonnelNoMercenaries					= "No one for hire";
-		public static string	PersonnelNoQuarters							= "No quarters available";
-		public static string	PersonnelVacancy								= "Vacancy";
-
-		public static string	QuestNone												= "There are no open quests.";
-		public static string	QuestArtifact										= "Deliver the alien artifact to Professor Berger at some hi-tech system.";
-		public static string	QuestDragonflyBaratas						= "Follow the Dragonfly to Baratas.";
-		public static string	QuestDragonflyMelina						= "Follow the Dragonfly to Melina.";
-		public static string	QuestDragonflyRegulas						= "Follow the Dragonfly to Regulas.";
-		public static string	QuestDragonflyShield						= "Get your lightning shield at Zalkon.";
-		public static string	QuestDragonflyZalkon						= "Follow the Dragonfly to Zalkon.";
-		public static string	QuestExperimentInformDays				= "Stop Dr. Fehler's experiment at Daled within ^1.";
-		public static string	QuestExperimentInformTomorrow		= "Stop Dr. Fehler's experiment at Daled by tomorrow.";
-		public static string	QuestGemulonFuel								= "Get your fuel compactor at Gemulon.";
-		public static string	QuestGemulonInformDays					= "Inform Gemulon about alien invasion within ^1.";
-		public static string	QuestGemulonInformTomorrow			= "Inform Gemulon about alien invasion by tomorrow.";
-		public static string	QuestJarek											= "Bring ambassador Jarek to Devidia.";
-		public static string	QuestJarekImpatient							= QuestJarek + "\r\nJarek is wondering why the journey is taking so long, and is no longer of much help in negotiating trades.";
-		public static string	QuestJaporiDeliver							= "Deliver antidote to Japori.";
-		public static string	QuestMoon												= "Claim your moon at Utopia.";
-		public static string	QuestReactor										= "Deliver the unstable reactor to Nix for Henry Morgan.";
-		public static string	QuestReactorFuel								= "Deliver the unstable reactor to Nix before it consumes all its fuel.";
-		public static string	QuestReactorLaser								= "Get your special laser at Nix.";
-		public static string	QuestScarabFind									= "Find and destroy the Scarab (which is hiding at the exit to a wormhole).";
-		public static string	QuestScarabHull									= "Get your hull upgraded at ^1.";
-		public static string	QuestScarabNotify								= "Notify the authorities at ^1 that the Scarab has been destroyed.";
-		public static string	QuestSpaceMonsterKill						= "Kill the space monster at Acamar.";
-		public static string	QuestTribbles										= "Get rid of those pesky tribbles.";
-		public static string	QuestWild												= "Smuggle Jonathan Wild to Kravat.";
-		public static string	QuestWildImpatient							= QuestWild + "\r\nWild is getting impatient, and will no longer aid your crew along the way.";
-
-		public static string	ShipBuyGotOne										= "got one";
-		public static string	ShipBuyTransfer									= ", and transfer your unique equipment to the new ship";
-
-		public static string	ShipInfoEscapePod								= "An Escape Pod";
-
-		public static string	ShipyardEquipForSale						= "There is equipment for sale.";
-		public static string	ShipyardEquipNoSale							= "No equipment for sale.";
-		public static string	ShipyardPodCost									= "You can buy an escape pod for 2,000 cr.";
-		public static string	ShipyardPodIF										= "You need 2,000 cr. to buy an escape pod.";
-		public static string	ShipyardPodInstalled						= "You have an escape pod installed.";
-		public static string	ShipyardPodNoSale								= "No escape pods for sale.";
-		public static string	ShipyardShipForSale							= "There are ships for sale.";
-		public static string	ShipyardShipNoSale							= "No ships for sale.";
-		public static string	ShipyardSizeItem								= "^1 (Max ^2)";
-		public static string	ShipyardTitle										= "Ship Design at ^1 Shipyards";
-		public static string	ShipyardUnit										= "Unit";
-		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty\" due to the engineering difficulty of squeezing everything in.  There is a modest penalty at 80%, and a more severe one at 90%.";
-
-		public static string	SpecialCargoArtifact						= "An alien artifact.";
-		public static string	SpecialCargoExperiment					= "A portable singularity.";
-		public static string	SpecialCargoJapori							= "10 bays of antidote.";
-		public static string	SpecialCargoJarek								= "A haggling computer.";
-		public static string	SpecialCargoNone								= "No special items.";
-		public static string	SpecialCargoReactor							= "An unstable reactor taking up 5 bays.";
-		public static string	SpecialCargoReactorBays					= " of enriched fuel.";
-		public static string	SpecialCargoTribblesInfest			= "An infestation of tribbles.";
-		public static string	SpecialCargoTribblesCute				= "cute, furry tribble";
-
-		public static string	TimeUnit												= "day";
-
-		public static string	TribbleDangerousNumber					= "a dangerous number of";
 
 		#endregion
 
