@@ -50,10 +50,6 @@ namespace Fryz.Apps.SpaceTrader
 
 		#endregion
 
-		#region Member Declarations
-
-		#endregion
-
 		#region Methods
 
 		public Form_STConvert()
