@@ -40,6 +40,7 @@ namespace Fryz.Apps.SpaceTrader
 		private bool	_continuousAttack					= false;	// Continuous attack/flee mode
 		private bool	_continuousAttackFleeing	= false;	// Continue attack on fleeing ship
 		private bool	_newsAutoPay							= false;	// by default, ask each time someone buys a newspaper
+		private bool	_newsAutoShow							= false;	// by default, don't show newspaper
 		private bool	_remindLoans							= true;		// remind you every five days about outstanding loan balances
 		private bool	_reserveMoney							= false;	// Keep enough money for insurance and mercenaries
 		private bool	_showTrackedRange					= true;		// display range when tracking a system on Short Range Chart
@@ -72,6 +73,9 @@ namespace Fryz.Apps.SpaceTrader
 			_showTrackedRange					= (bool)hash["_showTrackedRange"];
 			_trackAutoOff							= (bool)hash["_trackAutoOff"];
 			_leaveEmpty								= (int)hash["_leaveEmpty"];
+
+			if (hash.ContainsKey("_newsAutoShow"))
+				_newsAutoShow	= (bool)hash["_newsAutoShow"];
 		}
 
 		public void CopyValues(GameOptions source)
@@ -85,6 +89,7 @@ namespace Fryz.Apps.SpaceTrader
 			ContinuousAttack					= source.ContinuousAttack;
 			ContinuousAttackFleeing		= source.ContinuousAttackFleeing;
 			NewsAutoPay								= source.NewsAutoPay;
+			NewsAutoShow							= source.NewsAutoPay;
 			RemindLoans								= source.RemindLoans;
 			ReserveMoney							= source.ReserveMoney;
 			ShowTrackedRange					= source.ShowTrackedRange;
@@ -128,6 +133,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_continuousAttack",					_continuousAttack);
 			hash.Add("_continuousAttackFleeing",	_continuousAttackFleeing);
 			hash.Add("_newsAutoPay",							_newsAutoPay);
+			hash.Add("_newsAutoShow",							_newsAutoShow);
 			hash.Add("_remindLoans",							_remindLoans);
 			hash.Add("_reserveMoney",							_reserveMoney);
 			hash.Add("_showTrackedRange",					_showTrackedRange);
@@ -258,6 +264,18 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_newsAutoPay	= value;
+			}
+		}
+
+		public bool NewsAutoShow
+		{
+			get
+			{
+				return _newsAutoShow;
+			}
+			set
+			{
+				_newsAutoShow = value;
 			}
 		}
 
