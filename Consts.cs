@@ -24,6 +24,7 @@
  ******************************************************************************/
 using System;
 using System.Drawing;
+using System.IO;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -31,13 +32,22 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Individual Constants
 
+		// Directory structure and File constants.
+		public static	string	BaseDirectory									= Environment.CurrentDirectory;
+		public static	string	CustomDirectory								= Path.Combine(BaseDirectory, "custom");
+		public static	string	DataDirectory									= Path.Combine(BaseDirectory, "data");
+		public static	string	SaveDirectory									= Path.Combine(BaseDirectory, "save");
+
+		public static	string	CustomImagesDirectory					= Path.Combine(CustomDirectory, "images");
+		public static	string	CustomTemplatesDirectory			= Path.Combine(CustomDirectory, "templates");
+
+		public static	string	HighScoreFile									= Path.Combine(DataDirectory, "HighScores.bin");
+		public static	string	DefaultSettingsFile						= Path.Combine(DataDirectory, "DefaultSettings.bin");
+
 		public const	string	CurrentVersion								= "2.00";
 
 		// Price paid by government for each negative PoliceScore point
 		public const	int			BountyModifier								= 1000;
-
-		public const	string	HighScoreFile									= "HighScores.bin";
-		public const	string	DefaultSettingsFile						= "DefaultSettings.bin";
 
 		public const	int			GalaxyWidth										= 154;
 		public const	int			GalaxyHeight									= 110;
