@@ -509,9 +509,9 @@ namespace Fryz.Apps.SpaceTrader
 	public enum ShipyardId: int
 	{
 		NA									= -1,
-		Kessel							= 0,
-		Kuat								= 1,
-		Loronar							= 2,
+		Corellian						= 0,
+		Incom								= 1,
+		Kuat								= 2,
 		Sienar							= 3,
 		Sorosuub						= 4
 	};

@@ -192,6 +192,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	ShipyardTitle										= "Ship Design at ^1 Shipyards";
 		public static string	ShipyardUnit										= "Unit";
 		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty\" due to the engineering difficulty of squeezing everything in.  There is a modest penalty at 80%, and a more severe one at 90%.";
+		public static string	ShipyardWelcome									= "Welcome to ^1 Shipyards! Our best engineer, ^2, is at your service.";
 
 		public static string	SpecialCargoArtifact						= "An alien artifact.";
 		public static string	SpecialCargoExperiment					= "A portable singularity.";
@@ -596,20 +597,20 @@ namespace Fryz.Apps.SpaceTrader
 		#region ShipyardEngineers
 		public static string[]	ShipyardEngineers	= new string[]
 		{
+			"Wedge",
 			"Luke",
 			"Lando",
-			"Obi-Wan",
-			"Wedge",
-			"Mara"
-		};
+			"Mara",
+			"Obi-Wan"
+	};
 		#endregion
 
 		#region ShipyardNames
 		public static string[]	ShipyardNames	= new string[]
 		{
-			"Hoersh-Kessel Drive",
+			"Corellian Engineering",
+			"Incom Corporation",
 			"Kuat Drive Yards",
-			"Loronar Corporation",
 			"Sienar Fleet Systems",
 			"Sorosuub Engineering"
 		};
