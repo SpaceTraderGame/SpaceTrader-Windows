@@ -29,6 +29,7 @@ namespace Fryz.Apps.SpaceTrader
 	public class Consts
 	{
 		#region Individual Constants
+		public const	int		BountyModifier					= 1000;
 
 		public const	string	HighScoreFile									= "HighScores.bin";
 		public const	string	DefaultSettingsFile						= "DefaultSettings.bin";
@@ -507,7 +508,12 @@ namespace Fryz.Apps.SpaceTrader
 			new SpecialEvent(SpecialEventType.Tribble,              1000, 1, false),
 			new SpecialEvent(SpecialEventType.TribbleBuyer,            0, 3, false),
 			new SpecialEvent(SpecialEventType.Wild,                    0, 1, false),
-			new SpecialEvent(SpecialEventType.WildGetsOut,             0, 0, true)
+			new	SpecialEvent(SpecialEventType.WildGetsOut,			   0, 0, true),
+			new	SpecialEvent(SpecialEventType.KesselShipyard,	  150000, 0, false),
+			new	SpecialEvent(SpecialEventType.LoronarShipyard,	  150000, 0, false),
+			new	SpecialEvent(SpecialEventType.SienarShipyard,	  150000, 0, false),
+			new	SpecialEvent(SpecialEventType.RepublicShipyard,	  150000, 0, false),
+			new	SpecialEvent(SpecialEventType.SorosuubShipyard,	  150000, 0, false)
 		};
 		#endregion
 
