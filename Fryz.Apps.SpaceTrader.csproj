@@ -534,6 +534,10 @@
                     BuildAction = "None"
                 />
                 <File
+                    RelPath = "images\blank.bmp"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "images\bottle.bmp"
                     BuildAction = "None"
                 />
@@ -682,11 +686,31 @@
                     BuildAction = "None"
                 />
                 <File
+                    RelPath = "images\s_energy.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\s_lightning.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\s_reflective.bmp"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "images\scarab.bmp"
                     BuildAction = "None"
                 />
                 <File
                     RelPath = "images\scarabd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scarabs.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scarabsd.bmp"
                     BuildAction = "None"
                 />
                 <File
@@ -903,18 +927,6 @@
                 />
                 <File
                     RelPath = "images\sy-sorosuub.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_energy.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_lightning.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_reflective.bmp"
                     BuildAction = "None"
                 />
                 <File
