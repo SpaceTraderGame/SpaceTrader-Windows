@@ -29,7 +29,7 @@ namespace Fryz.Apps.SpaceTrader
 	public class Consts
 	{
 		#region Individual Constants
-		public const	int		BountyModifier					= 1000;
+		public const	int			BountyModifier								= 1000;
 
 		public const	string	HighScoreFile									= "HighScores.bin";
 		public const	string	DefaultSettingsFile						= "DefaultSettings.bin";
