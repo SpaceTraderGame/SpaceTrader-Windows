@@ -162,7 +162,7 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.Experiment:
 				case SpecialEventType.Jarek:
 					show	= game.Commander.PoliceRecordScore >=
-						Consts.PoliceRecordScoreDubious;
+									Consts.PoliceRecordScoreDubious;
 					break;
 				case SpecialEventType.ArtifactDelivery:
 					show	= game.Commander.Ship.ArtifactOnBoard;
@@ -172,18 +172,18 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.DragonflyBaratas:
 					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyNotStarted &&
-						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+									game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
 					break;
 				case SpecialEventType.DragonflyDestroyed:
 					show	= game.QuestStatusDragonfly == SpecialEvent.StatusDragonflyDestroyed;
 					break;
 				case SpecialEventType.DragonflyMelina:
 					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyBaratas &&
-						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+									game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
 					break;
 				case SpecialEventType.DragonflyRegulas:
 					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyMelina &&
-						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+									game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
 					break;
 				case SpecialEventType.DragonflyShield:
 				case SpecialEventType.ExperimentFailed:
@@ -203,15 +203,15 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.ExperimentStopped:
 					show	= game.QuestStatusExperiment > SpecialEvent.StatusExperimentNotStarted &&
-						game.QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed;
+									game.QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed;
 					break;
 				case SpecialEventType.GemulonRescued:
 					show	= game.QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
-						game.QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate;
+									game.QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate;
 					break;
 				case SpecialEventType.Japori:
 					show	= game.QuestStatusJapori						== SpecialEvent.StatusJaporiNotStarted &&
-						game.Commander.PoliceRecordScore	>= Consts.PoliceRecordScoreDubious;
+									game.Commander.PoliceRecordScore	>= Consts.PoliceRecordScoreDubious;
 					break;
 				case SpecialEventType.JaporiDelivery:
 					show	= game.QuestStatusJapori == SpecialEvent.StatusJaporiInTransit;
@@ -221,22 +221,22 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.Moon:
 					show	= game.QuestStatusMoon == SpecialEvent.StatusMoonNotStarted &&
-						game.Commander.Worth >  SpecialEvent.MoonCost * .8;
+									game.Commander.Worth >  SpecialEvent.MoonCost * .8;
 					break;
 				case SpecialEventType.MoonRetirement:
 					show	= game.QuestStatusMoon == SpecialEvent.StatusMoonBought;
 					break;
 				case SpecialEventType.Reactor:
 					show	= game.QuestStatusReactor						== SpecialEvent.StatusReactorNotStarted &&
-						game.Commander.PoliceRecordScore	<  Consts.PoliceRecordScoreDubious &&
-						game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
+									game.Commander.PoliceRecordScore	<  Consts.PoliceRecordScoreDubious &&
+									game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
 					break;
 				case SpecialEventType.ReactorDelivered:
 					show	= game.Commander.Ship.ReactorOnBoard;
 					break;
 				case SpecialEventType.Scarab:
 					show	= game.QuestStatusScarab					== SpecialEvent.StatusScarabNotStarted &&
-						game.Commander.ReputationScore	>= Consts.ReputationScoreAverage;
+									game.Commander.ReputationScore	>= Consts.ReputationScoreAverage;
 					break;
 				case SpecialEventType.ScarabDestroyed:
 				case SpecialEventType.ScarabUpgradeHull:
