@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
@@ -22,10 +22,9 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
+	[Serializable()]
 	public class Game: STSerializableObject
 	{
-
 		#region Member Declarations
 
 		private StarSystem[]	_universe										= null;
@@ -83,6 +82,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Hashtable	hash	= base.Serialize();
 
+			hash.Add("_version",										"2.00");
 			hash.Add("_universe",										ArrayToArrayList(_universe));
 			hash.Add("_wormholes",									_wormholes);
 			hash.Add("_mercenaries",								ArrayToArrayList(_mercenaries));
