@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
@@ -62,7 +62,7 @@ namespace Fryz.Apps.SpaceTrader
 		}
 
 		[STAThread]
-		static void Main() 
+		static void Main()
 		{
 			Application.Run(new Form_STConvert());
 		}
@@ -86,27 +86,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnConvert = new System.Windows.Forms.Button();
 			this.txtOutput = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
-			// 
+			//
 			// dlgFileOpen
-			// 
+			//
 			this.dlgFileOpen.Filter = "Saved-Game Files (*.sav)|*.sav|Settings/High Scores Files (*.bin)|*.bin|All files" +
 				" (*.*)|*.*";
 			this.dlgFileOpen.Multiselect = true;
 			this.dlgFileOpen.Title = "Open File";
-			// 
+			//
 			// btnConvert
-			// 
+			//
 			this.btnConvert.Location = new System.Drawing.Point(4, 8);
 			this.btnConvert.Name = "btnConvert";
 			this.btnConvert.Size = new System.Drawing.Size(112, 24);
 			this.btnConvert.TabIndex = 0;
 			this.btnConvert.Text = "Convert File...";
 			this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
-			// 
+			//
 			// txtOutput
-			// 
-			this.txtOutput.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.txtOutput.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right);
 			this.txtOutput.AutoSize = false;
 			this.txtOutput.BackColor = System.Drawing.Color.White;
@@ -119,9 +119,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.txtOutput.TabIndex = 2;
 			this.txtOutput.Text = "";
 			this.txtOutput.WordWrap = false;
-			// 
+			//
 			// Form_STConvert
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(592, 333);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {

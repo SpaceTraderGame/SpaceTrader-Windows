@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
