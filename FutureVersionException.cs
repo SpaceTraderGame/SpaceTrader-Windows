@@ -26,7 +26,7 @@ using System;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class FutureVersionException: Exception
+	public class FutureVersionException : Exception
 	{
 	}
 }

@@ -30,7 +30,7 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class GameOptions: STSerializableObject
+	public class GameOptions : STSerializableObject
 	{
 		#region Member Declarations
 

@@ -27,7 +27,7 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class HighScoreRecord: STSerializableObject, IComparable
+	public class HighScoreRecord : STSerializableObject, IComparable
 	{
 		#region Member Declarations
 

@@ -27,7 +27,7 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class CrewMember: STSerializableObject
+	public class CrewMember : STSerializableObject
 	{
 		#region Member Declarations
 

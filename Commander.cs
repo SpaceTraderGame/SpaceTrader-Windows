@@ -27,7 +27,7 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class Commander: CrewMember
+	public class Commander : CrewMember
 	{
 		#region Member Declarations
 

@@ -28,7 +28,7 @@ using System.Drawing;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public abstract class Equipment: STSerializableObject
+	public abstract class Equipment : STSerializableObject
 	{
 		#region Member Declarations
 

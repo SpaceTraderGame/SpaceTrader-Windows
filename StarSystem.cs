@@ -27,7 +27,7 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class StarSystem: STSerializableObject
+	public class StarSystem : STSerializableObject
 	{
 		#region Member Declarations
 
