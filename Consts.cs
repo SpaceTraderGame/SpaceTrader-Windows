@@ -36,25 +36,6 @@ namespace Fryz.Apps.SpaceTrader
 		// Price paid by government for each negative PoliceScore point
 		public const	int			BountyModifier								= 1000;
 
-		// Price of a unit of size when designing a ship
-		public const	long		Buy_BasePrice									= 300;
-		public const	long		Design_BasePrice							= 300;
-		public const	float		Design_PriceMultiplier				= 1.005f;
-
-		// Space taken by the different equipments
-		public const	int			SpaceTakenByWeapon						= 15;
-		public const	int			SpaceTakenByShield						= 10;
-		public const	int			SpaceTakenByGadget						= 5;
-		public const	int			SpaceTakenByFuel							= 3;
-		public const	int			SpaceTakenByCrew							= 10;
-		public const  int			SpaceTakenByArmor							= 35;
-
-		// Fuel costs (for jumping one parsec, for each unit of size)
-		public const	float		FuelCostBySize								= 0.005f;
-
-		// Repair costs, by unit of size
-		public const	float		RepairCostBySize							= 0.1f;
-
 		public const	string	HighScoreFile									= "HighScores.bin";
 		public const	string	DefaultSettingsFile						= "DefaultSettings.bin";
 
@@ -93,6 +74,7 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			ShipImgOffsetDamage						= 1;
 		public const	int			ShipImgOffsetShield						= 2;
 		public const	int			ShipImgOffsetSheildDamage			= 3;
+		public const	int			ShipImgUseDefault							= -1;
 		public const	int			EncounterImgAlien							= 0;
 		public const	int			EncounterImgPirate						= 1;
 		public const	int			EncounterImgPolice						= 2;
