@@ -138,6 +138,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSystems = new System.Windows.Forms.LinkLabel();
 			this.lblMercIds = new System.Windows.Forms.Label();
 			this.lblMercNames = new System.Windows.Forms.Label();
+			this.lblMercSystems2 = new System.Windows.Forms.LinkLabel();
 			this.pnlQuests = new System.Windows.Forms.Panel();
 			this.lblQuests = new System.Windows.Forms.Label();
 			this.lblQuestSystems = new System.Windows.Forms.LinkLabel();
@@ -145,7 +146,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblShipyards = new System.Windows.Forms.Label();
 			this.lblShipyardSystems = new System.Windows.Forms.LinkLabel();
 			this.picLine2 = new System.Windows.Forms.PictureBox();
-			this.lblMercSystems2 = new System.Windows.Forms.LinkLabel();
 			this.pnlMercs.SuspendLayout();
 			this.pnlQuests.SuspendLayout();
 			this.pnlShipyards.SuspendLayout();
@@ -166,14 +166,14 @@ namespace Fryz.Apps.SpaceTrader
 			this.picLine1.BackColor = System.Drawing.Color.DimGray;
 			this.picLine1.Location = new System.Drawing.Point(4, 40);
 			this.picLine1.Name = "picLine1";
-			this.picLine1.Size = new System.Drawing.Size(593, 1);
+			this.picLine1.Size = new System.Drawing.Size(609, 1);
 			this.picLine1.TabIndex = 133;
 			this.picLine1.TabStop = false;
 			// 
 			// picLine0
 			// 
 			this.picLine0.BackColor = System.Drawing.Color.DimGray;
-			this.picLine0.Location = new System.Drawing.Point(226, 8);
+			this.picLine0.Location = new System.Drawing.Point(234, 8);
 			this.picLine0.Name = "picLine0";
 			this.picLine0.Size = new System.Drawing.Size(1, 347);
 			this.picLine0.TabIndex = 132;
@@ -203,7 +203,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercSkillLabelPilot.AutoSize = true;
 			this.lblMercSkillLabelPilot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercSkillLabelPilot.Location = new System.Drawing.Point(333, 24);
+			this.lblMercSkillLabelPilot.Location = new System.Drawing.Point(341, 24);
 			this.lblMercSkillLabelPilot.Name = "lblMercSkillLabelPilot";
 			this.lblMercSkillLabelPilot.Size = new System.Drawing.Size(12, 16);
 			this.lblMercSkillLabelPilot.TabIndex = 7;
@@ -216,7 +216,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercSkillLabelFighter.AutoSize = true;
 			this.lblMercSkillLabelFighter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercSkillLabelFighter.Location = new System.Drawing.Point(354, 24);
+			this.lblMercSkillLabelFighter.Location = new System.Drawing.Point(362, 24);
 			this.lblMercSkillLabelFighter.Name = "lblMercSkillLabelFighter";
 			this.lblMercSkillLabelFighter.Size = new System.Drawing.Size(11, 16);
 			this.lblMercSkillLabelFighter.TabIndex = 8;
@@ -229,7 +229,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercSkillLabelTrader.AutoSize = true;
 			this.lblMercSkillLabelTrader.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercSkillLabelTrader.Location = new System.Drawing.Point(374, 24);
+			this.lblMercSkillLabelTrader.Location = new System.Drawing.Point(382, 24);
 			this.lblMercSkillLabelTrader.Name = "lblMercSkillLabelTrader";
 			this.lblMercSkillLabelTrader.Size = new System.Drawing.Size(11, 16);
 			this.lblMercSkillLabelTrader.TabIndex = 9;
@@ -242,7 +242,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercSkillLabelEngineer.AutoSize = true;
 			this.lblMercSkillLabelEngineer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercSkillLabelEngineer.Location = new System.Drawing.Point(393, 24);
+			this.lblMercSkillLabelEngineer.Location = new System.Drawing.Point(401, 24);
 			this.lblMercSkillLabelEngineer.Name = "lblMercSkillLabelEngineer";
 			this.lblMercSkillLabelEngineer.Size = new System.Drawing.Size(12, 16);
 			this.lblMercSkillLabelEngineer.TabIndex = 10;
@@ -255,7 +255,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercSystemLabel.AutoSize = true;
 			this.lblMercSystemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercSystemLabel.Location = new System.Drawing.Point(417, 24);
+			this.lblMercSystemLabel.Location = new System.Drawing.Point(425, 24);
 			this.lblMercSystemLabel.Name = "lblMercSystemLabel";
 			this.lblMercSystemLabel.Size = new System.Drawing.Size(43, 16);
 			this.lblMercSystemLabel.TabIndex = 11;
@@ -291,7 +291,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercIDLabel.AutoSize = true;
 			this.lblMercIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercIDLabel.Location = new System.Drawing.Point(239, 24);
+			this.lblMercIDLabel.Location = new System.Drawing.Point(247, 24);
 			this.lblMercIDLabel.Name = "lblMercIDLabel";
 			this.lblMercIDLabel.Size = new System.Drawing.Size(16, 16);
 			this.lblMercIDLabel.TabIndex = 5;
@@ -304,7 +304,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblMercNameLabel.AutoSize = true;
 			this.lblMercNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblMercNameLabel.Location = new System.Drawing.Point(260, 24);
+			this.lblMercNameLabel.Location = new System.Drawing.Point(268, 24);
 			this.lblMercNameLabel.Name = "lblMercNameLabel";
 			this.lblMercNameLabel.Size = new System.Drawing.Size(35, 16);
 			this.lblMercNameLabel.TabIndex = 6;
@@ -349,7 +349,6 @@ namespace Fryz.Apps.SpaceTrader
 			// pnlMercs
 			// 
 			this.pnlMercs.AutoScroll = true;
-			this.pnlMercs.AutoScrollMargin = new System.Drawing.Size(0, 4);
 			this.pnlMercs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnlMercs.Controls.Add(this.lblMercSkillsPilot);
 			this.pnlMercs.Controls.Add(this.lblMercSkillsFighter);
@@ -359,9 +358,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.pnlMercs.Controls.Add(this.lblMercIds);
 			this.pnlMercs.Controls.Add(this.lblMercNames);
 			this.pnlMercs.Controls.Add(this.lblMercSystems2);
-			this.pnlMercs.Location = new System.Drawing.Point(231, 44);
+			this.pnlMercs.Location = new System.Drawing.Point(239, 44);
 			this.pnlMercs.Name = "pnlMercs";
-			this.pnlMercs.Size = new System.Drawing.Size(363, 307);
+			this.pnlMercs.Size = new System.Drawing.Size(371, 307);
 			this.pnlMercs.TabIndex = 158;
 			// 
 			// lblMercSkillsPilot
@@ -420,16 +419,24 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercNames.Size = new System.Drawing.Size(69, 563);
 			this.lblMercNames.TabIndex = 141;
 			// 
+			// lblMercSystems2
+			// 
+			this.lblMercSystems2.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
+			this.lblMercSystems2.Location = new System.Drawing.Point(185, 391);
+			this.lblMercSystems2.Name = "lblMercSystems2";
+			this.lblMercSystems2.Size = new System.Drawing.Size(160, 175);
+			this.lblMercSystems2.TabIndex = 148;
+			this.lblMercSystems2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SystemLinkClicked);
+			// 
 			// pnlQuests
 			// 
 			this.pnlQuests.AutoScroll = true;
-			this.pnlQuests.AutoScrollMargin = new System.Drawing.Size(0, 4);
 			this.pnlQuests.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnlQuests.Controls.Add(this.lblQuests);
 			this.pnlQuests.Controls.Add(this.lblQuestSystems);
 			this.pnlQuests.Location = new System.Drawing.Point(8, 44);
 			this.pnlQuests.Name = "pnlQuests";
-			this.pnlQuests.Size = new System.Drawing.Size(214, 182);
+			this.pnlQuests.Size = new System.Drawing.Size(222, 182);
 			this.pnlQuests.TabIndex = 159;
 			// 
 			// lblQuests
@@ -450,14 +457,12 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// pnlShipyards
 			// 
-			this.pnlShipyards.AutoScroll = true;
-			this.pnlShipyards.AutoScrollMargin = new System.Drawing.Size(0, 4);
 			this.pnlShipyards.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pnlShipyards.Controls.Add(this.lblShipyards);
 			this.pnlShipyards.Controls.Add(this.lblShipyardSystems);
 			this.pnlShipyards.Location = new System.Drawing.Point(8, 278);
 			this.pnlShipyards.Name = "pnlShipyards";
-			this.pnlShipyards.Size = new System.Drawing.Size(214, 73);
+			this.pnlShipyards.Size = new System.Drawing.Size(222, 73);
 			this.pnlShipyards.TabIndex = 160;
 			// 
 			// lblShipyards
@@ -485,20 +490,11 @@ namespace Fryz.Apps.SpaceTrader
 			this.picLine2.TabIndex = 161;
 			this.picLine2.TabStop = false;
 			// 
-			// lblMercSystems2
-			// 
-			this.lblMercSystems2.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
-			this.lblMercSystems2.Location = new System.Drawing.Point(185, 391);
-			this.lblMercSystems2.Name = "lblMercSystems2";
-			this.lblMercSystems2.Size = new System.Drawing.Size(160, 175);
-			this.lblMercSystems2.TabIndex = 148;
-			this.lblMercSystems2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SystemLinkClicked);
-			// 
 			// FormMonster
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(601, 358);
+			this.ClientSize = new System.Drawing.Size(617, 358);
 			this.Controls.Add(this.picLine2);
 			this.Controls.Add(this.pnlShipyards);
 			this.Controls.Add(this.pnlQuests);
