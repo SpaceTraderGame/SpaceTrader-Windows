@@ -237,7 +237,7 @@ Claim your moon at Utopia.";
 				lblQuests.Text	= Strings.QuestNone;
 			else
 			{
-				lblQuests.Text	= String.Join("\r\n\r\n", quests);
+				lblQuests.Text	= String.Join(Environment.NewLine + Environment.NewLine, quests);
 
 				for (int i = 0; i < Strings.SystemNames.Length; i++)
 				{

@@ -61,6 +61,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Graphics	g	= this.CreateGraphics();
 
+			char	sepChar	= Environment.NewLine == "\r" ? '\r' : '\n';
+
 			// Replace any variables.
 			if (args != null)
 			{
@@ -69,7 +71,7 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			// Size the text label.
-			string[]	lines		= text.Split(new char[] { '\n' });
+			string[]	lines		= text.Split(new char[] { sepChar });
 			for (int i = 0; i < lines.Length; i++)
 			{
 				string	origLine	= lines[i];
@@ -80,14 +82,14 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					space			+= nextSpace;
 					lines[i]	 = lines[i].Remove(space, 1);
-					lines[i]	 = lines[i].Insert(space, "\n");
+					lines[i]	 = lines[i].Insert(space, Environment.NewLine);
 					space++;
 				}
 
 				if (lines[i] != origLine)
 				{
 					text	= text.Replace(origLine, lines[i]);
-					lines	= text.Split(new char[] { '\n' });
+					lines	= text.Split(new char[] { sepChar });
 				}
 
 				int	width	= (int)Math.Ceiling(g.MeasureString(lines[i].Trim(), this.Font).Width);
@@ -477,7 +479,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("To The Death!", "Surrender? Hah! We want your HEAD!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterTonicConsumedGood:
-					result	= (new FormAlert("Tonic Consumed", "Mmmmm. Captain Marmoset's Amazing Skill Tonic not only fills you with energy, but tastes like a fine single-malt.\n", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Tonic Consumed", "Mmmmm. Captain Marmoset's Amazing Skill Tonic not only fills you with energy, but tastes like a fine single-malt." + Environment.NewLine, "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterTonicConsumedStrange:
 					result	= (new FormAlert("Tonic Consumed", "While you don't know what it was supposed to taste like, you get the feeling that this dose of tonic was a bit off.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -522,10 +524,10 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Sell Item", "Are you sure you want to sell this item?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
 					break;
 				case AlertType.FileErrorOpen:
-					result	= (new FormAlert("Error", "An error occurred while trying to open ^1.\n\n^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Error", "An error occurred while trying to open ^1." + Environment.NewLine + Environment.NewLine + "^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.FileErrorSave:
-					result	= (new FormAlert("Error", "An error occurred while trying to save ^1.\n\n^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Error", "An error occurred while trying to save ^1." + Environment.NewLine + Environment.NewLine + "^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.FileOpenConfirm:
 					result	= (new FormAlert("Are You Sure?", "Are you sure you want to abandon your current game?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
@@ -720,7 +722,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Skill Increase", "The alien increases one of your skills. ", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialTimespaceFabricRip:
-					result	= (new FormAlert("Timespace Fabric Rip", "You have flown through a tear in the timespace continuum caused by Dr. Fehler's failed experiment. You may not have reached\n your planned destination!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Timespace Fabric Rip", "You have flown through a tear in the timespace continuum caused by Dr. Fehler's failed experiment. You may not have reached" + Environment.NewLine + " your planned destination!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialTrainingCompleted:
 					result	= (new FormAlert("Training Completed", "After a few hours of training with a top expert, you feel your abilities have improved significantly.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -777,16 +779,16 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Wild Leaves Ship", "Jonathan Wild leaves your ship, and goes into hiding on ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.WildWontBoardLaser:
-					result	= (new FormAlert("Wild Won't Board Ship", "Jonathan Wild isn't willing to go with you if you're not armed with at least a Beam Laser. He'd rather take his chances hiding out here.\n", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Wild Won't Board Ship", "Jonathan Wild isn't willing to go with you if you're not armed with at least a Beam Laser. He'd rather take his chances hiding out here." + Environment.NewLine, "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.WildWontBoardReactor:
 					result	= (new FormAlert("Wild Won't Board Ship", "Jonathan Wild doesn't like the looks of that Ion Reactor. He thinks it's too dangerous, and won't get on board.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.WildWontStayAboardLaser:
-					result	= (new FormAlert("Wild Won't Stay Aboard", "Jonathan Wild isn't about to go with you if you're not armed with at least a Beam Laser. He'd rather take his chances hiding out here on ^1.\n", "Say Goodbye to Wild", DialogResult.OK, "Cancel", DialogResult.Cancel, args)).ShowDialog(owner);
+					result	= (new FormAlert("Wild Won't Stay Aboard", "Jonathan Wild isn't about to go with you if you're not armed with at least a Beam Laser. He'd rather take his chances hiding out here on ^1." + Environment.NewLine, "Say Goodbye to Wild", DialogResult.OK, "Cancel", DialogResult.Cancel, args)).ShowDialog(owner);
 					break;
 				case AlertType.WildWontStayAboardReactor:
-					result	= (new FormAlert("Wild Won't Stay Aboard", "Jonathan Wild isn't willing to go with you if you bring that Reactor on board. He'd rather take his chances hiding out here on ^1.\n", "Say Goodbye to Wild", DialogResult.OK, "Cancel", DialogResult.Cancel, args)).ShowDialog(owner);
+					result	= (new FormAlert("Wild Won't Stay Aboard", "Jonathan Wild isn't willing to go with you if you bring that Reactor on board. He'd rather take his chances hiding out here on ^1." + Environment.NewLine, "Say Goodbye to Wild", DialogResult.OK, "Cancel", DialogResult.Cancel, args)).ShowDialog(owner);
 					break;
 			}
 

@@ -144,7 +144,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblQuestSystems.Name = "lblQuestSystems";
 			this.lblQuestSystems.Size = new System.Drawing.Size(68, 200);
 			this.lblQuestSystems.TabIndex = 45;
-			this.lblQuestSystems.Text = "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12\r\n13\r\n14\r\n15\r\nTarchannen";
 			this.lblQuestSystems.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSystems_LinkClicked);
 			// 
 			// lblQuests
@@ -153,7 +152,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblQuests.Name = "lblQuests";
 			this.lblQuests.Size = new System.Drawing.Size(120, 208);
 			this.lblQuests.TabIndex = 46;
-			this.lblQuests.Text = "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12\r\n13\r\n14\r\n15\r\nInstall Morgan\'s Laser";
 			// 
 			// lblMercNames
 			// 
@@ -161,8 +159,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercNames.Name = "lblMercNames";
 			this.lblMercNames.Size = new System.Drawing.Size(56, 375);
 			this.lblMercNames.TabIndex = 47;
-			this.lblMercNames.Text = "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12\r\n13\r\n14\r\nZeethibal1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9" +
-				"\r\n10\r\n11\r\n12\r\n13\r\n14\r\nZeethibal";
 			// 
 			// picLine1
 			// 
@@ -198,8 +194,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercIds.Name = "lblMercIds";
 			this.lblMercIds.Size = new System.Drawing.Size(23, 375);
 			this.lblMercIds.TabIndex = 135;
-			this.lblMercIds.Text = "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12\r\n13\r\n14\r\n15\r\n16\r\n17\r\n18\r\n19\r\n20\r\n21\r\n22\r\n23" +
-				"\r\n24\r\n25\r\n26\r\n27\r\n28\r\n29\r\n30";
 			this.lblMercIds.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblMercSystems
@@ -209,7 +203,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSystems.Name = "lblMercSystems";
 			this.lblMercSystems.Size = new System.Drawing.Size(144, 375);
 			this.lblMercSystems.TabIndex = 136;
-			this.lblMercSystems.Text = "1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\n8\r\n9\r\n10\r\n11\r\n12\r\n13\r\n14\r\n15\r\nTarchannen (on board ship)";
 			this.lblMercSystems.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSystems_LinkClicked);
 			// 
 			// lblMercSkillsPilot
@@ -218,8 +211,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSkillsPilot.Name = "lblMercSkillsPilot";
 			this.lblMercSkillsPilot.Size = new System.Drawing.Size(20, 375);
 			this.lblMercSkillsPilot.TabIndex = 137;
-			this.lblMercSkillsPilot.Text = "10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n1" +
-				"0\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10";
 			this.lblMercSkillsPilot.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblMercSkillsFighter
@@ -228,8 +219,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSkillsFighter.Name = "lblMercSkillsFighter";
 			this.lblMercSkillsFighter.Size = new System.Drawing.Size(20, 375);
 			this.lblMercSkillsFighter.TabIndex = 138;
-			this.lblMercSkillsFighter.Text = "10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n1" +
-				"0\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10";
 			this.lblMercSkillsFighter.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblMercSkillsTrader
@@ -238,8 +227,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSkillsTrader.Name = "lblMercSkillsTrader";
 			this.lblMercSkillsTrader.Size = new System.Drawing.Size(20, 375);
 			this.lblMercSkillsTrader.TabIndex = 139;
-			this.lblMercSkillsTrader.Text = "10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n1" +
-				"0\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10";
 			this.lblMercSkillsTrader.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblMercSkillsEngineer
@@ -248,8 +235,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercSkillsEngineer.Name = "lblMercSkillsEngineer";
 			this.lblMercSkillsEngineer.Size = new System.Drawing.Size(20, 375);
 			this.lblMercSkillsEngineer.TabIndex = 140;
-			this.lblMercSkillsEngineer.Text = "10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n1" +
-				"0\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10\r\n10";
 			this.lblMercSkillsEngineer.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// lblMercLabel
@@ -392,7 +377,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblShipyardSystems.Name = "lblShipyardSystems";
 			this.lblShipyardSystems.Size = new System.Drawing.Size(68, 63);
 			this.lblShipyardSystems.TabIndex = 154;
-			this.lblShipyardSystems.Text = "1\r\n2\r\n3\r\n4\r\nTarchannen";
 			this.lblShipyardSystems.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblSystems_LinkClicked);
 			// 
 			// lblShipyardsLabel
@@ -411,7 +395,6 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblShipyards.Name = "lblShipyards";
 			this.lblShipyards.Size = new System.Drawing.Size(120, 63);
 			this.lblShipyards.TabIndex = 156;
-			this.lblShipyards.Text = "1\r\n2\r\n3\r\n4\r\n5";
 			// 
 			// FormMonster
 			// 
@@ -421,10 +404,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																	this.lblShipyards,
 																																	this.lblShipyardsLabel,
-																																	this.lblShipyardSystems,
 																																	this.lblShipyardsDescLabel,
 																																	this.lblShipyardsSystemLabel,
-																																	this.picLine2,
 																																	this.lblMercNameLabel,
 																																	this.lblMercIDLabel,
 																																	this.lblQuestDescLabel,
@@ -436,6 +417,8 @@ namespace Fryz.Apps.SpaceTrader
 																																	this.lblSkillLabelPilot,
 																																	this.lblMercLabel,
 																																	this.lblQuestsLabel,
+																																	this.lblShipyardSystems,
+																																	this.picLine2,
 																																	this.lblMercSkillsPilot,
 																																	this.lblMercSkillsFighter,
 																																	this.lblMercSkillsTrader,
@@ -472,8 +455,8 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					int	start							 = lblQuestSystems.Text.Length;
 
-					lblQuestSystems.Text	+= system.Name + "\r\n";
-					lblQuests.Text				+= system.SpecialEvent.Title + "\r\n";
+					lblQuestSystems.Text	+= system.Name + "" + Environment.NewLine + "";
+					lblQuests.Text				+= system.SpecialEvent.Title + "" + Environment.NewLine + "";
 
 					lblQuestSystems.Links.Add(start, system.Name.Length, system.Name);
 				}
@@ -491,8 +474,8 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					int	start							 = lblShipyardSystems.Text.Length;
 
-					lblShipyardSystems.Text	+= system.Name + "\r\n";
-					lblShipyards.Text				+= system.Shipyard.Name + "\r\n";
+					lblShipyardSystems.Text	+= system.Name + "" + Environment.NewLine + "";
+					lblShipyards.Text				+= system.Shipyard.Name + "" + Environment.NewLine + "";
 
 					lblShipyardSystems.Links.Add(start, system.Name.Length, system.Name);
 				}
@@ -512,14 +495,14 @@ namespace Fryz.Apps.SpaceTrader
 				CrewMember	merc	= game.Mercenaries[i];
 				int					start	= lblMercSystems.Text.Length;
 
-				lblMercIds.Text							+= ((int)merc.Id).ToString() + "\r\n";
-				lblMercNames.Text						+= merc.Name + "\r\n";
-				lblMercSkillsPilot.Text			+= merc.Pilot.ToString() + "\r\n";
-				lblMercSkillsFighter.Text		+= merc.Fighter.ToString() + "\r\n";
-				lblMercSkillsTrader.Text		+= merc.Trader.ToString() + "\r\n";
-				lblMercSkillsEngineer.Text	+= merc.Engineer.ToString() + "\r\n";
+				lblMercIds.Text							+= ((int)merc.Id).ToString() + "" + Environment.NewLine + "";
+				lblMercNames.Text						+= merc.Name + "" + Environment.NewLine + "";
+				lblMercSkillsPilot.Text			+= merc.Pilot.ToString() + "" + Environment.NewLine + "";
+				lblMercSkillsFighter.Text		+= merc.Fighter.ToString() + "" + Environment.NewLine + "";
+				lblMercSkillsTrader.Text		+= merc.Trader.ToString() + "" + Environment.NewLine + "";
+				lblMercSkillsEngineer.Text	+= merc.Engineer.ToString() + "" + Environment.NewLine + "";
 				lblMercSystems.Text					+= (merc.CurrentSystem != null ? merc.CurrentSystem.Name : Strings.MercSystemUnknown) +
-																			 (game.Commander.Ship.HasCrew(merc.Id) ? Strings.MercOnBoard : "") + "\r\n";
+																			 (game.Commander.Ship.HasCrew(merc.Id) ? Strings.MercOnBoard : "") + "" + Environment.NewLine + "";
 
 				if (merc.CurrentSystem != null && !game.Commander.Ship.HasCrew(merc.Id))
 					lblMercSystems.Links.Add(start, merc.CurrentSystem.Name.Length, merc.CurrentSystem.Name);

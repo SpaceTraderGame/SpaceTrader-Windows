@@ -125,7 +125,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblEquipLabel.Name = "lblEquipLabel";
 			this.lblEquipLabel.Size = new System.Drawing.Size(64, 176);
 			this.lblEquipLabel.TabIndex = 43;
-			this.lblEquipLabel.Text = "Hull:\r\n\r\nEquipment:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nUnfilled:";
+			this.lblEquipLabel.Text = "Hull:" + Environment.NewLine + Environment.NewLine + "Equipment:" + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine + "Unfilled:";
 			// 
 			// lblEquip
 			// 
@@ -133,9 +133,14 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblEquip.Name = "lblEquip";
 			this.lblEquip.Size = new System.Drawing.Size(105, 176);
 			this.lblEquip.TabIndex = 44;
-			this.lblEquip.Text = "Hardened\r\n\r\n1 Military Laser\r\n1 Morgan\'s Laser\r\n1 Energy Shield\r\n1 Reflective Shi" +
-				"eld\r\n1 Lightning Shield\r\nAuto-Repair System\r\n10 Extra Cargo Bays\r\nAn Escape Pod\r" +
-				"\n\r\n1 weapon slot\r\n1 gadget slot";
+			this.lblEquip.Text = "Hardened" + Environment.NewLine +
+				Environment.NewLine + "1 Military Laser" + Environment.NewLine +
+				"1 Morgan\'s Laser" + Environment.NewLine + "1 Energy Shield" +
+				Environment.NewLine + "1 Reflective Shield" + Environment.NewLine +
+				"1 Lightning Shield" + Environment.NewLine + "Auto-Repair System" +
+				Environment.NewLine + "10 Extra Cargo Bays" + Environment.NewLine +
+				"An Escape Pod" + Environment.NewLine + Environment.NewLine +
+				"1 weapon slot" + Environment.NewLine + "1 gadget slot";
 			// 
 			// boxSpecialCargo
 			// 
@@ -185,8 +190,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			if (game.QuestStatusScarab == SpecialEvent.StatusScarabDone)
 			{
-				lblEquipLabel.Text	+= "Hull:\r\n\r\n";
-				lblEquip.Text				+= "Hardened\r\n\r\n";
+				lblEquipLabel.Text	+= "Hull:" + Environment.NewLine + Environment.NewLine;
+				lblEquip.Text				+= "Hardened" + Environment.NewLine + Environment.NewLine;
 			}
 
 			bool	equipPrinted	= false;
@@ -201,8 +206,8 @@ namespace Fryz.Apps.SpaceTrader
 				}
 				if (count > 0)
 				{
-					lblEquipLabel.Text	+= equipPrinted ? "\r\n" : "Equipment:\r\n";
-					lblEquip.Text				+= Functions.Multiples(count, Consts.Weapons[i].Name) + "\r\n";
+					lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
+					lblEquip.Text				+= Functions.Multiples(count, Consts.Weapons[i].Name) + Environment.NewLine;
 					equipPrinted				= true;
 				}
 			}
@@ -217,8 +222,8 @@ namespace Fryz.Apps.SpaceTrader
 				}
 				if (count > 0)
 				{
-					lblEquipLabel.Text	+= equipPrinted ? "\r\n" : "Equipment:\r\n";
-					lblEquip.Text				+= Functions.Multiples(count, Consts.Shields[i].Name) + "\r\n";
+					lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
+					lblEquip.Text				+= Functions.Multiples(count, Consts.Shields[i].Name) + Environment.NewLine;
 					equipPrinted				= true;
 				}
 			}
@@ -233,15 +238,15 @@ namespace Fryz.Apps.SpaceTrader
 				}
 				if (count > 0)
 				{
-					lblEquipLabel.Text	+= equipPrinted ? "\r\n" : "Equipment:\r\n";
+					lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
 
 					if (i == (int)GadgetType.ExtraCargoBays)
 					{
 						count	*= 5;
-						lblEquip.Text			+= Functions.FormatNumber(count) + Consts.Gadgets[i].Name.Substring(2) + "\r\n";
+						lblEquip.Text			+= Functions.FormatNumber(count) + Consts.Gadgets[i].Name.Substring(2) + Environment.NewLine;
 					}
 					else
-						lblEquip.Text			+= Functions.Multiples(count, Consts.Gadgets[i].Name) + "\r\n";
+						lblEquip.Text			+= Functions.Multiples(count, Consts.Gadgets[i].Name) + Environment.NewLine;
 
 					equipPrinted				= true;
 				}
@@ -249,24 +254,24 @@ namespace Fryz.Apps.SpaceTrader
 
 			if (ship.EscapePod)
 			{
-				lblEquipLabel.Text	+= equipPrinted ? "\r\n" : "Equipment:\r\n";
-				lblEquip.Text				+= Strings.ShipInfoEscapePod + "\r\n";
+				lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
+				lblEquip.Text				+= Strings.ShipInfoEscapePod + Environment.NewLine;
 				equipPrinted				= true;
 			}
 
 			if (ship.FreeSlots > 0)
 			{
-				lblEquipLabel.Text	+= (equipPrinted ? "\r\n" : "") + "Unfilled:";
-				lblEquip.Text				+= (equipPrinted ? "\r\n" : "");
+				lblEquipLabel.Text	+= (equipPrinted ? Environment.NewLine : "") + "Unfilled:";
+				lblEquip.Text				+= (equipPrinted ? Environment.NewLine : "");
 
 				if (ship.FreeSlotsWeapon > 0)
-					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsWeapon, "weapon slot") + "\r\n";
+					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsWeapon, "weapon slot") + Environment.NewLine;
 
 				if (ship.FreeSlotsShield > 0)
-					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsShield, "shield slot") + "\r\n";
+					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsShield, "shield slot") + Environment.NewLine;
 
 				if (ship.FreeSlotsGadget > 0)
-					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsGadget, "gadget slot") + "\r\n";
+					lblEquip.Text				+= Functions.Multiples(ship.FreeSlotsGadget, "gadget slot") + Environment.NewLine;
 			}
 		}
 
@@ -302,7 +307,7 @@ namespace Fryz.Apps.SpaceTrader
 				specialCargo.Add(Strings.SpecialCargoExperiment);
 
 			lblSpecialCargo.Text	= specialCargo.Count == 0 ? Strings.SpecialCargoNone :
-															String.Join("\r\n\r\n", Functions.ArrayListToStringArray(specialCargo));
+															String.Join(Environment.NewLine + Environment.NewLine, Functions.ArrayListToStringArray(specialCargo));
 		}
 
 		#endregion

@@ -2446,7 +2446,7 @@ namespace Fryz.Apps.SpaceTrader
 					}
 				}
 
-				return String.Join("\r\n\r\n", Functions.ArrayListToStringArray(items));
+				return String.Join(Environment.NewLine + Environment.NewLine, Functions.ArrayListToStringArray(items));
 			}
 		}
 

@@ -156,7 +156,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	QuestGemulonInformDays					= "Inform Gemulon about alien invasion within ^1.";
 		public static string	QuestGemulonInformTomorrow			= "Inform Gemulon about alien invasion by tomorrow.";
 		public static string	QuestJarek											= "Bring ambassador Jarek to Devidia.";
-		public static string	QuestJarekImpatient							= QuestJarek + "\r\nJarek is wondering why the journey is taking so long, and is no longer of much help in negotiating trades.";
+		public static string	QuestJarekImpatient							= QuestJarek + Environment.NewLine + "Jarek is wondering why the journey is taking so long, and is no longer of much help in negotiating trades.";
 		public static string	QuestJaporiDeliver							= "Deliver antidote to Japori.";
 		public static string	QuestMoon												= "Claim your moon at Utopia.";
 		public static string	QuestReactor										= "Deliver the unstable reactor to Nix for Henry Morgan.";
@@ -168,7 +168,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	QuestSpaceMonsterKill						= "Kill the space monster at Acamar.";
 		public static string	QuestTribbles										= "Get rid of those pesky tribbles.";
 		public static string	QuestWild												= "Smuggle Jonathan Wild to Kravat.";
-		public static string	QuestWildImpatient							= QuestWild + "\r\nWild is getting impatient, and will no longer aid your crew along the way.";
+		public static string	QuestWildImpatient							= QuestWild + Environment.NewLine + "Wild is getting impatient, and will no longer aid your crew along the way.";
 
 		public static string	ShipBuyGotOne										= "got one";
 		public static string	ShipBuyTransfer									= ", and transfer your unique equipment to the new ship";

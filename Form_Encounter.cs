@@ -1297,7 +1297,7 @@ namespace Fryz.Apps.SpaceTrader
 			else
 				oppAction		= Functions.StringVars(Strings.EncounterActionOppAttacks, shipText);
 
-			lblEncounter.Text	= cmdrStatus + "\r\n" + oppStatus;
+			lblEncounter.Text	= cmdrStatus + Environment.NewLine + oppStatus;
 			lblAction.Text		= oppAction;
 		}
 

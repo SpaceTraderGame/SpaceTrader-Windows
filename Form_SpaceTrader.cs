@@ -3307,7 +3307,7 @@ namespace Fryz.Apps.SpaceTrader
 							{
 								string	text	= "";
 								for (IEnumerator list = game.VeryRareEncounters.GetEnumerator(); list.MoveNext();)
-									text	+= Strings.VeryRareEncounters[(int)list.Current] + "\r\n";
+									text	+= Strings.VeryRareEncounters[(int)list.Current] + Environment.NewLine;
 								text	= text.Trim();
 
 								FormAlert.Alert(AlertType.Alert, this, "Remaining Very Rare Encounters", text);
@@ -3441,16 +3441,16 @@ namespace Fryz.Apps.SpaceTrader
 									game.QuestStatusWild	= Math.Max(0, num2);
 									break;
 								default:
-									string	text	= "Artifact: " + game.QuestStatusArtifact.ToString() + "\r\n" +
-																	"Dragonfly: " + game.QuestStatusDragonfly.ToString() + "\r\n" +
-																	"Experiment: " + game.QuestStatusExperiment.ToString() + "\r\n" +
-																	"Gemulon: " + game.QuestStatusGemulon.ToString() + "\r\n" +
-																	"Japori: " + game.QuestStatusJapori.ToString() + "\r\n" +
-																	"Jarek: " + game.QuestStatusJarek.ToString() + "\r\n" +
-																	"Moon: " + game.QuestStatusMoon.ToString() + "\r\n" +
-																	"Reactor: " + game.QuestStatusReactor.ToString() + "\r\n" +
-																	"Scarab: " + game.QuestStatusScarab.ToString() + "\r\n" +
-																	"SpaceMonster: " + game.QuestStatusSpaceMonster.ToString() + "\r\n" +
+									string	text	= "Artifact: " + game.QuestStatusArtifact.ToString() + Environment.NewLine +
+																	"Dragonfly: " + game.QuestStatusDragonfly.ToString() + Environment.NewLine +
+																	"Experiment: " + game.QuestStatusExperiment.ToString() + Environment.NewLine +
+																	"Gemulon: " + game.QuestStatusGemulon.ToString() + Environment.NewLine +
+																	"Japori: " + game.QuestStatusJapori.ToString() + Environment.NewLine +
+																	"Jarek: " + game.QuestStatusJarek.ToString() + Environment.NewLine +
+																	"Moon: " + game.QuestStatusMoon.ToString() + Environment.NewLine +
+																	"Reactor: " + game.QuestStatusReactor.ToString() + Environment.NewLine +
+																	"Scarab: " + game.QuestStatusScarab.ToString() + Environment.NewLine +
+																	"SpaceMonster: " + game.QuestStatusSpaceMonster.ToString() + Environment.NewLine +
 																	"Wild: " + game.QuestStatusWild.ToString();
 
 									FormAlert.Alert(AlertType.Alert, this, "Status of Quests", text);
