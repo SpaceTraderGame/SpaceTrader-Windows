@@ -10,7 +10,8 @@
 	Redesigned the saved game file format, so that new versions of Space Trader will always be able to open saved games from previous versions (back to 2.0)
 	Created file converter (saved games, high scores, options) to convert 1.3 files to 2.0
 	Added folders to the base folder for the saved games, images, etc. to reside in
-	Added 1 new quest and 1 new gadget
+	Added 2 new quests
+	Added 1 new gadget
 	Numerous bug fixes
 	Added lots more images for equipment, etc.
 	Require confirmation when loading a game, starting a new game, or quitting game (but only when at least one day has passed since the last save)
@@ -22,7 +23,6 @@ TODO:
 	in Form_Alert.cs : move the strings to a resource
 	make shipyard news advertisements
 	rework escape pod sequence
-	kidnapped "princess" quest
 	create images for trade goods
 	passenger modules
 	courier quests
