@@ -86,6 +86,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_universe",										ArrayToArrayList(_universe));
 			hash.Add("_wormholes",									_wormholes);
 			hash.Add("_mercenaries",								ArrayToArrayList(_mercenaries));
+			hash.Add("_commander",									_commander.Serialize());
 			hash.Add("_dragonfly",									_dragonfly.Serialize());
 			hash.Add("_scarab",											_scarab.Serialize());
 			hash.Add("_spaceMonster",								_spaceMonster.Serialize());
@@ -98,7 +99,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_arrivedViaWormhole",					_arrivedViaWormhole);
 			hash.Add("_paidForNewspaper",						_paidForNewspaper);
 			hash.Add("_litterWarning",							_litterWarning);
-			hash.Add("_newsEvents",									(int[])_newsEvents.ToArray(typeof(NewsEvent)));
+			hash.Add("_newsEvents",									ArrayListToIntArray(_newsEvents));
 			hash.Add("_difficulty",									(int)_difficulty);
 			hash.Add("_cheatEnabled",								_cheatEnabled);
 			hash.Add("_autoSave",										_autoSave);
@@ -126,7 +127,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_justLootedMarie",						_justLootedMarie);
 			hash.Add("_canSuperWarp",								_canSuperWarp);
 			hash.Add("_chanceOfVeryRareEncounter",	_chanceOfVeryRareEncounter);
-			hash.Add("_veryRareEncounters",					(int[])_veryRareEncounters.ToArray(typeof(VeryRareEncounter)));
+			hash.Add("_veryRareEncounters",					ArrayListToIntArray(_veryRareEncounters));
 			hash.Add("_options",										_options.Serialize());
 
 			return hash;

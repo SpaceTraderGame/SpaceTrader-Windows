@@ -290,6 +290,18 @@ namespace Fryz.Apps.SpaceTrader
 	};
 	#endregion
 
+	#region ShipyardId
+	public enum ShipyardId: int
+	{
+		NA									= -1,
+		Kessel							= 0,
+		Loronar							= 1,
+		Republic						= 2,
+		Sienar							= 3,
+		Sorosuub						= 4
+	};
+	#endregion
+
 	#region Size
 	public enum Size: int
 	{

@@ -468,7 +468,7 @@ namespace Fryz.Apps.SpaceTrader
 			for (int i = 0; i < Universe.Length; i++)
 			{
 				if (Functions.GetRandom(100) < 15)
-					Universe[i].Pressure	= Universe[i].Pressure == SystemPressure.None ?
+					Universe[i].SystemPressure	= Universe[i].SystemPressure == SystemPressure.None ?
 						(SystemPressure)Functions.GetRandom((int)SystemPressure.War,
 						(int)SystemPressure.Employment + 1) : SystemPressure.None;
 
@@ -499,7 +499,7 @@ namespace Fryz.Apps.SpaceTrader
 				_priceCargoSell[i]		= Consts.TradeItems[i].StandardPrice(system);
 
 				// In case of a special status, adapt price accordingly
-				if (Consts.TradeItems[i].PressurePriceHike == system.Pressure)
+				if (Consts.TradeItems[i].PressurePriceHike == system.SystemPressure)
 					_priceCargoSell[i]	= _priceCargoSell[i] * 3 / 2;
 
 				// Randomize price a bit
@@ -1905,7 +1905,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_arrivedViaWormhole",					_arrivedViaWormhole);
 			hash.Add("_paidForNewspaper",						_paidForNewspaper);
 			hash.Add("_litterWarning",							_litterWarning);
-			hash.Add("_newsEvents",									(int[])_newsEvents.ToArray(typeof(NewsEvent)));
+			hash.Add("_newsEvents",									ArrayListToIntArray(_newsEvents));
 			hash.Add("_difficulty",									(int)_difficulty);
 			hash.Add("_cheatEnabled",								_cheatEnabled);
 			hash.Add("_autoSave",										_autoSave);
@@ -1933,7 +1933,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_justLootedMarie",						_justLootedMarie);
 			hash.Add("_canSuperWarp",								_canSuperWarp);
 			hash.Add("_chanceOfVeryRareEncounter",	_chanceOfVeryRareEncounter);
-			hash.Add("_veryRareEncounters",					(int[])_veryRareEncounters.ToArray(typeof(VeryRareEncounter)));
+			hash.Add("_veryRareEncounters",					ArrayListToIntArray(_veryRareEncounters));
 			hash.Add("_options",										_options.Serialize());
 
 			hash.Add("commanderName",								Strings.CrewMemberNames[(int)CrewMemberId.Commander]);
@@ -2382,8 +2382,8 @@ namespace Fryz.Apps.SpaceTrader
 				for (IEnumerator en = NewsEvents.GetEnumerator(); en.MoveNext();)
 					items.Add(Functions.StringVars(Strings.NewsEvent[(int)en.Current], Commander.Name));
 
-				if (curSys.Pressure != SystemPressure.None)
-					items.Add(Strings.NewsPressureInternal[(int)curSys.Pressure]);
+				if (curSys.SystemPressure != SystemPressure.None)
+					items.Add(Strings.NewsPressureInternal[(int)curSys.SystemPressure]);
 
 				if (Commander.PoliceRecordScore <= Consts.PoliceRecordScoreVillain)
 				{
@@ -2416,11 +2416,12 @@ namespace Fryz.Apps.SpaceTrader
 						}
 			
 						// And not-always-shown stories
-						if (Universe[i].Pressure != SystemPressure.None && Functions.GetRandom2(100) <= Consts.StoryProbability * (int)curSys.TechLevel + 10 * (5 - (int)Difficulty))
+						if (Universe[i].SystemPressure != SystemPressure.None &&
+							Functions.GetRandom2(100) <= Consts.StoryProbability * (int)curSys.TechLevel + 10 * (5 - (int)Difficulty))
 						{
 							int			index			= Functions.GetRandom2(Strings.NewsPressureExternal.Length);
 							string	baseStr		= Strings.NewsPressureExternal[index];
-							string	pressure	= Strings.NewsPressureExternalPressures[(int)Universe[i].Pressure];
+							string	pressure	= Strings.NewsPressureExternalPressures[(int)Universe[i].SystemPressure];
 							items.Add(Functions.StringVars(baseStr, pressure, Universe[i].Name));
 							realNews					= true;
 						}

@@ -57,19 +57,21 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Commander(Hashtable hash): base(hash)
 		{
-			_cash																									= (int)hash["_cash"];
-			_debt																									= (int)hash["_debt"];
-			_killsPirate																					= (int)hash["_killsPirate"];
-			_killsPolice																					= (int)hash["_killsPolice"];
-			_killsTrader																					= (int)hash["_killsTrader"];
-			_policeRecordScore																		= (int)hash["_policeRecordScore"];
-			_reputationScore																			= (int)hash["_reputationScore"];
-			_days																									= (int)hash["_days"];
-			_insurance																						= (bool)hash["_insurance"];
-			_noclaim																							= (int)hash["_noclaim"];
-			_ship																									= new Ship((Hashtable)hash["_ship"]);
-			_priceCargo																						= (int[])hash["_priceCargo"];
-			Strings.CrewMemberNames[(int)CrewMemberId.Commander]	= (string)hash["_name"];
+			_cash								= (int)hash["_cash"];
+			_debt								= (int)hash["_debt"];
+			_killsPirate				= (int)hash["_killsPirate"];
+			_killsPolice				= (int)hash["_killsPolice"];
+			_killsTrader				= (int)hash["_killsTrader"];
+			_policeRecordScore	= (int)hash["_policeRecordScore"];
+			_reputationScore		= (int)hash["_reputationScore"];
+			_days								= (int)hash["_days"];
+			_insurance					= (bool)hash["_insurance"];
+			_noclaim						= (int)hash["_noclaim"];
+			_ship								= new Ship((Hashtable)hash["_ship"]);
+			_priceCargo					= (int[])hash["_priceCargo"];
+
+			Game.CurrentGame.Mercenaries[(int)CrewMemberId.Commander]	= this;
+			Strings.CrewMemberNames[(int)CrewMemberId.Commander]			= (string)hash["_name"];
 		}
 
 		public void PayInterest()

@@ -3167,7 +3167,7 @@ namespace Fryz.Apps.SpaceTrader
 				lblSystemResource.Text				= Strings.SpecialResources[(int)system.SpecialResource];
 				lblSystemPolice.Text					= Strings.ActivityLevels[(int)system.PoliticalSystem.ActivityPolice];
 				lblSystemPirates.Text					= Strings.ActivityLevels[(int)system.PoliticalSystem.ActivityPirates];
-				lblSystemPressure.Text				= Strings.SystemPressures[(int)system.Pressure];
+				lblSystemPressure.Text				= Strings.SystemPressures[(int)system.SystemPressure];
 				lblSystemPressurePre.Visible	= true;
 				btnNews.Visible								= true;
 				btnMerc.Visible								= system.MercenaryForHire != null;

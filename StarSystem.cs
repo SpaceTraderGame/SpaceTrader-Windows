@@ -37,7 +37,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Size								_size;
 		private TechLevel						_techLevel;
 		private PoliticalSystemType	_politicalSystemType;
-		private SystemPressure			_pressure;
+		private SystemPressure			_systemPressure;
 		private SpecialResource			_specialResource;
 		private SpecialEventType		_specialEventType			= SpecialEventType.NA;
 		private int[]								_tradeItems						= new int[10];
@@ -50,7 +50,7 @@ namespace Fryz.Apps.SpaceTrader
 		#region Methods
 
 		public StarSystem(StarSystemId id, int x, int y, Size size, TechLevel techLevel,
-			PoliticalSystemType politicalSystemType, SystemPressure pressure, SpecialResource specialResource)
+			PoliticalSystemType politicalSystemType, SystemPressure systemPressure, SpecialResource specialResource)
 		{
 			_id										= id;
 			_x										= x;
@@ -58,7 +58,7 @@ namespace Fryz.Apps.SpaceTrader
 			_size									= size;
 			_techLevel						= techLevel;
 			_politicalSystemType	= politicalSystemType;
-			_pressure							= pressure;
+			_systemPressure				= systemPressure;
 			_specialResource			= specialResource;
 
 			InitializeTradeItems();
@@ -72,7 +72,7 @@ namespace Fryz.Apps.SpaceTrader
 			_size									= (Size)hash["_size"];
 			_techLevel						= (TechLevel)hash["_techLevel"];
 			_politicalSystemType	= (PoliticalSystemType)hash["_politicalSystemType"];
-			_pressure							= (SystemPressure)hash["_pressure"];
+			_systemPressure				= (SystemPressure)hash["_systemPressure"];
 			_specialResource			= (SpecialResource)hash["_specialResource"];
 			_specialEventType			= (SpecialEventType)hash["_specialEventType"];
 			_tradeItems						= (int[])hash["_tradeItems"];
@@ -104,7 +104,7 @@ namespace Fryz.Apps.SpaceTrader
 					if (this.SpecialResource == Consts.TradeItems[i].ResourceHighPrice)
 						_tradeItems[i]	= _tradeItems[i] * 3 / 4;
 
-					if (this.Pressure == Consts.TradeItems[i].PressurePriceHike)
+					if (this.SystemPressure == Consts.TradeItems[i].PressurePriceHike)
 						_tradeItems[i]	= _tradeItems[i] / 5;
 
 					_tradeItems[i]	= _tradeItems[i] - Functions.GetRandom(10) + Functions.GetRandom(10);
@@ -139,7 +139,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_size",									(int)_size);
 			hash.Add("_techLevel",						(int)_techLevel);
 			hash.Add("_politicalSystemType",	(int)_politicalSystemType);
-			hash.Add("_pressure",							(int)_pressure);
+			hash.Add("_systemPressure",				(int)_systemPressure);
 			hash.Add("_specialResource",			(int)_specialResource);
 			hash.Add("_specialEventType",			(int)_specialEventType);
 			hash.Add("_tradeItems",						_tradeItems);
@@ -347,18 +347,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public SystemPressure Pressure
-		{
-			get
-			{
-				return _pressure;
-			}
-			set
-			{
-				_pressure   = value;
-			}
-		}
-
 		public Shipyard Shipyard
 		{
 			get
@@ -411,6 +399,18 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _specialResource;
+			}
+		}
+
+		public SystemPressure SystemPressure
+		{
+			get
+			{
+				return _systemPressure;
+			}
+			set
+			{
+				_systemPressure  = value;
 			}
 		}
 
