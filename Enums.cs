@@ -230,19 +230,19 @@ namespace Fryz.Apps.SpaceTrader
 	#region CargoBuyOp
 	public enum CargoBuyOp: int
 	{
-		BuySystem						= 0,
-		BuyTrader						= 1,
-		Plunder							= 2
+		BuySystem,
+		BuyTrader,
+		Plunder
 	};
 	#endregion
 
 	#region CargoSellOp
 	public enum CargoSellOp: int
 	{
-		SellSystem					= 0,
-		SellTrader					= 1,
-		Dump								= 2,
-		Jettison						= 3
+		SellSystem,
+		SellTrader,
+		Dump,
+		Jettison
 	};
 	#endregion
 
@@ -320,50 +320,50 @@ namespace Fryz.Apps.SpaceTrader
 	#region EncounterResult
 	public enum EncounterResult: int
 	{
-		Continue						= 0,
-		Normal							= 1,
-		Killed							= 2,
-		EscapePod						= 3,
-		Arrested						= 4
+		Continue,
+		Normal,
+		Killed,
+		EscapePod,
+		Arrested
 	};
 	#endregion
 
 	#region EncounterType
 	public enum EncounterType: int
 	{
-		BottleGood					= 0,
-		BottleOld						= 1,
-		CaptainAhab					= 2,
-		CaptainConrad				= 3,
-		CaptainHuie					= 4,
-		FamousCaptainAttack	= 5,
-		FamousCaptDisabled	= 6,
-		DragonflyAttack			= 7,
-		DragonflyIgnore			= 8,
-		MarieCeleste				= 9,
-		MarieCelestePolice	= 10,
-		PirateAttack				= 11,
-		PirateIgnore				= 12,
-		PirateFlee					= 13,
-		PirateSurrender			= 14,
-		PirateDisabled			= 15,
-		PoliceAttack				= 16,
-		PoliceIgnore				= 17,
-		PoliceFlee					= 18,
-		PoliceSurrender			= 19,
-		PoliceDisabled			= 20,
-		PoliceInspect				= 21,
-		ScarabAttack				= 22,
-		ScarabIgnore				= 23,
-		SpaceMonsterAttack	= 24,
-		SpaceMonsterIgnore	= 25,
-		TraderAttack				= 26,
-		TraderIgnore				= 27,
-		TraderFlee					= 28,
-		TraderSurrender			= 29,
-		TraderDisabled			= 30,
-		TraderBuy						= 31,
-		TraderSell					= 32
+		BottleGood,
+		BottleOld,
+		CaptainAhab,
+		CaptainConrad,
+		CaptainHuie,
+		FamousCaptainAttack,
+		FamousCaptDisabled,
+		DragonflyAttack,
+		DragonflyIgnore,
+		MarieCeleste,
+		MarieCelestePolice,
+		PirateAttack,
+		PirateIgnore,
+		PirateFlee,
+		PirateSurrender,
+		PirateDisabled,
+		PoliceAttack,
+		PoliceIgnore,
+		PoliceFlee,
+		PoliceSurrender,
+		PoliceDisabled,
+		PoliceInspect,
+		ScarabAttack,
+		ScarabIgnore,
+		SpaceMonsterAttack,
+		SpaceMonsterIgnore,
+		TraderAttack,
+		TraderIgnore,
+		TraderFlee,
+		TraderSurrender,
+		TraderDisabled,
+		TraderBuy,
+		TraderSell
 	};
 	#endregion
 
@@ -441,12 +441,12 @@ namespace Fryz.Apps.SpaceTrader
 	#region OpponentType
 	public enum OpponentType: int
 	{
-		Bottle							= 0,
-		FamousCaptain				= 1,
-		Mantis							= 2,
-		Pirate							= 3,
-		Police							= 4,
-		Trader							= 5
+		Bottle,
+		FamousCaptain,
+		Mantis,
+		Pirate,
+		Police,
+		Trader
 	};
 	#endregion
 
