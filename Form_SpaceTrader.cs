@@ -2767,7 +2767,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(Consts.HighScoreFile, FileMode.Create);
-				formatter.Serialize(stream, highScores);
+				formatter.Serialize(stream, STSerializableObject.ArrayToArrayList(highScores));
 				stream.Close();
 			}
 			catch (IOException ex)
@@ -2799,7 +2799,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter		= new BinaryFormatter();
 				FileStream			stream			= new FileStream(Consts.HighScoreFile, FileMode.Create);
-				formatter.Serialize(stream, highScores);
+				formatter.Serialize(stream, STSerializableObject.ArrayToArrayList(highScores));
 				stream.Close();
 			}
 			catch (IOException ex)
@@ -2876,11 +2876,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(fileName, FileMode.Open);
-				Game.CurrentGame					= (Game)formatter.Deserialize(stream);
-				game											= Game.CurrentGame;
-				game.ParentWindow					= this;
+				Hashtable				hash			= (Hashtable)formatter.Deserialize(stream);
 				stream.Close();
 
+				game											= new Game(hash, this);
 				SaveGameFile							= dlgOpen.FileName;
 
 				SetInGameControlsEnabled(true);
@@ -2902,7 +2901,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(fileName, FileMode.Create);
-				formatter.Serialize(stream, Game.CurrentGame);
+				formatter.Serialize(stream, game.Serialize());
 				stream.Close();
 
 				if (saveFileName)
@@ -3531,7 +3530,7 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					game.SelectedSystemName	= form.SystemName;
 					if (form.TrackSystem && game.SelectedSystem.Name.ToLower() == form.SystemName.ToLower())
-						game.TrackedSystem	= game.SelectedSystem;
+						game.TrackedSystemId	= game.SelectedSystemId;
 				}
 
 				UpdateAll();
@@ -3682,7 +3681,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnTrack_Click(object sender, System.EventArgs e)
 		{
-			game.TrackedSystem	= game.SelectedSystem;
+			game.TrackedSystemId	= game.SelectedSystemId;
 			UpdateAll();
 		}
 
@@ -3717,7 +3716,7 @@ namespace Fryz.Apps.SpaceTrader
 				form.ShowDialog(this) == DialogResult.OK)
 			{
 				game											= new Game(form.CommanderName, form.Difficulty, form.Pilot, form.Fighter, form.Trader,
-					form.Engineer, this);
+																		form.Engineer, this);
 				SaveGameFile							= null;
 
 				SetInGameControlsEnabled(true);
@@ -3824,8 +3823,8 @@ namespace Fryz.Apps.SpaceTrader
 						e.Y >= y - 2 &&
 						e.Y <= y + 2)
 					{
-						clickedSystem	= true;
-						game.SelectedSystem	= universe[i];
+						clickedSystem					= true;
+						game.SelectedSystemId	= (StarSystemId)i;
 					}
 					else if (Functions.WormholeExists(i, -1))
 					{
@@ -3836,9 +3835,9 @@ namespace Fryz.Apps.SpaceTrader
 							e.Y >= y - 2 &&
 							e.Y <= y + 2)
 						{
-							clickedSystem	= true;
-							game.SelectedSystem	= universe[i];
-							game.TargetWormhole	= true;
+							clickedSystem					= true;
+							game.SelectedSystemId	= (StarSystemId)i;
+							game.TargetWormhole		= true;
 						}
 					}
 				}
@@ -3861,7 +3860,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (fuel > 0)
 					e.Graphics.DrawEllipse(DEFAULT_PEN, curSys.X + OFF_X - fuel, curSys.Y + OFF_Y - fuel, fuel * 2, fuel * 2);
 
-				int index	= Functions.GetSystemIndex(targetSys);
+				int index	= (int)game.SelectedSystemId;
 				if (game.TargetWormhole)
 				{
 					int					dest		= wormholes[(Array.IndexOf(wormholes, index) + 1) % wormholes.Length];
@@ -3917,8 +3916,8 @@ namespace Fryz.Apps.SpaceTrader
 							e.Y >= y - OFF_Y &&
 							e.Y <= y + OFF_Y)
 						{
-							clickedSystem	= true;
-							game.SelectedSystem	= universe[i];
+							clickedSystem					= true;
+							game.SelectedSystemId	= (StarSystemId)i;
 						}
 						else if (Functions.WormholeExists(i, -1))
 						{
@@ -3929,9 +3928,9 @@ namespace Fryz.Apps.SpaceTrader
 								e.Y >= y - OFF_Y &&
 								e.Y <= y + OFF_Y)
 							{
-								clickedSystem	= true;
-								game.SelectedSystem	= universe[i];
-								game.TargetWormhole	= true;
+								clickedSystem					= true;
+								game.SelectedSystemId	= (StarSystemId)i;
+								game.TargetWormhole		= true;
 							}
 						}
 					}
