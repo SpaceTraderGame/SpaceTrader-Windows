@@ -866,7 +866,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EquipmentNone										= "No ^1s";
 		public static string	EquipmentFreeSlot								= " - FREE SLOT - ";
 
-		public static string	FileFormatBad										= "The file is not a save game file, or is the wrong version or has been corrupted.";
+		public static string	FileFormatBad										= "The file is not a Space Trader for Windows file, or is the wrong version or has been corrupted.";
 		public static string	FileFutureVersion								= "The version of the file is greater than the current version. You should upgrade to the latest version of Space Trader for Windows.";
 
 		public static string	HighScoreStatus									= "^1 in ^2, worth ^3 on ^4 level.";
