@@ -290,6 +290,7 @@ namespace Fryz.Apps.SpaceTrader
 		public SpaceTrader(string loadFileName)
 		{
 			InitializeComponent();
+			InitFileStructure();
 
 			#region Arrays of Cargo controls
 			lblSellPrice	= new Label[]
@@ -2846,6 +2847,28 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			return settingValue;
+		}
+
+		// Make sure all directories exists.
+		private void InitFileStructure()
+		{
+			string[]	paths	= new string[]
+												{
+													Consts.CustomDirectory,
+													Consts.CustomImagesDirectory,
+													Consts.CustomTemplatesDirectory,
+													Consts.DataDirectory,
+													Consts.SaveDirectory
+												};
+
+			foreach (string path in paths)
+			{
+				if (!Directory.Exists(path))
+					Directory.CreateDirectory(path);
+			}
+
+			dlgOpen.InitialDirectory	= Consts.SaveDirectory;
+			dlgSave.InitialDirectory	= Consts.SaveDirectory;
 		}
 
 		private void LoadGame(string fileName)
