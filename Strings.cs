@@ -50,7 +50,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	CargoSelling										= "selling";
 		public static string	CargoSellNA											= "no trade";
 		public static string	CargoSellPaid										= "You paid about ^1 per unit.";
-		public static string	CargoSellPaidTrader							= "You paid about ^1 per unit, and have ^2.";
+		public static string	CargoSellPaidTrader							= "You paid about ^1 per unit, and can sell ^2.";
 		public static string	CargoSellProfit									= "Your ^1 per unit is ^2";
 		public static string	CargoSellQuestion								= "How many do you want to ^1?";
 		public static string	CargoSellStatement							= "You can sell up to ^1 at ^2 each.";
