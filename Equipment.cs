@@ -73,7 +73,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		public override string ToString()
 		{
-			return Name;
+			return Name + (Price  > 0 ? "" : " (" + Strings.CargoBuyNA + ")");
 		}
 
 		public abstract bool TypeEquals(object type);
