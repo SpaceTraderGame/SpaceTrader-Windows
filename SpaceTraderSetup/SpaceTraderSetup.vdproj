@@ -27,14 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_592751F5B91E4A0F95B19601ABA4BDF1"
-        "OwnerKey" = "8:_2E15012B3E214D4CB02C0B3936F167DD"
+        "MsmKey" = "8:_C3947D66A7BE40B698A2BCA485B2EEBF"
+        "OwnerKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
         "MsmSig" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
         }
         "Entry"
         {
-        "MsmKey" = "8:_592751F5B91E4A0F95B19601ABA4BDF1"
-        "OwnerKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
+        "MsmKey" = "8:_C3947D66A7BE40B698A2BCA485B2EEBF"
+        "OwnerKey" = "8:_2E15012B3E214D4CB02C0B3936F167DD"
         "MsmSig" = "8:mondo.E4183BB4_18A8_11D5_A549_0090278A1BB8"
         }
     }
@@ -61,7 +61,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\spacetrader1.3.msi"
+        "OutputFilename" = "8:Release\\spacetrader2.00.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -308,7 +308,7 @@
         {
             "{B1E2BB22-187D-11D3-8E02-00C04F6837D0}:_286C9D30FD3747FC98C4827F04C47B82"
             {
-            "SourcePath" = "8:..\\STConvert\\obj\\Debug\\SpaceTrader.exe"
+            "SourcePath" = "8:..\\STConvert\\obj\\Debug\\STConvert.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_45ED1A3BDB6A42A5928990043BF0F672"
@@ -398,13 +398,13 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Space Trader for Windows"
-        "ProductCode" = "8:{3408EBDC-4E12-46F5-865F-7EB8CF7A1F5D}"
-        "PackageCode" = "8:{889C8DDB-9ADE-4B51-96F5-DF81034445F5}"
+        "ProductCode" = "8:{2EC9EE62-A878-44A2-8665-FBF8113EC734}"
+        "PackageCode" = "8:{5D619860-E2D4-42D9-83AB-F5EDA50AF05C}"
         "UpgradeCode" = "8:{06B08846-D483-4F9C-9512-74170C6F431F}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "ProductVersion" = "8:1.3"
+        "ProductVersion" = "8:2.00"
         "Manufacturer" = "8:FrenchFryz"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -425,7 +425,7 @@
         }
         "MergeModule"
         {
-            "{AC8774A4-3E09-11D3-8E14-00C04F6837D0}:_592751F5B91E4A0F95B19601ABA4BDF1"
+            "{AC8774A4-3E09-11D3-8E14-00C04F6837D0}:_C3947D66A7BE40B698A2BCA485B2EEBF"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"

@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("Space Trader for Windows 1.3")]
-[assembly: AssemblyDescription("Ported from the Palm version by Jay French.  Palm version by Pieter Spronck")]
+[assembly: AssemblyTitle("Space Trader for Windows 2.00")]
+[assembly: AssemblyDescription("Ported from the Palm version by Jay French, with additional coding by David Pierron. Palm version by Pieter Spronck.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright 2003,2004 Jay French")]
+[assembly: AssemblyCopyright("Copyright 2003, 2004 Jay French")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -26,7 +26,7 @@ using System.Runtime.CompilerServices;
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.3.*")]
+[assembly: AssemblyVersion("2.00.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the

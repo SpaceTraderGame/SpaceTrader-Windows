@@ -91,7 +91,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Size = new System.Drawing.Size(163, 13);
 			this.lblTitle.TabIndex = 33;
-			this.lblTitle.Text = "Space Trader for Windows 1.3";
+			this.lblTitle.Text = "Space Trader for Windows " + Consts.CurrentVersion;
 			//
 			// lblAbout
 			//
