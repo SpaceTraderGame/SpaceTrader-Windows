@@ -1776,7 +1776,6 @@ namespace Fryz.Apps.SpaceTrader
 					goodUniverse	= false;
 
 			// Assign the shipyards to High-Tech systems without a special event.
-			// TODO: JAF - use enum for assignment.
 			if (goodUniverse)
 			{
 				int	shipyards	= 0;
