@@ -509,10 +509,21 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		NA									= -1,
 		Kessel							= 0,
-		Loronar							= 1,
-		Republic						= 2,
+		Kuat								= 1,
+		Loronar							= 2,
 		Sienar							= 3,
 		Sorosuub						= 4
+	};
+	#endregion
+
+	#region ShipyardSkill
+	public enum ShipyardSkill: int
+	{
+		CrewQuarters				= 0,	// Crew Quarters take up 2 fewer units
+		FuelBase						= 1,	// Fuel Base is 2 greater
+		HullPerUnit					= 2,	// Number of Hull Points per unit is 5 greater
+		ShieldSlotUnits			= 3,	// Shield Slots take up 2 fewer units
+		WeaponSlotUnits			= 4		// Weapon Slots take up 2 fewer units
 	};
 	#endregion
 
@@ -523,7 +534,8 @@ namespace Fryz.Apps.SpaceTrader
 		Small								= 1,
 		Medium							= 2,
 		Large								= 3,
-		Huge								= 4
+		Huge								= 4,
+		Gargantuan					= 5
 	};
 	#endregion
 
