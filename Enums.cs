@@ -564,6 +564,17 @@ namespace Fryz.Apps.SpaceTrader
 	};
 	#endregion
 
+	#region SkillType
+	public enum SkillType: int
+	{
+		NA									= -1,
+		Pilot								= 0,
+		Fighter							= 1,
+		Trader							= 2,
+		Engineer						= 3
+	};
+	#endregion
+
 	#region SpecialEventType
 	public enum SpecialEventType: int
 	{

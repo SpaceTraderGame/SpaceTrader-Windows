@@ -902,18 +902,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				int max	= 0;
-
-				for (int i = 0; i < Crew.Length; i++)
-				{
-					if (Crew[i] != null && Crew[i].Engineer > max)
-						max	= Crew[i].Engineer;
-				}
-
-				if (HasGadget(GadgetType.AutoRepairSystem))
-					max	+= Consts.SkillBonus;
-
-				return Functions.AdjustSkillForDifficulty(max);
+				return Skills[(int)SkillType.Engineer];
 			}
 		}
 
@@ -947,18 +936,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				int max	= 0;
-
-				for (int i = 0; i < Crew.Length; i++)
-				{
-					if (Crew[i] != null && Crew[i].Fighter > max)
-						max	= Crew[i].Fighter;
-				}
-
-				if (HasGadget(GadgetType.TargetingSystem))
-					max	+= Consts.SkillBonus;
-
-				return Functions.AdjustSkillForDifficulty(max);
+				return Skills[(int)SkillType.Fighter];
 			}
 		}
 
@@ -1094,6 +1072,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public bool HagglingComputerOnBoard
+		{
+			get
+			{
+				return CommandersShip && Game.CurrentGame.QuestStatusJarek == SpecialEvent.StatusJarekDone;
+			}
+		}
+
 		public int HiddenCargoBays
 		{
 			get
@@ -1150,21 +1136,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				int max	= 0;
-
-				for (int i = 0; i < Crew.Length; i++)
-				{
-					if (Crew[i] != null && Crew[i].Pilot > max)
-						max	= Crew[i].Pilot;
-				}
-
-				if (HasGadget(GadgetType.NavigatingSystem))
-					max	+= Consts.SkillBonus;
-
-				if (HasGadget(GadgetType.CloakingDevice))
-					max	+= Consts.CloakBonus;
-
-				return Functions.AdjustSkillForDifficulty(max);
+				return Skills[(int)SkillType.Pilot];
 			}
 		}
 
@@ -1233,6 +1205,37 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int[] Skills
+		{
+			get
+			{
+				int[]	skills	= new int[4];
+
+				// Get the best skill value among the crew for each skill.
+				for (int skill = 0; skill < skills.Length; skill++)
+				{
+					int max	= 1;
+
+					for (int crew = 0; crew < Crew.Length; crew++)
+					{
+						if (Crew[crew] != null && Crew[crew].Skills[skill] > max)
+							max	= Crew[crew].Skills[skill];
+					}
+
+					max	= Math.Max(1, Functions.AdjustSkillForDifficulty(max));
+				}
+
+				// Adjust skills based on any gadgets on board.
+				for (int i = 0; i < Gadgets.Length; i++)
+				{
+					if (Gadgets[i] != null && Gadgets[i].SkillBonus != SkillType.NA)
+						skills[(int)Gadgets[i].SkillBonus]	+= Consts.SkillBonus;
+				}
+
+				return skills;
+			}
+		}
+
 		// Crew members that are not hired/fired - Commander, Jarek, and Wild - JAF
 		public CrewMember[]	SpecialCrew
 		{
@@ -1265,18 +1268,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				int max	= 0;
-
-				for (int i = 0; i < Crew.Length; i++)
-				{
-					if (Crew[i] != null && Crew[i].Trader > max)
-						max	= Crew[i].Trader;
-				}
-
-				if (Game.CurrentGame.QuestStatusJarek == SpecialEvent.StatusJarekDone)
-					max++;
-
-				return Functions.AdjustSkillForDifficulty(max);
+				return Skills[(int)SkillType.Trader] + (HagglingComputerOnBoard ? 1 : 0);
 			}
 		}
 

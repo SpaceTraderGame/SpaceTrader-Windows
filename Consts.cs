@@ -67,10 +67,6 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			CloakBonus										= 2;
 
 		public const	int			MaxSkill											= 10;
-		public const	int			PilotSkill										= 0;
-		public const	int			FighterSkill									= 1;
-		public const	int			TraderSkill										= 2;
-		public const	int			EngineerSkill									= 3;
 
 		public const	int			StartClicks										= 20;
 		public const	int			MaxFuelTanks									= 20;
@@ -146,14 +142,14 @@ namespace Fryz.Apps.SpaceTrader
 		#region Gadgets
 		public static Gadget[]	Gadgets	= new Gadget[]
 		{
-			new Gadget(GadgetType.ExtraCargoBays,     2500, TechLevel.EarlyIndustrial, 35), // 5 extra holds
-			new Gadget(GadgetType.AutoRepairSystem,   7500, TechLevel.Industrial,      20), // Increases engineer's effectivity
-			new Gadget(GadgetType.NavigatingSystem,  15000, TechLevel.PostIndustrial,  20), // Increases pilot's effectivity
-			new Gadget(GadgetType.TargetingSystem,   25000, TechLevel.PostIndustrial,  20), // Increases fighter's effectivity
-			new Gadget(GadgetType.CloakingDevice,   100000, TechLevel.HiTech,           5), // If you have a good engineer, neither pirates nor police will notice you
+			new Gadget(GadgetType.ExtraCargoBays,   SkillType.NA,         2500, TechLevel.EarlyIndustrial, 35), // 5 extra holds
+			new Gadget(GadgetType.AutoRepairSystem, SkillType.Engineer,   7500, TechLevel.Industrial,      20), // Increases engineer's effectivity
+			new Gadget(GadgetType.NavigatingSystem, SkillType.Pilot,     15000, TechLevel.PostIndustrial,  20), // Increases pilot's effectivity
+			new Gadget(GadgetType.TargetingSystem,  SkillType.Fighter,   25000, TechLevel.PostIndustrial,  20), // Increases fighter's effectivity
+			new Gadget(GadgetType.CloakingDevice,   SkillType.Pilot,    100000, TechLevel.HiTech,           5), // If you have a good engineer, neither pirates nor police will notice you
 			// The gadgets below can't be bought
-			new Gadget(GadgetType.FuelCompactor,     30000, TechLevel.Unavailable,      0),
-			new Gadget(GadgetType.HiddenCargoBays,   60000, TechLevel.Unavailable,      0)
+			new Gadget(GadgetType.FuelCompactor,    SkillType.NA,        30000, TechLevel.Unavailable,      0),
+			new Gadget(GadgetType.HiddenCargoBays,  SkillType.NA,        60000, TechLevel.Unavailable,      0)
 		};
 		#endregion
 

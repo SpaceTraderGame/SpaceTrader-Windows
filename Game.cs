@@ -1260,7 +1260,7 @@ namespace Fryz.Apps.SpaceTrader
 					initialAlert	= AlertType.MeetCaptainAhab;
 					equipType			= EquipmentType.Shield;
 					equipSubType	= ShieldType.Reflective;
-					skill					= Consts.PilotSkill;
+					skill					= (int)SkillType.Pilot;
 
 					break;
 				case EncounterType.CaptainConrad:
@@ -1268,7 +1268,7 @@ namespace Fryz.Apps.SpaceTrader
 					initialAlert	= AlertType.MeetCaptainConrad;
 					equipType			= EquipmentType.Weapon;
 					equipSubType	= WeaponType.MilitaryLaser;
-					skill					= Consts.EngineerSkill;
+					skill					= (int)SkillType.Engineer;
 
 					break;
 				case EncounterType.CaptainHuie:
@@ -1276,7 +1276,7 @@ namespace Fryz.Apps.SpaceTrader
 					initialAlert	= AlertType.MeetCaptainHuie;
 					equipType			= EquipmentType.Weapon;
 					equipSubType	= WeaponType.MilitaryLaser;
-					skill					= Consts.TraderSkill;
+					skill					= (int)SkillType.Trader;
 
 					break;
 			}

@@ -141,10 +141,8 @@ namespace Fryz.Apps.SpaceTrader
 			if (Game.CurrentGame.Difficulty < Difficulty.Hard)
 			{
 				// add one to a random skill, subtract one from a random skill
-				while (Skills[Consts.PilotSkill] == oldSkills[Consts.PilotSkill] &&
-					Skills[Consts.FighterSkill] == oldSkills[Consts.FighterSkill] &&
-					Skills[Consts.TraderSkill] == oldSkills[Consts.TraderSkill] &&
-					Skills[Consts.EngineerSkill] == oldSkills[Consts.EngineerSkill])
+				while (Skills[0] == oldSkills[0] && Skills[1] == oldSkills[1] &&
+					Skills[2] == oldSkills[2] && Skills[3] == oldSkills[3])
 				{
 					ChangeRandomSkill(1);
 					ChangeRandomSkill(-1);
@@ -196,11 +194,11 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _skills[Consts.EngineerSkill];
+				return _skills[(int)SkillType.Engineer];
 			}
 			set
 			{
-				_skills[Consts.EngineerSkill]	= value;
+				_skills[(int)SkillType.Engineer]	= value;
 			}
 		}
 
@@ -208,11 +206,11 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _skills[Consts.FighterSkill];
+				return _skills[(int)SkillType.Fighter];
 			}
 			set
 			{
-				_skills[Consts.FighterSkill]	= value;
+				_skills[(int)SkillType.Fighter]	= value;
 			}
 		}
 
@@ -236,11 +234,11 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _skills[Consts.PilotSkill];
+				return _skills[(int)SkillType.Pilot];
 			}
 			set
 			{
-				_skills[Consts.PilotSkill]	= value;
+				_skills[(int)SkillType.Pilot]	= value;
 			}
 		}
 
@@ -264,11 +262,11 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _skills[Consts.TraderSkill];
+				return _skills[(int)SkillType.Trader];
 			}
 			set
 			{
-				_skills[Consts.TraderSkill]	= value;
+				_skills[(int)SkillType.Trader]	= value;
 			}
 		}
 

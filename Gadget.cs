@@ -32,32 +32,36 @@ namespace Fryz.Apps.SpaceTrader
 		#region Member Declarations
 
 		private GadgetType	_type;
+		private SkillType		_skillBonus;
 
 		#endregion
 
 		#region Methods
 
-		public Gadget(GadgetType type, int price, TechLevel minTechLevel, int chance):
+		public Gadget(GadgetType type, SkillType skillBonus, int price, TechLevel minTechLevel, int chance):
 			base(EquipmentType.Gadget, price, minTechLevel, chance)
 		{
-			_type	= type;
+			_type				= type;
+			_skillBonus	= skillBonus;
 		}
 
 		public Gadget(Hashtable hash): base(hash)
 		{
-			_type	= (GadgetType)GetValueFromHash(hash, "_type");
+			_type				= (GadgetType)GetValueFromHash(hash, "_type");
+			_skillBonus	= (SkillType)GetValueFromHash(hash, "_skillBonus", SkillType.NA);
 		}
 
 		public override Equipment Clone()
 		{
-			return new Gadget(_type, _price, _minTech, _chance);
+			return new Gadget(_type, _skillBonus, _price, _minTech, _chance);
 		}
 
 		public override Hashtable Serialize()
 		{
 			Hashtable	hash	= base.Serialize();
 
-			hash.Add("_type",	(int)_type);
+			hash.Add("_type",				(int)_type);
+			hash.Add("_skillBonus",	(int)_skillBonus);
 
 			return hash;
 		}
@@ -101,6 +105,14 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _type;
+			}
+		}
+
+		public SkillType SkillBonus
+		{
+			get
+			{
+				return _skillBonus;
 			}
 		}
 
