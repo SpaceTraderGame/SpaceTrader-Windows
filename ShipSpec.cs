@@ -102,6 +102,9 @@ namespace Fryz.Apps.SpaceTrader
 			_traders			= (Activity)hash["_traders"];
 			_minTech			= (TechLevel)hash["_minTech"];
 			_hullUpgraded	= (bool)hash["_hullUpgraded"];
+
+			if (Type == ShipType.Custom)
+				Strings.ShipNames[(int)ShipType.Custom]	= (string)hash["_name"];
 		}
 
 		public override Hashtable Serialize()
@@ -126,6 +129,9 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_traders",			(int)_traders);
 			hash.Add("_minTech",			(int)_minTech);
 			hash.Add("_hullUpgraded",	_hullUpgraded);
+
+			if (Type == ShipType.Custom)
+				hash.Add("_name",				Name);
 
 			return hash;
 		}
