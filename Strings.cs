@@ -809,39 +809,39 @@ namespace Fryz.Apps.SpaceTrader
 		#region SystemNames
 		public static string[]	SystemNames	= new string[]
 		{
-			"Acamar",
+			"Acamar",			// JAF - TNG "The Vengeance Factor (Acamar III)"
 			"Adahn",			// The alternate personality for The Nameless One in "Planescape: Torment"
-			"Aldea",
-			"Andevian",
-			"Antedi",
+			"Aldea",			// JAF - TNG "When the Bough Breaks"
+			"Andevian",		// JAF - ST Andoria?
+			"Antedi",			// JAF - TNG "Manhunt" (Antede III)
 			"Balosnee",
-			"Baratas",
+			"Baratas",		// JAF - TNG "The Emissary" (Barradas III)
 			"Brax",				// One of the heroes in Master of Magic
 			"Bretel",			// This is a Dutch device for keeping your pants up.
-			"Calondia",
-			"Campor",
+			"Calondia",		// JAF - TNG "The Price" (Caldonia)
+			"Campor",			// JAF - TNG "Bloodlines" (Camor V) or DS9 "Defiant" (Campa III)
 			"Capelle",		// The city I lived in while programming this game
-			"Carzon",
+			"Carzon",			// JAF - Character from DS9 (Kurzon)?
 			"Castor",			// A Greek demi-god
-			"Cestus",
-			"Cheron",
+			"Cestus",			// JAF - several ST episodes (Cestus III)
+			"Cheron",			// JAF - TOS "Let That Be Your Last Battlefield"
 			"Courteney",	// After Courteney Cox...
-			"Daled",
+			"Daled",			// JAF - TNG "The Dauphin" (Daled IV)
 			"Damast",
-			"Davlos",
-			"Deneb",
-			"Deneva",
-			"Devidia",
-			"Draylon",
-			"Drema",
-			"Endor",
+			"Davlos",			// JAF - DS9 "Time's Orphan" (Davlos Prime) or DS9 "Visionary" (Davlos III)
+			"Deneb",			// JAF - TOS "Wolf in the Fold" (Deneb II) or TOS "Where No Man Has Gone Before" and TNG "Encounter at Farpoint" (Deneb IV)
+			"Deneva",			// JAF - TOS "Operation -- Annihilate!"
+			"Devidia",		// JAF - TNG "Time's Arrow" (Devidia II)
+			"Draylon",		// JAF - DS9 "Sanctuary" (Draylon II)
+			"Drema",			// JAF - TNG "Pen Pals" (Drema IV)
+			"Endor",			// JAF - From Return of the Jedi
 			"Esmee",			// One of the witches in Pratchett's Discworld
-			"Exo",
+			"Exo",				// JAF - TOS "What Are Little Girls Made Of?" (Exo III)
 			"Ferris",			// Iron
 			"Festen",			// A great Scandinavian movie
 			"Fourmi",			// An ant, in French
 			"Frolix",			// A solar system in one of Philip K. Dick's novels
-			"Gemulon",
+			"Gemulon",		// JAF - TNG "Final Mission" (Gamalon V) or DS9 "Paradise" (Germulon V)
 			"Guinifer",		// One way of writing the name of king Arthur's wife
 			"Hades",			// The underworld
 			"Hamlet",			// From Shakespeare
@@ -850,32 +850,32 @@ namespace Fryz.Apps.SpaceTrader
 			"Iodine",			// An element
 			"Iralius",
 			"Janus",			// A seldom encountered Dutch boy's name
-			"Japori",
-			"Jarada",
+			"Japori",			// JAF - DS9 "Improbable Cause" (Jaforay II)?
+			"Jarada",			// JAF - DS9 "Progress" (Jarido)?
 			"Jason",			// A Greek hero
-			"Kaylon",
-			"Khefka",
+			"Kaylon",			// JAF - TNG "Half a Life" (Kalon II)
+			"Khefka",			// JAF - DS9 "Invasive Procedures" (Kafka IV)
 			"Kira",				// My dog's name
 			"Klaatu",			// From a classic SF movie
-			"Klaestron",
+			"Klaestron",	// JAF - DS9 "Dax" (Klaestron IV)
 			"Korma",			// An Indian sauce
 			"Kravat",			// Interesting spelling of the French word for "tie"
-			"Krios",
+			"Krios",			// JAF - TNG "The Mind's Eye"
 			"Laertes",		// A king in a Greek tragedy
-			"Largo",
+			"Largo",			// JAF - DS9 "Babel" (Largo V)
 			"Lave",				// The starting system in Elite
-			"Ligon",
+			"Ligon",			// JAF - TNG "Code of Honor" (Ligon II)
 			"Lowry",			// The name of the "hero" in Terry Gilliam's "Brazil"
 			"Magrat",			// The second of the witches in Pratchett's Discworld
-			"Malcoria",
-			"Melina",
+			"Malcoria",		// JAF - "Star Trek: First Contact" (Malkor III)?
+			"Melina",			// JAF - TNG "Silicon Avatar" (Malona IV)?
 			"Mentar",			// The Psilon home system in Master of Orion
-			"Merik",
-			"Mintaka",
+			"Merik",			// JAF - TOS "The Cloud Minders" (Merak II)
+			"Mintaka",		// JAF - TNG "Who Watches the Watchers" (Mintaka III)
 			"Montor",			// A city in Ultima III and Ultima VII part 2
-			"Mordan",
+			"Mordan",			// JAF - TNG "Too Short a Season" (Mordan IV)
 			"Myrthe",			// The name of my daughter
-			"Nelvana",
+			"Nelvana",		// JAF - TNG "The Defector" (Nelvana III)
 			"Nix",				// An interesting spelling of a word meaning "nothing" in Dutch
 			"Nyle",				// An interesting spelling of the great river
 			"Odet",
@@ -885,50 +885,60 @@ namespace Fryz.Apps.SpaceTrader
 			"Orias",
 			"Othello",		// From Shakespeare
 			"Parade",			// This word means the same in Dutch and in English
-			"Penthara",
+			"Penthara",		// JAF - TNG "A Matter of Time" (Penthara IV)
 			"Picard",			// The enigmatic captain from ST:TNG
 			"Pollux",			// Brother of Castor
-			"Quator",
-			"Rakhar",
+			"Quator",			// JAF - TNG "Unification: Part I" (Qualar II)?
+			"Rakhar",			// JAF - DS9 "Vortex"
 			"Ran",				// A film by Akira Kurosawa
-			"Regulas",
-			"Relva",
+			"Regulas",		// JAF - "Star Trek II: The Wrath of Khan" (Regula) or DS9 "Fascination" (Regulus III) or TOS "Amok Time" (Regulus V)
+			"Relva",			// JAF - TNG "Coming of Age" (Relva VII)
 			"Rhymus",
-			"Rochani",
+			"Rochani",		// JAF - DS9 "Dramatis Personae" (Rochanie III)
 			"Rubicum",		// The river Ceasar crossed to get into Rome
-			"Rutia",
-			"Sarpeidon",
+			"Rutia",			// JAF - TNG "The High Ground" (Ruteeya IV)
+			"Sarpeidon",	// JAF - DS9 "Tacking into the Wind" (Sarpeidon V) or TOS "All Our Yesterdays" (Sarpeidon)
 			"Sefalla",
 			"Seltrice",
 			"Sigma",
 			"Sol",				// That's our own solar system
 			"Somari",
 			"Stakoron",
-			"Styris",
-			"Talani",
+			"Styris",			// JAF - TNG "Code of Honor" (Styrus IV)
+			"Talani",			// JAF - DS9 "Armageddon Game" (T'Lani III and T'Lani Prime)
 			"Tamus",
 			"Tantalos",		// A king from a Greek tragedy
 			"Tanuga",
 			"Tarchannen",
-			"Terosa",
+			"Terosa",			// JAF - DS9 "Second Sight" (Terosa Prime)
 			"Thera",			// A seldom encountered Dutch girl's name
 			"Titan",			// The largest moon of Jupiter
 			"Torin",			// A hero from Master of Magic
-			"Triacus",
-			"Turkana",
+			"Triacus",		// JAF - TOS "And the Children Shall Lead"
+			"Turkana",		// JAF - TNG "Legacy" (Turkana IV)
 			"Tyrus",
 			"Umberlee",		// A god from AD&D, which has a prominent role in Baldur's Gate
 			"Utopia",			// The ultimate goal
 			"Vadera",
-			"Vagra",
-			"Vandor",
-			"Ventax",
+			"Vagra",			// JAF - TNG "Skin of Evil" (Vagra II)
+			"Vandor",			// JAF - TNG "We'll Always Have Paris" (Vando VI)?
+			"Ventax",			// JAF - TNG "Devil's Due" (Ventax II)
 			"Xenon",
 			"Xerxes",			// A Greek hero
 			"Yew",				// A city which is in almost all of the Ultima games
 			"Yojimbo",		// A film by Akira Kurosawa
-			"Zalkon",
-			"Zuul"				// From the first Ghostbusters movie
+			"Zalkon",			// TNG "Transfigurations" (Zalcon)
+			"Zuul",				// From the first Ghostbusters movie
+
+			// The rest are systems I added - JAF
+			"Centauri",		// As in Alpha Centauri - the closest star outside our solar system 
+			"Galvon",			// Star Trek: The Next Generation "Data's Day"
+			"Inthara",		// Star Trek: Voyager "Retrospect"
+			"Meridian",		// Star Trek: Deep Space Nine "Meridian"
+			"Qonos",			// Star Trek - Klinon Homeworld (QonoS - Kronos)
+			"Rae",				// My wife's middle name
+			"Weytahn",		// Star Trek: Enterprise "Cease Fire"
+			"Zonama"			// From the Star Wars: New Jedi Order series (and Rogue Planet)
 		};
 		#endregion
 

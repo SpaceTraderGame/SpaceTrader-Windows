@@ -754,7 +754,15 @@ namespace Fryz.Apps.SpaceTrader
 		Yew									= 116,
 		Yojimbo							= 117,
 		Zalkon							= 118,
-		Zuul								= 119
+		Zuul								= 119,
+		Centauri						= 120,
+		Galvon							= 121,
+		Inthara							= 122,
+		Meridian						= 123,
+		Qonos								= 124,
+		Rae									= 125,
+		Weytahn							= 126,
+		Zonama							= 127
 	};
 	#endregion
 

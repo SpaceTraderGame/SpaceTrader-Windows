@@ -1185,7 +1185,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void GenerateUniverse()
 		{
-			_universe	= new StarSystem[(int)StarSystemId.Zuul + 1];
+			_universe	= new StarSystem[Strings.SystemNames.Length];
 
 			int	i, j;
 
