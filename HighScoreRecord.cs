@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,16 +18,16 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class HighScoreRecord: IComparable
+	public class HighScoreRecord: STSerializableObject, IComparable
 	{
 		#region Member Declarations
 
@@ -49,6 +50,16 @@ namespace Fryz.Apps.SpaceTrader
 			_days				= days;
 			_worth			= worth;
 			_difficulty	= difficulty;
+		}
+
+		public HighScoreRecord(Hashtable hash): base(hash)
+		{
+			_name				= (string)hash["_name"];
+			_score			= (int)hash["_score"];
+			_type				= (GameEndType)hash["_type"];
+			_days				= (int)hash["_days"];
+			_worth			= (int)hash["_worth"];
+			_difficulty	= (Difficulty)hash["_difficulty"];
 		}
 
 		public int CompareTo(object value)
@@ -74,6 +85,20 @@ namespace Fryz.Apps.SpaceTrader
 				compared	= 0;
 
 			return compared;
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_name",				_name);
+			hash.Add("_score",			_score);
+			hash.Add("_type",				(int)_type);
+			hash.Add("_days",				_days);
+			hash.Add("_worth",			_worth);
+			hash.Add("_difficulty",	(int)_difficulty);
+
+			return hash;
 		}
 
 		#endregion

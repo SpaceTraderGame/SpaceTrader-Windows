@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,16 +18,16 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class ShipSpec
+	public class ShipSpec: STSerializableObject
 	{
 		#region Member Declarations
 
@@ -78,6 +79,54 @@ namespace Fryz.Apps.SpaceTrader
 			_pirates			= pirates;
 			_traders			=	traders;
 			_minTech			=	minTechLevel;
+		}
+
+		public ShipSpec(Hashtable hash): base(hash)
+		{
+			_type					= (ShipType)hash["_type"];
+			_size					= (Size)hash["_size"];
+			_cargoBays		= (int)hash["_cargoBays"];
+			_weaponSlots	= (int)hash["_weaponSlots"];
+			_shieldSlots	= (int)hash["_shieldSlots"];
+			_gadgetSlots	= (int)hash["_gadgetSlots"];
+			_crewQuarters	= (int)hash["_crewQuarters"];
+			_fuelTanks		= (int)hash["_fuelTanks"];
+			_fuelCost			= (int)hash["_fuelCost"];
+			_hullStrength	= (int)hash["_hullStrength"];
+			_repairCost		= (int)hash["_repairCost"];
+			_price				= (int)hash["_price"];
+			_occurance		= (int)hash["_occurance"];
+			_police				= (int)hash["_police"];
+			_pirates			= (int)hash["_pirates"];
+			_traders			= (int)hash["_traders"];
+			_minTech			= (TechLevel)hash["_minTech"];
+			_hullUpgraded	= (bool)hash["_hullUpgraded"];
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_type",					(int)_type);
+			hash.Add("_size",					(int)_size);
+			hash.Add("_cargoBays",		_cargoBays);
+			hash.Add("_weaponSlots",	_weaponSlots);
+			hash.Add("_shieldSlots",	_shieldSlots);
+			hash.Add("_gadgetSlots",	_gadgetSlots);
+			hash.Add("_crewQuarters",	_crewQuarters);
+			hash.Add("_fuelTanks",		_fuelTanks);
+			hash.Add("_fuelCost",			_fuelCost);
+			hash.Add("_hullStrength",	_hullStrength);
+			hash.Add("_repairCost",		_repairCost);
+			hash.Add("_price",				_price);
+			hash.Add("_occurance",		_occurance);
+			hash.Add("_police",				_police);
+			hash.Add("_pirates",			_pirates);
+			hash.Add("_traders",			_traders);
+			hash.Add("_minTech",			(int)_minTech);
+			hash.Add("_hullUpgraded",	_hullUpgraded);
+
+			return hash;
 		}
 
 		protected virtual void SetValues(ShipType type)

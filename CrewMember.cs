@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -26,37 +27,43 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class CrewMember
+	public class CrewMember: STSerializableObject
 	{
 		#region Member Declarations
 
 		private CrewMemberId	_id;
-		private int[]					_skills			= new int[4];
-		private StarSystem		_curSystem;
+		private int[]					_skills				= new int[4];
+		private StarSystemId	_curSystemId	= StarSystemId.NA;
 
 		#endregion
 
 		#region Methods
 
-		public CrewMember(CrewMemberId id, int pilot, int fighter, int trader, int engineer, StarSystem curSystem)
+		public CrewMember(CrewMemberId id, int pilot, int fighter, int trader, int engineer, StarSystemId curSystemId)
 		{
-			_id					= id;
-			Pilot				= pilot;
-			Fighter			= fighter;
-			Trader			= trader;
-			Engineer		= engineer;
-			_curSystem	= curSystem;
+			_id						= id;
+			Pilot					= pilot;
+			Fighter				= fighter;
+			Trader				= trader;
+			Engineer			= engineer;
+			_curSystemId	= curSystemId;
 		}
 
 		public CrewMember(CrewMember baseCrewMember)
 		{
-			_id					= baseCrewMember.Id;
-			Pilot				= baseCrewMember.Pilot;
-			Fighter			= baseCrewMember.Fighter;
-			Trader			= baseCrewMember.Trader;
-			Engineer		= baseCrewMember.Engineer;
-			_curSystem	= baseCrewMember.CurrentSystem;
+			_id						= baseCrewMember.Id;
+			Pilot					= baseCrewMember.Pilot;
+			Fighter				= baseCrewMember.Fighter;
+			Trader				= baseCrewMember.Trader;
+			Engineer			= baseCrewMember.Engineer;
+			_curSystemId	= baseCrewMember.CurrentSystemId;
+		}
+
+		public CrewMember(Hashtable hash): base(hash)
+		{
+			_id						= (CrewMemberId)hash["_id"];
+			_skills				= (int[])hash["_skills"];
+			_curSystemId	= (StarSystemId)hash["_curSystemId"];
 		}
 
 		private void ChangeRandomSkill(int amount)
@@ -113,6 +120,17 @@ namespace Fryz.Apps.SpaceTrader
 			return skillIds[n - 1];
 		}
 
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_id",						(int)_id);
+			hash.Add("_skills",				_skills);
+			hash.Add("_curSystemId",	(int)_curSystemId);
+
+			return hash;
+		}
+
 		// *************************************************************************
 		// Randomly tweak the skills.
 		// *************************************************************************
@@ -145,63 +163,27 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public virtual string Name
+		public StarSystem CurrentSystem
 		{
 			get
 			{
-				return Strings.CrewMemberNames[(int)_id];
-			}
-		}
-
-		public CrewMemberId	Id
-		{
-			get
-			{
-				return _id;
-			}
-		}
-
-		public int[] Skills
-		{
-			get
-			{
-				return _skills;
-			}
-		}
-
-		public int Pilot
-		{
-			get
-			{
-				return _skills[Consts.PilotSkill];
+				return _curSystemId == StarSystemId.NA ? null : Game.CurrentGame.Universe[(int)_curSystemId];
 			}
 			set
 			{
-				_skills[Consts.PilotSkill]	= value;
+				_curSystemId	= value.Id;
 			}
 		}
 
-		public int Fighter
+		public StarSystemId CurrentSystemId
 		{
 			get
 			{
-				return _skills[Consts.FighterSkill];
+				return _curSystemId;
 			}
 			set
 			{
-				_skills[Consts.FighterSkill]	= value;
-			}
-		}
-
-		public int Trader
-		{
-			get
-			{
-				return _skills[Consts.TraderSkill];
-			}
-			set
-			{
-				_skills[Consts.TraderSkill]	= value;
+				_curSystemId	= value;
 			}
 		}
 
@@ -217,15 +199,43 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public StarSystem CurrentSystem
+		public int Fighter
 		{
 			get
 			{
-				return _curSystem;
+				return _skills[Consts.FighterSkill];
 			}
 			set
 			{
-				_curSystem	= value;
+				_skills[Consts.FighterSkill]	= value;
+			}
+		}
+
+		public CrewMemberId	Id
+		{
+			get
+			{
+				return _id;
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return Strings.CrewMemberNames[(int)_id];
+			}
+		}
+
+		public int Pilot
+		{
+			get
+			{
+				return _skills[Consts.PilotSkill];
+			}
+			set
+			{
+				_skills[Consts.PilotSkill]	= value;
 			}
 		}
 
@@ -235,6 +245,26 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _id > CrewMemberId.Commander && _id < CrewMemberId.Zeethibal ?
 					(Pilot + Fighter + Trader + Engineer) * 3 : 0;
+			}
+		}
+
+		public int[] Skills
+		{
+			get
+			{
+				return _skills;
+			}
+		}
+
+		public int Trader
+		{
+			get
+			{
+				return _skills[Consts.TraderSkill];
+			}
+			set
+			{
+				_skills[Consts.TraderSkill]	= value;
 			}
 		}
 

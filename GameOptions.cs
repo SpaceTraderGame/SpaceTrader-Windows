@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -29,8 +30,7 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class GameOptions
+	public class GameOptions: STSerializableObject
 	{
 		#region Member Declarations
 
@@ -57,6 +57,24 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			if (loadFromDefaults)
 				LoadFromDefaults(false);
+		}
+
+		public GameOptions(Hashtable hash): base(hash)
+		{
+			_alwaysIgnorePirates			= (bool)hash["_alwaysIgnorePirates"];
+			_alwaysIgnorePolice				= (bool)hash["_alwaysIgnorePolice"];
+			_alwaysIgnoreTradeInOrbit	= (bool)hash["_alwaysIgnoreTradeInOrbit"];
+			_alwaysIgnoreTraders			= (bool)hash["_alwaysIgnoreTraders"];
+			_autoFuel									= (bool)hash["_autoFuel"];
+			_autoRepair								= (bool)hash["_autoRepair"];
+			_continuousAttack					= (bool)hash["_continuousAttack"];
+			_continuousAttackFleeing	= (bool)hash["_continuousAttackFleeing"];
+			_newsAutoPay							= (bool)hash["_newsAutoPay"];
+			_remindLoans							= (bool)hash["_remindLoans"];
+			_reserveMoney							= (bool)hash["_reserveMoney"];
+			_showTrackedRange					= (bool)hash["_showTrackedRange"];
+			_trackAutoOff							= (bool)hash["_trackAutoOff"];
+			_leaveEmpty								= (int)hash["_leaveEmpty"];
 		}
 
 		public void CopyValues(GameOptions source)
@@ -116,6 +134,28 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				FormAlert.Alert(AlertType.FileErrorSave, Game.CurrentGame.ParentWindow, Consts.DefaultSettingsFile, ex.Message);
 			}
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_alwaysIgnorePirates",			_alwaysIgnorePirates);
+			hash.Add("_alwaysIgnorePolice",				_alwaysIgnorePolice);
+			hash.Add("_alwaysIgnoreTradeInOrbit",	_alwaysIgnoreTradeInOrbit);
+			hash.Add("_alwaysIgnoreTraders",			_alwaysIgnoreTraders);
+			hash.Add("_autoFuel",									_autoFuel);
+			hash.Add("_autoRepair",								_autoRepair);
+			hash.Add("_continuousAttack",					_continuousAttack);
+			hash.Add("_continuousAttackFleeing",	_continuousAttackFleeing);
+			hash.Add("_newsAutoPay",							_newsAutoPay);
+			hash.Add("_remindLoans",							_remindLoans);
+			hash.Add("_reserveMoney",							_reserveMoney);
+			hash.Add("_showTrackedRange",					_showTrackedRange);
+			hash.Add("_trackAutoOff",							_trackAutoOff);
+			hash.Add("_leaveEmpty",								_leaveEmpty);
+
+			return hash;
 		}
 
 		#endregion

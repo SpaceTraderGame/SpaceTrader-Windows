@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,15 +18,15 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
 	public class Commander: CrewMember
 	{
 		#region Member Declarations
@@ -42,19 +43,33 @@ namespace Fryz.Apps.SpaceTrader
 		private int					_noclaim						= 0;
 		private Ship				_ship								= new Ship(ShipType.Gnat);
 		private int[]				_priceCargo					= new int[10];								// Total price paid for trade goods
-		private string			_name								= Strings.CrewMemberNames[0];	// This is only here so that we can save it.
 
 		#endregion
 
 		#region Methods
 
-		public Commander(string name, CrewMember baseCrewMember): base(baseCrewMember)
+		public Commander(CrewMember baseCrewMember): base(baseCrewMember)
 		{
-			_name	= name;
-
 			// Start off with a crew of only the commander and a Pulse Laser.
 			Ship.Crew[0]	= this;
 			Ship.AddEquipment(Consts.Weapons[(int)WeaponType.PulseLaser]);
+		}
+
+		public Commander(Hashtable hash): base(hash)
+		{
+			_cash																									= (int)hash["_cash"];
+			_debt																									= (int)hash["_debt"];
+			_killsPirate																					= (int)hash["_killsPirate"];
+			_killsPolice																					= (int)hash["_killsPolice"];
+			_killsTrader																					= (int)hash["_killsTrader"];
+			_policeRecordScore																		= (int)hash["_policeRecordScore"];
+			_reputationScore																			= (int)hash["_reputationScore"];
+			_days																									= (int)hash["_days"];
+			_insurance																						= (bool)hash["_insurance"];
+			_noclaim																							= (int)hash["_noclaim"];
+//			_ship																									= new Ship((Hashtable)hash["_ship"]);
+			_priceCargo																						= (int[])hash["_priceCargo"];
+			Strings.CrewMemberNames[(int)CrewMemberId.Commander]	= (string)hash["_name"];
 		}
 
 		public void PayInterest()
@@ -64,12 +79,33 @@ namespace Fryz.Apps.SpaceTrader
 				int	interest	= Math.Max(1, (int)(Debt * Consts.IntRate));
 				if (Cash > interest)
 					Cash -= interest;
-				else 
+				else
 				{
 					Debt	+= (interest - Cash);
 					Cash	= 0;
 				}
 			}
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_cash",								_cash);
+			hash.Add("_debt",								_debt);
+			hash.Add("_killsPirate",				_killsPirate);
+			hash.Add("_killsPolice",				_killsPolice);
+			hash.Add("_killsTrader",				_killsTrader);
+			hash.Add("_policeRecordScore",	_policeRecordScore);
+			hash.Add("_reputationScore",		_reputationScore);
+			hash.Add("_days",								_days);
+			hash.Add("_insurance",					_insurance);
+			hash.Add("_noclaim",						_noclaim);
+//			hash.Add("_ship",								(_ship == null ? null : _ship.Serialize()));
+			hash.Add("_priceCargo",					_priceCargo);
+			hash.Add("_name",								Name);
+
+			return hash;
 		}
 
 		#endregion
@@ -96,6 +132,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int Days
+		{
+			get
+			{
+				return _days;
+			}
+			set
+			{
+				_days   = value;
+			}
+		}
+
 		public int Debt
 		{
 			get
@@ -105,6 +153,18 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_debt   = value;
+			}
+		}
+
+		public bool Insurance
+		{
+			get
+			{
+				return _insurance;
+			}
+			set
+			{
+				_insurance   = value;
 			}
 		}
 
@@ -144,6 +204,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int NoClaim
+		{
+			get
+			{
+				return _noclaim;
+			}
+			set
+			{
+				_noclaim   = value;
+			}
+		}
+
 		public int PoliceRecordScore
 		{
 			get
@@ -153,6 +225,14 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_policeRecordScore   = value;
+			}
+		}
+
+		public int[] PriceCargo
+		{
+			get
+			{
+				return _priceCargo;
 			}
 		}
 
@@ -168,42 +248,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Days
-		{
-			get
-			{
-				return _days;
-			}
-			set
-			{
-				_days   = value;
-			}
-		}
-
-		public bool Insurance
-		{
-			get
-			{
-				return _insurance;
-			}
-			set
-			{
-				_insurance   = value;
-			}
-		}
-
-		public int NoClaim
-		{
-			get
-			{
-				return _noclaim;
-			}
-			set
-			{
-				_noclaim   = value;
-			}
-		}
-
 		public Ship Ship
 		{
 			get
@@ -213,22 +257,6 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_ship   = value;
-			}
-		}
-
-		public int[] PriceCargo
-		{
-			get
-			{
-				return _priceCargo;
-			}
-		}
-
-		public override string Name
-		{
-			get
-			{
-				return _name;
 			}
 		}
 

@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,15 +18,15 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
 	public class Gadget : Equipment
 	{
 		#region Member Declarations
@@ -39,12 +40,26 @@ namespace Fryz.Apps.SpaceTrader
 		public Gadget(GadgetType type, int price, TechLevel minTechLevel, int chance):
 			base(EquipmentType.Gadget, price, minTechLevel, chance)
 		{
-			_type			= type;
+			_type	= type;
+		}
+
+		public Gadget(Hashtable hash): base(hash)
+		{
+			_type	= (GadgetType)hash["_type"];
 		}
 
 		public override Equipment Clone()
 		{
 			return new Gadget(_type, _price, _minTech, _chance);
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_type",	(int)_type);
+
+			return hash;
 		}
 
 		public override bool TypeEquals(object type)

@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -26,7 +27,6 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
 	public class Ship : ShipSpec
 	{
 		#region Member Declarations
@@ -91,6 +91,43 @@ namespace Fryz.Apps.SpaceTrader
 				if (oppType != OpponentType.Police)
 					GenerateOpponentAddCargo(oppType == OpponentType.Pirate);
 			}
+		}
+
+		public Ship(Hashtable hash): base(hash)
+		{
+			_fuel						= (int)hash["_fuel"];
+			_hull						= (int)hash["_hull"];
+			_tribbles				= (int)hash["_tribbles"];
+			_cargo					= (int[])hash["_cargo"];
+			_weapons				= (Weapon[])hash["_weapons"];
+			_shields				= (Shield[])hash["_shields"];
+			_gadgets				= (Gadget[])hash["_gadgets"];
+			_crew						= (CrewMember[])hash["_crew"];
+			_pod						= (bool)hash["_pod"];
+			_tradeableItems	= (bool[])hash["_tradeableItems"];
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			// We don't want the actual CrewMember objects - we just want the ids.
+			int[]	crewIds	= new int[_crew.Length];
+			for (int i = 0; i < crewIds.Length; i++)
+				crewIds[i]	= (int)(_crew[i] == null ? CrewMemberId.NA : _crew[i].Id);
+
+			hash.Add("_fuel",						_fuel);
+			hash.Add("_hull",						_hull);
+			hash.Add("_tribbles",				_tribbles);
+			hash.Add("_cargo",					_cargo);
+			hash.Add("_weapons",				ArrayToArrayList(_weapons));
+			hash.Add("_shields",				ArrayToArrayList(_shields));
+			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
+			hash.Add("_crew",						crewIds);
+			hash.Add("_pod",						_pod);
+			hash.Add("_tradeableItems", _tradeableItems);
+
+			return hash;
 		}
 
 		protected override void SetValues(ShipType type)
@@ -407,7 +444,7 @@ namespace Fryz.Apps.SpaceTrader
 						tries	= Math.Max(1, tries + (int)Game.CurrentGame.Difficulty - (int)Difficulty.Normal);
 						break;
 					case OpponentType.Police:
-						// The police will try to hunt you down with better ships if you are 
+						// The police will try to hunt you down with better ships if you are
 						// a villain, and they will try even harder when you are considered to
 						// be a psychopath (or are transporting Jonathan Wild)
 						if (cmdr.PoliceRecordScore < Consts.PoliceRecordScorePsychopath || WildOnBoard)
