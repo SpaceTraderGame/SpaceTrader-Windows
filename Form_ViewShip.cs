@@ -89,9 +89,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSpecialCargo = new System.Windows.Forms.Label();
 			this.boxSpecialCargo.SuspendLayout();
 			this.SuspendLayout();
-			//
+			// 
 			// lblTypeLabel
-			//
+			// 
 			this.lblTypeLabel.AutoSize = true;
 			this.lblTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTypeLabel.Location = new System.Drawing.Point(8, 8);
@@ -99,17 +99,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTypeLabel.Size = new System.Drawing.Size(34, 13);
 			this.lblTypeLabel.TabIndex = 2;
 			this.lblTypeLabel.Text = "Type:";
-			//
+			// 
 			// lblType
-			//
+			// 
 			this.lblType.Location = new System.Drawing.Point(80, 8);
 			this.lblType.Name = "lblType";
-			this.lblType.Size = new System.Drawing.Size(72, 13);
+			this.lblType.Size = new System.Drawing.Size(100, 13);
 			this.lblType.TabIndex = 4;
 			this.lblType.Text = "Grasshopper";
-			//
+			// 
 			// btnClose
-			//
+			// 
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -117,18 +117,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			//
+			// 
 			// lblEquipLabel
-			//
+			// 
 			this.lblEquipLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblEquipLabel.Location = new System.Drawing.Point(8, 34);
 			this.lblEquipLabel.Name = "lblEquipLabel";
 			this.lblEquipLabel.Size = new System.Drawing.Size(64, 176);
 			this.lblEquipLabel.TabIndex = 43;
 			this.lblEquipLabel.Text = "Hull:\r\n\r\nEquipment:\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nUnfilled:";
-			//
+			// 
 			// lblEquip
-			//
+			// 
 			this.lblEquip.Location = new System.Drawing.Point(80, 34);
 			this.lblEquip.Name = "lblEquip";
 			this.lblEquip.Size = new System.Drawing.Size(105, 176);
@@ -136,9 +136,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblEquip.Text = "Hardened\r\n\r\n1 Military Laser\r\n1 Morgan\'s Laser\r\n1 Energy Shield\r\n1 Reflective Shi" +
 				"eld\r\n1 Lightning Shield\r\nAuto-Repair System\r\n10 Extra Cargo Bays\r\nAn Escape Pod\r" +
 				"\n\r\n1 weapon slot\r\n1 gadget slot";
-			//
+			// 
 			// boxSpecialCargo
-			//
+			// 
 			this.boxSpecialCargo.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																									this.lblSpecialCargo});
 			this.boxSpecialCargo.Location = new System.Drawing.Point(192, 8);
@@ -147,17 +147,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxSpecialCargo.TabIndex = 64;
 			this.boxSpecialCargo.TabStop = false;
 			this.boxSpecialCargo.Text = "Special Cargo";
-			//
+			// 
 			// lblSpecialCargo
-			//
+			// 
 			this.lblSpecialCargo.Location = new System.Drawing.Point(8, 16);
 			this.lblSpecialCargo.Name = "lblSpecialCargo";
 			this.lblSpecialCargo.Size = new System.Drawing.Size(190, 176);
 			this.lblSpecialCargo.TabIndex = 0;
 			this.lblSpecialCargo.Text = "No special items.";
-			//
+			// 
 			// FormViewShip
-			//
+			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(402, 219);
@@ -177,6 +177,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.Text = "Current Ship";
 			this.boxSpecialCargo.ResumeLayout(false);
 			this.ResumeLayout(false);
+
 		}
 		#endregion
 
