@@ -1936,8 +1936,6 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_veryRareEncounters",					ArrayListToIntArray(_veryRareEncounters));
 			hash.Add("_options",										_options.Serialize());
 
-			hash.Add("commanderName",								Strings.CrewMemberNames[(int)CrewMemberId.Commander]);
-
 			return hash;
 		}
 
