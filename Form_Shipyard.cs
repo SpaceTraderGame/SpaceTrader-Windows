@@ -986,16 +986,9 @@ namespace Fryz.Apps.SpaceTrader
 																	template.ImageIndex;
 
 				if (template.Images != null)
-				{
-					for (int index = 0; index < Consts.ImagesPerShip; index++)
-						customImages[index]	= template.Images[index];
-				}
+					customImages	= template.Images;
 				else
-				{
-					int	baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
-					for (int index = 0; index < Consts.ImagesPerShip; index++)
-						customImages[index]	= game.ParentWindow.ShipImages.Images[baseIndex + index];
-				}
+					customImages	= game.ParentWindow.CustomShipImages;
 
 				numCargoBays.Value			= template.CargoBays;
 				numFuelTanks.Value			= template.FuelTanks;
@@ -1144,11 +1137,7 @@ namespace Fryz.Apps.SpaceTrader
 
 					// Replace the current custom images with the new ones.
 					if (game.Commander.Ship.ImageIndex == (int)ShipType.Custom)
-					{
-						int	baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
-						for (int index = 0; index < Consts.ImagesPerShip; index++)
-							game.ParentWindow.ShipImages.Images[baseIndex + index]	= customImages[index];
-					}
+						game.ParentWindow.CustomShipImages	= customImages;
 
 					FormAlert.Alert(AlertType.ShipDesignThanks, this, shipyard.Name);
 					Close();

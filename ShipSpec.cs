@@ -104,11 +104,17 @@ namespace Fryz.Apps.SpaceTrader
 			_minTech			= (TechLevel)hash["_minTech"];
 			_hullUpgraded	= (bool)hash["_hullUpgraded"];
 
+			// The image index was only saved if it's not the default.
 			if (hash.ContainsKey("_imageIndex"))
 				_imageIndex	= (int)hash["_imageIndex"];
 
+			// Get the name if the ship is a custom design.
 			if (Type == ShipType.Custom)
 				Strings.ShipNames[(int)ShipType.Custom]	= (string)hash["_name"];
+
+			// Get the images if the ship uses the custom images.
+			if (ImageIndex == (int)ShipType.Custom && hash.ContainsKey("_images"))
+				Game.CurrentGame.ParentWindow.CustomShipImages	= (Image[])hash["_images"];
 		}
 
 		public override Hashtable Serialize()
@@ -138,8 +144,13 @@ namespace Fryz.Apps.SpaceTrader
 			if (_imageIndex != Consts.ShipImgUseDefault)
 				hash.Add("_imageIndex",	_imageIndex);
 
+			// Save the name if the ship is a custom design.
 			if (Type == ShipType.Custom)
 				hash.Add("_name",				Name);
+
+			// Save the images if the ship uses the custom images.
+			if (ImageIndex == (int)ShipType.Custom)
+				hash.Add("_images",			Game.CurrentGame.ParentWindow.CustomShipImages);
 
 			return hash;
 		}

@@ -4005,6 +4005,26 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
+		public Image[] CustomShipImages
+		{
+			get
+			{
+				Image[]	images		= new Image[Consts.ImagesPerShip];
+				int			baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
+				for (int index = 0; index < Consts.ImagesPerShip; index++)
+					images[index]	= ilShipImages.Images[baseIndex + index];
+
+				return images;
+			}
+			set
+			{
+				Image[]	images		= value;
+				int			baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
+				for (int index = 0; index < Consts.ImagesPerShip; index++)
+					ilShipImages.Images[baseIndex + index]	= images[index];
+			}
+		}
+
 		public ImageList ShipImages
 		{
 			get
@@ -4012,7 +4032,6 @@ namespace Fryz.Apps.SpaceTrader
 				return ilShipImages;
 			}
 		}
-
 
 		#endregion
 	}

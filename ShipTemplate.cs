@@ -62,12 +62,7 @@ namespace Fryz.Apps.SpaceTrader
 			_hullStrength	= spec.HullStrength;
 
 			if (ImageIndex == Consts.ShipImgUseDefault)
-			{
-				int	baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
-				_images				= new Image[Consts.ImagesPerShip];
-				for (int index = 0; index < Consts.ImagesPerShip; index++)
-					_images[index]	= Game.CurrentGame.ParentWindow.ShipImages.Images[baseIndex + index];
-			}
+				_images			= Game.CurrentGame.ParentWindow.CustomShipImages;
 		}
 
 		public ShipTemplate(Hashtable hash)
