@@ -18,179 +18,62 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public class ShipSpec
+	public class ShipSpec: STSerializableObject
 	{
 		#region Member Declarations
 
-		private ShipType	_type;
-		private Size			_size;
-		private int				_cargoBays;
-		private int				_weaponSlots;
-		private int				_shieldSlots;
-		private int				_gadgetSlots;
-		private int				_crewQuarters;
-		private int				_fuelTanks;
-		private int				_fuelCost;
-		private int				_hullStrength;
-		private int				_repairCost;
-		private int				_price;
-		private int				_occurance;
-		private int				_police;
-		private int				_pirates;
-		private int				_traders;
-		private TechLevel	_minTech;
-		private bool			_hullUpgraded;
+		private ShipType	_type					= ShipType.Flea;
+		private Size			_size					= Size.Tiny;
+		private int				_cargoBays		= 0;
+		private int				_weaponSlots	= 0;
+		private int				_shieldSlots	= 0;
+		private int				_gadgetSlots	= 0;
+		private int				_crewQuarters	= 0;
+		private int				_fuelTanks		= 0;
+		private int				_fuelCost			= 0;
+		private int				_hullStrength	= 0;
+		private int				_repairCost		= 0;
+		private int				_price				= 0;
+		private int				_occurance		= 0;
+		private int				_police				= 0;
+		private int				_pirates			= 0;
+		private int				_traders			= 0;
+		private TechLevel	_minTech			= TechLevel.HiTech;
+		private bool			_hullUpgraded	= false;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public ShipType Type
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _type;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public Size Size
-		{
-			get
-			{
-				return _size;
-			}
-		}
+			hash.Add("_type",					(int)_type);
+			hash.Add("_size",					(int)_size);
+			hash.Add("_cargoBays",		_cargoBays);
+			hash.Add("_weaponSlots",	_weaponSlots);
+			hash.Add("_shieldSlots",	_shieldSlots);
+			hash.Add("_gadgetSlots",	_gadgetSlots);
+			hash.Add("_crewQuarters",	_crewQuarters);
+			hash.Add("_fuelTanks",		_fuelTanks);
+			hash.Add("_fuelCost",			_fuelCost);
+			hash.Add("_hullStrength",	_hullStrength);
+			hash.Add("_repairCost",		_repairCost);
+			hash.Add("_price",				_price);
+			hash.Add("_occurance",		_occurance);
+			hash.Add("_police",				_police);
+			hash.Add("_pirates",			_pirates);
+			hash.Add("_traders",			_traders);
+			hash.Add("_minTech",			(int)_minTech);
+			hash.Add("_hullUpgraded",	_hullUpgraded);
 
-		public virtual int CargoBays
-		{
-			get
-			{
-				return _cargoBays;
-			}
-		}
-
-		public int WeaponSlots
-		{
-			get
-			{
-				return _weaponSlots;
-			}
-		}
-
-		public int ShieldSlots
-		{
-			get
-			{
-				return _shieldSlots;
-			}
-		}
-
-		public int GadgetSlots
-		{
-			get
-			{
-				return _gadgetSlots;
-			}
-		}
-
-		public int CrewQuarters
-		{
-			get
-			{
-				return _crewQuarters;
-			}
-		}
-
-		public virtual int FuelTanks
-		{
-			get
-			{
-				return _fuelTanks;
-			}
-		}
-
-		public int FuelCost
-		{
-			get
-			{
-				return _fuelCost;
-			}
-		}
-
-		public int HullStrength
-		{
-			get
-			{
-				return _hullStrength;
-			}
-		}
-
-		public int RepairCost
-		{
-			get
-			{
-				return _repairCost;
-			}
-		}
-
-		public int Price
-		{
-			get
-			{
-				return _price;
-			}
-		}
-
-		public int Occurance
-		{
-			get
-			{
-				return _occurance;
-			}
-		}
-
-		public int Police
-		{
-			get
-			{
-				return _police;
-			}
-		}
-
-		public int Pirates
-		{
-			get
-			{
-				return _pirates;
-			}
-		}
-
-		public int Traders
-		{
-			get
-			{
-				return _traders;
-			}
-		}
-
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
-			}
-		}
-
-		public bool HullUpgraded
-		{
-			get
-			{
-				return _hullUpgraded;
-			}
+			return hash;
 		}
 
 		#endregion

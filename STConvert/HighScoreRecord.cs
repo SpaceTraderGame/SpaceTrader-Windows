@@ -18,71 +18,38 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public class HighScoreRecord
+	public class HighScoreRecord: STSerializableObject
 	{
 		#region Member Declarations
 
-		private string			_name;
-		private int					_score;
-		private GameEndType	_type;
-		private int					_days;
-		private int					_worth;
-		private Difficulty	_difficulty;
+		private string			_name				= null;
+		private int					_score			= 0;
+		private GameEndType	_type				= GameEndType.NA;
+		private int					_days				= 0;
+		private int					_worth			= 0;
+		private Difficulty	_difficulty	= Difficulty.Beginner;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public string Name
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _name;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public int Score
-		{
-			get
-			{
-				return _score;
-			}
-		}
+			hash.Add("_name",				_name);
+			hash.Add("_score",			_score);
+			hash.Add("_type",				(int)_type);
+			hash.Add("_days",				_days);
+			hash.Add("_worth",			_worth);
+			hash.Add("_difficulty",	(int)_difficulty);
 
-		public GameEndType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
-		public int Days
-		{
-			get
-			{
-				return _days;
-			}
-		}
-
-		public int Worth
-		{
-			get
-			{
-				return _worth;
-			}
-		}
-
-		public Difficulty Difficulty
-		{
-			get
-			{
-				return _difficulty;
-			}
+			return hash;
 		}
 
 		#endregion

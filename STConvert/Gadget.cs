@@ -18,6 +18,7 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -26,18 +27,19 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private GadgetType	_type;
+		private GadgetType	_type	= GadgetType.ExtraCargoBays;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public GadgetType Type
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _type;
-			}
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_type",	(int)_type);
+
+			return hash;
 		}
 
 		#endregion

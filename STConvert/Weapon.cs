@@ -18,6 +18,7 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -26,27 +27,21 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private WeaponType	_type;
-		private int					_power;
+		private WeaponType	_type		= WeaponType.PulseLaser;
+		private int					_power	= 0;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public WeaponType Type
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _type;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public int Power
-		{
-			get
-			{
-				return _power;
-			}
+			hash.Add("_type",		(int)_type);
+			hash.Add("_power",	_power);
+
+			return hash;
 		}
 
 		#endregion

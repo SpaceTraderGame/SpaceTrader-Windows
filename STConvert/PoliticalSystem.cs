@@ -18,25 +18,49 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public class PoliticalSystem
+	public class PoliticalSystem: STSerializableObject
 	{
 		#region Member Declarations
 
-		private PoliticalSystemType	_type;
-		private int									_reactionIllegal;
-		private Activity						_activityPolice;
-		private Activity						_activityPirates;
-		private Activity						_activityTraders;
-		private TechLevel						_minTech;
-		private TechLevel						_maxTech;
-		private int									_bribeLevel;
-		private bool								_drugsOk;
-		private bool								_firearmsOk;
-		private TradeItemType				_wanted;
+		private PoliticalSystemType	_type							= PoliticalSystemType.Anarchy;
+		private int									_reactionIllegal	= 0;
+		private Activity						_activityPolice		= Activity.Absent;
+		private Activity						_activityPirates	= Activity.Absent;
+		private Activity						_activityTraders	= Activity.Absent;
+		private TechLevel						_minTech					= TechLevel.HiTech;
+		private TechLevel						_maxTech					= TechLevel.HiTech;
+		private int									_bribeLevel				= 0;
+		private bool								_drugsOk					= false;
+		private bool								_firearmsOk				= false;
+		private TradeItemType				_wanted						= TradeItemType.NA;
+
+		#endregion
+
+		#region Methods
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_type",							(int)_type);
+			hash.Add("_reactionIllegal",	_reactionIllegal);
+			hash.Add("_activityPolice",		(int)_activityPolice);
+			hash.Add("_activityPirates",	(int)_activityPirates);
+			hash.Add("_activityTraders",	(int)_activityTraders);
+			hash.Add("_minTech",					(int)_minTech);
+			hash.Add("_maxTech",					(int)_maxTech);
+			hash.Add("_bribeLevel",				_bribeLevel);
+			hash.Add("_drugsOk",					_drugsOk);
+			hash.Add("_firearmsOk",				_firearmsOk);
+			hash.Add("_wanted",						(int)_wanted);
+
+			return hash;
+		}
 
 		#endregion
 
@@ -47,86 +71,6 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _type;
-			}
-		}
-
-		public int ReactionIllegal
-		{
-			get
-			{
-				return _reactionIllegal;
-			}
-		}
-
-		public Activity ActivityPolice
-		{
-			get
-			{
-				return _activityPolice;
-			}
-		}
-
-		public Activity ActivityPirates
-		{
-			get
-			{
-				return _activityPirates;
-			}
-		}
-
-		public Activity ActivityTraders
-		{
-			get
-			{
-				return _activityTraders;
-			}
-		}
-
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
-			}
-		}
-
-		public TechLevel MaximumTechLevel
-		{
-			get
-			{
-				return _maxTech;
-			}
-		}
-
-		public int BribeLevel
-		{
-			get
-			{
-				return _bribeLevel;
-			}
-		}
-
-		public bool DrugsOk
-		{
-			get
-			{
-				return _drugsOk;
-			}
-		}
-
-		public bool FirearmsOk
-		{
-			get
-			{
-				return _firearmsOk;
-			}
-		}
-
-		public TradeItemType Wanted
-		{
-			get
-			{
-				return _wanted;
 			}
 		}
 

@@ -18,53 +18,34 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public abstract class Equipment
+	public abstract class Equipment: STSerializableObject
 	{
 		#region Member Declarations
 
-		protected EquipmentType	_equipType;
-		protected int						_price;
-		protected TechLevel			_minTech;
-		protected int						_chance;
+		protected EquipmentType	_equipType	= EquipmentType.Gadget;
+		protected int						_price			= 0;
+		protected TechLevel			_minTech		= TechLevel.HiTech;
+		protected int						_chance			= 0;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public EquipmentType EquipmentType
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _equipType;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public int Price
-		{
-			get
-			{
-				return _price;
-			}
-		}
+			hash.Add("_equipType",	(int)_equipType);
+			hash.Add("_price",			_price);
+			hash.Add("_minTech",		(int)_minTech);
+			hash.Add("_chance",			_chance);
 
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
-			}
-		}
-
-		public int Chance
-		{
-			get
-			{
-				return _chance;
-			}
+			return hash;
 		}
 
 		#endregion

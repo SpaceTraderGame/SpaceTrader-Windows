@@ -22,30 +22,27 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class Shield : Equipment
+	[Serializable()]
+	public abstract class STSerializableObject
 	{
-		#region Member Declarations
-
-		private ShieldType	_type		= ShieldType.Energy;
-		private int					_power	= 0;
-		private int					_charge	= 0;
-
-		#endregion
-
-		#region Methods
-
-		public override Hashtable Serialize()
+		public static ArrayList ArrayToArrayList(STSerializableObject[] array)
 		{
-			Hashtable	hash	= base.Serialize();
+			ArrayList list	= null;
+			
+			if (array != null)
+			{
+				list	= new ArrayList();
 
-			hash.Add("_type",		(int)_type);
-			hash.Add("_power",	_power);
-			hash.Add("_charge",	_charge);
+				foreach (STSerializableObject obj in array)
+					list.Add(obj == null ? null : obj.Serialize());
+			}
 
-			return hash;
+			return list;
 		}
 
-		#endregion
+		public virtual Hashtable Serialize()
+		{
+			return new Hashtable();
+		}
 	}
 }

@@ -175,6 +175,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "STSerializableObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Weapon.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

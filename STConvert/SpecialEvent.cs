@@ -18,19 +18,40 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]
-	public class SpecialEvent
+	public class SpecialEvent: STSerializableObject
 	{
 		#region Member Declarations
 
-		private SpecialEventType	_type;
-		private int								_price;
-		private int								_occurance;
-		private bool							_messageOnly;
-		private StarSystem				_location;  // Legacy
+		private SpecialEventType	_type					= SpecialEventType.Artifact;
+		private int								_price				= 0;
+		private int								_occurance		= 0;
+		private bool							_messageOnly	= false;
+		private StarSystem				_location			= null;  // Legacy
+
+		#endregion
+
+		#region Methods
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_type",					(int)_type);
+			hash.Add("_price",				_price);
+			hash.Add("_occurance",		_occurance);
+			hash.Add("_messageOnly",	_messageOnly);
+
+			// Location is a legacy field. The following line supresses a warning
+			// message about it not being used.
+			_location	= _location;
+
+			return hash;
+		}
 
 		#endregion
 
@@ -41,30 +62,6 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _type;
-			}
-		}
-
-		public int Price
-		{
-			get
-			{
-				return _price;
-			}
-		}
-
-		public int Occurance
-		{
-			get
-			{
-				return _occurance;
-			}
-		}
-
-		public bool MessageOnly
-		{
-			get
-			{
-				return _messageOnly;
 			}
 		}
 

@@ -18,6 +18,7 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -26,126 +27,43 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private int					_cash;
-		private int					_debt;
-		private int					_killsPirate;
-		private int					_killsPolice;
-		private int					_killsTrader;
-		private int					_policeRecordScore;
-		private int					_reputationScore;
-		private int					_days;
-		private bool				_insurance;
-		private int					_noclaim;
-		private Ship				_ship;
-		private int[]				_priceCargo;
-		private string			_name;
+		private int					_cash								= 0;
+		private int					_debt								= 0;
+		private int					_killsPirate				= 0;
+		private int					_killsPolice				= 0;
+		private int					_killsTrader				= 0;
+		private int					_policeRecordScore	= 0;
+		private int					_reputationScore		= 0;
+		private int					_days								= 0;
+		private bool				_insurance					= false;
+		private int					_noclaim						= 0;
+		private Ship				_ship								= null;
+		private int[]				_priceCargo					= null;
+		private string			_name								= null;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public int Cash
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _cash;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public int Debt
-		{
-			get
-			{
-				return _debt;
-			}
-		}
+			hash.Add("_cash",								_cash);
+			hash.Add("_debt",								_debt);
+			hash.Add("_killsPirate",				_killsPirate);
+			hash.Add("_killsPolice",				_killsPolice);
+			hash.Add("_killsTrader",				_killsTrader);
+			hash.Add("_policeRecordScore",	_policeRecordScore);
+			hash.Add("_reputationScore",		_reputationScore);
+			hash.Add("_days",								_days);
+			hash.Add("_insurance",					_insurance);
+			hash.Add("_noclaim",						_noclaim);
+			hash.Add("_ship",								(_ship == null ? null : _ship.Serialize()));
+			hash.Add("_priceCargo",					_priceCargo);
+			hash.Add("_name",								_name);
 
-		public int KillsPirate
-		{
-			get
-			{
-				return _killsPirate;
-			}
-		}
-
-		public int KillsPolice
-		{
-			get
-			{
-				return _killsPolice;
-			}
-		}
-
-		public int KillsTrader
-		{
-			get
-			{
-				return _killsTrader;
-			}
-		}
-
-		public int PoliceRecordScore
-		{
-			get
-			{
-				return _policeRecordScore;
-			}
-		}
-
-		public int ReputationScore
-		{
-			get
-			{
-				return _reputationScore;
-			}
-		}
-
-		public int Days
-		{
-			get
-			{
-				return _days;
-			}
-		}
-
-		public bool Insurance
-		{
-			get
-			{
-				return _insurance;
-			}
-		}
-
-		public int NoClaim
-		{
-			get
-			{
-				return _noclaim;
-			}
-		}
-
-		public Ship Ship
-		{
-			get
-			{
-				return _ship;
-			}
-		}
-
-		public int[] PriceCargo
-		{
-			get
-			{
-				return _priceCargo;
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return _name;
-			}
+			return hash;
 		}
 
 		#endregion

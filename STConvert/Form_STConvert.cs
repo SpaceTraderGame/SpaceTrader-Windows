@@ -40,16 +40,13 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Constants
 
-		public const string	DefaultSettingsFile			= "DefaultSettings.bin";
-		public const string	FileFormatBad						= "The file is not a serialized object file or has been corrupted.\r\n";
-		public const string	GameFileFormatBad				= "The file is not a saved-game file, or is the wrong version.\r\n";
-		public const string	HighScoreFile						= "HighScores.bin";
-		public const string	HighScoreFileFormatBad	= "The file is not a high scores file, or is the wrong version.\r\n";
+		public const string	FileFormatBad						= "-The file is not a serialized object file or has been corrupted.\r\n";
 		public const string	LineBreak								= "\r\n";
 		public const string	LoadFileBegin						= "****************************************\r\n+Opening File: ";
-		public const string	LoadFileComplete				= "+File Opened\r\n";
-		public const string	SettingsFileFormatBad		= "The file is not a default settings file, or is the wrong version.\r\n";
-		public const string	UnrecognizedFile				= "The file was not recognized as a saved-game, high scores, or default settings file.\r\n";
+		public const string	LoadFileComplete				= "-File Opened\r\n";
+		public const string	SaveFileBegin						= "+Saving File\r\n";
+		public const string	SaveFileComplete				= "-File Saved\r\n";
+		public const string	UnrecognizedFile				= "-The file was not recognized as a saved-game, high scores, or default settings file.\r\n";
 
 		#endregion
 
@@ -151,33 +148,26 @@ namespace Fryz.Apps.SpaceTrader
 
 		private object LoadFile(string fileName)
 		{
-			object	obj				= null;
-			string	tempFile	= fileName + ".tmp";
+			object					obj				= null;
+			FileStream			inStream	= null;
+			MemoryStream		memStream	= null;
+			BinaryFormatter	formatter	= new BinaryFormatter();
 
 			try
 			{
 				Log(LoadFileBegin + fileName + LineBreak);
 
 				// First read in the original file.
-				FileStream			inStream		= new FileStream(fileName, FileMode.Open);
-				BinaryReader		reader			= new BinaryReader(inStream);
-				byte[]					contents		= new byte[100000];
-				int							length			= reader.Read(contents, 0, 100000);
+				inStream									= new FileStream(fileName, FileMode.Open);
+				BinaryReader		reader		= new BinaryReader(inStream);
+				byte[]					contents	= new byte[100000];
+				int							length		= reader.Read(contents, 0, 100000);
 				reader.Close();
 				inStream.Close();
 
-				// Write out the temp file with the fixed Assembly name.
-				FileStream			outStream		= new FileStream(tempFile, FileMode.Create);
-				BinaryWriter		writer			= new BinaryWriter(outStream);
-				writer.Write(ReplaceStringInByteArray(contents, length, "ISpaceTrader", "GSTConvert"));
-				writer.Close();
-				outStream.Close();
-
-				// Now read the temp file and deserialize it.
-				inStream									= new FileStream(tempFile, FileMode.Open);
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				obj												= formatter.Deserialize(inStream);
-				inStream.Close();
+				// Create a memory stream from the updated byte array and deserialize it.
+				memStream	= new MemoryStream(ReplaceStringInByteArray(contents, length, "ISpaceTrader", "GSTConvert"));
+				obj				= formatter.Deserialize(memStream);
 
 				Log(LoadFileComplete);
 			}
@@ -189,15 +179,12 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				Log(FileFormatBad + ex.Message + LineBreak);
 			}
-
-			// Delete the temp file
-			try
+			finally
 			{
-				File.Delete(tempFile);
-			}
-			catch (Exception ex)
-			{
-				Log(ex.Message + LineBreak);
+				if (inStream != null)
+					inStream.Close();
+				if (memStream != null)
+					memStream.Close();
 			}
 
 			return obj;
@@ -234,16 +221,31 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void SaveFile(string fileName, object toSerialize)
 		{
+			BinaryFormatter	formatter	= new BinaryFormatter();
+			FileStream			outStream	= null;
+
 			try
 			{
-				BinaryFormatter	formatter	= new BinaryFormatter();
-				FileStream			stream		= new FileStream(fileName, FileMode.Create);
-				formatter.Serialize(stream, toSerialize);
-				stream.Close();
+				Log(SaveFileBegin);
+
+				// Backup the old file.
+				File.Move(fileName, fileName + ".bak");
+
+				// Write out the converted file.
+				outStream	= new FileStream(fileName, FileMode.Create);
+				formatter.Serialize(outStream, toSerialize);
+				outStream.Close();
+
+				Log(SaveFileComplete);
 			}
 			catch (IOException ex)
 			{
 				Log(ex.Message + LineBreak);
+			}
+			finally
+			{
+				if (outStream != null)
+					outStream.Close();
 			}
 		}
 
@@ -257,44 +259,23 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				foreach (string filename in dlgFileOpen.FileNames)
 				{
-					object	obj	= LoadFile(filename);
+					object	obj		= LoadFile(filename);
 
-					if (typeof(Game).IsInstanceOfType(obj))
+					if (obj != null)
 					{
-						try
+						if (typeof(STSerializableObject).IsInstanceOfType(obj) ||
+							typeof(HighScoreRecord[]).IsInstanceOfType(obj))
 						{
-							Game	game	= (Game)obj;
-							Log(game.Commander.Ship.ToString() + LineBreak);
+							if (typeof(STSerializableObject).IsInstanceOfType(obj))
+								obj	= ((STSerializableObject)obj).Serialize();
+							else
+								obj	= STSerializableObject.ArrayToArrayList((HighScoreRecord[])obj);
+
+							SaveFile(filename, obj);
 						}
-						catch (System.Runtime.Serialization.SerializationException ex)
-						{
-							Log(GameFileFormatBad + ex.Message + LineBreak);
-						}
+						else
+							Log(UnrecognizedFile);
 					}
-					else if (typeof(HighScoreRecord[]).IsInstanceOfType(obj))
-					{
-						try
-						{
-							HighScoreRecord[]	highScores	= (HighScoreRecord[])obj;
-						}
-						catch (System.Runtime.Serialization.SerializationException ex)
-						{
-							Log(HighScoreFileFormatBad + ex.Message + LineBreak);
-						}
-					}
-					else if (typeof(GameOptions).IsInstanceOfType(obj))
-					{
-						try
-						{
-							GameOptions	defaults	= (GameOptions)obj;
-						}
-						catch (System.Runtime.Serialization.SerializationException ex)
-						{
-							Log(SettingsFileFormatBad + ex.Message + LineBreak);
-						}
-					}
-					else if (obj != null)
-						Log(UnrecognizedFile);
 				}
 			}
 		}

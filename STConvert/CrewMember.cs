@@ -18,43 +18,43 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
-	public class CrewMember
+	[Serializable()]
+	public class CrewMember: STSerializableObject
 	{
 		#region Member Declarations
 
-		private CrewMemberId	_id;
-		private int[]					_skills;
-		private StarSystem		_curSystem;
+		private CrewMemberId	_id					= CrewMemberId.Commander;
+		private int[]					_skills			= null;
+		private StarSystem		_curSystem	= null;
+
+		#endregion
+
+		#region Methods
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_id",					(int)_id);
+			hash.Add("_skills",			_skills);
+			hash.Add("_curSystem",	(int)(_curSystem == null ? StarSystemId.NA : _curSystem.Id));
+
+			return hash;
+		}
 
 		#endregion
 
 		#region Properties
 
-		public CrewMemberId	Id
+		public CrewMemberId Id
 		{
 			get
 			{
 				return _id;
-			}
-		}
-
-		public int[] Skills
-		{
-			get
-			{
-				return _skills;
-			}
-		}
-
-		public StarSystem CurrentSystem
-		{
-			get
-			{
-				return _curSystem;
 			}
 		}
 

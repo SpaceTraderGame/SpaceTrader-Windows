@@ -18,26 +18,51 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public class StarSystem
+	public class StarSystem: STSerializableObject
 	{
 		#region Member Declarations
 
-		private StarSystemId		_id;
-		private int							_x;
-		private int							_y;
-		private Size						_size;
-		private TechLevel				_techLevel;
-		private PoliticalSystem	_politicalSystem;
-		private SystemPressure	_pressure;
-		private SpecialResource	_specialResource;
-		private SpecialEvent		_specialEvent;
-		private int[]						_tradeItems;
-		private int							_countDown;
-		private bool						_visited;
+		private StarSystemId		_id								= StarSystemId.NA;
+		private int							_x								= 0;
+		private int							_y								= 0;
+		private Size						_size							= Size.Tiny;
+		private TechLevel				_techLevel				= TechLevel.HiTech;
+		private PoliticalSystem	_politicalSystem	= null;
+		private SystemPressure	_pressure					= SystemPressure.None;
+		private SpecialResource	_specialResource	= SpecialResource.Nothing;
+		private SpecialEvent		_specialEvent			= null;
+		private int[]						_tradeItems				= null;
+		private int							_countDown				= 0;
+		private bool						_visited					= false;
+
+		#endregion
+
+		#region Methods
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_id",								(int)_id);
+			hash.Add("_x",								_x);
+			hash.Add("_y",								_y);
+			hash.Add("_size",							(int)_size);
+			hash.Add("_techLevel",				(int)_techLevel);
+			hash.Add("_politicalSystem",	(int)_politicalSystem.Type);
+			hash.Add("_pressure",					(int)_pressure);
+			hash.Add("_specialResource",	(int)_specialResource);
+			hash.Add("_specialEvent",			(int)(_specialEvent == null ? SpecialEventType.NA : _specialEvent.Type));
+			hash.Add("_tradeItems",				_tradeItems);
+			hash.Add("_countDown",				_countDown);
+			hash.Add("_visited",					_visited);
+
+			return hash;
+		}
 
 		#endregion
 
@@ -48,94 +73,6 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _id;
-			}
-		}
-
-		public int X
-		{
-			get
-			{
-				return _x;
-			}
-		}
-
-		public int Y
-		{
-			get
-			{
-				return _y;
-			}
-		}
-
-		public Size Size
-		{
-			get
-			{
-				return _size;
-			}
-		}
-
-		public TechLevel TechLevel
-		{
-			get
-			{
-				return _techLevel;
-			}
-		}
-
-		public PoliticalSystem PoliticalSystem
-		{
-			get
-			{
-				return _politicalSystem;
-			}
-		}
-
-		public SystemPressure Pressure
-		{
-			get
-			{
-				return _pressure;
-			}
-		}
-
-		public SpecialResource SpecialResource
-		{
-			get
-			{
-				return _specialResource;
-			}
-		}
-
-		public SpecialEvent SpecialEvent
-		{
-			get
-			{
-				return _specialEvent;
-			}
-		}
-
-		public int[] TradeItems
-		{
-			get
-			{
-				return _tradeItems;
-			}
-		}
-
-		public int CountDown
-		{
-			get
-			{
-				return _countDown;
-			}
-		}
-
-		public bool Visited
-		{
-			get
-			{
-				return _visited;
 			}
 		}
 

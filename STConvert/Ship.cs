@@ -18,6 +18,7 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -26,100 +27,42 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private int						_fuel;
-		private int						_hull;
-		private int						_tribbles;
-		private int[]					_cargo;
-		private Weapon[]			_weapons;
-		private Shield[]			_shields;
-		private Gadget[]			_gadgets;
-		private CrewMember[]	_crew;
-		private bool					_pod;
-
-		private bool[]				_tradeableItems;
+		private int						_fuel						= 0;
+		private int						_hull						= 0;
+		private int						_tribbles				= 0;
+		private int[]					_cargo					= null;
+		private Weapon[]			_weapons				= null;
+		private Shield[]			_shields				= null;
+		private Gadget[]			_gadgets				= null;
+		private CrewMember[]	_crew						= null;
+		private bool					_pod						= false;
+		private bool[]				_tradeableItems	= null;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public int Fuel
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _fuel;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public int Hull
-		{
-			get
-			{
-				return _hull;
-			}
-		}
+			// We don't want the actual CrewMember objects - we just want the ids.
+			int[]	crewIds	= new int[_crew.Length];
+			for (int i = 0; i < crewIds.Length; i++)
+				crewIds[i]	= (int)(_crew[i] == null ? CrewMemberId.NA : _crew[i].Id);
 
-		public int Tribbles
-		{
-			get
-			{
-				return _tribbles;
-			}
-		}
+			hash.Add("_fuel",						_fuel);
+			hash.Add("_hull",						_hull);
+			hash.Add("_tribbles",				_tribbles);
+			hash.Add("_cargo",					_cargo);
+			hash.Add("_weapons",				ArrayToArrayList(_weapons));
+			hash.Add("_shields",				ArrayToArrayList(_shields));
+			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
+			hash.Add("_crew",						crewIds);
+			hash.Add("_pod",						_pod);
+			hash.Add("_tradeableItems", _tradeableItems);
 
-		public int[] Cargo
-		{
-			get
-			{
-				return _cargo;
-			}
-		}
-
-		public Weapon[] Weapons
-		{
-			get
-			{
-				return _weapons;
-			}
-		}
-
-		public Shield[] Shields
-		{
-			get
-			{
-				return _shields;
-			}
-		}
-
-		public Gadget[] Gadgets
-		{
-			get
-			{
-				return _gadgets;
-			}
-		}
-
-		public CrewMember[] Crew
-		{
-			get
-			{
-				return _crew;
-			}
-		}
-
-		public bool EscapePod
-		{
-			get
-			{
-				return _pod;
-			}
-		}
-
-		public bool[] TradeableItems
-		{
-			get
-			{
-				return _tradeableItems;
-			}
+			return hash;
 		}
 
 		#endregion

@@ -18,143 +18,54 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
 	[Serializable()]      
-	public class GameOptions
+	public class GameOptions: STSerializableObject
 	{
 		#region Member Declarations
 
-		private bool	_alwaysIgnorePirates;
-		private bool	_alwaysIgnorePolice;
-		private bool	_alwaysIgnoreTradeInOrbit;
-		private bool	_alwaysIgnoreTraders;
-		private bool	_autoFuel;
-		private bool	_autoRepair;
-		private bool	_continuousAttack;
-		private bool	_continuousAttackFleeing;
-		private bool	_newsAutoPay;
-		private bool	_remindLoans;
-		private bool	_reserveMoney;
-		private bool	_showTrackedRange;
-		private bool	_trackAutoOff;
-		private int		_leaveEmpty;
+		private bool	_alwaysIgnorePirates			= false;
+		private bool	_alwaysIgnorePolice				= false;
+		private bool	_alwaysIgnoreTradeInOrbit	= false;
+		private bool	_alwaysIgnoreTraders			= false;
+		private bool	_autoFuel									= false;
+		private bool	_autoRepair								= false;
+		private bool	_continuousAttack					= false;
+		private bool	_continuousAttackFleeing	= false;
+		private bool	_newsAutoPay							= false;
+		private bool	_remindLoans							= false;
+		private bool	_reserveMoney							= false;
+		private bool	_showTrackedRange					= false;
+		private bool	_trackAutoOff							= false;
+		private int		_leaveEmpty								= 0;
 
 		#endregion
 
-		#region Properties
+		#region Methods
 
-		public bool AlwaysIgnorePirates
+		public override Hashtable Serialize()
 		{
-			get
-			{
-				return _alwaysIgnorePirates;
-			}
-		}
+			Hashtable	hash	= base.Serialize();
 
-		public bool AlwaysIgnorePolice
-		{
-			get
-			{
-				return _alwaysIgnorePolice;
-			}
-		}
+			hash.Add("_alwaysIgnorePirates",			_alwaysIgnorePirates);
+			hash.Add("_alwaysIgnorePolice",				_alwaysIgnorePolice);
+			hash.Add("_alwaysIgnoreTradeInOrbit",	_alwaysIgnoreTradeInOrbit);
+			hash.Add("_alwaysIgnoreTraders",			_alwaysIgnoreTraders);
+			hash.Add("_autoFuel",									_autoFuel);
+			hash.Add("_autoRepair",								_autoRepair);
+			hash.Add("_continuousAttack",					_continuousAttack);
+			hash.Add("_continuousAttackFleeing",	_continuousAttackFleeing);
+			hash.Add("_newsAutoPay",							_newsAutoPay);
+			hash.Add("_remindLoans",							_remindLoans);
+			hash.Add("_reserveMoney",							_reserveMoney);
+			hash.Add("_showTrackedRange",					_showTrackedRange);
+			hash.Add("_trackAutoOff",							_trackAutoOff);
+			hash.Add("_leaveEmpty",								_leaveEmpty);
 
-		public bool AlwaysIgnoreTradeInOrbit
-		{
-			get
-			{
-				return _alwaysIgnoreTradeInOrbit;
-			}
-		}
-
-		public bool AlwaysIgnoreTraders
-		{
-			get
-			{
-				return _alwaysIgnoreTraders;
-			}
-		}
-
-		public bool AutoFuel
-		{
-			get
-			{
-				return _autoFuel;
-			}
-		}
-
-		public bool AutoRepair
-		{
-			get
-			{
-				return _autoRepair;
-			}
-		}
-
-		public bool ContinuousAttack
-		{
-			get
-			{
-				return _continuousAttack;
-			}
-		}
-
-		public bool ContinuousAttackFleeing
-		{
-			get
-			{
-				return _continuousAttackFleeing;
-			}
-		}
-
-		public bool NewsAutoPay
-		{
-			get
-			{
-				return _newsAutoPay;
-			}
-		}
-
-		public bool RemindLoans
-		{
-			get
-			{
-				return _remindLoans;
-			}
-		}
-
-		public bool ReserveMoney
-		{
-			get
-			{
-				return _reserveMoney;
-			}
-		}
-
-		public bool ShowTrackedRange
-		{
-			get
-			{
-				return _showTrackedRange;
-			}
-		}
-
-		public bool TrackAutoOff
-		{
-			get
-			{
-				return _trackAutoOff;
-			}
-		}
-
-		public int LeaveEmpty
-		{
-			get
-			{
-				return _leaveEmpty;
-			}
+			return hash;
 		}
 
 		#endregion
