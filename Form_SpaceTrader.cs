@@ -2971,6 +2971,8 @@ namespace Fryz.Apps.SpaceTrader
 
 				for (i = 0; i < lblSellPrice.Length; i++)
 				{
+					int price = warpSys == null ? 0 : Consts.TradeItems[i].StandardPrice(warpSys);
+
 					lblSellPrice[i].Text		= sell[i] > 0 ? Functions.FormatMoney(sell[i]) : Strings.CargoSellNA;
 					btnSellQty[i].Text			= cmdr.Ship.Cargo[i].ToString();
 					btnSellQty[i].Visible		= true;
@@ -2986,23 +2988,25 @@ namespace Fryz.Apps.SpaceTrader
 					else
 						lblSellPrice[i].Font	= lblSell.Font;
 
-					int price;
-					if (warpSys != null && warpSys.DestOk && buy[i] > 0 &&
-						(price = Consts.TradeItems[i].StandardPrice(warpSys)) > 0)
+					if (warpSys != null && warpSys.DestOk && price > 0)
+						lblTargetPrice[i].Text	= Functions.FormatMoney(price);
+					else
+						lblTargetPrice[i].Text	= "-----------";
+
+					if (warpSys != null && warpSys.DestOk && price > 0 && buy[i] > 0)
 					{
 						int	diff								= price - buy[i];
-						lblTargetPrice[i].Text	= Functions.FormatMoney(price);
 						lblTargetDiff[i].Text		= (diff > 0 ? "+" : "") + Functions.FormatMoney(diff);
 						lblTargetPct[i].Text		= (diff > 0 ? "+" : "") + Functions.FormatNumber(100 * diff / buy[i]) + "%";
 						lblBuyPrice[i].Font			= diff > 0 ? lblSystemNameLabel.Font : lblBuy.Font;
 					}
 					else
 					{
-						lblTargetPrice[i].Text	= "-----------";
 						lblTargetDiff[i].Text		= "------------";
 						lblTargetPct[i].Text		= "--------";
 						lblBuyPrice[i].Font			= lblBuy.Font;
 					}
+
 					lblTargetPrice[i].Font	= lblBuyPrice[i].Font;
 					lblTargetDiff[i].Font		= lblBuyPrice[i].Font;
 					lblTargetPct[i].Font		= lblBuyPrice[i].Font;
