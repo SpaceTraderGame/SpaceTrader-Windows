@@ -385,6 +385,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			bool	visible							= false;
 			bool	rateVisible					= false;
+			bool	hireFireVisible			= false;
 
 			if (selectedCrewMember != null)
 			{
@@ -402,6 +403,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				btnHireFire.Text				= game.Commander.Ship.HasCrew(selectedCrewMember.Id) ? Strings.MercenaryFire :
 																	Strings.MercenaryHire;
+				hireFireVisible					= rateVisible || selectedCrewMember.Id == CrewMemberId.Zeethibal;
 			}
 
 			lblName.Visible						= visible;
@@ -414,7 +416,7 @@ namespace Fryz.Apps.SpaceTrader
 			lblFighter.Visible				= visible;
 			lblTrader.Visible					= visible;
 			lblEngineer.Visible				= visible;
-			btnHireFire.Visible				= rateVisible;
+			btnHireFire.Visible				= hireFireVisible;
 		}
 
 		#endregion
@@ -423,7 +425,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void HireFire(object sender, System.EventArgs e)
 		{
-			if (selectedCrewMember != null)
+			if (selectedCrewMember != null && btnHireFire.Visible)
 			{
 				if (game.Commander.Ship.HasCrew(selectedCrewMember.Id))
 				{
