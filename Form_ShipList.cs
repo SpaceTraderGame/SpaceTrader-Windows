@@ -889,92 +889,13 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Info(id);
 
-			Commander			cmdr				= game.Commander;
-			ShipSpec			spec				= Consts.ShipSpecs[id];
-			CrewMember[]	specialCrew	= cmdr.Ship.SpecialCrew;
-
-			if (prices[id] > 0 && cmdr.Debt > 0)
-				FormAlert.Alert(AlertType.DebtNoBuy, this);
-			else if (prices[id] > cmdr.CashToSpend)
-				FormAlert.Alert(AlertType.ShipBuyIF, this);
-			else if (spec.CrewQuarters < specialCrew.Length)
+			if (game.Commander.TradeShip(Consts.ShipSpecs[id], prices[id], this))
 			{
-				string	passengers	= specialCrew[1].Name;
-				if (specialCrew.Length > 2)
-					passengers	+= " and " + specialCrew[2].Name;
+				if (game.QuestStatusScarab == SpecialEvent.StatusScarabDone)
+					game.QuestStatusScarab	= SpecialEvent.StatusScarabNotStarted;
 
-				FormAlert.Alert(AlertType.ShipBuyPassengerQuarters, this, passengers);
-			}
-			else if (spec.CrewQuarters < cmdr.Ship.CrewCount)
-				FormAlert.Alert(AlertType.ShipBuyCrewQuarters, this);
-			else if (cmdr.Ship.ReactorOnBoard)
-				FormAlert.Alert(AlertType.ShipBuyReactor, this);
-			else
-			{
-				Equipment[]	special	= new Equipment[]
-				{
-					Consts.Weapons[(int)WeaponType.MorgansLaser],
-					Consts.Shields[(int)ShieldType.Lightning],
-					Consts.Gadgets[(int)GadgetType.FuelCompactor]
-				};
-				bool[]			add			= new bool[special.Length];
-
-				int	extraCost	= 0;
-
-				for (int i = 0; i < special.Length; i++)
-				{
-					if (cmdr.Ship.HasEquipment(special[i]))
-					{
-						if (spec.Slots(special[i].EquipmentType) == 0)
-							FormAlert.Alert(AlertType.ShipBuyNoSlots, this, spec.Name, special[i].Name,
-								Strings.EquipmentTypes[(int)special[i].EquipmentType]);
-						else
-						{
-							extraCost	+= special[i].TransferPrice;
-							add[i]		 = true;
-						}
-					}
-				}
-
-				if (prices[id] + extraCost > cmdr.CashToSpend)
-					FormAlert.Alert(AlertType.ShipBuyIFTransfer, this);
-
-				extraCost = 0;
-
-				for (int i = 0; i < special.Length; i++)
-				{
-					if (add[i])
-					{
-						if (prices[id] + extraCost + special[i].TransferPrice > cmdr.CashToSpend)
-							FormAlert.Alert(AlertType.ShipBuyNoTransfer, this, special[i].Name);
-						else if (FormAlert.Alert(AlertType.ShipBuyTransfer, this, special[i].Name, special[i].Name.ToLower(),
-							Functions.FormatNumber(special[i].TransferPrice)) == DialogResult.Yes)
-							extraCost	+= special[i].TransferPrice;
-						else
-							add[i]		 = false;
-					}
-				}
-
-				if (FormAlert.Alert(AlertType.ShipBuyConfirm, this, cmdr.Ship.Name, spec.Name,
-					(add[0] || add[1] || add[2] ? Strings.ShipBuyTransfer : "")) == DialogResult.Yes)
-				{
-					CrewMember[]	crew	 = cmdr.Ship.Crew;
-
-					cmdr.Ship						 = new Ship(spec.Type);
-					cmdr.Cash						-= (prices[id] + extraCost);
-					if (game.QuestStatusScarab == SpecialEvent.StatusScarabDone)
-						game.QuestStatusScarab	= SpecialEvent.StatusScarabNotStarted;
-
-					for (int i = 0; i < Math.Min(crew.Length, cmdr.Ship.Crew.Length); i++)
-						cmdr.Ship.Crew[i]	= crew[i];
-
-					for (int i = 0; i < special.Length; i++)
-						if (add[i])
-							cmdr.Ship.AddEquipment(special[i]);
-
-					UpdateAll();
-					game.ParentWindow.UpdateAll();
-				}
+				UpdateAll();
+				game.ParentWindow.UpdateAll();
 			}
 		}
 

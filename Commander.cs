@@ -24,6 +24,7 @@
  ******************************************************************************/
 using System;
 using System.Collections;
+using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -108,6 +109,96 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_name",								Name);
 
 			return hash;
+		}
+
+		public bool TradeShip(ShipSpec specToBuy, int netPrice, IWin32Window owner)
+		{
+			bool					traded			= false;
+
+			if (netPrice > 0 && Debt > 0)
+				FormAlert.Alert(AlertType.DebtNoBuy, owner);
+			else if (netPrice > CashToSpend)
+				FormAlert.Alert(AlertType.ShipBuyIF, owner);
+			else if (specToBuy.CrewQuarters < Ship.SpecialCrew.Length)
+			{
+				string	passengers	= Ship.SpecialCrew[1].Name;
+				if (Ship.SpecialCrew.Length > 2)
+					passengers	+= " and " + Ship.SpecialCrew[2].Name;
+
+				FormAlert.Alert(AlertType.ShipBuyPassengerQuarters, owner, passengers);
+			}
+			else if (specToBuy.CrewQuarters < Ship.CrewCount)
+				FormAlert.Alert(AlertType.ShipBuyCrewQuarters, owner);
+			else if (Ship.ReactorOnBoard)
+				FormAlert.Alert(AlertType.ShipBuyReactor, owner);
+			else
+			{
+				Equipment[]	special	= new Equipment[]
+				{
+					Consts.Weapons[(int)WeaponType.MorgansLaser],
+					Consts.Shields[(int)ShieldType.Lightning],
+					Consts.Gadgets[(int)GadgetType.FuelCompactor]
+				};
+				bool[]			add			= new bool[special.Length];
+
+				int	extraCost	= 0;
+
+				for (int i = 0; i < special.Length; i++)
+				{
+					if (Ship.HasEquipment(special[i]))
+					{
+						if (specToBuy.Slots(special[i].EquipmentType) == 0)
+							FormAlert.Alert(AlertType.ShipBuyNoSlots, owner, specToBuy.Name, special[i].Name,
+								Strings.EquipmentTypes[(int)special[i].EquipmentType]);
+						else
+						{
+							extraCost	+= special[i].TransferPrice;
+							add[i]		 = true;
+						}
+					}
+				}
+
+				if (netPrice + extraCost > CashToSpend)
+					FormAlert.Alert(AlertType.ShipBuyIFTransfer, owner);
+
+				extraCost = 0;
+
+				for (int i = 0; i < special.Length; i++)
+				{
+					if (add[i])
+					{
+						if (netPrice + extraCost + special[i].TransferPrice > CashToSpend)
+							FormAlert.Alert(AlertType.ShipBuyNoTransfer, owner, special[i].Name);
+						else if (FormAlert.Alert(AlertType.ShipBuyTransfer, owner, special[i].Name, special[i].Name.ToLower(),
+							Functions.FormatNumber(special[i].TransferPrice)) == DialogResult.Yes)
+							extraCost	+= special[i].TransferPrice;
+						else
+							add[i]		 = false;
+					}
+				}
+
+				if (FormAlert.Alert(AlertType.ShipBuyConfirm, owner, Ship.Name, specToBuy.Name,
+					(add[0] || add[1] || add[2] ? Strings.ShipBuyTransfer : "")) == DialogResult.Yes)
+				{
+					CrewMember[]	oldCrew	 = Ship.Crew;
+
+					Ship									 = new Ship(specToBuy.Type);
+					Cash									-= (netPrice + extraCost);
+
+					for (int i = 0; i < Math.Min(oldCrew.Length, Ship.Crew.Length); i++)
+						Ship.Crew[i]	= oldCrew[i];
+
+					for (int i = 0; i < special.Length; i++)
+					{
+						if (add[i])
+							Ship.AddEquipment(special[i]);
+					}
+
+					traded	= true;
+				}
+			}
+
+			return traded;
 		}
 
 		#endregion
