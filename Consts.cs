@@ -81,7 +81,8 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			EngineerSkill									= 3;
 
 		public const	int			StartClicks										= 20;
-		public const	int			MaxFuelTanks									= 18;
+		public const	int			MaxFuelTanks									= 20;
+		public const	int			FuelCompactorTanks						= 3;
 		public const	int			HullUpgrade										= 50;
 		public const	int			MaxShip												= 9;
 		public const	int			FleaConversionCost						= 500;

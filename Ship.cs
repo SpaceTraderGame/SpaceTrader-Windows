@@ -943,10 +943,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				if (HasGadget(GadgetType.FuelCompactor))
-					return Consts.MaxFuelTanks;
-				else
-					return base.FuelTanks;
+				return base.FuelTanks + (HasGadget(GadgetType.FuelCompactor) ? Consts.FuelCompactorTanks : 0);
 			}
 		}
 
