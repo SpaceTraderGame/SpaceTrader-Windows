@@ -550,7 +550,12 @@ namespace Fryz.Apps.SpaceTrader
 		Tribble							= 33,
 		TribbleBuyer				= 34,
 		Wild								= 35,
-		WildGetsOut					= 36
+		WildGetsOut			= 36,
+		KesselShipyard		= 37,
+		LoronarShipyard		= 38,
+		SienarShipyard		= 39,
+		RepublicShipyard	= 40,
+		SorosuubShipyard	= 41
 	};
 	#endregion
 

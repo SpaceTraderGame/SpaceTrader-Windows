@@ -213,6 +213,13 @@ namespace Fryz.Apps.SpaceTrader
 					case SpecialEventType.WildGetsOut:
 						show	= game.Commander.Ship.WildOnBoard;
 						break;
+					case SpecialEventType.KesselShipyard:
+					case SpecialEventType.LoronarShipyard:
+					case SpecialEventType.SienarShipyard:
+					case SpecialEventType.RepublicShipyard:
+					case SpecialEventType.SorosuubShipyard:
+						show = true;
+						break;
 					default:
 						break;
 				}

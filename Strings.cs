@@ -433,6 +433,11 @@ namespace Fryz.Apps.SpaceTrader
 			"An eccentric alien billionaire wants to buy your collection of tribbles and offers half a credit for each of them. Do you accept his offer?",
 			"Law Enforcement is closing in on notorious criminal kingpin Jonathan Wild. He would reward you handsomely for smuggling him home to Kravat. You'd have to avoid capture by the Police on the way. Are you willing to give him a berth?",
 			"Jonathan Wild is most grateful to you for spiriting him to safety. As a reward, he has one of his Cyber Criminals hack into the Police Database, and clean up your record. He also offers you the opportunity to take his talented nephew Zeethibal along as a Mercenary with no pay.",
+			"Welcome to Hoersh-Kessel Drive, Inc. Shipyards !\nFor a ridiculous fee (only 150,000 cr.), you can use the services of the best of our  architects, the very famous Luke S. !\nWe can design the ship of your dreams ... Interested ? \n(Legal warning : the fee does not include the construction costs of the starship, but only the design ; it has to be payed each time our architect works for you)",
+			"Welcome to Loronar Corporation Shipyards !\nFor a ridiculous fee (only 150,000 cr.), you can use the services of the best of our  architects, the very famous Chewbaca W. !\nWe can design the ship of your dreams ... Interested ? \n(Legal warning : the fee does not include the construction costs of the starship, but only the design ; it has to be payed each time our architect works for you)",
+			"Welcome to Sienar Fleet Systems Shipyards !\nFor a ridiculous fee (only 150,000 cr.), you can use the services of the best of our  architects, the very famous Lando C. !\nWe can design the ship of your dreams ... Interested ? \n(Legal warning : the fee does not include the construction costs of the starship, but only the design ; it has to be payed each time our architect works for you)",
+			"Welcome to Republic Engineering Corporation Shipyards !\nFor a ridiculous fee (only 150,000 cr.), you can use the services of the best of our  architects, the very famous Mara J. !\nWe can design the ship of your dreams ... Interested ? \n(Legal warning : the fee does not include the construction costs of the starship, but only the design ; it has to be payed each time our architect works for you)",
+			"Welcome to Sorosuub Shipyards !\nFor a ridiculous fee (only 150,000 cr.), you can use the services of the best of our  architects, the very famous Obi-Wan K. !\nWe can design the ship of your dreams ... Interested ? \n(Legal warning : the fee does not include the construction costs of the starship, but only the design ; it has to be payed each time our architect works for you)",
 		};
 		#endregion
 
@@ -475,7 +480,12 @@ namespace Fryz.Apps.SpaceTrader
 			"Merchant Prince",
 			"Tribble Buyer",
 			"Jonathan Wild",
-			"Wild Gets Out"
+			"Wild Gets Out",
+			"Hoersh-Kessel Drive, Inc. Shipyards",
+			"Loronar Corporation Shipyards",
+			"Sienar Fleet Systems Shipyards",
+			"Republic Engineering Corporation Shipyards",
+			"Sorosuub Shipyards"
 		};
 		#endregion
 

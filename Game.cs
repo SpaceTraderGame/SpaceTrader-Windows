@@ -1423,6 +1423,17 @@ namespace Fryz.Apps.SpaceTrader
 					Commander.Ship.Fire(Commander.Ship.Crew[1].Id == CrewMemberId.Wild ? 1 : 2);
 					RecalculateSellPrices(curSys);
 					break;
+				case SpecialEventType.KesselShipyard:
+				case SpecialEventType.LoronarShipyard:
+				case SpecialEventType.SienarShipyard:
+				case SpecialEventType.RepublicShipyard:
+				case SpecialEventType.SorosuubShipyard:
+					money = true;
+					remove = false;
+					// (dpi) TODO call the ship design dialog
+					FormAlert alert = new FormAlert("Thank you !", curSys.SpecialEvent.Title + " thanks you and hopes to see you soon !", "You're welcome", DialogResult.OK, null, DialogResult.None, null);
+					alert.ShowDialog();
+					break;
 			}
 
 			if (money)
@@ -1710,6 +1721,21 @@ namespace Fryz.Apps.SpaceTrader
 			// Find the closest system at least 70 parsecs away from Daled that doesn't already have a special event.
 			if (goodUniverse && !FindDistantSystem(StarSystemId.Daled, SpecialEventType.Experiment))
 					goodUniverse	= false;
+
+			// Assign the shipyards to High-Tech systems without a special event.
+			if (goodUniverse)
+			{
+				int nbShipyards = 5;
+				while (nbShipyards-- > 0) 
+				{
+					for (system = 0; system < Universe.Length &&
+						!(Universe[system].SpecialEvent == null && Universe[system].TechLevel == TechLevel.HiTech); system++);
+					if (system < Universe.Length)
+						Universe[system].SpecialEvent	= Consts.SpecialEvents[((int)SpecialEventType.KesselShipyard)+nbShipyards];
+					else
+						goodUniverse	= false;
+				}
+			}
 
 			// Assign the rest of the events randomly.
 			if (goodUniverse)
