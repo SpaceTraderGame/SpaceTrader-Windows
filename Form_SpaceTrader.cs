@@ -2718,6 +2718,7 @@ namespace Fryz.Apps.SpaceTrader
 																																	this.boxSystem,
 																																	this.boxShipYard});
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.Menu = this.mnuMain;
 			this.Name = "SpaceTrader";
@@ -2737,6 +2738,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShipYard.ResumeLayout(false);
 			this.boxDock.ResumeLayout(false);
 			this.ResumeLayout(false);
+
 		}
 		#endregion
 
