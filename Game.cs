@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -27,7 +28,6 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
 	public class Game
 	{
 		#region Member Declarations
@@ -107,7 +107,7 @@ namespace Fryz.Apps.SpaceTrader
 				GenerateUniverse();
 			while (!PlaceSpecialEvents());
 
-			InitializeCommander(name, new CrewMember(CrewMemberId.Commander, pilot, fighter, trader, engineer, null));
+			InitializeCommander(name, new CrewMember(CrewMemberId.Commander, pilot, fighter, trader, engineer, StarSystemId.NA));
 			GenerateCrewMemberList();
 
 			CreateShips();
@@ -232,7 +232,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void ArrivalCheckDebt()
 		{
-			// Check for Large Debt - 06/30/01 SRA 
+			// Check for Large Debt - 06/30/01 SRA
 			if (Commander.Debt >= Consts.DebtWarning)
 				FormAlert.Alert(AlertType.DebtWarning, ParentWindow);
 			// Debt Reminder
@@ -408,8 +408,8 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				if (Functions.GetRandom(100) < 15)
 					Universe[i].Pressure	= Universe[i].Pressure == SystemPressure.None ?
-						Consts.SystemPressures[Functions.GetRandom(1, Consts.SystemPressures.Length)] :
-						SystemPressure.None;
+						(SystemPressure)Functions.GetRandom((int)SystemPressure.War,
+						(int)SystemPressure.Employment + 1) : SystemPressure.None;
 
 				if (Universe[i].CountDown > 0)
 				{
@@ -681,7 +681,7 @@ namespace Fryz.Apps.SpaceTrader
 				Opponent						= Scarab;
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.ScarabIgnore : EncounterType.ScarabAttack;
 				showEncounter				= true;
-			} 
+			}
 			// Encounter with stolen Dragonfly
 			else if (Clicks == 1 && WarpSystem.Id == StarSystemId.Zalkon &&
 				QuestStatusDragonfly == SpecialEvent.StatusDragonflyFlyZalkon)
@@ -1049,14 +1049,14 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				StarSystemId	id;
 				bool					ok		= false;
-				bool[]				used	= new bool[Consts.StarSystemIds.Length];
+				bool[]				used	= new bool[Universe.Length];
 
 				// can't have another mercenary on Kravat, since Zeethibal could be there
 				used[(int)StarSystemId.Kravat]	= true;
 
 				do
 				{
-					id	= Consts.StarSystemIds[Functions.GetRandom(Consts.StarSystemIds.Length)];
+					id	= (StarSystemId)Functions.GetRandom(Universe.Length);
 					if (!used[(int)id])
 					{
 						used[(int)id]	= true;
@@ -1064,7 +1064,7 @@ namespace Fryz.Apps.SpaceTrader
 					}
 				} while (!ok);
 
-				Mercenaries[i]	= new CrewMember(Consts.CrewMemberIds[i], Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), Universe[(int)id]);
+				Mercenaries[i]	= new CrewMember((CrewMemberId)i, Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), id);
 			}
 
 			// special individuals:
@@ -1073,14 +1073,14 @@ namespace Fryz.Apps.SpaceTrader
 			// Jarek, Ambassador Jarek earns his keep now - JAF.
 			// Dummy pilots for opponents.
 			int	d	= (int)Difficulty;
-			Mercenaries[(int)CrewMemberId.Zeethibal]			= new CrewMember(CrewMemberId.Zeethibal,      5,  5,  5,  5, null);
-			Mercenaries[(int)CrewMemberId.Opponent]				= new CrewMember(CrewMemberId.Opponent,       5,  5,  5,  5, null);
-			Mercenaries[(int)CrewMemberId.Wild]						= new CrewMember(CrewMemberId.Wild,           7, 10,  2,  5, null);
-			Mercenaries[(int)CrewMemberId.Jarek]					= new CrewMember(CrewMemberId.Jarek,          3,  2, 10,  4, null);
-			Mercenaries[(int)CrewMemberId.FamousCaptain]	= new CrewMember(CrewMemberId.FamousCaptain, 10, 10, 10, 10, null);
-			Mercenaries[(int)CrewMemberId.Dragonfly]			= new CrewMember(CrewMemberId.Dragonfly,    4 + d, 6 + d, 1, 6 + d, null);
-			Mercenaries[(int)CrewMemberId.Scarab]					= new CrewMember(CrewMemberId.Scarab,       5 + d, 6 + d, 1, 6 + d, null);
-			Mercenaries[(int)CrewMemberId.SpaceMonster]		= new CrewMember(CrewMemberId.SpaceMonster, 8 + d, 8 + d, 1, 1 + d, null);
+			Mercenaries[(int)CrewMemberId.Zeethibal]			= new CrewMember(CrewMemberId.Zeethibal,      5,  5,  5,  5, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Opponent]				= new CrewMember(CrewMemberId.Opponent,       5,  5,  5,  5, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Wild]						= new CrewMember(CrewMemberId.Wild,           7, 10,  2,  5, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Jarek]					= new CrewMember(CrewMemberId.Jarek,          3,  2, 10,  4, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.FamousCaptain]	= new CrewMember(CrewMemberId.FamousCaptain, 10, 10, 10, 10, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Dragonfly]			= new CrewMember(CrewMemberId.Dragonfly,    4 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Scarab]					= new CrewMember(CrewMemberId.Scarab,       5 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.SpaceMonster]		= new CrewMember(CrewMemberId.SpaceMonster, 8 + d, 8 + d, 1, 1 + d, StarSystemId.NA);
 		}
 
 		private void GenerateOpponent(OpponentType oppType)
@@ -1090,23 +1090,23 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void GenerateUniverse()
 		{
-			_universe	= new StarSystem[Consts.StarSystemIds.Length];
+			_universe	= new StarSystem[(int)StarSystemId.Zuul + 1];
 
 			int	i, j;
 
 			for (i = 0; i < Universe.Length; i++)
 			{
-				StarSystemId		id				= Consts.StarSystemIds[i];
-				Size						size			= Consts.Sizes[Functions.GetRandom(Consts.Sizes.Length)];
+				StarSystemId		id				= (StarSystemId)i;
+				Size						size			= (Size)Functions.GetRandom((int)Size.Huge + 1);
 				PoliticalSystem	polSys		= Consts.PoliticalSystems[Functions.GetRandom(Consts.PoliticalSystems.Length)];
-				TechLevel				tech			= Consts.TechLevels[Functions.GetRandom((int)polSys.MinimumTechLevel, (int)polSys.MaximumTechLevel + 1)];
+				TechLevel				tech			= (TechLevel)Functions.GetRandom((int)polSys.MinimumTechLevel, (int)polSys.MaximumTechLevel + 1);
 				SystemPressure	pressure	= SystemPressure.None;
 				SpecialResource	specRes		= SpecialResource.Nothing;
 
 				if (Functions.GetRandom(100) < 15)
-					pressure	= Consts.SystemPressures[Functions.GetRandom(1, Consts.SystemPressures.Length)];
+					pressure	= (SystemPressure)Functions.GetRandom((int)SystemPressure.War, (int)SystemPressure.Employment + 1);
 				if (Functions.GetRandom(5) >= 3)
-					specRes		= Consts.SpecialResources[Functions.GetRandom(1, Consts.SpecialResources.Length)];
+					specRes		= (SpecialResource)Functions.GetRandom((int)SpecialResource.MineralRich, (int)SpecialResource.Warlike + 1);
 
 				int							x					= 0;
 				int							y					= 0;
@@ -1515,8 +1515,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void InitializeCommander(string name, CrewMember commanderCrewMember)
 		{
-			_commander																= new Commander(name, commanderCrewMember);
-			Mercenaries[(int)CrewMemberId.Commander]	= Commander;
+			_commander																						= new Commander(commanderCrewMember);
+			Mercenaries[(int)CrewMemberId.Commander]							= Commander;
+			Strings.CrewMemberNames[(int)CrewMemberId.Commander]	= name;
 
 			while (Commander.CurrentSystem == null)
 			{
@@ -1726,7 +1727,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (goodUniverse)
 			{
 				int nbShipyards = 5;
-				while (nbShipyards-- > 0) 
+				while (nbShipyards-- > 0)
 				{
 					for (system = 0; system < Universe.Length &&
 						!(Universe[system].SpecialEvent == null && Universe[system].TechLevel == TechLevel.HiTech); system++);

@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -289,9 +290,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxSell.SuspendLayout();
 			this.boxBuy.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -299,9 +300,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// boxSell
-			// 
+			//
 			this.boxSell.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																					this.lblSellPrice8,
 																																					this.lblSellPrice7,
@@ -338,180 +339,180 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxSell.TabIndex = 33;
 			this.boxSell.TabStop = false;
 			this.boxSell.Text = "Current Inventory";
-			// 
+			//
 			// lblSellPrice8
-			// 
+			//
 			this.lblSellPrice8.Location = new System.Drawing.Point(160, 230);
 			this.lblSellPrice8.Name = "lblSellPrice8";
 			this.lblSellPrice8.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice8.TabIndex = 152;
 			this.lblSellPrice8.Text = "888,888 cr.";
 			this.lblSellPrice8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice7
-			// 
+			//
 			this.lblSellPrice7.Location = new System.Drawing.Point(160, 206);
 			this.lblSellPrice7.Name = "lblSellPrice7";
 			this.lblSellPrice7.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice7.TabIndex = 151;
 			this.lblSellPrice7.Text = "888,888 cr.";
 			this.lblSellPrice7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice6
-			// 
+			//
 			this.lblSellPrice6.Location = new System.Drawing.Point(160, 182);
 			this.lblSellPrice6.Name = "lblSellPrice6";
 			this.lblSellPrice6.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice6.TabIndex = 150;
 			this.lblSellPrice6.Text = "888,888 cr.";
 			this.lblSellPrice6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice5
-			// 
+			//
 			this.lblSellPrice5.Location = new System.Drawing.Point(160, 148);
 			this.lblSellPrice5.Name = "lblSellPrice5";
 			this.lblSellPrice5.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice5.TabIndex = 149;
 			this.lblSellPrice5.Text = "888,888 cr.";
 			this.lblSellPrice5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice4
-			// 
+			//
 			this.lblSellPrice4.Location = new System.Drawing.Point(160, 125);
 			this.lblSellPrice4.Name = "lblSellPrice4";
 			this.lblSellPrice4.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice4.TabIndex = 148;
 			this.lblSellPrice4.Text = "888,888 cr.";
 			this.lblSellPrice4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice3
-			// 
+			//
 			this.lblSellPrice3.Location = new System.Drawing.Point(160, 101);
 			this.lblSellPrice3.Name = "lblSellPrice3";
 			this.lblSellPrice3.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice3.TabIndex = 147;
 			this.lblSellPrice3.Text = "888,888 cr.";
 			this.lblSellPrice3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice2
-			// 
+			//
 			this.lblSellPrice2.Location = new System.Drawing.Point(160, 68);
 			this.lblSellPrice2.Name = "lblSellPrice2";
 			this.lblSellPrice2.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice2.TabIndex = 146;
 			this.lblSellPrice2.Text = "888,888 cr.";
 			this.lblSellPrice2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice1
-			// 
+			//
 			this.lblSellPrice1.Location = new System.Drawing.Point(160, 44);
 			this.lblSellPrice1.Name = "lblSellPrice1";
 			this.lblSellPrice1.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice1.TabIndex = 145;
 			this.lblSellPrice1.Text = "888,888 cr.";
 			this.lblSellPrice1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellPrice0
-			// 
+			//
 			this.lblSellPrice0.Location = new System.Drawing.Point(160, 20);
 			this.lblSellPrice0.Name = "lblSellPrice0";
 			this.lblSellPrice0.Size = new System.Drawing.Size(61, 13);
 			this.lblSellPrice0.TabIndex = 144;
 			this.lblSellPrice0.Text = "888,888 cr.";
 			this.lblSellPrice0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblSellItem4
-			// 
+			//
 			this.lblSellItem4.Location = new System.Drawing.Point(48, 125);
 			this.lblSellItem4.Name = "lblSellItem4";
 			this.lblSellItem4.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem4.TabIndex = 143;
 			this.lblSellItem4.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem8
-			// 
+			//
 			this.lblSellItem8.Location = new System.Drawing.Point(48, 230);
 			this.lblSellItem8.Name = "lblSellItem8";
 			this.lblSellItem8.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem8.TabIndex = 142;
 			this.lblSellItem8.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem7
-			// 
+			//
 			this.lblSellItem7.Location = new System.Drawing.Point(48, 206);
 			this.lblSellItem7.Name = "lblSellItem7";
 			this.lblSellItem7.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem7.TabIndex = 141;
 			this.lblSellItem7.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem6
-			// 
+			//
 			this.lblSellItem6.Location = new System.Drawing.Point(48, 182);
 			this.lblSellItem6.Name = "lblSellItem6";
 			this.lblSellItem6.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem6.TabIndex = 140;
 			this.lblSellItem6.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem5
-			// 
+			//
 			this.lblSellItem5.Location = new System.Drawing.Point(48, 148);
 			this.lblSellItem5.Name = "lblSellItem5";
 			this.lblSellItem5.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem5.TabIndex = 139;
 			this.lblSellItem5.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem3
-			// 
+			//
 			this.lblSellItem3.Location = new System.Drawing.Point(48, 101);
 			this.lblSellItem3.Name = "lblSellItem3";
 			this.lblSellItem3.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem3.TabIndex = 138;
 			this.lblSellItem3.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem2
-			// 
+			//
 			this.lblSellItem2.Location = new System.Drawing.Point(48, 68);
 			this.lblSellItem2.Name = "lblSellItem2";
 			this.lblSellItem2.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem2.TabIndex = 137;
 			this.lblSellItem2.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem1
-			// 
+			//
 			this.lblSellItem1.Location = new System.Drawing.Point(48, 44);
 			this.lblSellItem1.Name = "lblSellItem1";
 			this.lblSellItem1.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem1.TabIndex = 136;
 			this.lblSellItem1.Text = "Auto-Repair System";
-			// 
+			//
 			// lblSellItem0
-			// 
+			//
 			this.lblSellItem0.Location = new System.Drawing.Point(48, 20);
 			this.lblSellItem0.Name = "lblSellItem0";
 			this.lblSellItem0.Size = new System.Drawing.Size(105, 13);
 			this.lblSellItem0.TabIndex = 135;
 			this.lblSellItem0.Text = "Auto-Repair System";
-			// 
+			//
 			// picSellLine1
-			// 
+			//
 			this.picSellLine1.BackColor = System.Drawing.Color.DimGray;
 			this.picSellLine1.Location = new System.Drawing.Point(6, 172);
 			this.picSellLine1.Name = "picSellLine1";
 			this.picSellLine1.Size = new System.Drawing.Size(220, 1);
 			this.picSellLine1.TabIndex = 134;
 			this.picSellLine1.TabStop = false;
-			// 
+			//
 			// picSellLine0
-			// 
+			//
 			this.picSellLine0.BackColor = System.Drawing.Color.DimGray;
 			this.picSellLine0.Location = new System.Drawing.Point(6, 91);
 			this.picSellLine0.Name = "picSellLine0";
 			this.picSellLine0.Size = new System.Drawing.Size(220, 1);
 			this.picSellLine0.TabIndex = 133;
 			this.picSellLine0.TabStop = false;
-			// 
+			//
 			// btnSell8
-			// 
+			//
 			this.btnSell8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell8.Location = new System.Drawing.Point(8, 226);
 			this.btnSell8.Name = "btnSell8";
@@ -519,9 +520,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell8.TabIndex = 9;
 			this.btnSell8.Text = "Sell";
 			this.btnSell8.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell7
-			// 
+			//
 			this.btnSell7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell7.Location = new System.Drawing.Point(8, 202);
 			this.btnSell7.Name = "btnSell7";
@@ -529,9 +530,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell7.TabIndex = 8;
 			this.btnSell7.Text = "Sell";
 			this.btnSell7.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell6
-			// 
+			//
 			this.btnSell6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell6.Location = new System.Drawing.Point(8, 178);
 			this.btnSell6.Name = "btnSell6";
@@ -539,9 +540,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell6.TabIndex = 7;
 			this.btnSell6.Text = "Sell";
 			this.btnSell6.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell5
-			// 
+			//
 			this.btnSell5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell5.Location = new System.Drawing.Point(8, 145);
 			this.btnSell5.Name = "btnSell5";
@@ -549,9 +550,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell5.TabIndex = 6;
 			this.btnSell5.Text = "Sell";
 			this.btnSell5.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell4
-			// 
+			//
 			this.btnSell4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell4.Location = new System.Drawing.Point(8, 121);
 			this.btnSell4.Name = "btnSell4";
@@ -559,9 +560,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell4.TabIndex = 5;
 			this.btnSell4.Text = "Sell";
 			this.btnSell4.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell3
-			// 
+			//
 			this.btnSell3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell3.Location = new System.Drawing.Point(8, 97);
 			this.btnSell3.Name = "btnSell3";
@@ -569,9 +570,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell3.TabIndex = 4;
 			this.btnSell3.Text = "Sell";
 			this.btnSell3.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell2
-			// 
+			//
 			this.btnSell2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell2.Location = new System.Drawing.Point(8, 64);
 			this.btnSell2.Name = "btnSell2";
@@ -579,9 +580,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell2.TabIndex = 3;
 			this.btnSell2.Text = "Sell";
 			this.btnSell2.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell1
-			// 
+			//
 			this.btnSell1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell1.Location = new System.Drawing.Point(8, 40);
 			this.btnSell1.Name = "btnSell1";
@@ -589,9 +590,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell1.TabIndex = 2;
 			this.btnSell1.Text = "Sell";
 			this.btnSell1.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnSell0
-			// 
+			//
 			this.btnSell0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSell0.Location = new System.Drawing.Point(8, 16);
 			this.btnSell0.Name = "btnSell0";
@@ -599,9 +600,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSell0.TabIndex = 1;
 			this.btnSell0.Text = "Sell";
 			this.btnSell0.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// boxBuy
-			// 
+			//
 			this.boxBuy.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																				 this.lblBuyPrice9,
 																																				 this.lblBuyItem9,
@@ -641,26 +642,26 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxBuy.TabIndex = 34;
 			this.boxBuy.TabStop = false;
 			this.boxBuy.Text = "Equipment For Sale";
-			// 
+			//
 			// lblBuyPrice9
-			// 
+			//
 			this.lblBuyPrice9.Location = new System.Drawing.Point(162, 254);
 			this.lblBuyPrice9.Name = "lblBuyPrice9";
 			this.lblBuyPrice9.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice9.TabIndex = 155;
 			this.lblBuyPrice9.Text = "888,888 cr.";
 			this.lblBuyPrice9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyItem9
-			// 
+			//
 			this.lblBuyItem9.Location = new System.Drawing.Point(50, 254);
 			this.lblBuyItem9.Name = "lblBuyItem9";
 			this.lblBuyItem9.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem9.TabIndex = 154;
 			this.lblBuyItem9.Text = "Auto-Repair System";
-			// 
+			//
 			// btnBuy9
-			// 
+			//
 			this.btnBuy9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy9.Location = new System.Drawing.Point(8, 250);
 			this.btnBuy9.Name = "btnBuy9";
@@ -668,180 +669,180 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy9.TabIndex = 19;
 			this.btnBuy9.Text = "Buy";
 			this.btnBuy9.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// lblBuyPrice8
-			// 
+			//
 			this.lblBuyPrice8.Location = new System.Drawing.Point(162, 230);
 			this.lblBuyPrice8.Name = "lblBuyPrice8";
 			this.lblBuyPrice8.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice8.TabIndex = 152;
 			this.lblBuyPrice8.Text = "888,888 cr.";
 			this.lblBuyPrice8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice7
-			// 
+			//
 			this.lblBuyPrice7.Location = new System.Drawing.Point(162, 206);
 			this.lblBuyPrice7.Name = "lblBuyPrice7";
 			this.lblBuyPrice7.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice7.TabIndex = 151;
 			this.lblBuyPrice7.Text = "888,888 cr.";
 			this.lblBuyPrice7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice6
-			// 
+			//
 			this.lblBuyPrice6.Location = new System.Drawing.Point(162, 182);
 			this.lblBuyPrice6.Name = "lblBuyPrice6";
 			this.lblBuyPrice6.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice6.TabIndex = 150;
 			this.lblBuyPrice6.Text = "888,888 cr.";
 			this.lblBuyPrice6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice5
-			// 
+			//
 			this.lblBuyPrice5.Location = new System.Drawing.Point(162, 158);
 			this.lblBuyPrice5.Name = "lblBuyPrice5";
 			this.lblBuyPrice5.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice5.TabIndex = 149;
 			this.lblBuyPrice5.Text = "888,888 cr.";
 			this.lblBuyPrice5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice4
-			// 
+			//
 			this.lblBuyPrice4.Location = new System.Drawing.Point(162, 125);
 			this.lblBuyPrice4.Name = "lblBuyPrice4";
 			this.lblBuyPrice4.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice4.TabIndex = 148;
 			this.lblBuyPrice4.Text = "888,888 cr.";
 			this.lblBuyPrice4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice3
-			// 
+			//
 			this.lblBuyPrice3.Location = new System.Drawing.Point(162, 101);
 			this.lblBuyPrice3.Name = "lblBuyPrice3";
 			this.lblBuyPrice3.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice3.TabIndex = 147;
 			this.lblBuyPrice3.Text = "888,888 cr.";
 			this.lblBuyPrice3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice2
-			// 
+			//
 			this.lblBuyPrice2.Location = new System.Drawing.Point(162, 68);
 			this.lblBuyPrice2.Name = "lblBuyPrice2";
 			this.lblBuyPrice2.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice2.TabIndex = 146;
 			this.lblBuyPrice2.Text = "888,888 cr.";
 			this.lblBuyPrice2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice1
-			// 
+			//
 			this.lblBuyPrice1.Location = new System.Drawing.Point(162, 44);
 			this.lblBuyPrice1.Name = "lblBuyPrice1";
 			this.lblBuyPrice1.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice1.TabIndex = 145;
 			this.lblBuyPrice1.Text = "888,888 cr.";
 			this.lblBuyPrice1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyPrice0
-			// 
+			//
 			this.lblBuyPrice0.Location = new System.Drawing.Point(162, 20);
 			this.lblBuyPrice0.Name = "lblBuyPrice0";
 			this.lblBuyPrice0.Size = new System.Drawing.Size(61, 13);
 			this.lblBuyPrice0.TabIndex = 144;
 			this.lblBuyPrice0.Text = "888,888 cr.";
 			this.lblBuyPrice0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblBuyItem4
-			// 
+			//
 			this.lblBuyItem4.Location = new System.Drawing.Point(50, 125);
 			this.lblBuyItem4.Name = "lblBuyItem4";
 			this.lblBuyItem4.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem4.TabIndex = 143;
 			this.lblBuyItem4.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem8
-			// 
+			//
 			this.lblBuyItem8.Location = new System.Drawing.Point(50, 230);
 			this.lblBuyItem8.Name = "lblBuyItem8";
 			this.lblBuyItem8.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem8.TabIndex = 142;
 			this.lblBuyItem8.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem7
-			// 
+			//
 			this.lblBuyItem7.Location = new System.Drawing.Point(50, 206);
 			this.lblBuyItem7.Name = "lblBuyItem7";
 			this.lblBuyItem7.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem7.TabIndex = 141;
 			this.lblBuyItem7.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem6
-			// 
+			//
 			this.lblBuyItem6.Location = new System.Drawing.Point(50, 182);
 			this.lblBuyItem6.Name = "lblBuyItem6";
 			this.lblBuyItem6.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem6.TabIndex = 140;
 			this.lblBuyItem6.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem5
-			// 
+			//
 			this.lblBuyItem5.Location = new System.Drawing.Point(50, 158);
 			this.lblBuyItem5.Name = "lblBuyItem5";
 			this.lblBuyItem5.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem5.TabIndex = 139;
 			this.lblBuyItem5.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem3
-			// 
+			//
 			this.lblBuyItem3.Location = new System.Drawing.Point(50, 101);
 			this.lblBuyItem3.Name = "lblBuyItem3";
 			this.lblBuyItem3.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem3.TabIndex = 138;
 			this.lblBuyItem3.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem2
-			// 
+			//
 			this.lblBuyItem2.Location = new System.Drawing.Point(50, 68);
 			this.lblBuyItem2.Name = "lblBuyItem2";
 			this.lblBuyItem2.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem2.TabIndex = 137;
 			this.lblBuyItem2.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem1
-			// 
+			//
 			this.lblBuyItem1.Location = new System.Drawing.Point(50, 44);
 			this.lblBuyItem1.Name = "lblBuyItem1";
 			this.lblBuyItem1.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem1.TabIndex = 136;
 			this.lblBuyItem1.Text = "Auto-Repair System";
-			// 
+			//
 			// lblBuyItem0
-			// 
+			//
 			this.lblBuyItem0.Location = new System.Drawing.Point(50, 20);
 			this.lblBuyItem0.Name = "lblBuyItem0";
 			this.lblBuyItem0.Size = new System.Drawing.Size(105, 13);
 			this.lblBuyItem0.TabIndex = 135;
 			this.lblBuyItem0.Text = "Auto-Repair System";
-			// 
+			//
 			// picBuyLine1
-			// 
+			//
 			this.picBuyLine1.BackColor = System.Drawing.Color.DimGray;
 			this.picBuyLine1.Location = new System.Drawing.Point(6, 148);
 			this.picBuyLine1.Name = "picBuyLine1";
 			this.picBuyLine1.Size = new System.Drawing.Size(222, 1);
 			this.picBuyLine1.TabIndex = 134;
 			this.picBuyLine1.TabStop = false;
-			// 
+			//
 			// picBuyLine0
-			// 
+			//
 			this.picBuyLine0.BackColor = System.Drawing.Color.DimGray;
 			this.picBuyLine0.Location = new System.Drawing.Point(6, 91);
 			this.picBuyLine0.Name = "picBuyLine0";
 			this.picBuyLine0.Size = new System.Drawing.Size(222, 1);
 			this.picBuyLine0.TabIndex = 133;
 			this.picBuyLine0.TabStop = false;
-			// 
+			//
 			// btnBuy8
-			// 
+			//
 			this.btnBuy8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy8.Location = new System.Drawing.Point(8, 226);
 			this.btnBuy8.Name = "btnBuy8";
@@ -849,9 +850,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy8.TabIndex = 18;
 			this.btnBuy8.Text = "Buy";
 			this.btnBuy8.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy7
-			// 
+			//
 			this.btnBuy7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy7.Location = new System.Drawing.Point(8, 202);
 			this.btnBuy7.Name = "btnBuy7";
@@ -859,9 +860,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy7.TabIndex = 17;
 			this.btnBuy7.Text = "Buy";
 			this.btnBuy7.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy6
-			// 
+			//
 			this.btnBuy6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy6.Location = new System.Drawing.Point(8, 178);
 			this.btnBuy6.Name = "btnBuy6";
@@ -869,9 +870,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy6.TabIndex = 16;
 			this.btnBuy6.Text = "Buy";
 			this.btnBuy6.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy5
-			// 
+			//
 			this.btnBuy5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy5.Location = new System.Drawing.Point(8, 154);
 			this.btnBuy5.Name = "btnBuy5";
@@ -879,9 +880,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy5.TabIndex = 15;
 			this.btnBuy5.Text = "Buy";
 			this.btnBuy5.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy4
-			// 
+			//
 			this.btnBuy4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy4.Location = new System.Drawing.Point(8, 121);
 			this.btnBuy4.Name = "btnBuy4";
@@ -889,9 +890,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy4.TabIndex = 14;
 			this.btnBuy4.Text = "Buy";
 			this.btnBuy4.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy3
-			// 
+			//
 			this.btnBuy3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy3.Location = new System.Drawing.Point(8, 97);
 			this.btnBuy3.Name = "btnBuy3";
@@ -899,9 +900,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy3.TabIndex = 13;
 			this.btnBuy3.Text = "Buy";
 			this.btnBuy3.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy2
-			// 
+			//
 			this.btnBuy2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy2.Location = new System.Drawing.Point(8, 64);
 			this.btnBuy2.Name = "btnBuy2";
@@ -909,9 +910,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy2.TabIndex = 12;
 			this.btnBuy2.Text = "Buy";
 			this.btnBuy2.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy1
-			// 
+			//
 			this.btnBuy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy1.Location = new System.Drawing.Point(8, 40);
 			this.btnBuy1.Name = "btnBuy1";
@@ -919,9 +920,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy1.TabIndex = 11;
 			this.btnBuy1.Text = "Buy";
 			this.btnBuy1.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// btnBuy0
-			// 
+			//
 			this.btnBuy0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuy0.Location = new System.Drawing.Point(8, 16);
 			this.btnBuy0.Name = "btnBuy0";
@@ -929,9 +930,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuy0.TabIndex = 10;
 			this.btnBuy0.Text = "Buy";
 			this.btnBuy0.Click += new System.EventHandler(this.btnBuySell_Click);
-			// 
+			//
 			// FormEquipment
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(490, 297);
@@ -984,7 +985,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (FormAlert.Alert(AlertType.EquipmentSell, this) == DialogResult.Yes)
 			{
 				Commander			cmdr	= game.Commander;
-				EquipmentType	type	= Consts.EquipmentTypes[item / 3];
+				EquipmentType	type	= (EquipmentType)(item / 3);
 				int						slot	= item % 3;
 
 				if (type == EquipmentType.Gadget &&

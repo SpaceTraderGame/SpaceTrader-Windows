@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -97,18 +98,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxAlert.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// lblAlertType
-			// 
+			//
 			this.lblAlertType.AutoSize = true;
 			this.lblAlertType.Location = new System.Drawing.Point(8, 19);
 			this.lblAlertType.Name = "lblAlertType";
 			this.lblAlertType.Size = new System.Drawing.Size(56, 13);
 			this.lblAlertType.TabIndex = 0;
 			this.lblAlertType.Text = "Alert Type";
-			// 
+			//
 			// boxAlert
-			// 
+			//
 			this.boxAlert.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																					 this.btnTestAlert,
 																																					 this.txtValue3,
@@ -125,9 +126,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxAlert.TabIndex = 1;
 			this.boxAlert.TabStop = false;
 			this.boxAlert.Text = "Test Alert";
-			// 
+			//
 			// btnTestAlert
-			// 
+			//
 			this.btnTestAlert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTestAlert.Location = new System.Drawing.Point(80, 120);
 			this.btnTestAlert.Name = "btnTestAlert";
@@ -135,68 +136,68 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnTestAlert.TabIndex = 8;
 			this.btnTestAlert.Text = "Test";
 			this.btnTestAlert.Click += new System.EventHandler(this.btnTestAlert_Click);
-			// 
+			//
 			// txtValue3
-			// 
+			//
 			this.txtValue3.Location = new System.Drawing.Point(72, 88);
 			this.txtValue3.Name = "txtValue3";
 			this.txtValue3.Size = new System.Drawing.Size(120, 20);
 			this.txtValue3.TabIndex = 7;
 			this.txtValue3.Text = "";
-			// 
+			//
 			// txtValue2
-			// 
+			//
 			this.txtValue2.Location = new System.Drawing.Point(72, 64);
 			this.txtValue2.Name = "txtValue2";
 			this.txtValue2.Size = new System.Drawing.Size(120, 20);
 			this.txtValue2.TabIndex = 6;
 			this.txtValue2.Text = "";
-			// 
+			//
 			// txtValue1
-			// 
+			//
 			this.txtValue1.Location = new System.Drawing.Point(72, 40);
 			this.txtValue1.Name = "txtValue1";
 			this.txtValue1.Size = new System.Drawing.Size(120, 20);
 			this.txtValue1.TabIndex = 5;
 			this.txtValue1.Text = "";
-			// 
+			//
 			// selAlertType
-			// 
+			//
 			this.selAlertType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.selAlertType.Location = new System.Drawing.Point(72, 16);
 			this.selAlertType.Name = "selAlertType";
 			this.selAlertType.Size = new System.Drawing.Size(120, 21);
 			this.selAlertType.TabIndex = 4;
-			// 
+			//
 			// lblValue3
-			// 
+			//
 			this.lblValue3.AutoSize = true;
 			this.lblValue3.Location = new System.Drawing.Point(8, 91);
 			this.lblValue3.Name = "lblValue3";
 			this.lblValue3.Size = new System.Drawing.Size(43, 13);
 			this.lblValue3.TabIndex = 3;
 			this.lblValue3.Text = "Value 3";
-			// 
+			//
 			// lblValue1
-			// 
+			//
 			this.lblValue1.AutoSize = true;
 			this.lblValue1.Location = new System.Drawing.Point(8, 43);
 			this.lblValue1.Name = "lblValue1";
 			this.lblValue1.Size = new System.Drawing.Size(43, 13);
 			this.lblValue1.TabIndex = 2;
 			this.lblValue1.Text = "Value 1";
-			// 
+			//
 			// lblValue2
-			// 
+			//
 			this.lblValue2.AutoSize = true;
 			this.lblValue2.Location = new System.Drawing.Point(8, 67);
 			this.lblValue2.Name = "lblValue2";
 			this.lblValue2.Size = new System.Drawing.Size(43, 13);
 			this.lblValue2.TabIndex = 1;
 			this.lblValue2.Text = "Value 2";
-			// 
+			//
 			// groupBox1
-			// 
+			//
 			this.groupBox1.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																						this.btnTestSpecialEvent,
 																																						this.selSpecialEvent,
@@ -207,9 +208,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Test Special Alert";
-			// 
+			//
 			// btnTestSpecialEvent
-			// 
+			//
 			this.btnTestSpecialEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTestSpecialEvent.Location = new System.Drawing.Point(80, 48);
 			this.btnTestSpecialEvent.Name = "btnTestSpecialEvent";
@@ -217,26 +218,26 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnTestSpecialEvent.TabIndex = 8;
 			this.btnTestSpecialEvent.Text = "Test";
 			this.btnTestSpecialEvent.Click += new System.EventHandler(this.btnTestSpecialEvent_Click);
-			// 
+			//
 			// selSpecialEvent
-			// 
+			//
 			this.selSpecialEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.selSpecialEvent.Location = new System.Drawing.Point(88, 16);
 			this.selSpecialEvent.Name = "selSpecialEvent";
 			this.selSpecialEvent.Size = new System.Drawing.Size(104, 21);
 			this.selSpecialEvent.TabIndex = 4;
-			// 
+			//
 			// lblSpecialEvent
-			// 
+			//
 			this.lblSpecialEvent.AutoSize = true;
 			this.lblSpecialEvent.Location = new System.Drawing.Point(8, 19);
 			this.lblSpecialEvent.Name = "lblSpecialEvent";
 			this.lblSpecialEvent.Size = new System.Drawing.Size(73, 13);
 			this.lblSpecialEvent.TabIndex = 0;
 			this.lblSpecialEvent.Text = "Special Event";
-			// 
+			//
 			// FormTest
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(370, 255);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
@@ -262,7 +263,7 @@ namespace Fryz.Apps.SpaceTrader
 		private void btnTestAlert_Click(object sender, System.EventArgs e)
 		{
 			FormAlert.Alert(AlertType.Alert, this, "Result", "The result was " +
-				FormAlert.Alert(Consts.AlertTypes[(int)selAlertType.SelectedItem],
+				FormAlert.Alert((AlertType)selAlertType.SelectedItem,
 				this, txtValue1.Text, txtValue2.Text, txtValue3.Text).ToString());
 		}
 
