@@ -15,5 +15,6 @@ in Form_Encounter.cs: move as much code as possible out of the GUI class
 make shipyard news advertisements
 rename some systems and mercs
 rework escape pod sequence
-fix personnel screen to allow for more than two additional crew (& remove line 654)
 kidnapped "princess" quest
+create images for equipment
+create images for trade goods
