@@ -149,22 +149,24 @@ namespace Fryz.Apps.SpaceTrader
 			int	typeInt	= (int)type;
 
 			_type					= type;
-			_size					= Consts.ShipSpecs[typeInt].Size;
-			_cargoBays		= Consts.ShipSpecs[typeInt].CargoBays;
-			_weaponSlots	= Consts.ShipSpecs[typeInt].WeaponSlots;
-			_shieldSlots	= Consts.ShipSpecs[typeInt].ShieldSlots;
-			_gadgetSlots	= Consts.ShipSpecs[typeInt].GadgetSlots;
-			_crewQuarters	= Consts.ShipSpecs[typeInt].CrewQuarters;
-			_fuelTanks		= Consts.ShipSpecs[typeInt].FuelTanks;
-			_fuelCost			= Consts.ShipSpecs[typeInt].FuelCost;
-			_hullStrength	= Consts.ShipSpecs[typeInt].HullStrength;
-			_repairCost		= Consts.ShipSpecs[typeInt].RepairCost;
-			_price				= Consts.ShipSpecs[typeInt].Price;
-			_occurance		= Consts.ShipSpecs[typeInt].Occurance;
-			_police				= Consts.ShipSpecs[typeInt].Police;
-			_pirates			= Consts.ShipSpecs[typeInt].Pirates;
-			_traders			=	Consts.ShipSpecs[typeInt].Traders;
-			_minTech			=	Consts.ShipSpecs[typeInt].MinimumTechLevel;
+			_size					= Consts.ShipSpecs[typeInt]._size;
+			_cargoBays		= Consts.ShipSpecs[typeInt]._cargoBays;
+			_weaponSlots	= Consts.ShipSpecs[typeInt]._weaponSlots;
+			_shieldSlots	= Consts.ShipSpecs[typeInt]._shieldSlots;
+			_gadgetSlots	= Consts.ShipSpecs[typeInt]._gadgetSlots;
+			_crewQuarters	= Consts.ShipSpecs[typeInt]._crewQuarters;
+			_fuelTanks		= Consts.ShipSpecs[typeInt]._fuelTanks;
+			_fuelCost			= Consts.ShipSpecs[typeInt]._fuelCost;
+			_hullStrength	= Consts.ShipSpecs[typeInt]._hullStrength;
+			_repairCost		= Consts.ShipSpecs[typeInt]._repairCost;
+			_price				= Consts.ShipSpecs[typeInt]._price;
+			_occurance		= Consts.ShipSpecs[typeInt]._occurance;
+			_police				= Consts.ShipSpecs[typeInt]._police;
+			_pirates			= Consts.ShipSpecs[typeInt]._pirates;
+			_traders			=	Consts.ShipSpecs[typeInt]._traders;
+			_minTech			=	Consts.ShipSpecs[typeInt]._minTech;
+			_hullUpgraded	= Consts.ShipSpecs[typeInt]._hullUpgraded;
+			_imageIndex		= Consts.ShipSpecs[typeInt]._imageIndex;
 		}
 
 		public int Slots(EquipmentType type)
