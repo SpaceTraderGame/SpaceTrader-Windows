@@ -64,7 +64,8 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Label lblKillsLabel;
 		private System.Windows.Forms.GroupBox boxNotoriety;
 		private System.ComponentModel.Container components = null;
-
+		private System.Windows.Forms.Label lblBountyLabel;
+		private System.Windows.Forms.Label lblBounty;
 		#endregion
 
 		#region Member Declarations
@@ -126,6 +127,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblKills = new System.Windows.Forms.Label();
 			this.lblReputation = new System.Windows.Forms.Label();
 			this.lblRecord = new System.Windows.Forms.Label();
+			this.lblBountyLabel = new System.Windows.Forms.Label();
+			this.lblBounty = new System.Windows.Forms.Label();
 			this.boxSkills.SuspendLayout();
 			this.boxFinances.SuspendLayout();
 			this.boxNotoriety.SuspendLayout();
@@ -137,7 +140,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblNameLabel.Location = new System.Drawing.Point(8, 8);
 			this.lblNameLabel.Name = "lblNameLabel";
-			this.lblNameLabel.Size = new System.Drawing.Size(39, 13);
+			this.lblNameLabel.Size = new System.Drawing.Size(39, 16);
 			this.lblNameLabel.TabIndex = 2;
 			this.lblNameLabel.Text = "Name:";
 			// 
@@ -162,7 +165,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(25, 26);
+			this.btnClose.Size = new System.Drawing.Size(26, 27);
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
@@ -173,7 +176,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTimeLabel.Location = new System.Drawing.Point(8, 40);
 			this.lblTimeLabel.Name = "lblTimeLabel";
-			this.lblTimeLabel.Size = new System.Drawing.Size(34, 13);
+			this.lblTimeLabel.Size = new System.Drawing.Size(34, 16);
 			this.lblTimeLabel.TabIndex = 37;
 			this.lblTimeLabel.Text = "Time:";
 			// 
@@ -183,7 +186,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblCashLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblCashLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblCashLabel.Name = "lblCashLabel";
-			this.lblCashLabel.Size = new System.Drawing.Size(35, 13);
+			this.lblCashLabel.Size = new System.Drawing.Size(35, 16);
 			this.lblCashLabel.TabIndex = 38;
 			this.lblCashLabel.Text = "Cash:";
 			// 
@@ -193,7 +196,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblDebtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblDebtLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblDebtLabel.Name = "lblDebtLabel";
-			this.lblDebtLabel.Size = new System.Drawing.Size(32, 13);
+			this.lblDebtLabel.Size = new System.Drawing.Size(32, 16);
 			this.lblDebtLabel.TabIndex = 39;
 			this.lblDebtLabel.Text = "Debt:";
 			// 
@@ -203,7 +206,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblNetWorthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblNetWorthLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblNetWorthLabel.Name = "lblNetWorthLabel";
-			this.lblNetWorthLabel.Size = new System.Drawing.Size(60, 13);
+			this.lblNetWorthLabel.Size = new System.Drawing.Size(60, 16);
 			this.lblNetWorthLabel.TabIndex = 40;
 			this.lblNetWorthLabel.Text = "Net Worth:";
 			// 
@@ -213,7 +216,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblDifficultyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblDifficultyLabel.Location = new System.Drawing.Point(8, 24);
 			this.lblDifficultyLabel.Name = "lblDifficultyLabel";
-			this.lblDifficultyLabel.Size = new System.Drawing.Size(53, 13);
+			this.lblDifficultyLabel.Size = new System.Drawing.Size(53, 16);
 			this.lblDifficultyLabel.TabIndex = 43;
 			this.lblDifficultyLabel.Text = "Difficulty:";
 			// 
@@ -281,7 +284,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblEngineerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblEngineerLabel.Location = new System.Drawing.Point(104, 32);
 			this.lblEngineerLabel.Name = "lblEngineerLabel";
-			this.lblEngineerLabel.Size = new System.Drawing.Size(55, 13);
+			this.lblEngineerLabel.Size = new System.Drawing.Size(55, 16);
 			this.lblEngineerLabel.TabIndex = 52;
 			this.lblEngineerLabel.Text = "Engineer:";
 			// 
@@ -291,7 +294,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTraderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTraderLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblTraderLabel.Name = "lblTraderLabel";
-			this.lblTraderLabel.Size = new System.Drawing.Size(42, 13);
+			this.lblTraderLabel.Size = new System.Drawing.Size(42, 16);
 			this.lblTraderLabel.TabIndex = 51;
 			this.lblTraderLabel.Text = "Trader:";
 			// 
@@ -301,7 +304,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblFighterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblFighterLabel.Location = new System.Drawing.Point(104, 16);
 			this.lblFighterLabel.Name = "lblFighterLabel";
-			this.lblFighterLabel.Size = new System.Drawing.Size(44, 13);
+			this.lblFighterLabel.Size = new System.Drawing.Size(44, 16);
 			this.lblFighterLabel.TabIndex = 50;
 			this.lblFighterLabel.Text = "Fighter:";
 			// 
@@ -311,7 +314,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblPilotLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblPilotLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblPilotLabel.Name = "lblPilotLabel";
-			this.lblPilotLabel.Size = new System.Drawing.Size(31, 13);
+			this.lblPilotLabel.Size = new System.Drawing.Size(31, 16);
 			this.lblPilotLabel.TabIndex = 49;
 			this.lblPilotLabel.Text = "Pilot:";
 			// 
@@ -360,7 +363,8 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxNotoriety
 			// 
-			this.boxNotoriety.Controls.AddRange(new System.Windows.Forms.Control[] {
+			this.boxNotoriety.Controls.AddRange(new System.Windows.Forms.Control[] { this.lblBountyLabel,
+																																							 this.lblBounty,
 																																							 this.lblPoliceLabel,
 																																							 this.lblReputationLabel,
 																																							 this.lblKillsLabel,
@@ -369,7 +373,7 @@ namespace Fryz.Apps.SpaceTrader
 																																							 this.lblRecord});
 			this.boxNotoriety.Location = new System.Drawing.Point(8, 208);
 			this.boxNotoriety.Name = "boxNotoriety";
-			this.boxNotoriety.Size = new System.Drawing.Size(216, 72);
+			this.boxNotoriety.Size = new System.Drawing.Size(216, 88);
 			this.boxNotoriety.TabIndex = 51;
 			this.boxNotoriety.TabStop = false;
 			this.boxNotoriety.Text = "Notoriety";
@@ -380,7 +384,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblPoliceLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblPoliceLabel.Name = "lblPoliceLabel";
-			this.lblPoliceLabel.Size = new System.Drawing.Size(81, 13);
+			this.lblPoliceLabel.Size = new System.Drawing.Size(81, 16);
 			this.lblPoliceLabel.TabIndex = 46;
 			this.lblPoliceLabel.Text = "Police Record:";
 			// 
@@ -390,7 +394,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblReputationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblReputationLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblReputationLabel.Name = "lblReputationLabel";
-			this.lblReputationLabel.Size = new System.Drawing.Size(65, 13);
+			this.lblReputationLabel.Size = new System.Drawing.Size(65, 16);
 			this.lblReputationLabel.TabIndex = 45;
 			this.lblReputationLabel.Text = "Reputation:";
 			// 
@@ -400,7 +404,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblKillsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblKillsLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblKillsLabel.Name = "lblKillsLabel";
-			this.lblKillsLabel.Size = new System.Drawing.Size(30, 13);
+			this.lblKillsLabel.Size = new System.Drawing.Size(30, 16);
 			this.lblKillsLabel.TabIndex = 44;
 			this.lblKillsLabel.Text = "Kills:";
 			// 
@@ -428,11 +432,30 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblRecord.TabIndex = 41;
 			this.lblRecord.Text = "Psychopath";
 			// 
+			// lblBountyLabel
+			// 
+			this.lblBountyLabel.AutoSize = true;
+			this.lblBountyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblBountyLabel.Location = new System.Drawing.Point(8, 64);
+			this.lblBountyLabel.Name = "lblBountyLabel";
+			this.lblBountyLabel.Size = new System.Drawing.Size(84, 16);
+			this.lblBountyLabel.TabIndex = 48;
+			this.lblBountyLabel.Text = "Bounty offered:";
+			this.lblBountyLabel.Visible = false;
+			// 
+			// lblBounty
+			// 
+			this.lblBounty.Location = new System.Drawing.Point(104, 64);
+			this.lblBounty.Name = "lblBounty";
+			this.lblBounty.Size = new System.Drawing.Size(72, 13);
+			this.lblBounty.TabIndex = 47;
+			this.lblBounty.Text = "8,888,888 cr.";
+			this.lblBounty.Visible = false;
 			// FormViewCommander
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(232, 287);
+			this.ClientSize = new System.Drawing.Size(232, 304);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																	this.boxNotoriety,
 																																	this.boxFinances,
@@ -478,8 +501,28 @@ namespace Fryz.Apps.SpaceTrader
 			lblKills.Text								= Functions.FormatNumber(cmdr.KillsPirate + cmdr.KillsPolice + cmdr.KillsTrader);
 			lblRecord.Text							= PoliceRecord.GetPoliceRecordFromScore(cmdr.PoliceRecordScore).Name;
 			lblReputation.Text					= Reputation.GetReputationFromScore(cmdr.ReputationScore).Name;
-		}
 
-		#endregion
+			int score = cmdr.PoliceRecordScore;
+			if (score <= Consts.PoliceRecordScoreCrook) 
+			{
+				lblBountyLabel.Visible = true;
+				lblBountyLabel.Text = "Bounty offered:";
+				lblBounty.Visible = true;
+				lblBounty.Text = Functions.FormatMoney(-1000*score);
+			} 
+			else if (score >= Consts.PoliceRecordScoreTrusted) 
+			{
+				lblBountyLabel.Visible = true;
+				lblBountyLabel.Text = "Angry kingpins:";
+				lblBounty.Visible = true;
+				lblBounty.Text = Functions.FormatNumber(score / 5);
+			} 
+			else
+			{
+				lblBountyLabel.Visible = false;
+				lblBounty.Visible = false;
+			}
+		}
 	}
+		#endregion
 }
