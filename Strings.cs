@@ -176,6 +176,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		public static string	ShipNameCurrentShip							= "<current ship>";
 		public static string	ShipNameCustomShip							= "Custom Ship";
+		public static string	ShipNameModified								= "<modified>";
+		public static string	ShipNameTemplateSuffixDefault		= " (Default)";
+		public static string	ShipNameTemplateSuffixMinimum		= " (Minimum)";
 
 		public static string	ShipyardEquipForSale						= "There is equipment for sale.";
 		public static string	ShipyardEquipNoSale							= "No equipment for sale.";

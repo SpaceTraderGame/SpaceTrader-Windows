@@ -130,6 +130,8 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			ScorePlunderTrader						=  -2;
 		public const	int			ScoreTrafficking							=  -1;
 
+		public const	string	ShipTemplateSeparator					= "----------------------------";
+
 		#endregion
 
 		#region Constant Arrays
