@@ -36,6 +36,8 @@ namespace Fryz.Apps.SpaceTrader
 		private Gadget[]			_gadgets				= null;
 		private CrewMember[]	_crew						= null;
 		private bool					_pod						= false;
+
+		// The following does not need to be saved. It's more of a temp variable.
 		private bool[]				_tradeableItems	= null;
 
 		#endregion
@@ -60,7 +62,6 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
 			hash.Add("_crew",						crewIds);
 			hash.Add("_pod",						_pod);
-			hash.Add("_tradeableItems", _tradeableItems);
 
 			return hash;
 		}
