@@ -301,6 +301,16 @@
                     BuildAction = "EmbeddedResource"
                 />
                 <File
+                    RelPath = "Form_Shipyard.cs"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Form_Shipyard.resx"
+                    DependentUpon = "Form_Shipyard.cs"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
                     RelPath = "Form_SpaceTrader.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -437,6 +447,11 @@
                 />
                 <File
                     RelPath = "ShipSpec.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Shipyard.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
