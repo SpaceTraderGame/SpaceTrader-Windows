@@ -983,7 +983,9 @@ namespace Fryz.Apps.SpaceTrader
 			switch ((VeryRareEncounter)VeryRareEncounters[Functions.GetRandom(VeryRareEncounters.Count)])
 			{
 				case VeryRareEncounter.MarieCeleste:
-					if (Clicks > 1)
+					// Marie Celeste cannot be at Acamar or Zalkon as it may cause problems with the Space Monster or Dragonfly
+					if (Clicks > 1 && Commander.CurrentSystemId != StarSystemId.Acamar &&
+						Commander.CurrentSystemId != StarSystemId.Zalkon)
 					{
 						VeryRareEncounters.Remove(VeryRareEncounter.MarieCeleste);
 						EncounterType	= EncounterType.MarieCeleste;
