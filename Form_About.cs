@@ -100,10 +100,10 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblAbout.Size = new System.Drawing.Size(272, 160);
 			this.lblAbout.TabIndex = 34;
 			this.lblAbout.Text = "Copyright " + Strings.CopyrightChar +
-				" 2004 by Jay French" + Environment.NewLine + "spacetrader@frenchfryz.com" + Environment.NewLine + Environment.NewLine + "Palm version copyright " +
+				" 2005 by Jay French" + Environment.NewLine + "spacetrader@frenchfryz.com" + Environment.NewLine + Environment.NewLine + "Palm version copyright " +
 				Strings.CopyrightChar + " 2000-2002 by Peter Spronk" + Environment.NewLine + "space_trader@hotmail.com" + Environment.NewLine + Environment.NewLine + "Pictures copyright " +
 				Strings.CopyrightChar + " 2000 by Alexander Lawrence" + Environment.NewLine + Environment.NewLine + "This game is freeware under a GNU General " +
-				"Public License." + Environment.NewLine + Environment.NewLine + "http://www.frenchfryz.com/jay/spacetrader/";
+				"Public License." + Environment.NewLine + Environment.NewLine + "http://spacetraderwin.sourceforge.net/";
 			//
 			// picLogo
 			//
