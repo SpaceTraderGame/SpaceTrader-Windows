@@ -2373,6 +2373,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// btnSpecial
 			// 
+			this.btnSpecial.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(128)));
 			this.btnSpecial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSpecial.Location = new System.Drawing.Point(58, 174);
 			this.btnSpecial.Name = "btnSpecial";
@@ -3151,7 +3152,17 @@ namespace Fryz.Apps.SpaceTrader
 				lblSystemPressurePre.Visible	= true;
 				btnNews.Visible								= true;
 				btnMerc.Visible								= system.MercenaryForHire != null;
+				if (btnMerc.Visible) 
+				{
+					ToolTip hint = new ToolTip();
+					hint.SetToolTip(btnMerc, system.MercenaryForHire.Name);
+				}
 				btnSpecial.Visible						= system.ShowSpecialButton();
+				if (btnSpecial.Visible) 
+				{
+					ToolTip hint = new ToolTip();
+					hint.SetToolTip(btnSpecial, system.SpecialEvent.Title);
+				}
 			}
 		}
 
