@@ -289,6 +289,9 @@ namespace Fryz.Apps.SpaceTrader
 
 			CalculatePrices(Commander.CurrentSystem);
 			NewsAddEventsOnArrival();
+
+			if (Options.NewsAutoShow)
+				ShowNewspaper();
 		}
 
 		private void ArrivalCheckDebt()
@@ -1883,6 +1886,27 @@ namespace Fryz.Apps.SpaceTrader
 				else
 					SelectedSystemId	= (StarSystemId)dest[index];
 			}
+		}
+
+		public void ShowNewspaper()
+		{
+			if (!PaidForNewspaper)
+			{
+				int	cost	= (int)Difficulty + 1;
+
+				if (Commander.Cash < cost)
+					FormAlert.Alert(AlertType.ArrivalIFNewspaper, ParentWindow, Functions.Multiples(cost, "credit"));
+				else if (Options.NewsAutoPay || FormAlert.Alert(AlertType.ArrivalBuyNewspaper, ParentWindow,
+					Functions.Multiples(cost, "credit")) == DialogResult.Yes)
+				{
+					Commander.Cash		-= cost;
+					PaidForNewspaper	= true;
+					ParentWindow.UpdateAll();
+				}
+			}
+
+			if (PaidForNewspaper)
+				FormAlert.Alert(AlertType.Alert, ParentWindow, NewspaperHead, NewspaperText);
 		}
 
 		public override Hashtable Serialize()

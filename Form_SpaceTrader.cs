@@ -3552,23 +3552,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnNews_Click(object sender, System.EventArgs e)
 		{
-			if (!game.PaidForNewspaper)
-			{
-				int	cost	= (int)game.Difficulty + 1;
-
-				if (game.Commander.Cash < cost)
-					FormAlert.Alert(AlertType.ArrivalIFNewspaper, this, Functions.Multiples(cost, "credit"));
-				else if (game.Options.NewsAutoPay || FormAlert.Alert(AlertType.ArrivalBuyNewspaper, this,
-					Functions.Multiples(cost, "credit")) == DialogResult.Yes)
-				{
-					game.Commander.Cash		-= cost;
-					game.PaidForNewspaper	= true;
-					UpdateAll();
-				}
-			}
-
-			if (game.PaidForNewspaper)
-				FormAlert.Alert(AlertType.Alert, this, game.NewspaperHead, game.NewspaperText);
+			game.ShowNewspaper();
 		}
 
 		private void btnNextSystem_Click(object sender, System.EventArgs e)
