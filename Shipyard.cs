@@ -35,6 +35,8 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Constants
 
+		public static int[]	COST_FUEL							= new int[] {    1,    1,     1,     3,     5,     10 };
+		public static int[]	COST_HULL							= new int[] {    1,    5,    10,    15,    20,     40 };
 		public static int[]	BASE_FUEL							= new int[] {   15,   14,    13,    12,    11,     10 };
 		public static int[]	BASE_HULL							= new int[] {   10,   25,    50,   100,   150,    200 };
 		public static int[]	DESIGN_FEE						= new int[] { 2000, 5000, 10000, 20000, 40000, 100000 };
@@ -77,8 +79,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Size					_specialtySize;
 		private ShipyardSkill	_skill;
 
-		private ShipSpec			_shipSpec				= null;
-
+		// Internal Variables
 		private int						modCrew					= 0;
 		private int						modFuel					= 0;
 		private int						modHull					= 0;
@@ -115,14 +116,41 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public void InitializeShipSpec()
+		// Calculate the ship's price (worth here, not the price paid), the fuel cost, and the repair cost.
+		public void CalculateDependantVariables()
 		{
-			_shipSpec	= new ShipSpec();
+			ShipSpec.Price			= BasePrice + PenaltyCost;
+			ShipSpec.FuelCost		= CostFuel;
+			ShipSpec.RepairCost	= CostHull;
 		}
 
 		#endregion
 
 		#region Properties
+
+		public int AdjustedDesignFee
+		{
+			get
+			{
+				return DESIGN_FEE[(int)ShipSpec.Size] * CostAdjustment / ADJUST_SIZE_DEFAULT;
+			}
+		}
+
+		public int AdjustedPenaltyCost
+		{
+			get
+			{
+				return PenaltyCost * CostAdjustment / ADJUST_SIZE_DEFAULT;
+			}
+		}
+
+		public int AdjustedPrice
+		{
+			get
+			{
+				return BasePrice * CostAdjustment / ADJUST_SIZE_DEFAULT;
+			}
+		}
 
 		public ArrayList AvailableSizes
 		{
@@ -155,6 +183,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int BasePrice
+		{
+			get
+			{
+				return UnitsUsed * PricePerUnit;
+			}
+		}
+
 		public int CostAdjustment
 		{
 			get
@@ -178,11 +214,19 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int DesignFee
+		public int CostFuel
 		{
 			get
 			{
-				return DESIGN_FEE[(int)ShipSpec.Size] * CostAdjustment / ADJUST_SIZE_DEFAULT;
+				return COST_FUEL[(int)ShipSpec.Size];
+			}
+		}
+
+		public int CostHull
+		{
+			get
+			{
+				return COST_HULL[(int)ShipSpec.Size];
 			}
 		}
 
@@ -218,6 +262,29 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int PenaltyCost
+		{
+			get
+			{
+				int	penalty	= 0;
+
+				if (PercentOfMaxUnits >= PENALTY_SECOND_PCT)
+					penalty	= PENALTY_SECOND_FEE;
+				else if (PercentOfMaxUnits >= PENALTY_FIRST_PCT)
+					penalty	= PENALTY_FIRST_FEE;
+
+				return  BasePrice * penalty / 100;
+			}
+		}
+
+		public int PercentOfMaxUnits
+		{
+			get
+			{
+				return UnitsUsed * 100 / MaxUnits;
+			}
+		}
+
 		public int PerUnitFuel
 		{
 			get
@@ -238,7 +305,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return PRICE_PER_UNIT[(int)ShipSpec.Size] * CostAdjustment / ADJUST_SIZE_DEFAULT;
+				return PRICE_PER_UNIT[(int)ShipSpec.Size];
 			}
 		}
 
@@ -246,7 +313,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _shipSpec;
+				return Consts.ShipSpecs[(int)ShipType.Custom];
 			}
 		}
 
@@ -263,6 +330,22 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _specialtySize;
+			}
+		}
+
+		public int TotalCost
+		{
+			get
+			{
+				return AdjustedPrice + AdjustedPenaltyCost + AdjustedDesignFee - TradeIn;
+			}
+		}
+
+		public int TradeIn
+		{
+			get
+			{
+				return Game.CurrentGame.Commander.Ship.Worth(false);
 			}
 		}
 
@@ -311,6 +394,20 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return UNITS_WEAPON[(int)ShipSpec.Size] - modWeapon;
+			}
+		}
+
+		public int UnitsUsed
+		{
+			get
+			{
+				return ShipSpec.CargoBays +
+					ShipSpec.CrewQuarters * UnitsCrew +
+					(int)Math.Ceiling((double)(ShipSpec.FuelTanks - BaseFuel) / PerUnitFuel * UnitsFuel) +
+					ShipSpec.GadgetSlots * UnitsGadgets +
+					(ShipSpec.HullStrength - BaseHull) / PerUnitHull * UnitsHull +
+					ShipSpec.ShieldSlots * UnitsShields +
+					ShipSpec.WeaponSlots * UnitsWeapons;
 			}
 		}
 
