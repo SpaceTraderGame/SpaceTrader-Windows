@@ -627,7 +627,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private string CurrentSystemDisplay(CrewMember merc)
 		{
-			return (merc.CurrentSystem == null ? Strings.MercSystemUnknown : (game.Commander.Ship.HasCrew(merc.Id) ?
+			return (merc.CurrentSystem == null ? Strings.Unknown : (game.Commander.Ship.HasCrew(merc.Id) ?
 							Functions.StringVars(Strings.MercOnBoard, merc.CurrentSystem.Name) : merc.CurrentSystem.Name));
 		}
 

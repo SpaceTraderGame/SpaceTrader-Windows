@@ -138,7 +138,6 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	MercenaryFire										= "Fire";
 		public static string	MercenaryHire										= "Hire";
 		public static string	MercOnBoard											= "Member of Crew (^1)";
-		public static string	MercSystemUnknown								= "Unknown";
 
 		public static string	MoneyRateSuffix									= "^1 daily";
 		public static string	MoneyUnit												= "credit";
@@ -221,6 +220,8 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	TimeUnit												= "day";
 
 		public static string	TribbleDangerousNumber					= "a dangerous number of";
+
+		public static string	Unknown													= "Unknown";
 
 		#endregion
 
