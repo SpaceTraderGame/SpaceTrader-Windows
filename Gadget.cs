@@ -88,6 +88,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public override object SubType
+		{
+			get
+			{
+				return Type;
+			}
+		}
+
 		public GadgetType Type
 		{
 			get

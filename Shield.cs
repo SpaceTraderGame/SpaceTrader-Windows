@@ -91,19 +91,15 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public override string Name
+		public int Charge
 		{
 			get
 			{
-				return Strings.ShieldNames[(int)_type];
+				return _charge;
 			}
-		}
-
-		public ShieldType Type
-		{
-			get
+			set
 			{
-				return _type;
+				_charge	= value;
 			}
 		}
 
@@ -115,15 +111,27 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Charge
+		public override string Name
 		{
 			get
 			{
-				return _charge;
+				return Strings.ShieldNames[(int)_type];
 			}
-			set
+		}
+
+		public override object SubType
+		{
+			get
 			{
-				_charge	= value;
+				return Type;
+			}
+		}
+
+		public ShieldType Type
+		{
+			get
+			{
+				return _type;
 			}
 		}
 

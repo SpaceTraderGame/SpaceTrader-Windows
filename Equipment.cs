@@ -144,6 +144,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public virtual object SubType
+		{
+			get
+			{
+				return 0;
+			}
+		}
+
 		public int TransferPrice
 		{
 			get

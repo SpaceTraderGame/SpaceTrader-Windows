@@ -92,19 +92,27 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public WeaponType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
 		public int Power
 		{
 			get
 			{
 				return _power;
+			}
+		}
+
+		public override object SubType
+		{
+			get
+			{
+				return Type;
+			}
+		}
+
+		public WeaponType Type
+		{
+			get
+			{
+				return _type;
 			}
 		}
 
