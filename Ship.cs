@@ -890,6 +890,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public bool DetectableIllegalCargoOrPassengers
+		{
+			get
+			{
+				return DetectableIllegalCargo || IllegalSpecialCargo;
+			}
+		}
+
 		public int Engineer
 		{
 			get
@@ -1112,11 +1120,12 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public bool IllegalCargoOrPassengers
+		public string HullText
 		{
 			get
 			{
-				return DetectableIllegalCargo || IllegalSpecialCargo;
+				return Functions.StringVars(Strings.EncounterHullStrength,
+					Functions.FormatNumber((int)Math.Floor(100 * Hull / HullStrength)));
 			}
 		}
 
@@ -1210,6 +1219,17 @@ namespace Fryz.Apps.SpaceTrader
 						total	+= Shields[i].Power;
 
 				return total;
+			}
+		}
+
+		public string ShieldText
+		{
+			get
+			{
+				return (Shields.Length > 0 && Shields[0] != null) ?
+					Functions.StringVars(Strings.EncounterShieldStrength,
+					Functions.FormatNumber((int)Math.Floor(100 * ShieldCharge / ShieldStrength))) :
+					Strings.EncounterShieldNone;
 			}
 		}
 

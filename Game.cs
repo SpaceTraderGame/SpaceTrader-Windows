@@ -90,7 +90,15 @@ namespace Fryz.Apps.SpaceTrader
 		// Options
 		private GameOptions		_options										= new GameOptions(true);
 
+		// The rest of the member variables are not saved between games.
 		private SpaceTrader		_parentWin									= null;
+		private bool					_encounterContinueFleeing		= false;
+		private bool					_encounterContinueAttacking	= false;
+		private bool					_encounterCmdrFleeing				= false;
+		private bool					_encounterCmdrHit						= false;
+		private bool					_encounterOppFleeingPrev		= false;
+		private bool					_encounterOppFleeing				= false;
+		private bool					_encounterOppHit						= false;
 
 		#endregion
 
@@ -1047,6 +1055,764 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			return showEncounter;
+		}
+
+		public void EncounterDrink(IWin32Window owner)
+		{
+			if (FormAlert.Alert(AlertType.EncounterDrinkContents, owner) == DialogResult.Yes)
+			{
+				if (EncounterType == EncounterType.BottleGood)
+				{
+					// two points if you're on beginner-normal, one otherwise
+					Commander.IncreaseRandomSkill();
+					if (Difficulty <= Difficulty.Normal)
+						Commander.IncreaseRandomSkill();
+					FormAlert.Alert(AlertType.EncounterTonicConsumedGood, owner);
+				}
+				else
+				{
+					Commander.TonicTweakRandomSkill();
+					FormAlert.Alert(AlertType.EncounterTonicConsumedStrange, owner);
+				}
+			}
+		}
+
+		public EncounterResult EncounterExecuteAction(IWin32Window owner)
+		{
+			EncounterResult	result				= EncounterResult.Continue;
+			int							prevCmdrHull	= Commander.Ship.Hull;
+			int							prevOppHull		= Opponent.Hull;
+
+			EncounterCmdrHit							= false;
+			EncounterOppHit								= false;
+			EncounterOppFleeingPrev				= EncounterOppFleeing;
+			EncounterOppFleeing						= false;
+
+			// Fire shots
+			switch (EncounterType)
+			{
+				case EncounterType.DragonflyAttack:
+				case EncounterType.FamousCaptainAttack:
+				case EncounterType.MarieCelestePolice:
+				case EncounterType.PirateAttack:
+				case EncounterType.PoliceAttack:
+				case EncounterType.ScarabAttack:
+				case EncounterType.SpaceMonsterAttack:
+				case EncounterType.TraderAttack:
+					EncounterCmdrHit		= EncounterExecuteAttack(Opponent, Commander.Ship, EncounterCmdrFleeing);
+					EncounterOppHit			= !EncounterCmdrFleeing && EncounterExecuteAttack(Commander.Ship, Opponent, false);
+					break;
+				case EncounterType.PirateFlee:
+				case EncounterType.PirateSurrender:  // Added - JAF
+				case EncounterType.PoliceFlee:
+				case EncounterType.TraderFlee:
+				case EncounterType.TraderSurrender:  // Added - JAF
+					EncounterOppHit			= !EncounterCmdrFleeing && EncounterExecuteAttack(Commander.Ship, Opponent, true);
+					EncounterOppFleeing	= true;
+					break;
+				default:
+					EncounterOppHit			= !EncounterCmdrFleeing && EncounterExecuteAttack(Commander.Ship, Opponent, false);
+					break;
+			}
+
+			// Determine whether someone gets destroyed
+			if (Commander.Ship.Hull <= 0)
+			{
+				if (Commander.Ship.EscapePod)
+					result	= EncounterResult.EscapePod;
+				else
+				{
+					FormAlert.Alert(Opponent.Hull <= 0 ? AlertType.EncounterBothDestroyed : AlertType.EncounterYouLose, owner);
+
+					result	= EncounterResult.Killed;
+				}
+			}
+			else if (Opponent.Hull <= 0)
+			{
+				EncounterWon(owner);
+
+				result	= EncounterResult.Normal;
+			}
+			else
+			{
+				bool	escaped	= false;
+
+				// Determine whether someone gets away.
+				if (EncounterCmdrFleeing && (Difficulty == Difficulty.Beginner ||
+					(Functions.GetRandom(7) + Commander.Ship.Pilot / 3) * 2 >=
+					Functions.GetRandom(Opponent.Pilot) * (2 + (int)Difficulty)))
+				{
+					FormAlert.Alert(EncounterCmdrHit ? AlertType.EncounterEscapedHit : AlertType.EncounterEscaped, owner);
+					escaped	= true;
+				}
+				else if (EncounterOppFleeing && Functions.GetRandom(Commander.Ship.Pilot) * 4 <=
+					Functions.GetRandom(7 + Opponent.Pilot / 3) * 2)
+				{
+					FormAlert.Alert(AlertType.EncounterOpponentEscaped, owner);
+					escaped	= true;
+				}
+
+				if (escaped)
+					result	= EncounterResult.Normal;
+				else
+				{
+					// Determine whether the opponent's actions must be changed
+					EncounterType	prevEncounter	= EncounterType;
+
+					EncounterUpdateEncounterType(prevCmdrHull, prevOppHull);
+
+					// Update the opponent fleeing flag.
+					switch (EncounterType)
+					{
+						case EncounterType.PirateFlee:
+						case EncounterType.PirateSurrender:
+						case EncounterType.PoliceFlee:
+						case EncounterType.TraderFlee:
+						case EncounterType.TraderSurrender:
+							EncounterOppFleeing	= true;
+							break;
+						default:
+							EncounterOppFleeing	= false;
+							break;
+					}
+
+					if (Options.ContinuousAttack && (EncounterCmdrFleeing || !EncounterOppFleeing ||
+						Options.ContinuousAttackFleeing && (EncounterType == prevEncounter ||
+						EncounterType != EncounterType.PirateSurrender && EncounterType != EncounterType.TraderSurrender)))
+					{
+						if (EncounterCmdrFleeing)
+							EncounterContinueFleeing		= true;
+						else
+							EncounterContinueAttacking	= true;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		private bool EncounterExecuteAttack(Ship attacker, Ship defender, bool fleeing)
+		{
+			bool	hit	= false;
+
+			// On beginner level, if you flee, you will escape unharmed.
+			// Otherwise, Fighterskill attacker is pitted against pilotskill defender; if defender
+			// is fleeing the attacker has a free shot, but the chance to hit is smaller
+			if (Difficulty > Difficulty.Beginner || defender != Commander.Ship || !fleeing ||
+				Functions.GetRandom(attacker.Fighter + (int)defender.Size) >=
+				(fleeing ? 2 : 1) * Functions.GetRandom(5 + (defender.Pilot / 2)))
+			{
+				int	attackerWeapons	= attacker.WeaponStrength();
+				if (defender.Type == ShipType.Scarab)
+					attackerWeapons		-= attacker.WeaponStrength(WeaponType.BeamLaser, WeaponType.MilitaryLaser);
+
+				int	damage	= attackerWeapons > 0 ? Functions.GetRandom(attackerWeapons * (100 + 2 * attacker.Engineer) / 100) : 0;
+
+				if (damage > 0)
+				{
+					hit	= true;
+
+					// Reactor on board -- damage is boosted!
+					if (defender.ReactorOnBoard)
+						damage	*= (int)(1 + ((int)Difficulty + 1) * (Difficulty < Difficulty.Normal ? 0.25 : 0.33));
+
+					// First, shields are depleted
+					for (int i = 0; i < defender.Shields.Length && defender.Shields[i] != null && damage > 0; i++)
+					{
+						int	applied									 = Math.Min(defender.Shields[i].Charge, damage);
+						defender.Shields[i].Charge	-= applied;
+						damage											-= applied;
+					}
+
+					// If there still is damage after the shields have been depleted,
+					// this is subtracted from the hull, modified by the engineering skill
+					// of the defender.
+					if (damage > 0)
+					{
+						damage				= Math.Max(1, damage - Functions.GetRandom(defender.Engineer));
+
+						// At least 2 shots on Normal level are needed to destroy the hull
+						// (3 on Easy, 4 on Beginner, 1 on Hard or Impossible). For opponents,
+						// it is always 2.
+						damage				= Math.Min(damage, defender.HullStrength /
+							(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
+
+						defender.Hull	= Math.Max(0, defender.Hull - damage);
+					}
+				}
+			}
+
+			return hit;
+		}
+
+		public void EncounterMeet(IWin32Window owner)
+		{
+			AlertType			initialAlert	= AlertType.Alert;
+			int						skill					= 0;
+			EquipmentType	equipType			= EquipmentType.Gadget;
+			object				equipSubType	= null;
+
+			switch (EncounterType)
+			{
+				case EncounterType.CaptainAhab:
+					// Trade a reflective shield for skill points in piloting?
+					initialAlert	= AlertType.MeetCaptainAhab;
+					equipType			= EquipmentType.Shield;
+					equipSubType	= ShieldType.Reflective;
+					skill					= Consts.PilotSkill;
+
+					break;
+				case EncounterType.CaptainConrad:
+					// Trade a military laser for skill points in engineering?
+					initialAlert	= AlertType.MeetCaptainConrad;
+					equipType			= EquipmentType.Weapon;
+					equipSubType	= WeaponType.MilitaryLaser;
+					skill					= Consts.EngineerSkill;
+
+					break;
+				case EncounterType.CaptainHuie:
+					// Trade a military laser for skill points in trading?
+					initialAlert	= AlertType.MeetCaptainHuie;
+					equipType			= EquipmentType.Weapon;
+					equipSubType	= WeaponType.MilitaryLaser;
+					skill					= Consts.TraderSkill;
+
+					break;
+			}
+
+			if (FormAlert.Alert(initialAlert, owner) == DialogResult.Yes)
+			{
+				// Remove the equipment we're trading.
+				Commander.Ship.RemoveEquipment(equipType, equipSubType);
+
+				// Add points to the appropriate skill - two points if beginner-normal, one otherwise.
+				Commander.Skills[skill]	= Math.Min(Consts.MaxSkill, Commander.Skills[skill] +
+																	(Difficulty <= Difficulty.Normal ? 2 : 1));
+
+				FormAlert.Alert(AlertType.SpecialTrainingCompleted, owner);
+			}
+		}
+
+		public void EncounterPlunder(IWin32Window owner)
+		{
+			Commander.PoliceRecordScore	+= (EncounterType >= EncounterType.TraderAttack) ? Consts.ScorePlunderTrader :
+																			Consts.ScorePlunderPirate;
+
+			(new FormPlunder()).ShowDialog(owner);
+		}
+
+		private void EncounterScoop(IWin32Window owner)
+		{
+			// Chance 50% to pick something up on Normal level, 33% on Hard level, 25% on
+			// Impossible level, and 100% on Easy or Beginner.
+			if ((Difficulty < Difficulty.Normal || Functions.GetRandom((int)Difficulty) == 0) &&
+				Opponent.FilledCargoBays > 0)
+			{
+				// Changed this to actually pick a good that was in the opponent's cargo hold - JAF.
+				int	index			= Functions.GetRandom(Opponent.FilledCargoBays);
+				int	tradeItem	= -1;
+				for (int sum = 0; sum <= index; sum += Opponent.Cargo[++tradeItem]);
+
+				if (FormAlert.Alert(AlertType.EncounterScoop, owner, Consts.TradeItems[tradeItem].Name) == DialogResult.Yes)
+				{
+					bool	jettisoned	= false;
+
+					if (Commander.Ship.FreeCargoBays == 0 &&
+						FormAlert.Alert(AlertType.EncounterScoopNoRoom, owner) == DialogResult.Yes)
+					{
+						(new FormJettison()).ShowDialog(owner);
+						jettisoned	= true;
+					}
+
+					if (Commander.Ship.FreeCargoBays > 0)
+						Commander.Ship.Cargo[tradeItem]++;
+					else if (jettisoned)
+						FormAlert.Alert(AlertType.EncounterScoopNoScoop, owner);
+				}
+			}
+		}
+
+		public void EncounterTrade(IWin32Window owner)
+		{
+			bool		buy				= (EncounterType == EncounterType.TraderBuy);
+			int			item			= (buy ? Commander.Ship : Opponent).GetRandomTradeableItem();
+			string	alertStr	= (buy ? Strings.CargoSelling : Strings.CargoBuying);
+
+			int			cash			= Commander.Cash;
+
+			if (EncounterType == EncounterType.TraderBuy)
+				CargoSellTrader(item, owner);
+			else // EncounterType.TraderSell
+				CargoBuyTrader(item, owner);
+
+			if (Commander.Cash != cash)
+				FormAlert.Alert(AlertType.EncounterTradeCompleted, owner, alertStr, Consts.TradeItems[item].Name);
+		}
+
+		private void EncounterUpdateEncounterType(int prevCmdrHull, int prevOppHull)
+		{
+			int	chance	= Functions.GetRandom(100);
+
+			if (Opponent.Hull < prevOppHull)
+			{
+				switch (EncounterType)
+				{
+					case EncounterType.PirateAttack:
+					case EncounterType.PirateFlee:
+					case EncounterType.PirateSurrender:
+						if (Opponent.Hull < (prevOppHull * 2) / 3)
+						{
+							if (Commander.Ship.Hull < (prevCmdrHull * 2) / 3)
+							{
+								if (chance < 60)
+									EncounterType	= EncounterType.PirateFlee;
+							}
+							else
+							{
+								if (chance < 10 && Opponent.Type != ShipType.Mantis)
+									EncounterType	= EncounterType.PirateSurrender;
+								else
+									EncounterType	= EncounterType.PirateFlee;
+							}
+						}
+						break;
+					case EncounterType.PoliceAttack:
+					case EncounterType.PoliceFlee:
+						if (Opponent.Hull < prevOppHull / 2 && (Commander.Ship.Hull >= prevCmdrHull / 2 || chance < 40))
+							EncounterType	= EncounterType.PoliceFlee;
+						break;
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderFlee:
+					case EncounterType.TraderSurrender:
+						if (Opponent.Hull < (prevOppHull * 2) / 3)
+						{
+							if (chance < 60)
+								EncounterType	= EncounterType.TraderSurrender;
+							else
+								EncounterType	= EncounterType.TraderFlee;
+						}
+							// If you get damaged a lot, the trader tends to keep shooting; if
+							// you get damaged a little, the trader may keep shooting; if you
+							// get damaged very little or not at all, the trader will flee.
+						else if (Opponent.Hull < (prevOppHull * 9) / 10 &&
+							(Commander.Ship.Hull < (prevCmdrHull * 2) / 3 && chance < 20 ||
+							Commander.Ship.Hull < (prevCmdrHull * 9) / 10 && chance < 60 ||
+							Commander.Ship.Hull >= (prevCmdrHull * 9) / 10))
+							EncounterType	= EncounterType.TraderFlee;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
+		public bool EncounterVerifyAttack(IWin32Window owner)
+		{
+			bool	attack	= true;
+
+			switch (EncounterType)
+			{
+				case EncounterType.DragonflyIgnore:
+				case EncounterType.PirateIgnore:
+				case EncounterType.ScarabIgnore:
+				case EncounterType.SpaceMonsterIgnore:
+					EncounterType	= EncounterType - 1;
+
+					break;
+				case EncounterType.PoliceInspect:
+					if (!Commander.Ship.DetectableIllegalCargoOrPassengers &&
+						FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) != DialogResult.Yes)
+						attack	= false;
+
+					// Fall through...
+					if (attack)
+						goto case EncounterType.PoliceIgnore;
+
+					break;
+				case EncounterType.MarieCelestePolice:
+				case EncounterType.PoliceFlee:
+				case EncounterType.PoliceIgnore:
+				case EncounterType.PoliceSurrender:
+					if (Commander.PoliceRecordScore <= Consts.PoliceRecordScoreCriminal ||
+						FormAlert.Alert(AlertType.EncounterAttackPolice, owner) == DialogResult.Yes)
+					{
+						if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreCriminal)
+							Commander.PoliceRecordScore	= Consts.PoliceRecordScoreCriminal;
+
+						Commander.PoliceRecordScore	+= Consts.ScoreAttackPolice;
+
+						if (EncounterType != EncounterType.PoliceFlee)
+							EncounterType = EncounterType.PoliceAttack;
+					}
+					else
+						attack	= false;
+
+					break;
+				case EncounterType.TraderBuy:
+				case EncounterType.TraderIgnore:
+				case EncounterType.TraderSell:
+					if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreClean)
+						Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
+					else if (FormAlert.Alert(AlertType.EncounterAttackTrader, owner) == DialogResult.Yes)
+						Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
+					else
+						attack	= false;
+
+					// Fall through...
+					if (attack)
+						goto case EncounterType.TraderAttack;
+
+					break;
+				case EncounterType.TraderAttack:
+				case EncounterType.TraderSurrender:
+					if (Functions.GetRandom(Consts.ReputationScoreElite) <=
+						Commander.ReputationScore * 10 / ((int)Opponent.Type + 1) || Opponent.WeaponStrength() == 0)
+						EncounterType = EncounterType.TraderFlee;
+					else
+						EncounterType = EncounterType.TraderAttack;
+
+					break;
+				case EncounterType.CaptainAhab:
+				case EncounterType.CaptainConrad:
+				case EncounterType.CaptainHuie:
+					if (FormAlert.Alert(AlertType.EncounterAttackCaptain, owner) == DialogResult.Yes)
+					{
+						if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreVillain)
+							Commander.PoliceRecordScore	= Consts.PoliceRecordScoreVillain;
+
+						Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
+
+						switch (EncounterType)
+						{
+							case EncounterType.CaptainAhab:
+								NewsAddEvent(NewsEvent.CaptAhabAttacked);
+								break;
+							case EncounterType.CaptainConrad:
+								NewsAddEvent(NewsEvent.CaptConradAttacked);
+								break;
+							case EncounterType.CaptainHuie:
+								NewsAddEvent(NewsEvent.CaptHuieAttacked);
+								break;
+						}
+
+						EncounterType	= EncounterType.FamousCaptainAttack;
+					}
+					else
+						attack	= false;
+
+					break;
+			}
+
+			// Make sure the fleeing flag isn't set if we're attacking.
+			if (attack)
+				EncounterCmdrFleeing	= false;
+
+			return attack;
+		}
+
+		public bool EncounterVerifyBoard(IWin32Window owner)
+		{
+			bool board	= false;
+
+			if (FormAlert.Alert(AlertType.EncounterMarieCeleste, owner) == DialogResult.Yes)
+			{
+				board			= true;
+
+				int	narcs	= Commander.Ship.Cargo[(int)TradeItemType.Narcotics];
+
+				(new FormPlunder()).ShowDialog(owner);
+
+				if (Commander.Ship.Cargo[(int)TradeItemType.Narcotics] > narcs)
+					JustLootedMarie	= true;
+			}
+
+			return board;
+		}
+
+		public bool EncounterVerifyBribe(IWin32Window owner)
+		{
+			bool bribed	= false;
+
+			if (EncounterType == EncounterType.MarieCelestePolice)
+				FormAlert.Alert(AlertType.EncounterMarieCelesteNoBribe, owner);
+			else if (WarpSystem.PoliticalSystem.BribeLevel <= 0)
+				FormAlert.Alert(AlertType.EncounterPoliceBribeCant, owner);
+			else if (Commander.Ship.DetectableIllegalCargoOrPassengers ||
+				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal, owner) == DialogResult.Yes)
+			{
+				// Bribe depends on how easy it is to bribe the police and commander's current worth
+				int diffMod	= 10 + 5 * (Difficulty.Impossible - Difficulty);
+				int	passMod	= Commander.Ship.IllegalSpecialCargo ? (Difficulty <= Difficulty.Normal ? 2 : 3) : 1;
+
+				int	bribe		= Math.Max(100, Math.Min(10000, (int)Math.Ceiling(Commander.Worth /
+											WarpSystem.PoliticalSystem.BribeLevel / diffMod / 100) * 100 * passMod));
+
+				if (FormAlert.Alert(AlertType.EncounterPoliceBribe, owner, Functions.Multiples(bribe, Strings.MoneyUnit)) ==
+					DialogResult.Yes)
+				{
+					if (Commander.Cash >= bribe)
+					{
+						Commander.Cash	-= bribe;
+						bribed					= true;
+					}
+					else
+						FormAlert.Alert(AlertType.EncounterPoliceBribeLowCash, owner);
+				}
+			}
+
+			return bribed;
+		}
+
+		public bool EncounterVerifyFlee(IWin32Window owner)
+		{
+			EncounterCmdrFleeing	= false;
+
+			if (EncounterType != EncounterType.PoliceInspect || Commander.Ship.DetectableIllegalCargoOrPassengers ||
+				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) == DialogResult.Yes)
+			{
+				EncounterCmdrFleeing	= true;
+
+				if (EncounterType == EncounterType.PoliceInspect || EncounterType == EncounterType.MarieCelestePolice &&
+					FormAlert.Alert(AlertType.EncounterPostMarieFlee, owner) == DialogResult.Yes)
+				{
+					int	scoreMod								= EncounterType == EncounterType.PoliceInspect ?
+																				Consts.ScoreFleePolice : Consts.ScoreAttackPolice;
+					int	scoreMin								= EncounterType == EncounterType.PoliceInspect ? Consts.PoliceRecordScoreDubious -
+																				(Difficulty < Difficulty.Normal ? 0 : 1) : Consts.PoliceRecordScoreCriminal;
+
+					EncounterType								= EncounterType.PoliceAttack;
+					Commander.PoliceRecordScore	= Math.Min(Commander.PoliceRecordScore + scoreMod, scoreMin);
+				}
+			}
+
+			return EncounterCmdrFleeing;
+		}
+
+		public bool EncounterVerifySubmit(IWin32Window owner)
+		{
+			bool submit	= false;
+
+			if (Commander.Ship.DetectableIllegalCargoOrPassengers)
+			{
+				string	str1	= Commander.Ship.IllegalSpecialCargoDescription("", true, true);
+				string	str2	= Commander.Ship.IllegalSpecialCargo ? Strings.EncounterPoliceSubmitArrested : "";
+
+				if (FormAlert.Alert(AlertType.EncounterPoliceSubmit, owner, str1, str2) == DialogResult.Yes)
+				{
+					submit	= true;
+
+					// If you carry illegal goods, they are impounded and you are fined
+					if (Commander.Ship.DetectableIllegalCargo)
+					{
+						Commander.Ship.RemoveIllegalGoods();
+
+						int fine				= (int)Math.Max(100, Math.Min(10000, Math.Ceiling(Commander.Worth /
+															((Difficulty.Impossible - Difficulty + 2) * 10) / 50) * 50));
+						int	cashPayment	= Math.Min(Commander.Cash, fine);
+						Commander.Debt	+= fine - cashPayment;
+						Commander.Cash	-= cashPayment;
+
+						FormAlert.Alert(AlertType.EncounterPoliceFine, owner, Functions.Multiples(fine, Strings.MoneyUnit));
+
+						Commander.PoliceRecordScore	+= Consts.ScoreTrafficking;
+					}
+				}
+			}
+			else
+			{
+				submit	= true;
+
+				// If you aren't carrying illegal cargo or passengers, the police will increase your lawfulness record
+				FormAlert.Alert(AlertType.EncounterPoliceNothingFound, owner);
+				Commander.PoliceRecordScore	-= Consts.ScoreTrafficking;
+			}
+
+			return submit;
+		}
+
+		public EncounterResult EncounterVerifySurrender(IWin32Window owner)
+		{
+			EncounterResult result	= EncounterResult.Continue;
+
+			if (Opponent.Type == ShipType.Mantis)
+			{
+				if (Commander.Ship.ArtifactOnBoard)
+				{
+					if (FormAlert.Alert(AlertType.EncounterAliensSurrender, owner) == DialogResult.Yes)
+					{
+						FormAlert.Alert(AlertType.ArtifactRelinquished, owner);
+						QuestStatusArtifact	= SpecialEvent.StatusArtifactNotStarted;
+
+						result	= EncounterResult.Normal;
+					}
+				}
+				else
+					FormAlert.Alert(AlertType.EncounterSurrenderRefused, owner);
+			}
+			else if (EncounterType == EncounterType.PoliceAttack || EncounterType == EncounterType.PoliceSurrender)
+			{
+				if (Commander.PoliceRecordScore <= Consts.PoliceRecordScorePsychopath)
+					FormAlert.Alert(AlertType.EncounterSurrenderRefused, owner);
+				else if (FormAlert.Alert(AlertType.EncounterPoliceSurrender, owner,
+					new string[] { Commander.Ship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, false),
+												 Commander.Ship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
+					result		= EncounterResult.Arrested;
+			}
+			else
+			{
+				Raided	= true;
+
+				if (Commander.Ship.SculptureOnBoard)
+				{
+					QuestStatusSculpture	= SpecialEvent.StatusSculptureNotStarted;
+					FormAlert.Alert(AlertType.EncounterPiratesTakeSculpture);
+				}
+
+				if (Commander.Ship.FilledNormalCargoBays == 0)
+				{
+					int	blackmail				 = Math.Min(25000, Math.Max(500, Commander.Worth / 20));
+					int	cashPayment			 = Math.Min(Commander.Cash, blackmail);
+					Commander.Debt	+= blackmail - cashPayment;
+					Commander.Cash	-= cashPayment;
+					FormAlert.Alert(AlertType.EncounterPiratesFindNoCargo, owner,
+						Functions.Multiples(blackmail, Strings.MoneyUnit));
+				}
+				else
+				{
+					FormAlert.Alert(AlertType.EncounterLooting, owner);
+
+					// Pirates steal as much as they have room for, which could be everything - JAF.
+					int	bays	= Opponent.FreeCargoBays;
+					while (bays > 0 && Commander.Ship.FilledNormalCargoBays > 0)
+					{
+						int item	= Functions.GetRandom(Commander.Ship.Cargo.Length);
+						if (Commander.Ship.Cargo[item] > 0)
+						{
+							Commander.PriceCargo[item]	-= Commander.PriceCargo[item] / Commander.Ship.Cargo[item];
+							Commander.Ship.Cargo[item]--;
+							bays--;
+						}
+					}
+				}
+
+				if (Commander.Ship.WildOnBoard)
+				{
+					if (Opponent.CrewQuarters > 1)
+					{
+						// Wild hops onto Pirate Ship
+						QuestStatusWild	= SpecialEvent.StatusWildNotStarted;
+						FormAlert.Alert(AlertType.WildGoesPirates, owner);
+					}
+					else
+						// no room on pirate ship
+						FormAlert.Alert(AlertType.WildChatsPirates, owner);
+				}
+
+				// pirates puzzled by reactor
+				if (Commander.Ship.ReactorOnBoard)
+					FormAlert.Alert(AlertType.EncounterPiratesExamineReactor);
+
+				result	= EncounterResult.Normal;
+			}
+
+			return result;
+		}
+
+		public EncounterResult EncounterVerifyYield(IWin32Window owner)
+		{
+			EncounterResult result	= EncounterResult.Continue;
+
+			if (Commander.Ship.IllegalSpecialCargo)
+			{
+				if (FormAlert.Alert(AlertType.EncounterPoliceSurrender, owner,
+					new string[] { Commander.Ship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, true),
+												 Commander.Ship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
+					result	= EncounterResult.Arrested;
+			}
+			else
+			{
+				string	str1	= Commander.Ship.IllegalSpecialCargoDescription("", false, true);
+
+				if (FormAlert.Alert(AlertType.EncounterPoliceSubmit, owner, str1, "") == DialogResult.Yes)
+				{
+					// Police Record becomes dubious, if it wasn't already.
+					if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreDubious)
+						Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
+
+					Commander.Ship.RemoveIllegalGoods();
+
+					result	= EncounterResult.Normal;
+				}
+			}
+
+			return result;
+		}
+
+		private void EncounterWon(IWin32Window owner)
+		{
+			if (EncounterType >= EncounterType.PirateAttack && EncounterType <= EncounterType.PirateSurrender &&
+				Opponent.Type != ShipType.Mantis && Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious)
+				FormAlert.Alert(AlertType.EncounterPiratesBounty, owner, Functions.Multiples(Opponent.Bounty(),
+					Strings.MoneyUnit));
+			else
+				FormAlert.Alert(AlertType.EncounterYouWin, owner);
+
+			switch (EncounterType)
+			{
+				case EncounterType.FamousCaptainAttack:
+					Commander.KillsTrader++;
+					if (Commander.ReputationScore < Consts.ReputationScoreDangerous)
+						Commander.ReputationScore	= Consts.ReputationScoreDangerous;
+					else
+						Commander.ReputationScore	+= Consts.ScoreKillCaptain;
+
+					// bump news flag from attacked to ship destroyed
+					NewsReplaceEvent(NewsLatestEvent(), NewsLatestEvent() + 1);
+					break;
+				case EncounterType.DragonflyAttack:
+					Commander.KillsPirate++;
+					Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+					QuestStatusDragonfly				= SpecialEvent.StatusDragonflyDestroyed;
+					break;
+				case EncounterType.PirateAttack:
+				case EncounterType.PirateFlee:
+				case EncounterType.PirateSurrender:
+					Commander.KillsPirate++;
+					if (Opponent.Type != ShipType.Mantis)
+					{
+						if (Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious)
+							Commander.Cash	+= Opponent.Bounty();
+						Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+						EncounterScoop(owner);
+					}
+					break;
+				case EncounterType.PoliceAttack:
+				case EncounterType.PoliceFlee:
+					Commander.KillsPolice++;
+					Commander.PoliceRecordScore	+= Consts.ScoreKillPolice;
+					break;
+				case EncounterType.ScarabAttack:
+					Commander.KillsPirate++;
+					Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+					QuestStatusScarab						= SpecialEvent.StatusScarabDestroyed;
+					break;
+				case EncounterType.SpaceMonsterAttack:
+					Commander.KillsPirate++;
+					Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+					QuestStatusSpaceMonster			= SpecialEvent.StatusSpaceMonsterDestroyed;
+					break;
+				case EncounterType.TraderAttack:
+				case EncounterType.TraderFlee:
+				case EncounterType.TraderSurrender:
+					Commander.KillsTrader++;
+					Commander.PoliceRecordScore	+= Consts.ScoreKillTrader;
+					EncounterScoop(owner);
+					break;
+				default:
+					break;
+			}
+
+			Commander.ReputationScore	+= (int)Opponent.Type / 2 + 1;
 		}
 
 		public void EscapeWithPod()
@@ -2295,6 +3061,365 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_easyEncounters = value;
+			}
+		}
+
+		public bool						EncounterContinueFleeing
+		{
+			get
+			{
+				return _encounterContinueFleeing;
+			}
+			set
+			{
+				_encounterContinueFleeing = value;
+			}
+		}
+
+		public string					EncounterAction
+		{
+			get
+			{
+				string	action		= "";
+
+				if (EncounterOppFleeing)
+				{
+					if (EncounterType == EncounterType.PirateSurrender || EncounterType == EncounterType.TraderSurrender)
+						action	= Functions.StringVars(Strings.EncounterActionOppSurrender, EncounterShipText);
+					else
+						action	= Functions.StringVars(Strings.EncounterActionOppFleeing, EncounterShipText);
+				}
+				else
+					action		= Functions.StringVars(Strings.EncounterActionOppAttacks, EncounterShipText);
+
+				return action;
+			}
+		}
+
+		public string					EncounterActionInitial
+		{
+			get
+			{
+				string	text			= "";
+
+				// Set up the fleeing variable initially.
+				EncounterOppFleeing	= false;
+
+				switch (EncounterType)
+				{
+					case EncounterType.BottleGood:
+					case EncounterType.BottleOld:
+						text	= Strings.EncounterTextBottle;
+						break;
+					case EncounterType.CaptainAhab:
+					case EncounterType.CaptainConrad:
+					case EncounterType.CaptainHuie:
+						text	= Strings.EncounterTextFamousCaptain;
+						break;
+					case EncounterType.DragonflyAttack:
+					case EncounterType.FamousCaptainAttack:
+					case EncounterType.PirateAttack:
+					case EncounterType.PoliceAttack:
+					case EncounterType.ScarabAttack:
+					case EncounterType.SpaceMonsterAttack:
+					case EncounterType.TraderAttack:
+						text	= Strings.EncounterTextOpponentAttack;
+						break;
+					case EncounterType.DragonflyIgnore:
+					case EncounterType.PirateIgnore:
+					case EncounterType.PoliceIgnore:
+					case EncounterType.ScarabIgnore:
+					case EncounterType.SpaceMonsterIgnore:
+					case EncounterType.TraderIgnore:
+						text	= Commander.Ship.Cloaked ? Strings.EncounterTextOpponentNoNotice : Strings.EncounterTextOpponentIgnore;
+						break;
+					case EncounterType.MarieCeleste:
+						text	= Strings.EncounterTextMarieCeleste;
+						break;
+					case EncounterType.MarieCelestePolice:
+						text	= Strings.EncounterTextPolicePostMarie;
+						break;
+					case EncounterType.PirateFlee:
+					case EncounterType.PoliceFlee:
+					case EncounterType.TraderFlee:
+						text								= Strings.EncounterTextOpponentFlee;
+						EncounterOppFleeing	= true;
+						break;
+					case EncounterType.PirateSurrender:
+					case EncounterType.TraderSurrender:
+						text	= Strings.EncounterTextOpponentSurrender;
+						break;
+					case EncounterType.PoliceInspect:
+						text	= Strings.EncounterTextPoliceInspection;
+						break;
+					case EncounterType.PoliceSurrender:
+						text	= Strings.EncounterTextPoliceSurrender;
+						break;
+					case EncounterType.TraderBuy:
+					case EncounterType.TraderSell:
+						text	= Strings.EncounterTextTrader;
+						break;
+				}
+
+				return text;
+			}
+		}
+
+		public bool						EncounterCmdrFleeing
+		{
+			get
+			{
+				return _encounterCmdrFleeing;
+			}
+			set
+			{
+				_encounterCmdrFleeing = value;
+			}
+		}
+
+		public bool						EncounterCmdrHit
+		{
+			get
+			{
+				return _encounterCmdrHit;
+			}
+			set
+			{
+				_encounterCmdrHit = value;
+			}
+		}
+
+		public bool						EncounterContinueAttacking
+		{
+			get
+			{
+				return _encounterContinueAttacking;
+			}
+			set
+			{
+				_encounterContinueAttacking = value;
+			}
+		}
+
+		public int						EncounterImageIndex
+		{
+			get
+			{
+				int	encounterImage	= -1;
+
+				switch (EncounterType)
+				{
+					case EncounterType.BottleGood:
+					case EncounterType.BottleOld:
+					case EncounterType.CaptainAhab:
+					case EncounterType.CaptainConrad:
+					case EncounterType.CaptainHuie:
+					case EncounterType.MarieCeleste:
+						encounterImage		= Consts.EncounterImgSpecial;
+						break;
+					case EncounterType.DragonflyAttack:
+					case EncounterType.DragonflyIgnore:
+					case EncounterType.ScarabAttack:
+					case EncounterType.ScarabIgnore:
+						encounterImage		= Consts.EncounterImgPirate;
+						break;
+					case EncounterType.MarieCelestePolice:
+					case EncounterType.PoliceAttack:
+					case EncounterType.PoliceFlee:
+					case EncounterType.PoliceIgnore:
+					case EncounterType.PoliceInspect:
+					case EncounterType.PoliceSurrender:
+						encounterImage		= Consts.EncounterImgPolice;
+						break;
+					case EncounterType.PirateAttack:
+					case EncounterType.PirateFlee:
+					case EncounterType.PirateIgnore:
+						if (Opponent.Type == ShipType.Mantis)
+							encounterImage	= Consts.EncounterImgAlien;
+						else
+							encounterImage	= Consts.EncounterImgPirate;
+						break;
+					case EncounterType.SpaceMonsterAttack:
+					case EncounterType.SpaceMonsterIgnore:
+						encounterImage		= Consts.EncounterImgAlien;
+						break;
+					case EncounterType.TraderBuy:
+					case EncounterType.TraderFlee:
+					case EncounterType.TraderIgnore:
+					case EncounterType.TraderSell:
+						encounterImage		= Consts.EncounterImgTrader;
+						break;
+				}
+
+				return encounterImage;
+			}
+		}
+
+		public bool						EncounterOppFleeing
+		{
+			get
+			{
+				return _encounterOppFleeing;
+			}
+			set
+			{
+				_encounterOppFleeing = value;
+			}
+		}
+
+		public bool						EncounterOppFleeingPrev
+		{
+			get
+			{
+				return _encounterOppFleeingPrev;
+			}
+			set
+			{
+				_encounterOppFleeingPrev = value;
+			}
+		}
+
+		public bool						EncounterOppHit
+		{
+			get
+			{
+				return _encounterOppHit;
+			}
+			set
+			{
+				_encounterOppHit = value;
+			}
+		}
+
+		public string					EncounterShipText
+		{
+			get
+			{
+				string	shipText	= Opponent.Name;
+
+				switch (EncounterType)
+				{
+					case EncounterType.FamousCaptainAttack:
+						shipText	= Strings.EncounterShipCaptain;
+						break;
+					case EncounterType.PirateAttack:
+					case EncounterType.PirateFlee:
+					case EncounterType.PirateSurrender:
+						shipText	= Opponent.Type == ShipType.Mantis ? Strings.EncounterShipMantis : Strings.EncounterShipPirate;
+						break;
+					case EncounterType.PoliceAttack:
+					case EncounterType.PoliceFlee:
+						shipText	= Strings.EncounterShipPolice;
+						break;
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderFlee:
+					case EncounterType.TraderSurrender:
+						shipText	= Strings.EncounterShipTrader;
+						break;
+					default:
+						break;
+				}
+
+				return shipText;
+			}
+		}
+
+		public string					EncounterText
+		{
+			get
+			{
+				string	cmdrStatus	= "";
+				string	oppStatus		= "";
+
+				if (EncounterCmdrFleeing)
+					cmdrStatus	= Functions.StringVars(Strings.EncounterActionCmdrChased, EncounterShipText);
+				else if (EncounterOppHit)
+					cmdrStatus	= Functions.StringVars(Strings.EncounterActionOppHit, EncounterShipText);
+				else
+					cmdrStatus	= Functions.StringVars(Strings.EncounterActionOppMissed, EncounterShipText);
+
+				if (EncounterOppFleeingPrev)
+					oppStatus		= Functions.StringVars(Strings.EncounterActionOppChased, EncounterShipText);
+				else if (EncounterCmdrHit)
+					oppStatus		= Functions.StringVars(Strings.EncounterActionCmdrHit, EncounterShipText);
+				else
+					oppStatus		= Functions.StringVars(Strings.EncounterActionCmdrMissed, EncounterShipText);
+
+				return cmdrStatus + Environment.NewLine + oppStatus;
+			}
+		}
+
+		public string					EncounterTextInitial
+		{
+			get
+			{
+				string	encounterPretext	= "";
+
+				switch (EncounterType)
+				{
+					case EncounterType.BottleGood:
+					case EncounterType.BottleOld:
+						encounterPretext	= Strings.EncounterPretextBottle;
+						break;
+					case EncounterType.DragonflyAttack:
+					case EncounterType.DragonflyIgnore:
+					case EncounterType.ScarabAttack:
+					case EncounterType.ScarabIgnore:
+						encounterPretext	= Strings.EncounterPretextStolen;
+						break;
+					case EncounterType.CaptainAhab:
+						encounterPretext	= Strings.EncounterPretextCaptainAhab;
+						break;
+					case EncounterType.CaptainConrad:
+						encounterPretext	= Strings.EncounterPretextCaptainConrad;
+						break;
+					case EncounterType.CaptainHuie:
+						encounterPretext	= Strings.EncounterPretextCaptainHuie;
+						break;
+					case EncounterType.MarieCeleste:
+						encounterPretext	= Strings.EncounterPretextMarie;
+						break;
+					case EncounterType.MarieCelestePolice:
+					case EncounterType.PoliceAttack:
+					case EncounterType.PoliceFlee:
+					case EncounterType.PoliceIgnore:
+					case EncounterType.PoliceInspect:
+					case EncounterType.PoliceSurrender:
+						encounterPretext	= Strings.EncounterPretextPolice;
+						break;
+					case EncounterType.PirateAttack:
+					case EncounterType.PirateFlee:
+					case EncounterType.PirateIgnore:
+						if (Opponent.Type == ShipType.Mantis)
+							encounterPretext	= Strings.EncounterPretextAlien;
+						else
+							encounterPretext	= Strings.EncounterPretextPirate;
+						break;
+					case EncounterType.SpaceMonsterAttack:
+					case EncounterType.SpaceMonsterIgnore:
+						encounterPretext	= Strings.EncounterPretextSpaceMonster;
+						break;
+					case EncounterType.TraderBuy:
+					case EncounterType.TraderFlee:
+					case EncounterType.TraderIgnore:
+					case EncounterType.TraderSell:
+						encounterPretext	= Strings.EncounterPretextTrader;
+						break;
+					case EncounterType.FamousCaptainAttack:
+					case EncounterType.PirateSurrender:
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderSurrender:
+						// These should never be the initial encounter type.
+						break;
+				}
+
+				return Functions.StringVars(Strings.EncounterText, new string[]
+					{
+						Functions.Multiples(Clicks, Strings.DistanceSubunit),
+						WarpSystem.Name,
+						encounterPretext,
+						Opponent.Name.ToLower()
+					});
 			}
 		}
 

@@ -17,7 +17,6 @@
 
 TODO:
 	in Form_Alert.cs : move the strings to a resource
-	in Form_Encounter.cs: move as much code as possible out of the GUI class
 	make shipyard news advertisements
 	rework escape pod sequence
 	kidnapped "princess" quest
