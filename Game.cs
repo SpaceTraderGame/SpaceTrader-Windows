@@ -423,16 +423,17 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Ship	ship	= Commander.Ship;
 
-			ship.Hull += Math.Min(ship.HullStrength - ship.Hull, Functions.GetRandom(ship.Engineer));
+			if (ship.Hull < ship.HullStrength)
+				ship.Hull += Math.Min(ship.HullStrength - ship.Hull, Functions.GetRandom(ship.Engineer));
 
 			for (int i = 0; i < ship.Shields.Length; ++i)
 				if (ship.Shields[i] != null)
 					ship.Shields[i].Charge	= ship.Shields[i].Power;
 
 			bool	fuelOk	= true;
-			if (Options.AutoFuel)
+			int		toAdd		= ship.FuelTanks - ship.Fuel;
+			if (Options.AutoFuel && toAdd > 0)
 			{
-				int	toAdd	= ship.FuelTanks - ship.Fuel;
 				if (Commander.Cash >= toAdd * ship.FuelCost)
 				{
 					ship.Fuel				+= toAdd;
@@ -443,9 +444,9 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			bool	repairOk	= true;
-			if (Options.AutoRepair)
+			toAdd						= ship.HullStrength - ship.Hull;
+			if (Options.AutoRepair && toAdd > 0)
 			{
-				int	toAdd	= ship.HullStrength - ship.Hull;
 				if (Commander.Cash >= toAdd * ship.RepairCost)
 				{
 					ship.Hull				+= toAdd;
