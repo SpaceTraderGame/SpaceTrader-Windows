@@ -51,6 +51,8 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Label lblPilotLabel;
 		private System.Windows.Forms.ListBox lstForHire;
 		private System.Windows.Forms.ListBox lstCrew;
+		private System.Windows.Forms.Label lblCrewNoQuarters;
+		private System.Windows.Forms.Label lblForHireNone;
 		private System.ComponentModel.Container components = null;
 
 		#endregion
@@ -59,8 +61,6 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Game				game								= Game.CurrentGame;
 		private CrewMember	selectedCrewMember	= null;
-		private System.Windows.Forms.Label lblCrewNoQuarters;
-		private System.Windows.Forms.Label lblForHireNone;
 		private bool				handlingSelect			= false;
 
 		#endregion
