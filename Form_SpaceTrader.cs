@@ -3229,11 +3229,16 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void SpaceTrader_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			if (this.WindowState == FormWindowState.Normal)
+			if (game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes)
 			{
-				SetRegistrySetting("X", this.Left.ToString());
-				SetRegistrySetting("Y", this.Top.ToString());
+				if (this.WindowState == FormWindowState.Normal)
+				{
+					SetRegistrySetting("X", this.Left.ToString());
+					SetRegistrySetting("Y", this.Top.ToString());
+				}
 			}
+			else
+				e.Cancel	= true;
 		}
 
 		private void SpaceTrader_Load(object sender, System.EventArgs e)
@@ -3669,13 +3674,13 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void mnuGameExit_Click(object sender, System.EventArgs e)
 		{
-			Application.Exit();
+			Close();
 		}
 
 		private void mnuGameNew_Click(object sender, System.EventArgs e)
 		{
 			FormNewCommander	form	= new FormNewCommander();
-			if ((game == null || FormAlert.Alert(AlertType.FileOpenConfirm, this) == DialogResult.Yes) &&
+			if ((game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
 				form.ShowDialog(this) == DialogResult.OK)
 			{
 				game											= new Game(form.CommanderName, form.Difficulty, form.Pilot, form.Fighter, form.Trader,
@@ -3689,7 +3694,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void mnuGameLoad_Click(object sender, System.EventArgs e)
 		{
-			if ((game == null || FormAlert.Alert(AlertType.FileOpenConfirm, this) == DialogResult.Yes) &&
+			if ((game == null || FormAlert.Alert(AlertType.GameAbandonConfirm, this) == DialogResult.Yes) &&
 				dlgOpen.ShowDialog(this) == DialogResult.OK)
 				LoadGame(dlgOpen.FileName);
 		}

@@ -535,11 +535,11 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.FileErrorSave:
 					result	= (new FormAlert("Error", "An error occurred while trying to save ^1." + Environment.NewLine + Environment.NewLine + "^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
-				case AlertType.FileOpenConfirm:
-					result	= (new FormAlert("Are You Sure?", "Are you sure you want to abandon your current game?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
-					break;
 				case AlertType.FleaBuilt:
 					result	= (new FormAlert("Flea Built", "In 3 days and with 500 credits, you manage to convert your pod into a Flea.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.GameAbandonConfirm:
+					result	= (new FormAlert("Are You Sure?", "Are you sure you want to abandon your current game?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
 					break;
 				case AlertType.GameClearHighScores:
 					result	= (new FormAlert("Clear High Scores", "Are you sure you wish to clear the high score table?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
