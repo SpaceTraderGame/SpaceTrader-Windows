@@ -524,6 +524,6 @@ namespace Fryz.Apps.SpaceTrader
 				lblBounty.Visible = false;
 			}
 		}
-	}
 		#endregion
+	}
 }
