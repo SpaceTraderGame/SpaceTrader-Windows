@@ -27,7 +27,6 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]
 	public class SpecialEvent
 	{
 		#region Constants

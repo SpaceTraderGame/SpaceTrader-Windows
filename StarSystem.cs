@@ -26,7 +26,6 @@ using System;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]
 	public class StarSystem
 	{
 		#region Member Declarations
