@@ -29,9 +29,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		private SpecialEventType	_type					= SpecialEventType.Artifact;
 		private int								_price				= 0;
-		private int								_occurance		= 0;
+		private int								_occurance		= 0;			// This was spelled wrong in the previous version
 		private bool							_messageOnly	= false;
-		private StarSystem				_location			= null;  // Legacy
+		private StarSystem				_location			= null;		// Legacy
 
 		#endregion
 

@@ -454,7 +454,7 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					ShipSpec	spec	= Consts.ShipSpecs[i];
 					if (polSys.ShipTypeLikely(spec.Type, oppType))
-						total	+= spec.Occurance;
+						total	+= spec.Occurrence;
 				}
 
 				for (int i = 0; i < tries; i++)
@@ -469,9 +469,9 @@ namespace Fryz.Apps.SpaceTrader
 						if (polSys.ShipTypeLikely(Consts.ShipSpecs[j].Type, oppType))
 						{
 							if (sum > 0)
-								sum	+= Consts.ShipSpecs[j].Occurance;
+								sum	+= Consts.ShipSpecs[j].Occurrence;
 							else
-								sum	 = Consts.ShipSpecs[j].Occurance;
+								sum	 = Consts.ShipSpecs[j].Occurrence;
 						}
 					} while (sum < x && j < Consts.MaxShip);
 

@@ -103,18 +103,18 @@ namespace Fryz.Apps.SpaceTrader
 
 		private SpecialEventType	_type;
 		private int								_price;
-		private int								_occurance;
+		private int								_occurrence;
 		private bool							_messageOnly;
 
 		#endregion
 
 		#region Methods
 
-		public SpecialEvent(SpecialEventType type, int price, int occurance, bool messageOnly)
+		public SpecialEvent(SpecialEventType type, int price, int occurrence, bool messageOnly)
 		{
 			_type					= type;
 			_price				= price;
-			_occurance		= occurance;
+			_occurrence		= occurrence;
 			_messageOnly	= messageOnly;
 		}
 
@@ -145,11 +145,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Occurance
+		public int Occurrence
 		{
 			get
 			{
-				return _occurance;
+				return _occurrence;
 			}
 		}
 

@@ -44,7 +44,7 @@ namespace Fryz.Apps.SpaceTrader
 		private int				_hullStrength	= 0;
 		private int				_repairCost		= 0;
 		private int				_price				= 0;
-		private int				_occurance		= 0;
+		private int				_occurrence		= 0;
 		private Activity	_police				= Activity.NA;
 		private Activity	_pirates			= Activity.NA;
 		private Activity	_traders			= Activity.NA;
@@ -61,7 +61,7 @@ namespace Fryz.Apps.SpaceTrader
 		}
 
 		public ShipSpec(ShipType type, Size size, int cargoBays, int weaponSlots, int shieldSlots, int gadgetSlots,
-			int crewQuarters, int fuelTanks, int fuelCost, int hullStrength, int repairCost, int price, int occurance,
+			int crewQuarters, int fuelTanks, int fuelCost, int hullStrength, int repairCost, int price, int occurrence,
 			Activity police, Activity pirates, Activity traders, TechLevel minTechLevel)
 		{
 			_type					= type;
@@ -76,7 +76,7 @@ namespace Fryz.Apps.SpaceTrader
 			_hullStrength	= hullStrength;
 			_repairCost		= repairCost;
 			_price				= price;
-			_occurance		= occurance;
+			_occurrence		= occurrence;
 			_police				= police;
 			_pirates			= pirates;
 			_traders			=	traders;
@@ -97,7 +97,7 @@ namespace Fryz.Apps.SpaceTrader
 			_hullStrength	= (int)GetValueFromHash(hash, "_hullStrength", _hullStrength);
 			_repairCost		= (int)GetValueFromHash(hash, "_repairCost", _repairCost);
 			_price				= (int)GetValueFromHash(hash, "_price", _price);
-			_occurance		= (int)GetValueFromHash(hash, "_occurance", _occurance);
+			_occurrence		= (int)GetValueFromHash(hash, "_occurrence", _occurrence);
 			_police				= (Activity)GetValueFromHash(hash, "_police", _police);
 			_pirates			= (Activity)GetValueFromHash(hash, "_pirates", _pirates);
 			_traders			= (Activity)GetValueFromHash(hash, "_traders", _traders);
@@ -132,7 +132,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_hullStrength",	_hullStrength);
 			hash.Add("_repairCost",		_repairCost);
 			hash.Add("_price",				_price);
-			hash.Add("_occurance",		_occurance);
+			hash.Add("_occurrence",		_occurrence);
 			hash.Add("_police",				(int)_police);
 			hash.Add("_pirates",			(int)_pirates);
 			hash.Add("_traders",			(int)_traders);
@@ -170,7 +170,7 @@ namespace Fryz.Apps.SpaceTrader
 			_hullStrength	= Consts.ShipSpecs[typeInt]._hullStrength;
 			_repairCost		= Consts.ShipSpecs[typeInt]._repairCost;
 			_price				= Consts.ShipSpecs[typeInt]._price;
-			_occurance		= Consts.ShipSpecs[typeInt]._occurance;
+			_occurrence		= Consts.ShipSpecs[typeInt]._occurrence;
 			_police				= Consts.ShipSpecs[typeInt]._police;
 			_pirates			= Consts.ShipSpecs[typeInt]._pirates;
 			_traders			=	Consts.ShipSpecs[typeInt]._traders;
@@ -347,11 +347,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Occurance
+		public int Occurrence
 		{
 			get
 			{
-				return _occurance;
+				return _occurrence;
 			}
 		}
 

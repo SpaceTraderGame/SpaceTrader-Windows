@@ -39,7 +39,7 @@ namespace Fryz.Apps.SpaceTrader
 		private int				_hullStrength	= 0;
 		private int				_repairCost		= 0;
 		private int				_price				= 0;
-		private int				_occurance		= 0;
+		private int				_occurance		= 0; // This was spelled wrong in the previous version
 		private int				_police				= 0;
 		private int				_pirates			= 0;
 		private int				_traders			= 0;
@@ -66,7 +66,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_hullStrength",	_hullStrength);
 			hash.Add("_repairCost",		_repairCost);
 			hash.Add("_price",				_price);
-			hash.Add("_occurance",		_occurance);
+			hash.Add("_occurrence",		_occurance); // Fix the spelling of occurrence
 			hash.Add("_police",				_police);
 			hash.Add("_pirates",			_pirates);
 			hash.Add("_traders",			_traders);
