@@ -667,6 +667,11 @@ namespace Fryz.Apps.SpaceTrader
 				if (game.Universe[i].ShipyardId != ShipyardId.NA)
 					shipyardSystemIds[sIndex++]	= i;
 			}
+
+			// Sort the arrays.
+			Sort("M", "N");		// Sort mercenaries by name.
+			Sort("Q", "S");		// Sort quests by system name.
+			Sort("S", "S");		// Sort shipyards by system name.
 		}
 
 		private void SetLabelHeights()
