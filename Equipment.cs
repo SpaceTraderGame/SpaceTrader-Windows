@@ -102,6 +102,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
+				// TODO: use real image.
 				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)ShipType.Bottle * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
 			}
 		}
