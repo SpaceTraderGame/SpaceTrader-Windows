@@ -819,6 +819,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterTextTrader							= "You are hailed with an offer to trade goods.";
 
 		public static string	EquipmentNone										= "No ^1s";
+		public static string	EquipmentFreeSlot								= " - FREE SLOT - ";
 
 		public static string	FileFormatBad										= "The file is not a save game file, or is the wrong version or has been corrupted.";
 
