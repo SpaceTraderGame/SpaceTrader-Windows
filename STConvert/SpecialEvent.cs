@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
@@ -32,26 +32,6 @@ namespace Fryz.Apps.SpaceTrader
 		private int								_occurance		= 0;
 		private bool							_messageOnly	= false;
 		private StarSystem				_location			= null;  // Legacy
-
-		#endregion
-
-		#region Methods
-
-		public override Hashtable Serialize()
-		{
-			Hashtable	hash	= base.Serialize();
-
-			hash.Add("_type",					(int)_type);
-			hash.Add("_price",				_price);
-			hash.Add("_occurance",		_occurance);
-			hash.Add("_messageOnly",	_messageOnly);
-
-			// Location is a legacy field. The following line supresses a warning
-			// message about it not being used.
-			_location	= _location;
-
-			return hash;
-		}
 
 		#endregion
 

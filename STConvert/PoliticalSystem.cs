@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
@@ -22,7 +22,7 @@ using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	[Serializable()]      
+	[Serializable()]
 	public class PoliticalSystem: STSerializableObject
 	{
 		#region Member Declarations
@@ -38,29 +38,6 @@ namespace Fryz.Apps.SpaceTrader
 		private bool								_drugsOk					= false;
 		private bool								_firearmsOk				= false;
 		private TradeItemType				_wanted						= TradeItemType.NA;
-
-		#endregion
-
-		#region Methods
-
-		public override Hashtable Serialize()
-		{
-			Hashtable	hash	= base.Serialize();
-
-			hash.Add("_type",							(int)_type);
-			hash.Add("_reactionIllegal",	_reactionIllegal);
-			hash.Add("_activityPolice",		(int)_activityPolice);
-			hash.Add("_activityPirates",	(int)_activityPirates);
-			hash.Add("_activityTraders",	(int)_activityTraders);
-			hash.Add("_minTech",					(int)_minTech);
-			hash.Add("_maxTech",					(int)_maxTech);
-			hash.Add("_bribeLevel",				_bribeLevel);
-			hash.Add("_drugsOk",					_drugsOk);
-			hash.Add("_firearmsOk",				_firearmsOk);
-			hash.Add("_wanted",						(int)_wanted);
-
-			return hash;
-		}
 
 		#endregion
 
