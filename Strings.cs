@@ -408,7 +408,7 @@ namespace Fryz.Apps.SpaceTrader
 			"Mantis",
 			"Scarab",
 			"Bottle",
-			"Custom Design"
+			"Custom Ship"
 		};
 		#endregion
 
@@ -929,7 +929,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	ShipyardSizeItem								= "^1 (Max ^2)";
 		public static string	ShipyardTitle										= "Ship Design at ^1 Shipyards";
 		public static string	ShipyardUnit										= "Unit";
-		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty.\"  There is a modest penalty at ^1%, and a more severe one at ^2%.";
+		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty\" due to the engineering difficulty of squeezing everything in.  There is a modest penalty at 80%, and a more severe one at 90%.";
 
 		public static string	SpecialCargoArtifact						= "An alien artifact.";
 		public static string	SpecialCargoExperiment					= "A portable singularity.";
