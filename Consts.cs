@@ -59,7 +59,7 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			GalaxyWidth										= 154;
 		public const	int			GalaxyHeight									= 110;
 		public const	int			MinDistance										= 7;
-		public const	int			CloseDistance									= 11;
+		public const	int			CloseDistance									= 13;
 		public const	int			MaxRange											= 20;
 		public const	int			WormDist											= 25;
 
