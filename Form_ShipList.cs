@@ -152,7 +152,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				FormAlert.Alert(AlertType.TribblesTradeIn, this);
 				game.TribbleMessage	= true;
-			}		
+			}
 		}
 
 		protected override void Dispose(bool disposing)

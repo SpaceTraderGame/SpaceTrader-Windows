@@ -137,7 +137,7 @@ namespace Fryz.Apps.SpaceTrader
 		public void TonicTweakRandomSkill()
 		{
 			int[]	oldSkills	= (int[])Skills.Clone();
-	
+
 			if (Game.CurrentGame.Difficulty < Difficulty.Hard)
 			{
 				// add one to a random skill, subtract one from a random skill

@@ -307,14 +307,14 @@ namespace Fryz.Apps.SpaceTrader
 				CrewMember[]	mercs	= Game.CurrentGame.Mercenaries;
 				CrewMember[]	crew	= Game.CurrentGame.Commander.Ship.Crew;
 				CrewMember		merc	= null;
-	
+
 				for (int i = 1; i < mercs.Length && merc == null; i++)
 				{
 					if (mercs[i].CurrentSystem == mercs[0].CurrentSystem &&
 						!Game.CurrentGame.Commander.Ship.HasCrew(mercs[i].Id))
 						merc	= mercs[i];
 				}
-	
+
 				return merc;
 			}
 		}

@@ -233,7 +233,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (count > 0)
 				{
 					lblEquipLabel.Text	+= equipPrinted ? "\r\n" : "Equipment:\r\n";
-	
+
 					if (i == (int)GadgetType.ExtraCargoBays)
 					{
 						count	*= 5;

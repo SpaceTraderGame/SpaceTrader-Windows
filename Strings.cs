@@ -127,33 +127,33 @@ namespace Fryz.Apps.SpaceTrader
 		};
 		#endregion
 
-		#region EquipmentDescriptions  
-		public static string[][]     EquipmentDescriptions     = new string[][]  
-		{  
-			new string[]  
-			{  
-				"A Pulse Laser",  
-				"A Beam Laser",  
-				"A Military Laser",  
-				"A Morgan's Laser"  
-			},  
-			new string[]  
-			{  
-				"An Energy Shield",  
-				"A Reflective Shield",  
-				"A Lightning Shield"  
-			},  
-			new string[]  
-			{  
-				"5 Extra Cargo Bays",  
-				"An Auto-Repair System",  
-				"A Navigating System",  
-				"A Targeting System",  
-				"A Cloaking Device",  
-				"A Fuel Compactor"  
-			}  
-		};  
-		#endregion 
+		#region EquipmentDescriptions
+		public static string[][]     EquipmentDescriptions     = new string[][]
+		{
+			new string[]
+			{
+				"A Pulse Laser",
+				"A Beam Laser",
+				"A Military Laser",
+				"A Morgan's Laser"
+			},
+			new string[]
+			{
+				"An Energy Shield",
+				"A Reflective Shield",
+				"A Lightning Shield"
+			},
+			new string[]
+			{
+				"5 Extra Cargo Bays",
+				"An Auto-Repair System",
+				"A Navigating System",
+				"A Targeting System",
+				"A Cloaking Device",
+				"A Fuel Compactor"
+			}
+		};
+		#endregion
 
 		#region EquipmentTypes
 		public static string[]	EquipmentTypes	= new string[]

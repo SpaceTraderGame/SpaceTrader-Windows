@@ -1072,7 +1072,7 @@ namespace Fryz.Apps.SpaceTrader
 					opponentHit			= !fleeing && ExecuteAttack(cmdrship, opponent, false);
 					break;
 			}
-	
+
 			// Determine whether someone gets destroyed
 			if (cmdrship.Hull <= 0)
 			{
@@ -1224,7 +1224,7 @@ namespace Fryz.Apps.SpaceTrader
 				int	index			= Functions.GetRandom(opponent.FilledCargoBays);
 				int	tradeItem	= -1;
 				for (int sum = 0; sum <= index; sum += opponent.Cargo[++tradeItem]);
-	
+
 				if (FormAlert.Alert(AlertType.EncounterScoop, this, Consts.TradeItems[tradeItem].Name) == DialogResult.Yes)
 				{
 					bool	jettisoned	= false;
@@ -1773,9 +1773,9 @@ namespace Fryz.Apps.SpaceTrader
 						{
 							if (game.Commander.PoliceRecordScore > Consts.PoliceRecordScoreCriminal)
 								game.Commander.PoliceRecordScore	= Consts.PoliceRecordScoreCriminal;
-						
+
 							game.Commander.PoliceRecordScore	+= Consts.ScoreAttackPolice;
-					
+
 							if (game.EncounterType != EncounterType.PoliceFlee)
 								game.EncounterType = EncounterType.PoliceAttack;
 						}
@@ -2008,7 +2008,7 @@ namespace Fryz.Apps.SpaceTrader
 		private void btnPlunder_Click(object sender, System.EventArgs e)
 		{
 			DisableAuto();
-					
+
 			if (game.EncounterType >= EncounterType.TraderAttack)
 				game.Commander.PoliceRecordScore	+= Consts.ScorePlunderTrader;
 			else
@@ -2060,7 +2060,7 @@ namespace Fryz.Apps.SpaceTrader
 						game.Commander.Cash	-= cashPayment;
 
 						FormAlert.Alert(AlertType.EncounterPoliceFine, this, Functions.Multiples(fine, Strings.MoneyUnit));
-						
+
 						game.Commander.PoliceRecordScore	+= Consts.ScoreTrafficking;
 					}
 
@@ -2106,7 +2106,7 @@ namespace Fryz.Apps.SpaceTrader
 			else
 			{
 				game.Raided	= true;
-					
+
 				if (cmdrship.FilledNormalCargoBays == 0)
 				{
 					int	blackmail				 = Math.Min(25000, Math.Max(500, game.Commander.Worth / 20));
@@ -2114,10 +2114,10 @@ namespace Fryz.Apps.SpaceTrader
 					game.Commander.Debt	+= blackmail - cashPayment;
 					game.Commander.Cash	-= cashPayment;
 					FormAlert.Alert(AlertType.EncounterPiratesFindNoCargo, this, Functions.Multiples(blackmail, Strings.MoneyUnit));
-				}		
+				}
 				else
-				{	
-					FormAlert.Alert(AlertType.EncounterLooting, this);									
+				{
+					FormAlert.Alert(AlertType.EncounterLooting, this);
 
 					// Pirates steal as much as they have room for, which could be everything - JAF.
 					int	bays	= opponent.FreeCargoBays;
@@ -2182,14 +2182,14 @@ namespace Fryz.Apps.SpaceTrader
 					Exit(EncounterResult.Arrested);
 			}
 			else
-			{					
+			{
 				// Police Record becomes dubious, if it wasn't already.
 				if (game.Commander.PoliceRecordScore > Consts.PoliceRecordScoreDubious)
 					game.Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
 
 				cmdrship.Cargo[(int)TradeItemType.Narcotics]	= 0;
 				cmdrship.Cargo[(int)TradeItemType.Firearms]		= 0;
-					
+
 				FormAlert.Alert(AlertType.EncounterPoliceSubmit, this);
 
 				Exit(EncounterResult.Normal);

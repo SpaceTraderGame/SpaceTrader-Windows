@@ -250,11 +250,11 @@ namespace Fryz.Apps.SpaceTrader
 
 				if (Commander.Ship.Tribbles > 0)
 					FormAlert.Alert(AlertType.TribblesRemoved, ParentWindow);
-	
+
 				FormAlert.Alert(AlertType.FleaBuilt, ParentWindow);
 				CreateFlea();
 			}
-	
+
 			if (Commander.Debt > 0)
 			{
 				int	paydown			 = Math.Min(Commander.Cash, Commander.Debt);
@@ -657,7 +657,7 @@ namespace Fryz.Apps.SpaceTrader
 						if (form.ShowDialog(owner) == DialogResult.OK)
 							qty	= form.Amount;
 					}
-	
+
 					if (qty > 0)
 					{
 						int	totalPrice	= qty * price;
@@ -693,7 +693,7 @@ namespace Fryz.Apps.SpaceTrader
 			Commander.Ship			= new Ship(ShipType.Flea);
 			Commander.Insurance	= false;
 			Commander.NoClaim		= 0;
-		}	
+		}
 
 		private void CreateShips()
 		{
@@ -1040,7 +1040,7 @@ namespace Fryz.Apps.SpaceTrader
 				FormAlert.Alert(AlertType.AntidoteDestroyed, ParentWindow);
 				QuestStatusJapori = SpecialEvent.StatusJaporiDone;
 			}
-	
+
 			if (Commander.Ship.ArtifactOnBoard)
 			{
 				FormAlert.Alert(AlertType.ArtifactLost, ParentWindow);
@@ -1080,7 +1080,7 @@ namespace Fryz.Apps.SpaceTrader
 				Commander.Cash	 = 0;
 			}
 
-			IncDays(3, ParentWindow);	
+			IncDays(3, ParentWindow);
 
 			CreateFlea();
 		}
@@ -1382,7 +1382,7 @@ namespace Fryz.Apps.SpaceTrader
 							else
 								remove	= false;
 						}
-						
+
 						if (remove)
 						{
 							FormAlert.Alert(AlertType.ReactorOnBoard, ParentWindow);
@@ -1394,7 +1394,7 @@ namespace Fryz.Apps.SpaceTrader
 					curSys.SpecialEventType	= SpecialEventType.ReactorLaser;
 					QuestStatusReactor			= SpecialEvent.StatusReactorDelivered;
 					remove									= false;
-					break;	
+					break;
 				case SpecialEventType.ReactorLaser:
 					if (Commander.Ship.FreeSlotsWeapon == 0)
 					{
@@ -1415,14 +1415,14 @@ namespace Fryz.Apps.SpaceTrader
 					QuestStatusScarab				= SpecialEvent.StatusScarabDestroyed;
 					curSys.SpecialEventType	= SpecialEventType.ScarabUpgradeHull;
 					remove									= false;
-					break;	
+					break;
 				case SpecialEventType.ScarabUpgradeHull:
 					FormAlert.Alert(AlertType.ShipHullUpgraded, ParentWindow);
 					Commander.Ship.HullUpgraded	=  true;
 					Commander.Ship.Hull					+= Consts.HullUpgrade;
 					QuestStatusScarab						=  SpecialEvent.StatusScarabDone;
 					remove											=  false;
-					break;	
+					break;
 				case SpecialEventType.Skill:
 					FormAlert.Alert(AlertType.SpecialSkillIncrease, ParentWindow);
 					Commander.IncreaseRandomSkill();
@@ -1436,7 +1436,7 @@ namespace Fryz.Apps.SpaceTrader
 					money	= true;
 					break;
 				case SpecialEventType.Tribble:
-					FormAlert.Alert(AlertType.TribblesOwn, ParentWindow);						
+					FormAlert.Alert(AlertType.TribblesOwn, ParentWindow);
 					money										= true;
 					Commander.Ship.Tribbles	= 1;
 					break;
@@ -1965,7 +1965,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (DetermineEncounter())
 				{
 					uneventful					= false;
-					
+
 					FormEncounter	form	= new FormEncounter();
 					form.ShowDialog(ParentWindow);
 					ParentWindow.UpdateStatusBar();
@@ -2414,7 +2414,7 @@ namespace Fryz.Apps.SpaceTrader
 							else if (Universe[i].SpecialEventType == SpecialEventType.TribbleBuyer)
 								items.Add(Functions.StringVars(Strings.NewsTribbleBuyer, Universe[i].Name));
 						}
-			
+
 						// And not-always-shown stories
 						if (Universe[i].SystemPressure != SystemPressure.None &&
 							Functions.GetRandom2(100) <= Consts.StoryProbability * (int)curSys.TechLevel + 10 * (5 - (int)Difficulty))

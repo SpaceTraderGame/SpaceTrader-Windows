@@ -47,14 +47,14 @@ namespace Fryz.Apps.SpaceTrader
 		 * Shield
 		 * StarSystem
 		 * Weapon
-		 * 
+		 *
 		 * If an array of a type not listed is converted using ArrayToArrayList, the type
 		 * needs to be added here.
 		 */
 		public static STSerializableObject[] ArrayListToArray(ArrayList list, string type)
 		{
 			STSerializableObject[]	array	= null;
-			
+
 			if (list != null)
 			{
 				switch (type)

@@ -144,7 +144,7 @@ Claim your moon at Utopia.";
 			for (int i = 0; i < Game.CurrentGame.Universe.Length; i++)
 			{
 				StarSystem system = Game.CurrentGame.Universe[i];
-				if (system.Shipyard != null) locations += system.Shipyard.Corporation + " in " + system.Name + "\r\n";
+				if (system.Shipyard != null) locations += system.Shipyard.Name + " in " + system.Name + "\r\n";
 			}
 			FormAlert.Alert(AlertType.Alert, this, "Alert", locations);
 
@@ -235,10 +235,10 @@ Claim your moon at Utopia.";
 				else
 					quests.Add(Strings.QuestWild);
 			}
-	
+
 			if (game.Commander.Ship.Tribbles > 0)
 				quests.Add(Strings.QuestTribbles);
-	
+
 			if (game.QuestStatusMoon == SpecialEvent.StatusMoonBought)
 				quests.Add(Strings.QuestMoon);
 
