@@ -2893,6 +2893,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				FormAlert.Alert(AlertType.FileErrorOpen, this, fileName, Strings.FileFormatBad);
 			}
+			catch (FutureVersionException)
+			{
+				FormAlert.Alert(AlertType.FileErrorOpen, this, fileName, Strings.FileFutureVersion);
+			}
 		}
 
 		private void SaveGame(string fileName, bool saveFileName)

@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class Game: STSerializableObject
+	public class Game : STSerializableObject
 	{
 		#region Member Declarations
 
@@ -131,9 +131,7 @@ namespace Fryz.Apps.SpaceTrader
 
 			string	version	= (string)hash["_version"];
 			if (version.CompareTo(Consts.CurrentVersion) > 0)
-			{
-				// TODO: abort
-			}
+				throw new FutureVersionException();
 
 			_universe										= (StarSystem[])ArrayListToArray((ArrayList)hash["_universe"], "StarSystem");
 			_wormholes									= (int[])hash["_wormholes"];

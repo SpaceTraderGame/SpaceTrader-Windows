@@ -396,6 +396,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "FutureVersionException.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Gadget.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
