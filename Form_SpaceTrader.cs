@@ -3681,6 +3681,9 @@ namespace Fryz.Apps.SpaceTrader
 
 				SetInGameControlsEnabled(true);
 				UpdateAll();
+
+				if (game.Options.NewsAutoShow)
+					game.ShowNewspaper();
 			}
 		}
 
