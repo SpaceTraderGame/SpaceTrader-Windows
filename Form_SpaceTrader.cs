@@ -3264,32 +3264,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnDesign_Click(object sender, System.EventArgs e)
 		{
-			Shipyard			yard		= game.Commander.CurrentSystem.Shipyard;
-			Form_Shipyard	form		= new Form_Shipyard(yard, this);
-			DialogResult	result	= form.ShowDialog(this);
-			if (result == DialogResult.Cancel) return;
-
-			Consts.ShipSpecs[(int)ShipType.Custom]	= new ShipSpec(ShipType.Custom, Fryz.Apps.SpaceTrader.Size.Huge,
-				form.Cargo, form.Weapons, form.Shields, form.Gadgets, form.Crew, yard.computeRange(form.HullSize, form.Fuel),
-				yard.computeFuelCost(form.HullSize), yard.computeHullStrength(form.HullSize, form.Armor),
-				yard.computeRepairCost(form.HullSize), yard.computeShipPrice(form.HullSize), 0, Activity.NA, Activity.NA,
-				Activity.NA, TechLevel.Unavailable);
-			Ship ship = new Ship(ShipType.Custom);
-
-			// Pay the design fee and construction price
-			Commander cmdr = Game.CurrentGame.Commander;
-			int price = ship.Price + yard.computeDesignPrice(form.HullSize);
-			if (cmdr.Cash >= price)
-			{
-				cmdr.Ship = ship;
-				cmdr.Cash -= price;
-				result	= (new FormAlert("Thank you!", yard.ThankYouMessage, "Ok", DialogResult.OK, null, DialogResult.None, null)).ShowDialog(this);
-			}
-			else
-			{
-				FormAlert.Alert(AlertType.ShipDesignIF, this);
-			}
-
+			(new Form_Shipyard()).ShowDialog(this);
 			UpdateAll();
 		}
 

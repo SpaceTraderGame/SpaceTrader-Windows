@@ -434,6 +434,28 @@ namespace Fryz.Apps.SpaceTrader
 		};
 		#endregion
 
+		#region ShipyardSkillDescriptions
+		public static string[]	ShipyardSkillDescriptions	= new string[]
+		{
+			"All ships constructed at this shipyard use 2 fewer units per crew quarter.",
+			"All ships constructed at this shipyard have 2 extra base fuel tanks.",
+			"All ships constructed at this shipyard have the hull points increment by 5 more than usual.",
+			"All ships constructed at this shipyard get shield slots for 2 fewer units.",
+			"All ships constructed at this shipyard get weapon slots for 2 fewer units."
+		};
+		#endregion
+
+		#region ShipyardSkills
+		public static string[]	ShipyardSkills	= new string[]
+		{
+			"Crew Quartering",
+			"Fuel Efficienty",
+			"Hull Strength",
+			"Shielding",
+			"Weaponry"
+		};
+		#endregion
+
 		#region Sizes
 		public static string[]	Sizes	= new string[]
 		{
@@ -441,7 +463,8 @@ namespace Fryz.Apps.SpaceTrader
 			"Small",
 			"Medium",
 			"Large",
-			"Huge"
+			"Huge",
+			"Gargantuan"
 		};
 		#endregion
 
@@ -903,6 +926,10 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	ShipyardPodNoSale								= "No escape pods for sale.";
 		public static string	ShipyardShipForSale							= "There are ships for sale.";
 		public static string	ShipyardShipNoSale							= "No ships for sale.";
+		public static string	ShipyardSizeItem								= "^1 (Max ^2)";
+		public static string	ShipyardTitle										= "Ship Design at ^1 Shipyards";
+		public static string	ShipyardUnit										= "Unit";
+		public static string	ShipyardWarning									= "Bear in mind that getting too close to the maximum number of units will result in a \"Crowding Penalty.\"  There is a modest penalty at ^1%, and a more severe one at ^2%.";
 
 		public static string	SpecialCargoArtifact						= "An alien artifact.";
 		public static string	SpecialCargoExperiment					= "A portable singularity.";

@@ -267,11 +267,11 @@ namespace Fryz.Apps.SpaceTrader
 		#region Shipyards
 		public static Shipyard[]	Shipyards = new Shipyard[]
 		{
-			new Shipyard("Hoersh-Kessel Drive, Inc.",        "Luke S.",    null, null), 
-			new Shipyard("Loronar Corporation",              "Lando C.",   null, null), 
-			new Shipyard("Republic Engineering Corporation", "Obi-Wan K.", null, null), 
-			new Shipyard("Sienar Fleet Systems",             "Mara J.",    null, null), 
-			new Shipyard("Sorosuub",                         "Wedge A.",   null, null)
+			new Shipyard(ShipyardId.Kessel,		Size.Medium,	ShipyardSkill.WeaponSlotUnits),
+			new Shipyard(ShipyardId.Kuat,			Size.Large,		ShipyardSkill.ShieldSlotUnits),
+			new Shipyard(ShipyardId.Loronar,	Size.Tiny,		ShipyardSkill.FuelBase),
+			new Shipyard(ShipyardId.Sienar,		Size.Huge,		ShipyardSkill.HullPerUnit),
+			new Shipyard(ShipyardId.Sorosuub,	Size.Small,		ShipyardSkill.CrewQuarters)
 		};
 		#endregion
 

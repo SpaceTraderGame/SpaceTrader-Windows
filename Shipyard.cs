@@ -23,8 +23,7 @@
  *
  ******************************************************************************/
 using System;
-using System.Drawing;
-using System.Windows.Forms;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -34,106 +33,284 @@ namespace Fryz.Apps.SpaceTrader
 	/// </summary>
 	public class Shipyard
 	{
-		private string	_corporationName;
-		private string	_architectName;
-		private string	_welcomeMessage;
-		private string	_thankYouMessage;
-		private Bitmap	_logo							= null;
+		#region Constants
 
-		public Shipyard(string corporationName, string architectName, string welcomeMessage, string thankYouMessage)
+		public static int[]	BASE_FUEL							= new int[] {   15,   14,    13,    12,    11,     10 };
+		public static int[]	BASE_HULL							= new int[] {   10,   25,    50,   100,   150,    200 };
+		public static int[]	DESIGN_FEE						= new int[] { 2000, 5000, 10000, 20000, 40000, 100000 };
+		public static int[]	MAX_UNITS							= new int[] {   50,  100,   150,   200,   250,    999 };
+		public static int[]	PER_UNIT_FUEL					= new int[] {    3,    2,     1,     1,     1,      1 };
+		public static int[]	PER_UNIT_HULL					= new int[] {   35,   30,    25,    20,    15,     10 };
+		public static int[]	PRICE_PER_UNIT				= new int[] {   75,  250,   500,   750,  1000,   1200 };
+		public static int[]	UNITS_CREW						= new int[] {   20,   20,    20,    20,    20,     20 };
+		public static int[]	UNITS_FUEL						= new int[] {    1,    1,     1,     5,    10,     15 };
+		public static int[]	UNITS_GADGET					= new int[] {    5,    5,     5,     5,     5,      5 };
+		public static int[]	UNITS_HULL						= new int[] {    1,    2,     3,     4,     5,      6 };
+		public static int[]	UNITS_SHIELD					= new int[] {   10,   10,    10,     8,     8,      8 };
+		public static int[]	UNITS_WEAPON					= new int[] {   15,   15,    15,    10,    10,     10 };
+
+		// Fee and Price Per Unit 10% less for the specialty size, and 10% more for sizes more than 1 away
+		// from the specialty size.
+		public static int		ADJUST_SIZE_DEFAULT		= 100;
+		public static int		ADJUST_SIZE_SPECIALTY	=  90;
+		public static int		ADJUST_SIZE_WEAKNESS	= 110;
+
+		// One of the costs will be adjusted based on the shipyard's skill.
+		public static int		ADJUST_SKILL_CREW			=   2;
+		public static int		ADJUST_SKILL_FUEL			=   2;
+		public static int		ADJUST_SKILL_HULL			=   5;
+		public static int		ADJUST_SKILL_SHIELD		=   2;
+		public static int		ADJUST_SKILL_WEAPON		=   2;
+
+		// There is a crowding penalty for coming too close to the maximum. A modest penalty is imposed at
+		// one level, and a more severe penalty at a higher level.
+		public static int		PENALTY_FIRST_PCT			=  80;
+		public static int		PENALTY_FIRST_FEE			=  25;
+		public static int		PENALTY_SECOND_PCT		=  90;
+		public static int		PENALTY_SECOND_FEE		=  75;
+
+		#endregion
+
+		#region Member Variables
+
+		private ShipyardId		_id;
+		private Size					_specialtySize;
+		private ShipyardSkill	_skill;
+
+		private ShipSpec			_shipSpec				= null;
+
+		private int						modCrew					= 0;
+		private int						modFuel					= 0;
+		private int						modHull					= 0;
+		private int						modShield				= 0;
+		private int						modWeapon				= 0;
+
+		#endregion
+
+		#region Methods
+
+		public Shipyard(ShipyardId id, Size specialtySize, ShipyardSkill skill)
 		{
-			_corporationName	= corporationName;
-			_architectName		= architectName;
-			_welcomeMessage		= welcomeMessage;
-			_thankYouMessage	= thankYouMessage;
-		}
+			_id							= id;
+			_specialtySize	= specialtySize;
+			_skill					= skill;
 
-		public int computeSpaceUsed(int weapons, int gadgets, int shields, int fuel, int crew, int armorType)
-		{
-			int spaceUsed = 
-				weapons * Consts.SpaceTakenByWeapon
-				+ gadgets * Consts.SpaceTakenByGadget
-				+ shields * Consts.SpaceTakenByShield
-				+ fuel	  * Consts.SpaceTakenByFuel
-				+ crew		* Consts.SpaceTakenByCrew
-			  + armorType * Consts.SpaceTakenByArmor;
-
-			return spaceUsed;
-		}
-
-		public int computeDesignPrice(int hullSize)
-		{
-			float result = 0;
-			for (int i=0; i< hullSize; i++) 
+			switch (Skill)
 			{
-				result += Consts.Design_BasePrice;
-				result *= Consts.Design_PriceMultiplier;
+				case ShipyardSkill.CrewQuarters:
+					modCrew		= ADJUST_SKILL_CREW;
+					break;
+				case ShipyardSkill.FuelBase:
+					modFuel		= ADJUST_SKILL_FUEL;
+					break;
+				case ShipyardSkill.HullPerUnit:
+					modHull		= ADJUST_SKILL_HULL;
+					break;
+				case ShipyardSkill.ShieldSlotUnits:
+					modShield	= ADJUST_SKILL_SHIELD;
+					break;
+				case ShipyardSkill.WeaponSlotUnits:
+					modWeapon	= ADJUST_SKILL_WEAPON;
+					break;
 			}
-			return (int)Math.Floor(result);
 		}
 
-		public int computeShipPrice(int hullSize)
+		public void InitializeShipSpec()
 		{
-			float result = 0;
-				result = hullSize * Consts.Buy_BasePrice;
-			return (int)Math.Floor(result);
+			_shipSpec	= new ShipSpec();
 		}
 
-		public int computeRange(int hullSize, int fuelCells)
-		{
-			return (int)Math.Floor(fuelCells / (hullSize * Consts.FuelCostBySize));
-		}
-
-		public int computeHullStrength(int hullSize, int armor)
-		{
-			return hullSize * (armor+1);
-		}
-
-		public int computeRepairCost(int hullSize)
-		{
-			return (int)Math.Floor(hullSize * Consts.RepairCostBySize);
-		}
-
-		public int computeFuelCost(int hullSize)
-		{
-			return (int)Math.Floor(hullSize * Consts.FuelCostBySize);
-		}
+		#endregion
 
 		#region Properties
 
-		public string ThankYouMessage 
-		{
-			get 
-			{
-				return _corporationName + " thanks you for your trust !";
-			}
-		}
-
-		public string WelcomeMessage 
-		{
-			get 
-			{
-				return "Welcome to " + _corporationName + " shipyards ! Our best architect, " + _architectName + " is at your service.";
-			}
-		}
-
-		public string Corporation
-		{
-			get 
-			{
-				return _corporationName;
-			}
-		}
-
-		public Bitmap Logo
+		public ArrayList AvailableSizes
 		{
 			get
 			{
-				return _logo;
+				ArrayList	list	= new ArrayList(6);
+
+				int				begin	= Math.Max((int)Size.Tiny, (int)SpecialtySize - 2);
+				int				end		= Math.Min((int)Size.Gargantuan, (int)SpecialtySize + 2);
+				for (int index = begin; index <= end; index++)
+					list.Add((Size)index);
+
+				return list;
 			}
-			set
+		}
+
+		public int BaseFuel
+		{
+			get
 			{
-				_logo = value;
+				return BASE_FUEL[(int)ShipSpec.Size] + modFuel;
+			}
+		}
+
+		public int BaseHull
+		{
+			get
+			{
+				return BASE_HULL[(int)ShipSpec.Size];
+			}
+		}
+
+		public int CostAdjustment
+		{
+			get
+			{
+				int	adjustment;
+
+				switch (Math.Abs((int)SpecialtySize - (int)ShipSpec.Size))
+				{
+					case 0:
+						adjustment	= ADJUST_SIZE_SPECIALTY;
+						break;
+					case 1:
+						adjustment	= ADJUST_SIZE_DEFAULT;
+						break;
+					default:
+						adjustment	= ADJUST_SIZE_WEAKNESS;
+						break;
+				}
+
+				return adjustment;
+			}
+		}
+
+		public int DesignFee
+		{
+			get
+			{
+				return DESIGN_FEE[(int)ShipSpec.Size] * CostAdjustment / ADJUST_SIZE_DEFAULT;
+			}
+		}
+
+		public string Engineer
+		{
+			get
+			{
+				return Strings.ShipyardEngineers[(int)Id];
+			}
+		}
+
+		public ShipyardId Id
+		{
+			get
+			{
+				return _id;
+			}
+		}
+
+		public int MaxUnits
+		{
+			get
+			{
+				return MAX_UNITS[(int)ShipSpec.Size];
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return Strings.ShipyardNames[(int)Id];
+			}
+		}
+
+		public int PerUnitFuel
+		{
+			get
+			{
+				return PER_UNIT_FUEL[(int)ShipSpec.Size];
+			}
+		}
+
+		public int PerUnitHull
+		{
+			get
+			{
+				return PER_UNIT_HULL[(int)ShipSpec.Size] + modHull;
+			}
+		}
+
+		public int PricePerUnit
+		{
+			get
+			{
+				return PRICE_PER_UNIT[(int)ShipSpec.Size] * CostAdjustment / ADJUST_SIZE_DEFAULT;
+			}
+		}
+
+		public ShipSpec	ShipSpec
+		{
+			get
+			{
+				return _shipSpec;
+			}
+		}
+
+		public ShipyardSkill Skill
+		{
+			get
+			{
+				return _skill;
+			}
+		}
+
+		public Size SpecialtySize
+		{
+			get
+			{
+				return _specialtySize;
+			}
+		}
+
+		public int UnitsCrew
+		{
+			get
+			{
+				return UNITS_CREW[(int)ShipSpec.Size] - modCrew;
+			}
+		}
+
+		public int UnitsFuel
+		{
+			get
+			{
+				return UNITS_FUEL[(int)ShipSpec.Size];
+			}
+		}
+
+		public int UnitsGadgets
+		{
+			get
+			{
+				return UNITS_GADGET[(int)ShipSpec.Size];
+			}
+		}
+
+		public int UnitsHull
+		{
+			get
+			{
+				return UNITS_HULL[(int)ShipSpec.Size];
+			}
+		}
+
+		public int UnitsShields
+		{
+			get
+			{
+				return UNITS_SHIELD[(int)ShipSpec.Size] - modShield;
+			}
+		}
+
+		public int UnitsWeapons
+		{
+			get
+			{
+				return UNITS_WEAPON[(int)ShipSpec.Size] - modWeapon;
 			}
 		}
 

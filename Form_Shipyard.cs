@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Space Trader for Windows 2.00
+ *
+ * Copyright (C) 2004 Jay French, All Rights Reserved
+ *
+ * Additional coding by David Pierron
+ * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 2 of the License, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * If you'd like a copy of the GNU General Public License, go to
+ * http://www.gnu.org/copyleft/gpl.html.
+ *
+ * You can contact the author at spacetrader@frenchfryz.com
+ *
+ ******************************************************************************/
 using System;
 using System.Drawing;
 using System.Collections;
@@ -6,102 +30,100 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	/// <summary>
-	/// Summary description for Form_Shipyard.
-	/// </summary>
 	public class Form_Shipyard : System.Windows.Forms.Form
 	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+		#region Control Declarations
 
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.Label lblWelcome;
-		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.TextBox txtName;
 		private System.Windows.Forms.Label lblName;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.PictureBox picShip;
-		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label11;
-		private System.Windows.Forms.Label label13;
-		private System.Windows.Forms.Label label15;
-		private System.Windows.Forms.Label label16;
-		private System.Windows.Forms.Label label17;
-		private System.Windows.Forms.Label label18;
-		private System.Windows.Forms.Label label19;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label lblExplanation2;
-		private System.Windows.Forms.Label lblExplanation;
-		private System.Windows.Forms.Label lblHullStrength;
-		private System.Windows.Forms.Label lblJumpRange;
-		private System.Windows.Forms.Button btnSetPicture;
-		private System.Windows.Forms.NumericUpDown numHullSpace;
-		private System.Windows.Forms.Label lblShipPrice;
-		private System.Windows.Forms.Label lblTotalPrice;
 		private System.Windows.Forms.Label lblDesignFee;
 		private System.Windows.Forms.Button btnBuild;
 		private System.Windows.Forms.Button btnCancel;
-		private System.Windows.Forms.NumericUpDown	numCargo;
-		private System.Windows.Forms.NumericUpDown numCrew;
-		private System.Windows.Forms.NumericUpDown numFuel;
-		private System.Windows.Forms.NumericUpDown numShields;
-		private System.Windows.Forms.NumericUpDown numGadgets;
-		private System.Windows.Forms.NumericUpDown numWeapons;
-		private System.Windows.Forms.NumericUpDown numArmor;
 		private System.Windows.Forms.PictureBox picLogo;
+		private System.Windows.Forms.GroupBox boxCosts;
+		private System.Windows.Forms.GroupBox boxAllocation;
+		private System.Windows.Forms.NumericUpDown numHullStrength;
+		private System.Windows.Forms.Label lblHullStrenghLabel;
+		private System.Windows.Forms.NumericUpDown numCargoBays;
+		private System.Windows.Forms.NumericUpDown numCrewQuarters;
+		private System.Windows.Forms.NumericUpDown numFuelTanks;
+		private System.Windows.Forms.NumericUpDown numShieldSlots;
+		private System.Windows.Forms.NumericUpDown numGadgetSlots;
+		private System.Windows.Forms.NumericUpDown numWeaponSlots;
+		private System.Windows.Forms.Label lblCargoBays;
+		private System.Windows.Forms.Label lblFuelTanks;
+		private System.Windows.Forms.Label lblCrewQuarters;
+		private System.Windows.Forms.Label lblShieldSlots;
+		private System.Windows.Forms.Label lblGadgetSlots;
+		private System.Windows.Forms.Label lblWeaponsSlots;
+		private System.Windows.Forms.Label lblShipCost;
+		private System.Windows.Forms.Label lblTotalCost;
+		private System.Windows.Forms.Label lblTotalCostLabel;
+		private System.Windows.Forms.Label lblShipCostLabel;
+		private System.Windows.Forms.Label lblDesignFeeLabel;
+		private System.Windows.Forms.GroupBox boxWelcome;
+		private System.Windows.Forms.GroupBox boxInfo;
+		private System.Windows.Forms.Label lblUnitsLeft;
+		private System.Windows.Forms.Label lblSize;
+		private System.Windows.Forms.ComboBox selSize;
+		private System.Windows.Forms.Label lblTemplate;
+		private System.Windows.Forms.ComboBox selTemplate;
+		private System.Windows.Forms.Button btnSetCustomImage;
+		private System.Windows.Forms.Label lblImageLabel;
+		private System.Windows.Forms.Button btnNextImage;
+		private System.Windows.Forms.Button btnPrevImage;
+		private System.Windows.Forms.Label lblImage;
+		private System.Windows.Forms.Label lblUnitsUsedLabel;
+		private System.Windows.Forms.PictureBox picInfoLine;
+		private System.Windows.Forms.Label lblPctLabel;
+		private System.Windows.Forms.Label lblPct;
+		private System.Windows.Forms.Label lblPenaltyLabel;
+		private System.Windows.Forms.Label lblPenalty;
+		private System.Windows.Forms.PictureBox picCostsLine;
+		private System.Windows.Forms.Label lblSizeSpecialtyLabel;
+		private System.Windows.Forms.Label lblSkillLabel;
+		private System.Windows.Forms.Label lblSizeSpecialty;
+		private System.Windows.Forms.Label lblSkill;
+		private System.Windows.Forms.Label lblSkillDescription;
+		private System.Windows.Forms.Label lblWarning;
+		private System.Windows.Forms.ImageList ilShipyardLogos;
+		private System.Windows.Forms.OpenFileDialog dlgOpen;
+
+		#endregion
 
 		#region Member variables
 
-		private Form			_parent				= null;
-		private	Shipyard	_shipyard			= null;
-		private bool			_initializing	= false;
-		private int				_hullSize			= 50;
-		private int				_weapons			= 0;
-		private int				_gadgets			= 0;
-		private int				_shields			= 0;
-		private int				_fuel					= 5;
-		private int				_crew					= 0;
-		private int				_armor				= 0;
-		
+		private Game			game					= Game.CurrentGame;
+		private Shipyard	shipyard			= Game.CurrentGame.Commander.CurrentSystem.Shipyard;
+		private bool			initializing	= false;
+		private System.Windows.Forms.Button btnLoad;
+		private System.Windows.Forms.Button btnSave;
+		private ArrayList	sizes					= null;
+
 		#endregion
 
-		#region Constructor/Destructor
+		#region Methods
 
-		public Form_Shipyard(Shipyard shipyard, Form parentForm)
+		public Form_Shipyard()
 		{
-			_initializing = true;
-
-			_shipyard = shipyard;
-			_parent		= parentForm;
-
-			//
-			// Required for Windows Form Designer support
-			//
 			InitializeComponent();
-			
-			this.Text = "Ship design at " + _shipyard.Corporation;
-			this.lblWelcome.Text = _shipyard.WelcomeMessage;
-			if (_shipyard.Logo != null) picLogo.Image = _shipyard.Logo;
-			Ship currentShip = Game.CurrentGame.Commander.Ship;
-			if (currentShip != null) 
-			{
-				txtName.Text				= currentShip.Name;
-				numHullSpace.Value	= 100;//currentShip.HullSize;
-				numWeapons.Value		= currentShip.WeaponSlots;
-				numShields.Value		= currentShip.ShieldSlots;
-				numGadgets.Value		= currentShip.GadgetSlots;
-				numCrew.Value				= currentShip.CrewQuarters;
-				numFuel.Value				= currentShip.FuelTanks * currentShip.FuelCost;
-			}
-			checkValidity(false);
-			_initializing = false;
+
+			this.Text							= Functions.StringVars(Strings.ShipyardTitle, shipyard.Name);
+			lblSizeSpecialty.Text	= Strings.Sizes[(int)shipyard.SpecialtySize];
+			lblSkill.Text					= Strings.ShipyardSkills[(int)shipyard.Skill];
+			lblWarning.Text				= Functions.StringVars(Strings.ShipyardWarning, Shipyard.PENALTY_FIRST_PCT.ToString(),
+															Shipyard.PENALTY_SECOND_PCT.ToString());
+
+			shipyard.InitializeShipSpec();
+			LoadSizes();
+			LoadTemplates();
+
+			initializing					= true;
+			// TODO: more stuff
+			initializing					= false;
 		}
 
 		protected override void Dispose(bool disposing)
@@ -111,8 +133,6 @@ namespace Fryz.Apps.SpaceTrader
 			base.Dispose(disposing);
 		}
 
-		#endregion
-
 		#region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -120,665 +140,801 @@ namespace Fryz.Apps.SpaceTrader
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form_Shipyard));
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.lblExplanation2 = new System.Windows.Forms.Label();
-			this.lblExplanation = new System.Windows.Forms.Label();
+			this.boxWelcome = new System.Windows.Forms.GroupBox();
+			this.lblSkillDescription = new System.Windows.Forms.Label();
+			this.lblSkill = new System.Windows.Forms.Label();
+			this.lblSizeSpecialty = new System.Windows.Forms.Label();
+			this.lblSkillLabel = new System.Windows.Forms.Label();
+			this.lblSizeSpecialtyLabel = new System.Windows.Forms.Label();
 			this.lblWelcome = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.lblHullStrength = new System.Windows.Forms.Label();
-			this.label13 = new System.Windows.Forms.Label();
-			this.lblJumpRange = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.btnSetPicture = new System.Windows.Forms.Button();
+			this.lblWarning = new System.Windows.Forms.Label();
+			this.picLogo = new System.Windows.Forms.PictureBox();
+			this.boxInfo = new System.Windows.Forms.GroupBox();
+			this.picInfoLine = new System.Windows.Forms.PictureBox();
+			this.btnPrevImage = new System.Windows.Forms.Button();
+			this.btnNextImage = new System.Windows.Forms.Button();
+			this.lblImage = new System.Windows.Forms.Label();
+			this.lblImageLabel = new System.Windows.Forms.Label();
+			this.selTemplate = new System.Windows.Forms.ComboBox();
+			this.lblTemplate = new System.Windows.Forms.Label();
+			this.selSize = new System.Windows.Forms.ComboBox();
+			this.lblSize = new System.Windows.Forms.Label();
+			this.btnSetCustomImage = new System.Windows.Forms.Button();
 			this.picShip = new System.Windows.Forms.PictureBox();
-			this.label3 = new System.Windows.Forms.Label();
-			this.numHullSpace = new System.Windows.Forms.NumericUpDown();
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.lblName = new System.Windows.Forms.Label();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.lblShipPrice = new System.Windows.Forms.Label();
-			this.lblTotalPrice = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
+			this.lblUnitsLeft = new System.Windows.Forms.Label();
+			this.lblUnitsUsedLabel = new System.Windows.Forms.Label();
+			this.boxCosts = new System.Windows.Forms.GroupBox();
+			this.picCostsLine = new System.Windows.Forms.PictureBox();
+			this.lblPenalty = new System.Windows.Forms.Label();
+			this.lblPenaltyLabel = new System.Windows.Forms.Label();
+			this.lblShipCost = new System.Windows.Forms.Label();
+			this.lblTotalCost = new System.Windows.Forms.Label();
+			this.lblTotalCostLabel = new System.Windows.Forms.Label();
+			this.lblShipCostLabel = new System.Windows.Forms.Label();
 			this.lblDesignFee = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
+			this.lblDesignFeeLabel = new System.Windows.Forms.Label();
 			this.btnBuild = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.numArmor = new System.Windows.Forms.NumericUpDown();
-			this.label1 = new System.Windows.Forms.Label();
-			this.numCargo = new System.Windows.Forms.NumericUpDown();
-			this.numCrew = new System.Windows.Forms.NumericUpDown();
-			this.numFuel = new System.Windows.Forms.NumericUpDown();
-			this.numShields = new System.Windows.Forms.NumericUpDown();
-			this.numGadgets = new System.Windows.Forms.NumericUpDown();
-			this.numWeapons = new System.Windows.Forms.NumericUpDown();
-			this.label19 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label15 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.picLogo = new System.Windows.Forms.PictureBox();
-			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numHullSpace)).BeginInit();
-			this.groupBox3.SuspendLayout();
-			this.groupBox4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numArmor)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numCargo)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numCrew)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numFuel)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numShields)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numGadgets)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numWeapons)).BeginInit();
+			this.boxAllocation = new System.Windows.Forms.GroupBox();
+			this.lblPct = new System.Windows.Forms.Label();
+			this.lblPctLabel = new System.Windows.Forms.Label();
+			this.numHullStrength = new System.Windows.Forms.NumericUpDown();
+			this.lblHullStrenghLabel = new System.Windows.Forms.Label();
+			this.numCargoBays = new System.Windows.Forms.NumericUpDown();
+			this.numCrewQuarters = new System.Windows.Forms.NumericUpDown();
+			this.numFuelTanks = new System.Windows.Forms.NumericUpDown();
+			this.numShieldSlots = new System.Windows.Forms.NumericUpDown();
+			this.numGadgetSlots = new System.Windows.Forms.NumericUpDown();
+			this.numWeaponSlots = new System.Windows.Forms.NumericUpDown();
+			this.lblCargoBays = new System.Windows.Forms.Label();
+			this.lblFuelTanks = new System.Windows.Forms.Label();
+			this.lblCrewQuarters = new System.Windows.Forms.Label();
+			this.lblShieldSlots = new System.Windows.Forms.Label();
+			this.lblGadgetSlots = new System.Windows.Forms.Label();
+			this.lblWeaponsSlots = new System.Windows.Forms.Label();
+			this.ilShipyardLogos = new System.Windows.Forms.ImageList(this.components);
+			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+			this.btnLoad = new System.Windows.Forms.Button();
+			this.btnSave = new System.Windows.Forms.Button();
+			this.boxWelcome.SuspendLayout();
+			this.boxInfo.SuspendLayout();
+			this.boxCosts.SuspendLayout();
+			this.boxAllocation.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numHullStrength)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCargoBays)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCrewQuarters)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numFuelTanks)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numShieldSlots)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numGadgetSlots)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numWeaponSlots)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// groupBox1
+			// boxWelcome
 			// 
-			this.groupBox1.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						this.lblExplanation2,
-																																						this.lblExplanation,
-																																						this.lblWelcome});
-			this.groupBox1.Location = new System.Drawing.Point(8, 0);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(450, 96);
-			this.groupBox1.TabIndex = 5;
-			this.groupBox1.TabStop = false;
+			this.boxWelcome.Controls.AddRange(new System.Windows.Forms.Control[] {
+																																						 this.lblSkillDescription,
+																																						 this.lblSkill,
+																																						 this.lblSizeSpecialty,
+																																						 this.lblSkillLabel,
+																																						 this.lblSizeSpecialtyLabel,
+																																						 this.lblWelcome,
+																																						 this.lblWarning,
+																																						 this.picLogo});
+			this.boxWelcome.Location = new System.Drawing.Point(8, 0);
+			this.boxWelcome.Name = "boxWelcome";
+			this.boxWelcome.Size = new System.Drawing.Size(274, 188);
+			this.boxWelcome.TabIndex = 5;
+			this.boxWelcome.TabStop = false;
 			// 
-			// lblExplanation2
+			// lblSkillDescription
 			// 
-			this.lblExplanation2.Location = new System.Drawing.Point(8, 56);
-			this.lblExplanation2.Name = "lblExplanation2";
-			this.lblExplanation2.Size = new System.Drawing.Size(440, 32);
-			this.lblExplanation2.TabIndex = 5;
-			this.lblExplanation2.Text = "Bear in mind that the cost of the design is exponentially proportional to the siz" +
-				"e of the ship, and that you\'ll have to pay BOTH the design fee and the ship cons" +
-				"truction price.";
+			this.lblSkillDescription.Location = new System.Drawing.Point(8, 96);
+			this.lblSkillDescription.Name = "lblSkillDescription";
+			this.lblSkillDescription.Size = new System.Drawing.Size(260, 26);
+			this.lblSkillDescription.TabIndex = 27;
+			this.lblSkillDescription.Text = "All ships constructed at this shipyard use 2 fewer units per crew quarter.";
 			// 
-			// lblExplanation
+			// lblSkill
 			// 
-			this.lblExplanation.Location = new System.Drawing.Point(8, 24);
-			this.lblExplanation.Name = "lblExplanation";
-			this.lblExplanation.Size = new System.Drawing.Size(440, 32);
-			this.lblExplanation.TabIndex = 4;
-			this.lblExplanation.Text = "Please use the form below to design your very own ship, and press the Construct b" +
-				"utton when you\'re ready. Press the Cancel button to ... well ... cancel !";
+			this.lblSkill.Location = new System.Drawing.Point(180, 76);
+			this.lblSkill.Name = "lblSkill";
+			this.lblSkill.Size = new System.Drawing.Size(87, 13);
+			this.lblSkill.TabIndex = 26;
+			this.lblSkill.Text = "Crew Quartering";
+			// 
+			// lblSizeSpecialty
+			// 
+			this.lblSizeSpecialty.Location = new System.Drawing.Point(180, 60);
+			this.lblSizeSpecialty.Name = "lblSizeSpecialty";
+			this.lblSizeSpecialty.Size = new System.Drawing.Size(64, 13);
+			this.lblSizeSpecialty.TabIndex = 25;
+			this.lblSizeSpecialty.Text = "Gargantuan";
+			// 
+			// lblSkillLabel
+			// 
+			this.lblSkillLabel.AutoSize = true;
+			this.lblSkillLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSkillLabel.Location = new System.Drawing.Point(92, 76);
+			this.lblSkillLabel.Name = "lblSkillLabel";
+			this.lblSkillLabel.Size = new System.Drawing.Size(72, 13);
+			this.lblSkillLabel.TabIndex = 24;
+			this.lblSkillLabel.Text = "Special Skill:";
+			// 
+			// lblSizeSpecialtyLabel
+			// 
+			this.lblSizeSpecialtyLabel.AutoSize = true;
+			this.lblSizeSpecialtyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSizeSpecialtyLabel.Location = new System.Drawing.Point(92, 60);
+			this.lblSizeSpecialtyLabel.Name = "lblSizeSpecialtyLabel";
+			this.lblSizeSpecialtyLabel.Size = new System.Drawing.Size(82, 13);
+			this.lblSizeSpecialtyLabel.TabIndex = 23;
+			this.lblSizeSpecialtyLabel.Text = "Size Specialty:";
 			// 
 			// lblWelcome
 			// 
-			this.lblWelcome.Location = new System.Drawing.Point(8, 8);
+			this.lblWelcome.Location = new System.Drawing.Point(92, 12);
 			this.lblWelcome.Name = "lblWelcome";
-			this.lblWelcome.Size = new System.Drawing.Size(440, 16);
+			this.lblWelcome.Size = new System.Drawing.Size(176, 40);
 			this.lblWelcome.TabIndex = 3;
-			this.lblWelcome.Text = "Welcome to SoroSuub shipyards ! Our best architect, Luke S., is at your service.";
+			this.lblWelcome.Text = "Welcome to Loronar Corporation Shipyards! Our best engineer, Obi-Wan, is at your " +
+				"service.";
 			// 
-			// groupBox2
+			// lblWarning
 			// 
-			this.groupBox2.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						this.lblHullStrength,
-																																						this.label13,
-																																						this.lblJumpRange,
-																																						this.label11,
-																																						this.btnSetPicture,
-																																						this.picShip,
-																																						this.label3,
-																																						this.numHullSpace,
-																																						this.txtName,
-																																						this.lblName});
-			this.groupBox2.Location = new System.Drawing.Point(8, 104);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(256, 128);
-			this.groupBox2.TabIndex = 6;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Hull";
+			this.lblWarning.Location = new System.Drawing.Point(8, 130);
+			this.lblWarning.Name = "lblWarning";
+			this.lblWarning.Size = new System.Drawing.Size(260, 52);
+			this.lblWarning.TabIndex = 5;
+			this.lblWarning.Text = "Bear in mind that getting too close to the maximum number of units will result in" +
+				" a \"Crowding Penalty.\"  There is a modest penalty at 80%, and a more severe one " +
+				"at 90%.";
 			// 
-			// lblHullStrength
+			// picLogo
 			// 
-			this.lblHullStrength.Location = new System.Drawing.Point(88, 96);
-			this.lblHullStrength.Name = "lblHullStrength";
-			this.lblHullStrength.Size = new System.Drawing.Size(80, 16);
-			this.lblHullStrength.TabIndex = 19;
-			this.lblHullStrength.Text = "1500 kpt";
+			this.picLogo.Image = ((System.Drawing.Bitmap)(resources.GetObject("picLogo.Image")));
+			this.picLogo.Location = new System.Drawing.Point(8, 12);
+			this.picLogo.Name = "picLogo";
+			this.picLogo.Size = new System.Drawing.Size(80, 80);
+			this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.picLogo.TabIndex = 22;
+			this.picLogo.TabStop = false;
 			// 
-			// label13
+			// boxInfo
 			// 
-			this.label13.Location = new System.Drawing.Point(8, 96);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(80, 16);
-			this.label13.TabIndex = 18;
-			this.label13.Text = "Hull strength :";
+			this.boxInfo.Controls.AddRange(new System.Windows.Forms.Control[] {
+																																					this.btnSave,
+																																					this.btnLoad,
+																																					this.picInfoLine,
+																																					this.btnPrevImage,
+																																					this.btnNextImage,
+																																					this.lblImage,
+																																					this.lblImageLabel,
+																																					this.selTemplate,
+																																					this.lblTemplate,
+																																					this.selSize,
+																																					this.lblSize,
+																																					this.btnSetCustomImage,
+																																					this.picShip,
+																																					this.txtName,
+																																					this.lblName});
+			this.boxInfo.Location = new System.Drawing.Point(8, 192);
+			this.boxInfo.Name = "boxInfo";
+			this.boxInfo.Size = new System.Drawing.Size(274, 160);
+			this.boxInfo.TabIndex = 6;
+			this.boxInfo.TabStop = false;
+			this.boxInfo.Text = "Info";
 			// 
-			// lblJumpRange
+			// picInfoLine
 			// 
-			this.lblJumpRange.Location = new System.Drawing.Point(88, 72);
-			this.lblJumpRange.Name = "lblJumpRange";
-			this.lblJumpRange.Size = new System.Drawing.Size(80, 16);
-			this.lblJumpRange.TabIndex = 17;
-			this.lblJumpRange.Text = "17 parsecs";
+			this.picInfoLine.BackColor = System.Drawing.Color.DimGray;
+			this.picInfoLine.Location = new System.Drawing.Point(8, 89);
+			this.picInfoLine.Name = "picInfoLine";
+			this.picInfoLine.Size = new System.Drawing.Size(258, 1);
+			this.picInfoLine.TabIndex = 132;
+			this.picInfoLine.TabStop = false;
 			// 
-			// label11
+			// btnPrevImage
 			// 
-			this.label11.Location = new System.Drawing.Point(8, 72);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(72, 16);
-			this.label11.TabIndex = 16;
-			this.label11.Text = "Jump range :";
+			this.btnPrevImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnPrevImage.Location = new System.Drawing.Point(158, 95);
+			this.btnPrevImage.Name = "btnPrevImage";
+			this.btnPrevImage.Size = new System.Drawing.Size(18, 18);
+			this.btnPrevImage.TabIndex = 59;
+			this.btnPrevImage.Text = "<";
+			this.btnPrevImage.Click += new System.EventHandler(this.btnPrevImage_Click);
 			// 
-			// btnSetPicture
+			// btnNextImage
 			// 
-			this.btnSetPicture.Location = new System.Drawing.Point(178, 100);
-			this.btnSetPicture.Name = "btnSetPicture";
-			this.btnSetPicture.Size = new System.Drawing.Size(70, 23);
-			this.btnSetPicture.TabIndex = 15;
-			this.btnSetPicture.Text = "Set picture";
-			this.btnSetPicture.Click += new System.EventHandler(this.btnSetPicture_Click);
+			this.btnNextImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnNextImage.Location = new System.Drawing.Point(246, 95);
+			this.btnNextImage.Name = "btnNextImage";
+			this.btnNextImage.Size = new System.Drawing.Size(18, 18);
+			this.btnNextImage.TabIndex = 60;
+			this.btnNextImage.Text = ">";
+			this.btnNextImage.Click += new System.EventHandler(this.btnNextImage_Click);
+			// 
+			// lblImage
+			// 
+			this.lblImage.Location = new System.Drawing.Point(178, 98);
+			this.lblImage.Name = "lblImage";
+			this.lblImage.Size = new System.Drawing.Size(70, 13);
+			this.lblImage.TabIndex = 61;
+			this.lblImage.Text = "Grasshopper";
+			this.lblImage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// lblImageLabel
+			// 
+			this.lblImageLabel.AutoSize = true;
+			this.lblImageLabel.Location = new System.Drawing.Point(8, 95);
+			this.lblImageLabel.Name = "lblImageLabel";
+			this.lblImageLabel.Size = new System.Drawing.Size(39, 13);
+			this.lblImageLabel.TabIndex = 22;
+			this.lblImageLabel.Text = "Image:";
+			// 
+			// selTemplate
+			// 
+			this.selTemplate.Location = new System.Drawing.Point(80, 16);
+			this.selTemplate.Name = "selTemplate";
+			this.selTemplate.Size = new System.Drawing.Size(136, 21);
+			this.selTemplate.TabIndex = 21;
+			this.selTemplate.Text = "Gargantuan";
+			// 
+			// lblTemplate
+			// 
+			this.lblTemplate.AutoSize = true;
+			this.lblTemplate.Location = new System.Drawing.Point(8, 19);
+			this.lblTemplate.Name = "lblTemplate";
+			this.lblTemplate.Size = new System.Drawing.Size(55, 13);
+			this.lblTemplate.TabIndex = 20;
+			this.lblTemplate.Text = "Template:";
+			// 
+			// selSize
+			// 
+			this.selSize.Location = new System.Drawing.Point(80, 63);
+			this.selSize.Name = "selSize";
+			this.selSize.Size = new System.Drawing.Size(184, 21);
+			this.selSize.TabIndex = 19;
+			this.selSize.Text = "Gargantuan (Max 888 Units)";
+			this.selSize.SelectedIndexChanged += new System.EventHandler(this.selSize_SelectedIndexChanged);
+			// 
+			// lblSize
+			// 
+			this.lblSize.AutoSize = true;
+			this.lblSize.Location = new System.Drawing.Point(8, 66);
+			this.lblSize.Name = "lblSize";
+			this.lblSize.Size = new System.Drawing.Size(29, 13);
+			this.lblSize.TabIndex = 18;
+			this.lblSize.Text = "Size:";
+			// 
+			// btnSetCustomImage
+			// 
+			this.btnSetCustomImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSetCustomImage.Location = new System.Drawing.Point(158, 121);
+			this.btnSetCustomImage.Name = "btnSetCustomImage";
+			this.btnSetCustomImage.Size = new System.Drawing.Size(106, 22);
+			this.btnSetCustomImage.TabIndex = 15;
+			this.btnSetCustomImage.Text = "Set Custom...";
+			this.btnSetCustomImage.Click += new System.EventHandler(this.btnSetCustomImage_Click);
 			// 
 			// picShip
 			// 
 			this.picShip.BackColor = System.Drawing.Color.White;
 			this.picShip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.picShip.Location = new System.Drawing.Point(178, 40);
+			this.picShip.Location = new System.Drawing.Point(80, 95);
 			this.picShip.Name = "picShip";
 			this.picShip.Size = new System.Drawing.Size(70, 58);
 			this.picShip.TabIndex = 14;
 			this.picShip.TabStop = false;
 			// 
-			// label3
-			// 
-			this.label3.Location = new System.Drawing.Point(8, 44);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(64, 16);
-			this.label3.TabIndex = 8;
-			this.label3.Text = "Hull space :";
-			// 
-			// numHullSpace
-			// 
-			this.numHullSpace.Location = new System.Drawing.Point(88, 44);
-			this.numHullSpace.Maximum = new System.Decimal(new int[] {
-																																 100000,
-																																 0,
-																																 0,
-																																 0});
-			this.numHullSpace.Minimum = new System.Decimal(new int[] {
-																																 1,
-																																 0,
-																																 0,
-																																 0});
-			this.numHullSpace.Name = "numHullSpace";
-			this.numHullSpace.Size = new System.Drawing.Size(80, 20);
-			this.numHullSpace.TabIndex = 7;
-			this.numHullSpace.Value = new System.Decimal(new int[] {
-																															 10,
-																															 0,
-																															 0,
-																															 0});
-			this.numHullSpace.ValueChanged += new System.EventHandler(this.controlChanged);
-			this.numHullSpace.Leave += new System.EventHandler(this.controlChanged);
-			// 
 			// txtName
 			// 
-			this.txtName.Location = new System.Drawing.Point(88, 16);
+			this.txtName.Location = new System.Drawing.Point(80, 40);
 			this.txtName.Name = "txtName";
-			this.txtName.Size = new System.Drawing.Size(160, 20);
+			this.txtName.Size = new System.Drawing.Size(136, 20);
 			this.txtName.TabIndex = 6;
-			this.txtName.Text = "Conqueror";
+			this.txtName.Text = "";
 			// 
 			// lblName
 			// 
-			this.lblName.Location = new System.Drawing.Point(8, 16);
+			this.lblName.AutoSize = true;
+			this.lblName.Location = new System.Drawing.Point(8, 44);
 			this.lblName.Name = "lblName";
-			this.lblName.Size = new System.Drawing.Size(80, 23);
+			this.lblName.Size = new System.Drawing.Size(63, 13);
 			this.lblName.TabIndex = 5;
-			this.lblName.Text = "Ship name :";
+			this.lblName.Text = "Ship Name:";
 			// 
-			// groupBox3
+			// lblUnitsLeft
 			// 
-			this.groupBox3.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						this.lblShipPrice,
-																																						this.lblTotalPrice,
-																																						this.label8,
-																																						this.label6,
-																																						this.lblDesignFee,
-																																						this.label4});
-			this.groupBox3.Location = new System.Drawing.Point(8, 232);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(184, 72);
-			this.groupBox3.TabIndex = 14;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Prices";
+			this.lblUnitsLeft.Location = new System.Drawing.Point(110, 186);
+			this.lblUnitsLeft.Name = "lblUnitsLeft";
+			this.lblUnitsLeft.Size = new System.Drawing.Size(23, 13);
+			this.lblUnitsLeft.TabIndex = 17;
+			this.lblUnitsLeft.Text = "888";
 			// 
-			// lblShipPrice
+			// lblUnitsUsedLabel
 			// 
-			this.lblShipPrice.Location = new System.Drawing.Point(96, 32);
-			this.lblShipPrice.Name = "lblShipPrice";
-			this.lblShipPrice.Size = new System.Drawing.Size(80, 16);
-			this.lblShipPrice.TabIndex = 19;
-			this.lblShipPrice.Text = "888,888,888 cr";
+			this.lblUnitsUsedLabel.AutoSize = true;
+			this.lblUnitsUsedLabel.Location = new System.Drawing.Point(8, 186);
+			this.lblUnitsUsedLabel.Name = "lblUnitsUsedLabel";
+			this.lblUnitsUsedLabel.Size = new System.Drawing.Size(63, 13);
+			this.lblUnitsUsedLabel.TabIndex = 16;
+			this.lblUnitsUsedLabel.Text = "Units Used:";
 			// 
-			// lblTotalPrice
+			// boxCosts
 			// 
-			this.lblTotalPrice.Location = new System.Drawing.Point(96, 48);
-			this.lblTotalPrice.Name = "lblTotalPrice";
-			this.lblTotalPrice.Size = new System.Drawing.Size(80, 16);
-			this.lblTotalPrice.TabIndex = 18;
-			this.lblTotalPrice.Text = "888,888,888 cr";
+			this.boxCosts.Controls.AddRange(new System.Windows.Forms.Control[] {
+																																					 this.picCostsLine,
+																																					 this.lblPenalty,
+																																					 this.lblPenaltyLabel,
+																																					 this.lblShipCost,
+																																					 this.lblTotalCost,
+																																					 this.lblTotalCostLabel,
+																																					 this.lblShipCostLabel,
+																																					 this.lblDesignFee,
+																																					 this.lblDesignFeeLabel});
+			this.boxCosts.Location = new System.Drawing.Point(290, 230);
+			this.boxCosts.Name = "boxCosts";
+			this.boxCosts.Size = new System.Drawing.Size(184, 90);
+			this.boxCosts.TabIndex = 14;
+			this.boxCosts.TabStop = false;
+			this.boxCosts.Text = "Costs";
 			// 
-			// label8
+			// picCostsLine
 			// 
-			this.label8.Location = new System.Drawing.Point(8, 48);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(88, 16);
-			this.label8.TabIndex = 17;
-			this.label8.Text = "Total ship price :";
+			this.picCostsLine.BackColor = System.Drawing.Color.DimGray;
+			this.picCostsLine.Location = new System.Drawing.Point(8, 64);
+			this.picCostsLine.Name = "picCostsLine";
+			this.picCostsLine.Size = new System.Drawing.Size(168, 1);
+			this.picCostsLine.TabIndex = 133;
+			this.picCostsLine.TabStop = false;
 			// 
-			// label6
+			// lblPenalty
 			// 
-			this.label6.Location = new System.Drawing.Point(8, 32);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(64, 16);
-			this.label6.TabIndex = 16;
-			this.label6.Text = "Ship price :";
+			this.lblPenalty.Location = new System.Drawing.Point(110, 32);
+			this.lblPenalty.Name = "lblPenalty";
+			this.lblPenalty.Size = new System.Drawing.Size(70, 16);
+			this.lblPenalty.TabIndex = 21;
+			this.lblPenalty.Text = "8,888,888 cr.";
+			this.lblPenalty.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblPenaltyLabel
+			// 
+			this.lblPenaltyLabel.AutoSize = true;
+			this.lblPenaltyLabel.Location = new System.Drawing.Point(8, 32);
+			this.lblPenaltyLabel.Name = "lblPenaltyLabel";
+			this.lblPenaltyLabel.Size = new System.Drawing.Size(96, 13);
+			this.lblPenaltyLabel.TabIndex = 20;
+			this.lblPenaltyLabel.Text = "Crowding Penalty:";
+			// 
+			// lblShipCost
+			// 
+			this.lblShipCost.Location = new System.Drawing.Point(110, 16);
+			this.lblShipCost.Name = "lblShipCost";
+			this.lblShipCost.Size = new System.Drawing.Size(70, 16);
+			this.lblShipCost.TabIndex = 19;
+			this.lblShipCost.Text = "8,888,888 cr.";
+			this.lblShipCost.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblTotalCost
+			// 
+			this.lblTotalCost.Location = new System.Drawing.Point(110, 68);
+			this.lblTotalCost.Name = "lblTotalCost";
+			this.lblTotalCost.Size = new System.Drawing.Size(70, 16);
+			this.lblTotalCost.TabIndex = 18;
+			this.lblTotalCost.Text = "8,888,888 cr.";
+			this.lblTotalCost.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			// 
+			// lblTotalCostLabel
+			// 
+			this.lblTotalCostLabel.AutoSize = true;
+			this.lblTotalCostLabel.Location = new System.Drawing.Point(8, 68);
+			this.lblTotalCostLabel.Name = "lblTotalCostLabel";
+			this.lblTotalCostLabel.Size = new System.Drawing.Size(59, 13);
+			this.lblTotalCostLabel.TabIndex = 17;
+			this.lblTotalCostLabel.Text = "Total Cost:";
+			// 
+			// lblShipCostLabel
+			// 
+			this.lblShipCostLabel.AutoSize = true;
+			this.lblShipCostLabel.Location = new System.Drawing.Point(8, 16);
+			this.lblShipCostLabel.Name = "lblShipCostLabel";
+			this.lblShipCostLabel.Size = new System.Drawing.Size(56, 13);
+			this.lblShipCostLabel.TabIndex = 16;
+			this.lblShipCostLabel.Text = "Ship Cost:";
 			// 
 			// lblDesignFee
 			// 
-			this.lblDesignFee.Location = new System.Drawing.Point(96, 16);
+			this.lblDesignFee.Location = new System.Drawing.Point(110, 48);
 			this.lblDesignFee.Name = "lblDesignFee";
-			this.lblDesignFee.Size = new System.Drawing.Size(80, 16);
+			this.lblDesignFee.Size = new System.Drawing.Size(70, 16);
 			this.lblDesignFee.TabIndex = 15;
-			this.lblDesignFee.Text = "888,888,888 cr";
+			this.lblDesignFee.Text = "888,888 cr.";
+			this.lblDesignFee.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
-			// label4
+			// lblDesignFeeLabel
 			// 
-			this.label4.Location = new System.Drawing.Point(8, 16);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(100, 16);
-			this.label4.TabIndex = 14;
-			this.label4.Text = "Design fee :";
+			this.lblDesignFeeLabel.AutoSize = true;
+			this.lblDesignFeeLabel.Location = new System.Drawing.Point(8, 48);
+			this.lblDesignFeeLabel.Name = "lblDesignFeeLabel";
+			this.lblDesignFeeLabel.Size = new System.Drawing.Size(65, 13);
+			this.lblDesignFeeLabel.TabIndex = 14;
+			this.lblDesignFeeLabel.Text = "Design Fee:";
 			// 
 			// btnBuild
 			// 
 			this.btnBuild.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnBuild.Location = new System.Drawing.Point(368, 280);
+			this.btnBuild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnBuild.Location = new System.Drawing.Point(386, 328);
 			this.btnBuild.Name = "btnBuild";
-			this.btnBuild.Size = new System.Drawing.Size(88, 23);
+			this.btnBuild.Size = new System.Drawing.Size(88, 22);
 			this.btnBuild.TabIndex = 21;
-			this.btnBuild.Text = "Construct ship";
+			this.btnBuild.Text = "Construct Ship";
+			this.btnBuild.Click += new System.EventHandler(this.btnBuild_Click);
 			// 
 			// btnCancel
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(272, 280);
+			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCancel.Location = new System.Drawing.Point(290, 328);
 			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(88, 23);
+			this.btnCancel.Size = new System.Drawing.Size(88, 22);
 			this.btnCancel.TabIndex = 20;
-			this.btnCancel.Text = "Cancel design";
+			this.btnCancel.Text = "Cancel Design";
 			// 
-			// groupBox4
+			// boxAllocation
 			// 
-			this.groupBox4.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						this.numArmor,
-																																						this.label1,
-																																						this.numCargo,
-																																						this.numCrew,
-																																						this.numFuel,
-																																						this.numShields,
-																																						this.numGadgets,
-																																						this.numWeapons,
-																																						this.label19,
-																																						this.label18,
-																																						this.label17,
-																																						this.label16,
-																																						this.label15,
-																																						this.label10});
-			this.groupBox4.Location = new System.Drawing.Point(272, 104);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(186, 168);
-			this.groupBox4.TabIndex = 15;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Space allocation :";
+			this.boxAllocation.Controls.AddRange(new System.Windows.Forms.Control[] {
+																																								this.lblPct,
+																																								this.lblPctLabel,
+																																								this.numHullStrength,
+																																								this.lblHullStrenghLabel,
+																																								this.numCargoBays,
+																																								this.numCrewQuarters,
+																																								this.numFuelTanks,
+																																								this.numShieldSlots,
+																																								this.numGadgetSlots,
+																																								this.numWeaponSlots,
+																																								this.lblCargoBays,
+																																								this.lblFuelTanks,
+																																								this.lblCrewQuarters,
+																																								this.lblShieldSlots,
+																																								this.lblGadgetSlots,
+																																								this.lblWeaponsSlots,
+																																								this.lblUnitsUsedLabel,
+																																								this.lblUnitsLeft});
+			this.boxAllocation.Location = new System.Drawing.Point(290, 0);
+			this.boxAllocation.Name = "boxAllocation";
+			this.boxAllocation.Size = new System.Drawing.Size(184, 226);
+			this.boxAllocation.TabIndex = 15;
+			this.boxAllocation.TabStop = false;
+			this.boxAllocation.Text = "Space Allocation";
 			// 
-			// numArmor
+			// lblPct
 			// 
-			this.numArmor.Location = new System.Drawing.Point(112, 24);
-			this.numArmor.Maximum = new System.Decimal(new int[] {
-																														 10,
-																														 0,
-																														 0,
-																														 0});
-			this.numArmor.Name = "numArmor";
-			this.numArmor.ReadOnly = true;
-			this.numArmor.Size = new System.Drawing.Size(64, 20);
-			this.numArmor.TabIndex = 14;
-			this.numArmor.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.lblPct.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblPct.ForeColor = System.Drawing.Color.Red;
+			this.lblPct.Location = new System.Drawing.Point(110, 204);
+			this.lblPct.Name = "lblPct";
+			this.lblPct.Size = new System.Drawing.Size(34, 13);
+			this.lblPct.TabIndex = 19;
+			this.lblPct.Text = "888%";
 			// 
-			// label1
+			// lblPctLabel
 			// 
-			this.label1.Location = new System.Drawing.Point(16, 24);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(96, 16);
-			this.label1.TabIndex = 13;
-			this.label1.Text = "Armor thickness :";
+			this.lblPctLabel.AutoSize = true;
+			this.lblPctLabel.Location = new System.Drawing.Point(8, 204);
+			this.lblPctLabel.Name = "lblPctLabel";
+			this.lblPctLabel.Size = new System.Drawing.Size(54, 13);
+			this.lblPctLabel.TabIndex = 18;
+			this.lblPctLabel.Text = "% of Max:";
 			// 
-			// numCargo
+			// numHullStrength
 			// 
-			this.numCargo.Enabled = false;
-			this.numCargo.Location = new System.Drawing.Point(112, 144);
-			this.numCargo.Maximum = new System.Decimal(new int[] {
-																														 100000,
-																														 0,
-																														 0,
-																														 0});
-			this.numCargo.Name = "numCargo";
-			this.numCargo.ReadOnly = true;
-			this.numCargo.Size = new System.Drawing.Size(64, 20);
-			this.numCargo.TabIndex = 11;
+			this.numHullStrength.Location = new System.Drawing.Point(110, 16);
+			this.numHullStrength.Name = "numHullStrength";
+			this.numHullStrength.Size = new System.Drawing.Size(64, 20);
+			this.numHullStrength.TabIndex = 14;
+			this.numHullStrength.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numHullStrength.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// numCrew
+			// lblHullStrenghLabel
 			// 
-			this.numCrew.Location = new System.Drawing.Point(112, 124);
-			this.numCrew.Maximum = new System.Decimal(new int[] {
-																														100000,
-																														0,
-																														0,
-																														0});
-			this.numCrew.Name = "numCrew";
-			this.numCrew.ReadOnly = true;
-			this.numCrew.Size = new System.Drawing.Size(64, 20);
-			this.numCrew.TabIndex = 10;
-			this.numCrew.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.lblHullStrenghLabel.AutoSize = true;
+			this.lblHullStrenghLabel.Location = new System.Drawing.Point(8, 18);
+			this.lblHullStrenghLabel.Name = "lblHullStrenghLabel";
+			this.lblHullStrenghLabel.Size = new System.Drawing.Size(70, 13);
+			this.lblHullStrenghLabel.TabIndex = 13;
+			this.lblHullStrenghLabel.Text = "Hull Strengh:";
 			// 
-			// numFuel
+			// numCargoBays
 			// 
-			this.numFuel.Location = new System.Drawing.Point(112, 104);
-			this.numFuel.Maximum = new System.Decimal(new int[] {
-																														100000,
-																														0,
-																														0,
-																														0});
-			this.numFuel.Name = "numFuel";
-			this.numFuel.ReadOnly = true;
-			this.numFuel.Size = new System.Drawing.Size(64, 20);
-			this.numFuel.TabIndex = 9;
-			this.numFuel.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.numCargoBays.Enabled = false;
+			this.numCargoBays.Location = new System.Drawing.Point(110, 64);
+			this.numCargoBays.Name = "numCargoBays";
+			this.numCargoBays.Size = new System.Drawing.Size(64, 20);
+			this.numCargoBays.TabIndex = 11;
+			this.numCargoBays.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numCargoBays.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// numShields
+			// numCrewQuarters
 			// 
-			this.numShields.Location = new System.Drawing.Point(112, 84);
-			this.numShields.Maximum = new System.Decimal(new int[] {
-																															 1000001,
-																															 0,
-																															 0,
-																															 0});
-			this.numShields.Name = "numShields";
-			this.numShields.ReadOnly = true;
-			this.numShields.Size = new System.Drawing.Size(64, 20);
-			this.numShields.TabIndex = 8;
-			this.numShields.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.numCrewQuarters.Location = new System.Drawing.Point(110, 88);
+			this.numCrewQuarters.Name = "numCrewQuarters";
+			this.numCrewQuarters.Size = new System.Drawing.Size(64, 20);
+			this.numCrewQuarters.TabIndex = 10;
+			this.numCrewQuarters.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numCrewQuarters.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// numGadgets
+			// numFuelTanks
 			// 
-			this.numGadgets.Location = new System.Drawing.Point(112, 64);
-			this.numGadgets.Maximum = new System.Decimal(new int[] {
-																															 100000,
-																															 0,
-																															 0,
-																															 0});
-			this.numGadgets.Name = "numGadgets";
-			this.numGadgets.ReadOnly = true;
-			this.numGadgets.Size = new System.Drawing.Size(64, 20);
-			this.numGadgets.TabIndex = 7;
-			this.numGadgets.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.numFuelTanks.Location = new System.Drawing.Point(110, 40);
+			this.numFuelTanks.Name = "numFuelTanks";
+			this.numFuelTanks.Size = new System.Drawing.Size(64, 20);
+			this.numFuelTanks.TabIndex = 9;
+			this.numFuelTanks.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numFuelTanks.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// numWeapons
+			// numShieldSlots
 			// 
-			this.numWeapons.Location = new System.Drawing.Point(112, 44);
-			this.numWeapons.Maximum = new System.Decimal(new int[] {
-																															 100000,
-																															 0,
-																															 0,
-																															 0});
-			this.numWeapons.Name = "numWeapons";
-			this.numWeapons.ReadOnly = true;
-			this.numWeapons.Size = new System.Drawing.Size(64, 20);
-			this.numWeapons.TabIndex = 6;
-			this.numWeapons.ValueChanged += new System.EventHandler(this.controlChanged);
+			this.numShieldSlots.Location = new System.Drawing.Point(110, 136);
+			this.numShieldSlots.Name = "numShieldSlots";
+			this.numShieldSlots.Size = new System.Drawing.Size(64, 20);
+			this.numShieldSlots.TabIndex = 8;
+			this.numShieldSlots.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numShieldSlots.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// label19
+			// numGadgetSlots
 			// 
-			this.label19.Location = new System.Drawing.Point(16, 144);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(80, 16);
-			this.label19.TabIndex = 5;
-			this.label19.Text = "Cargo space :";
+			this.numGadgetSlots.Location = new System.Drawing.Point(110, 160);
+			this.numGadgetSlots.Name = "numGadgetSlots";
+			this.numGadgetSlots.Size = new System.Drawing.Size(64, 20);
+			this.numGadgetSlots.TabIndex = 7;
+			this.numGadgetSlots.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numGadgetSlots.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// label18
+			// numWeaponSlots
 			// 
-			this.label18.Location = new System.Drawing.Point(16, 104);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(64, 16);
-			this.label18.TabIndex = 4;
-			this.label18.Text = "Fuel cells :";
+			this.numWeaponSlots.Location = new System.Drawing.Point(110, 112);
+			this.numWeaponSlots.Name = "numWeaponSlots";
+			this.numWeaponSlots.Size = new System.Drawing.Size(64, 20);
+			this.numWeaponSlots.TabIndex = 6;
+			this.numWeaponSlots.Enter += new System.EventHandler(this.num_ValueEnter);
+			this.numWeaponSlots.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			// 
-			// label17
+			// lblCargoBays
 			// 
-			this.label17.Location = new System.Drawing.Point(16, 124);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(88, 16);
-			this.label17.TabIndex = 3;
-			this.label17.Text = "Crew quarters :";
+			this.lblCargoBays.AutoSize = true;
+			this.lblCargoBays.Location = new System.Drawing.Point(8, 66);
+			this.lblCargoBays.Name = "lblCargoBays";
+			this.lblCargoBays.Size = new System.Drawing.Size(66, 13);
+			this.lblCargoBays.TabIndex = 5;
+			this.lblCargoBays.Text = "Cargo Bays:";
 			// 
-			// label16
+			// lblFuelTanks
 			// 
-			this.label16.Location = new System.Drawing.Point(16, 84);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(48, 16);
-			this.label16.TabIndex = 2;
-			this.label16.Text = "Shields :";
+			this.lblFuelTanks.AutoSize = true;
+			this.lblFuelTanks.Location = new System.Drawing.Point(8, 42);
+			this.lblFuelTanks.Name = "lblFuelTanks";
+			this.lblFuelTanks.Size = new System.Drawing.Size(63, 13);
+			this.lblFuelTanks.TabIndex = 4;
+			this.lblFuelTanks.Text = "Fuel Tanks:";
 			// 
-			// label15
+			// lblCrewQuarters
 			// 
-			this.label15.Location = new System.Drawing.Point(16, 64);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(56, 16);
-			this.label15.TabIndex = 1;
-			this.label15.Text = "Gadgets :";
+			this.lblCrewQuarters.AutoSize = true;
+			this.lblCrewQuarters.Location = new System.Drawing.Point(8, 90);
+			this.lblCrewQuarters.Name = "lblCrewQuarters";
+			this.lblCrewQuarters.Size = new System.Drawing.Size(81, 13);
+			this.lblCrewQuarters.TabIndex = 3;
+			this.lblCrewQuarters.Text = "Crew Quarters:";
 			// 
-			// label10
+			// lblShieldSlots
 			// 
-			this.label10.Location = new System.Drawing.Point(16, 44);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(64, 16);
-			this.label10.TabIndex = 0;
-			this.label10.Text = "Weapons :";
+			this.lblShieldSlots.AutoSize = true;
+			this.lblShieldSlots.Location = new System.Drawing.Point(8, 138);
+			this.lblShieldSlots.Name = "lblShieldSlots";
+			this.lblShieldSlots.Size = new System.Drawing.Size(67, 13);
+			this.lblShieldSlots.TabIndex = 2;
+			this.lblShieldSlots.Text = "Shield Slots:";
 			// 
-			// picLogo
+			// lblGadgetSlots
 			// 
-			this.picLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.picLogo.Image = ((System.Drawing.Bitmap)(resources.GetObject("picLogo.Image")));
-			this.picLogo.Location = new System.Drawing.Point(196, 236);
-			this.picLogo.Name = "picLogo";
-			this.picLogo.Size = new System.Drawing.Size(64, 64);
-			this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.picLogo.TabIndex = 22;
-			this.picLogo.TabStop = false;
+			this.lblGadgetSlots.AutoSize = true;
+			this.lblGadgetSlots.Location = new System.Drawing.Point(8, 162);
+			this.lblGadgetSlots.Name = "lblGadgetSlots";
+			this.lblGadgetSlots.Size = new System.Drawing.Size(73, 13);
+			this.lblGadgetSlots.TabIndex = 1;
+			this.lblGadgetSlots.Text = "Gadget Slots:";
+			// 
+			// lblWeaponsSlots
+			// 
+			this.lblWeaponsSlots.AutoSize = true;
+			this.lblWeaponsSlots.Location = new System.Drawing.Point(8, 114);
+			this.lblWeaponsSlots.Name = "lblWeaponsSlots";
+			this.lblWeaponsSlots.Size = new System.Drawing.Size(78, 13);
+			this.lblWeaponsSlots.TabIndex = 0;
+			this.lblWeaponsSlots.Text = "Weapon Slots:";
+			// 
+			// ilShipyardLogos
+			// 
+			this.ilShipyardLogos.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.ilShipyardLogos.ImageSize = new System.Drawing.Size(80, 80);
+			this.ilShipyardLogos.TransparentColor = System.Drawing.Color.Transparent;
+			// 
+			// dlgOpen
+			// 
+			this.dlgOpen.Filter = "Windows Bitmaps (*.bmp)|*bmp|All Files (*.*)|*.*";
+			this.dlgOpen.Title = "Open Ship Image";
+			// 
+			// btnLoad
+			// 
+			this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnLoad.Location = new System.Drawing.Point(220, 16);
+			this.btnLoad.Name = "btnLoad";
+			this.btnLoad.Size = new System.Drawing.Size(44, 20);
+			this.btnLoad.TabIndex = 133;
+			this.btnLoad.Text = "Load";
+			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+			// 
+			// btnSave
+			// 
+			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSave.Location = new System.Drawing.Point(220, 40);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(44, 20);
+			this.btnSave.TabIndex = 134;
+			this.btnSave.Text = "Save";
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
 			// Form_Shipyard
 			// 
 			this.AcceptButton = this.btnBuild;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(464, 310);
-			this.ControlBox = false;
+			this.ClientSize = new System.Drawing.Size(482, 359);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.groupBox4,
-																																	this.groupBox3,
-																																	this.groupBox2,
-																																	this.groupBox1,
+																																	this.boxAllocation,
+																																	this.boxCosts,
+																																	this.boxInfo,
+																																	this.boxWelcome,
 																																	this.btnCancel,
-																																	this.btnBuild,
-																																	this.picLogo});
+																																	this.btnBuild});
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Form_Shipyard";
-			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.Text = "Ship design at XXXX shipyards";
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numHullSpace)).EndInit();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.numArmor)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numCargo)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numCrew)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numFuel)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numShields)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numGadgets)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numWeapons)).EndInit();
+			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Text = "Ship Design at XXXX Shipyards";
+			this.boxWelcome.ResumeLayout(false);
+			this.boxInfo.ResumeLayout(false);
+			this.boxCosts.ResumeLayout(false);
+			this.boxAllocation.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.numHullStrength)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCargoBays)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numCrewQuarters)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numFuelTanks)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numShieldSlots)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numGadgetSlots)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numWeaponSlots)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 		#endregion
 
-		#region Methods
-		private void checkValidity(bool force) 
+		private void LoadSizes()
 		{
-			int hullSize= (int)numHullSpace.Value;
-			int weapons = (int)numWeapons.Value;
-			int gadgets = (int)numGadgets.Value;
-			int shields = (int)numShields.Value;
-			int fuel		= (int)numFuel.Value;
-			int crew		= (int)numCrew.Value;
-			int armor		= (int)numArmor.Value;
-			
-			int spaceFree = hullSize - _shipyard.computeSpaceUsed(weapons, gadgets, shields, fuel, crew, armor);
-			if (!force && (spaceFree < 0))
+			sizes	= new ArrayList(6);
+
+			foreach (Size size in shipyard.AvailableSizes)
 			{
-				numHullSpace.Value	= _hullSize;
-				numWeapons.Value		= _weapons;
-				numGadgets.Value		= _gadgets;
-				numShields.Value		= _shields;
-				numFuel.Value				= _fuel;
-				numCrew.Value				= _crew;
-				numArmor.Value			= _armor;
-				checkValidity(true);
-			} else 
-			{
-				numCargo.Value = spaceFree;
-				lblDesignFee.Text = Functions.FormatMoney(_shipyard.computeDesignPrice(hullSize));
-				lblShipPrice.Text = Functions.FormatMoney(_shipyard.computeShipPrice(hullSize));
-				lblTotalPrice.Text = Functions.FormatMoney(_shipyard.computeDesignPrice(hullSize) + _shipyard.computeShipPrice(hullSize));
-				lblJumpRange.Text = Functions.Multiples(_shipyard.computeRange(hullSize, (int)numFuel.Value), Strings.DistanceUnit);
-				_hullSize	= (int)numHullSpace.Value;
-				_weapons	= (int)numWeapons.Value;
-				_gadgets	= (int)numGadgets.Value;
-				_shields	= (int)numShields.Value;
-				_fuel			= (int)numFuel.Value;
-				_crew			= (int)numCrew.Value;
-				_armor		= (int)numArmor.Value;
+				sizes.Add(size);
+				selSize.Items.Add(Functions.StringVars(Strings.ShipyardSizeItem, Strings.Sizes[(int)size],
+					Functions.Multiples(Shipyard.MAX_UNITS[(int)size], Strings.ShipyardUnit)));
 			}
+
+			selSize.SelectedIndex	= 0;
 		}
 
-		private void controlChanged(object sender, System.EventArgs e)
+		private void LoadTemplates()
 		{
-			if (!_initializing)
-			{
-				checkValidity(false);
-			}
+			selTemplate.Items.Add("<new>");
+
+			foreach (int i in new int[] { 0, 1, 2 })
+				selTemplate.Items.Add("item " + i.ToString());
+
+			selTemplate.SelectedIndex	= 0;
 		}
-				
+
+		private void UpdateAllocation()
+		{
+			numHullStrength.Minimum		= shipyard.BaseHull;
+			numHullStrength.Increment	= shipyard.PerUnitHull;
+
+			numFuelTanks.Minimum			= shipyard.BaseFuel;
+			numFuelTanks.Increment		= shipyard.PerUnitFuel;
+		}
+
 		#endregion
 
-		private void btnSetPicture_Click(object sender, System.EventArgs e)
+		#region Event Handlers
+
+		private void btnBuild_Click(object sender, System.EventArgs e)
 		{
-			FileDialog dlg = new OpenFileDialog();
-			dlg.CheckFileExists = true;
-			dlg.Filter = "Windows bitmap (*.bmp)|*.bmp";
-			dlg.FilterIndex = 0;
-			dlg.Title = "Choose a picture for your ship";
-			dlg.ValidateNames = true;
-			DialogResult result = dlg.ShowDialog(this);
-			if (result == DialogResult.OK) 
+			return;
+			// Pay the design fee and construction price
+			int price = shipyard.ShipSpec.Price + shipyard.DesignFee;
+			if (game.Commander.Cash >= price)
 			{
-				string filename = dlg.FileName;
-				picShip.Image = Image.FromFile(filename);
+				shipyard.ShipSpec.FuelCost		= 0;
+				shipyard.ShipSpec.RepairCost	= 0;
+				shipyard.ShipSpec.Price				= 0;
+				Consts.ShipSpecs[(int)ShipType.Custom]	 = shipyard.ShipSpec;
+				game.Commander.Ship											 = new Ship(ShipType.Custom);
+				game.Commander.Cash											-= price;
+				FormAlert.Alert(AlertType.ShipDesignThanks, this, shipyard.Name);
+			}
+			else
+			{
+				FormAlert.Alert(AlertType.ShipDesignIF, this);
 			}
 		}
 
-		#region Properties
-		public string ShipName
+		private void btnLoad_Click(object sender, System.EventArgs e)
 		{
-			get
+			// TODO: Load Template
+		}
+
+		private void btnNextImage_Click(object sender, System.EventArgs e)
+		{
+			// TODO: Show next ship image.
+		}
+
+		private void btnPrevImage_Click(object sender, System.EventArgs e)
+		{
+			// TODO: Show previous ship image.
+		}
+
+		private void btnSave_Click(object sender, System.EventArgs e)
+		{
+			// TODO: save template.
+		}
+
+		private void btnSetCustomImage_Click(object sender, System.EventArgs e)
+		{
+			if (dlgOpen.ShowDialog(this) == DialogResult.OK)
 			{
-				return txtName.Text;
+				// TODO: get ship images.
+
+				ImageList	shipImages	= game.ParentWindow.ShipImages;
+				for (int i = 0; i < 4; i++)
+					shipImages.Images.RemoveAt(shipImages.Images.Count);
+
+				shipImages.Images.Add(new Bitmap(""));
 			}
 		}
 
-		public int Weapons
+		private void num_ValueChanged(object sender, System.EventArgs e)
 		{
-			get
-			{
-				return (int)numWeapons.Value;
-			}
+//			if (!initializing)
+//				checkValidity(false);
 		}
 
-		public int Gadgets
+		private void num_ValueEnter(object sender, System.EventArgs e)
 		{
-			get
-			{
-				return (int)numGadgets.Value;
-			}
+			((NumericUpDown)sender).Select(0, ((NumericUpDown)sender).Value.ToString().Length);
 		}
 
-		public int Shields
+		private void selSize_SelectedIndexChanged(object sender, System.EventArgs e)
 		{
-			get
-			{
-				return (int)numShields.Value;
-			}
+			shipyard.ShipSpec.Size	= (Size)sizes[selSize.SelectedIndex];
+			UpdateAllocation();
 		}
 
-		public int Fuel
-		{
-			get
-			{
-				return (int)numFuel.Value;
-			}
-		}
-
-		public int Crew
-		{
-			get
-			{
-				return (int)numCrew.Value;
-			}
-		}
-
-		public int Cargo
-		{
-			get
-			{
-				return (int)numCargo.Value;
-			}
-		}
-
-		public int HullSize
-		{
-			get
-			{
-				return (int)numHullSpace.Value;
-			}
-		}
-
-		public int Armor
-		{
-			get
-			{
-				return (int)numArmor.Value;
-			}
-		}
 		#endregion
-
-
 	}
 }
