@@ -513,6 +513,470 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "images\alien.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\arrdown.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\arrleft.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\arrright.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\arrup.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\bottle.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\bottled.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartlnv.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartlv.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartlw.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsnv.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsnvs.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsv.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsvs.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsw.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\chartsws.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\continuous0.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\continuous1.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\destroyed.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\df.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\dfd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\dfs.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\dfsd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\dummy_ship.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\find.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_bays.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_cloak.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_fuel.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_hbays.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_navsys.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_repsys.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\g_targsys.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\logo.gif"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\mantis.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\mantisd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\mantiss.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\mantissd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\moon.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\moongirl.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\pirate.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\police.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\retire.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scarab.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scarabd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scorp.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scorpd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scorps.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\scorpsd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship0.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship0d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship1.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship10.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship10d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship10s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship10sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship1d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship2.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship2d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship2s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship2sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship3.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship3d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship3s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship3sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship4.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship4d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship4s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship4sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship5.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship5d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship5s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship5sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship6.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship6d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship6s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship6sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship7.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship7d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship7s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship7sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship8.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship8d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship8s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship8sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship9.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship9d.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship9s.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\ship9sd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sm.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\smd.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\special.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\splash.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\splash.jpg"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sy-corellian.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sy-incom.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sy-kuat.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sy-sienar.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\sy-sorosuub.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\s_energy.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\s_lightning.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\s_reflective.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trader.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib0.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib1.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib2.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib3.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib4.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib5.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib6.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\trib7.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_beam.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_military.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_morgan.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_photon.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_pulse.bmp"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "images\w_quantum.bmp"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </CSHARP>
