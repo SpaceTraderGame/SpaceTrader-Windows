@@ -23,44 +23,62 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class StarSystem
+	public class StarSystem: STSerializableObject
 	{
 		#region Member Declarations
 
-		private StarSystemId		_id;
-		private int							_x;
-		private int							_y;
-		private Size						_size;
-		private TechLevel				_techLevel;
-		private PoliticalSystem	_politicalSystem;
-		private SystemPressure	_pressure;
-		private SpecialResource	_specialResource;
-		private SpecialEvent		_specialEvent			= null;
-		private int[]						_tradeItems				= new int[10];
-		private int							_countDown				= 0;
-		private bool						_visited					= false;
-		private ShipyardId			_shipyardId				= ShipyardId.NA;
+		private StarSystemId				_id;
+		private int									_x;
+		private int									_y;
+		private Size								_size;
+		private TechLevel						_techLevel;
+		private PoliticalSystemType	_politicalSystemType;
+		private SystemPressure			_pressure;
+		private SpecialResource			_specialResource;
+		private SpecialEventType		_specialEventType			= SpecialEventType.NA;
+		private int[]								_tradeItems						= new int[10];
+		private int									_countDown						= 0;
+		private bool								_visited							= false;
+		private ShipyardId					_shipyardId						= ShipyardId.NA;
 
 		#endregion
 
 		#region Methods
 
-		public StarSystem(StarSystemId id, int x, int y, Size size, TechLevel techLevel, PoliticalSystem politicalSystem,
-			SystemPressure pressure, SpecialResource specialResource)
+		public StarSystem(StarSystemId id, int x, int y, Size size, TechLevel techLevel,
+			PoliticalSystemType politicalSystemType, SystemPressure pressure, SpecialResource specialResource)
 		{
-			_id								= id;
-			_x								= x;
-			_y								= y;
-			_size							= size;
-			_techLevel				= techLevel;
-			_politicalSystem	= politicalSystem;
-			_pressure					= pressure;
-			_specialResource	= specialResource;
+			_id										= id;
+			_x										= x;
+			_y										= y;
+			_size									= size;
+			_techLevel						= techLevel;
+			_politicalSystemType	= politicalSystemType;
+			_pressure							= pressure;
+			_specialResource			= specialResource;
 
 			InitializeTradeItems();
+		}
+
+		public StarSystem(Hashtable hash): base(hash)
+		{
+			_id										= (StarSystemId)hash["_id"];
+			_x										= (int)hash["_x"];
+			_y										= (int)hash["_y"];
+			_size									= (Size)hash["_size"];
+			_techLevel						= (TechLevel)hash["_techLevel"];
+			_politicalSystemType	= (PoliticalSystemType)hash["_politicalSystemType"];
+			_pressure							= (SystemPressure)hash["_pressure"];
+			_specialResource			= (SpecialResource)hash["_specialResource"];
+			_specialEventType			= (SpecialEventType)hash["_specialEventType"];
+			_tradeItems						= (int[])hash["_tradeItems"];
+			_countDown						= (int)hash["_countDown"];
+			_visited							= (bool)hash["_visited"];
+			_shipyardId						= (ShipyardId)hash["_shipyardId"];
 		}
 
 		public void InitializeTradeItems()
@@ -111,112 +129,130 @@ namespace Fryz.Apps.SpaceTrader
 				TechLevel >= item.TechUsage);
 		}
 
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_id",										(int)_id);
+			hash.Add("_x",										_x);
+			hash.Add("_y",										_y);
+			hash.Add("_size",									(int)_size);
+			hash.Add("_techLevel",						(int)_techLevel);
+			hash.Add("_politicalSystemType",	(int)_politicalSystemType);
+			hash.Add("_pressure",							(int)_pressure);
+			hash.Add("_specialResource",			(int)_specialResource);
+			hash.Add("_specialEventType",			(int)_specialEventType);
+			hash.Add("_tradeItems",						_tradeItems);
+			hash.Add("_countDown",						_countDown);
+			hash.Add("_visited",							_visited);
+			hash.Add("_shipyardId",						(int)_shipyardId);
+
+			return hash;
+		}
+
 		public bool ShowSpecialButton()
 		{
 			Game	game	= Game.CurrentGame;
 			bool	show	= false;
 
-			if (SpecialEvent != null)
+			switch (SpecialEventType)
 			{
-				switch (SpecialEvent.Type)
-				{
-					case SpecialEventType.Artifact:
-					case SpecialEventType.Dragonfly:
-					case SpecialEventType.Experiment:
-					case SpecialEventType.Jarek:
-						show	= game.Commander.PoliceRecordScore >=
-							Consts.PoliceRecordScoreDubious;
-						break;
-					case SpecialEventType.ArtifactDelivery:
-						show	= game.Commander.Ship.ArtifactOnBoard;
-						break;
-					case SpecialEventType.CargoForSale:
-						show	= game.Commander.Ship.FreeCargoBays >= 3;
-						break;
-					case SpecialEventType.DragonflyBaratas:
-						show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyNotStarted &&
-							game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
-						break;
-					case SpecialEventType.DragonflyDestroyed:
-						show	= game.QuestStatusDragonfly == SpecialEvent.StatusDragonflyDestroyed;
-						break;
-					case SpecialEventType.DragonflyMelina:
-						show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyBaratas &&
-							game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
-						break;
-					case SpecialEventType.DragonflyRegulas:
-						show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyMelina &&
-							game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
-						break;
-					case SpecialEventType.DragonflyShield:
-					case SpecialEventType.ExperimentFailed:
-					case SpecialEventType.Gemulon:
-					case SpecialEventType.GemulonFuel:
-					case SpecialEventType.GemulonInvaded:
-					case SpecialEventType.Lottery:
-					case SpecialEventType.ReactorLaser:
-					case SpecialEventType.Skill:
-					case SpecialEventType.SpaceMonster:
-					case SpecialEventType.Tribble:
-						show	= true;
-						break;
-					case SpecialEventType.EraseRecord:
-					case SpecialEventType.Wild:
-						show	= game.Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious;
-						break;
-					case SpecialEventType.ExperimentStopped:
-						show	= game.QuestStatusExperiment > SpecialEvent.StatusExperimentNotStarted &&
-							game.QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed;
-						break;
-					case SpecialEventType.GemulonRescued:
-						show	= game.QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
-							game.QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate;
-						break;
-					case SpecialEventType.Japori:
-						show	= game.QuestStatusJapori						== SpecialEvent.StatusJaporiNotStarted &&
-							game.Commander.PoliceRecordScore	>= Consts.PoliceRecordScoreDubious;
-						break;
-					case SpecialEventType.JaporiDelivery:
-						show	= game.QuestStatusJapori == SpecialEvent.StatusJaporiInTransit;
-						break;
-					case SpecialEventType.JarekGetsOut:
-						show	= game.Commander.Ship.JarekOnBoard;
-						break;
-					case SpecialEventType.Moon:
-						show	= game.QuestStatusMoon == SpecialEvent.StatusMoonNotStarted &&
-							game.Commander.Worth >  SpecialEvent.MoonCost * .8;
-						break;
-					case SpecialEventType.MoonRetirement:
-						show	= game.QuestStatusMoon == SpecialEvent.StatusMoonBought;
-						break;
-					case SpecialEventType.Reactor:
-						show	= game.QuestStatusReactor						== SpecialEvent.StatusReactorNotStarted &&
-							game.Commander.PoliceRecordScore	<  Consts.PoliceRecordScoreDubious &&
-							game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
-						break;
-					case SpecialEventType.ReactorDelivered:
-						show	= game.Commander.Ship.ReactorOnBoard;
-						break;
-					case SpecialEventType.Scarab:
-						show	= game.QuestStatusScarab					== SpecialEvent.StatusScarabNotStarted &&
-							game.Commander.ReputationScore	>= Consts.ReputationScoreAverage;
-						break;
-					case SpecialEventType.ScarabDestroyed:
-					case SpecialEventType.ScarabUpgradeHull:
-						show	= game.QuestStatusScarab == SpecialEvent.StatusScarabDestroyed;
-						break;
-					case SpecialEventType.SpaceMonsterKilled:
-						show	= game.QuestStatusSpaceMonster == SpecialEvent.StatusSpaceMonsterDestroyed;
-						break;
-					case SpecialEventType.TribbleBuyer:
-						show	= game.Commander.Ship.Tribbles > 0;
-						break;
-					case SpecialEventType.WildGetsOut:
-						show	= game.Commander.Ship.WildOnBoard;
-						break;
-					default:
-						break;
-				}
+				case SpecialEventType.Artifact:
+				case SpecialEventType.Dragonfly:
+				case SpecialEventType.Experiment:
+				case SpecialEventType.Jarek:
+					show	= game.Commander.PoliceRecordScore >=
+						Consts.PoliceRecordScoreDubious;
+					break;
+				case SpecialEventType.ArtifactDelivery:
+					show	= game.Commander.Ship.ArtifactOnBoard;
+					break;
+				case SpecialEventType.CargoForSale:
+					show	= game.Commander.Ship.FreeCargoBays >= 3;
+					break;
+				case SpecialEventType.DragonflyBaratas:
+					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyNotStarted &&
+						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+					break;
+				case SpecialEventType.DragonflyDestroyed:
+					show	= game.QuestStatusDragonfly == SpecialEvent.StatusDragonflyDestroyed;
+					break;
+				case SpecialEventType.DragonflyMelina:
+					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyBaratas &&
+						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+					break;
+				case SpecialEventType.DragonflyRegulas:
+					show	= game.QuestStatusDragonfly > SpecialEvent.StatusDragonflyFlyMelina &&
+						game.QuestStatusDragonfly < SpecialEvent.StatusDragonflyDestroyed;
+					break;
+				case SpecialEventType.DragonflyShield:
+				case SpecialEventType.ExperimentFailed:
+				case SpecialEventType.Gemulon:
+				case SpecialEventType.GemulonFuel:
+				case SpecialEventType.GemulonInvaded:
+				case SpecialEventType.Lottery:
+				case SpecialEventType.ReactorLaser:
+				case SpecialEventType.Skill:
+				case SpecialEventType.SpaceMonster:
+				case SpecialEventType.Tribble:
+					show	= true;
+					break;
+				case SpecialEventType.EraseRecord:
+				case SpecialEventType.Wild:
+					show	= game.Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious;
+					break;
+				case SpecialEventType.ExperimentStopped:
+					show	= game.QuestStatusExperiment > SpecialEvent.StatusExperimentNotStarted &&
+						game.QuestStatusExperiment < SpecialEvent.StatusExperimentPerformed;
+					break;
+				case SpecialEventType.GemulonRescued:
+					show	= game.QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
+						game.QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate;
+					break;
+				case SpecialEventType.Japori:
+					show	= game.QuestStatusJapori						== SpecialEvent.StatusJaporiNotStarted &&
+						game.Commander.PoliceRecordScore	>= Consts.PoliceRecordScoreDubious;
+					break;
+				case SpecialEventType.JaporiDelivery:
+					show	= game.QuestStatusJapori == SpecialEvent.StatusJaporiInTransit;
+					break;
+				case SpecialEventType.JarekGetsOut:
+					show	= game.Commander.Ship.JarekOnBoard;
+					break;
+				case SpecialEventType.Moon:
+					show	= game.QuestStatusMoon == SpecialEvent.StatusMoonNotStarted &&
+						game.Commander.Worth >  SpecialEvent.MoonCost * .8;
+					break;
+				case SpecialEventType.MoonRetirement:
+					show	= game.QuestStatusMoon == SpecialEvent.StatusMoonBought;
+					break;
+				case SpecialEventType.Reactor:
+					show	= game.QuestStatusReactor						== SpecialEvent.StatusReactorNotStarted &&
+						game.Commander.PoliceRecordScore	<  Consts.PoliceRecordScoreDubious &&
+						game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
+					break;
+				case SpecialEventType.ReactorDelivered:
+					show	= game.Commander.Ship.ReactorOnBoard;
+					break;
+				case SpecialEventType.Scarab:
+					show	= game.QuestStatusScarab					== SpecialEvent.StatusScarabNotStarted &&
+						game.Commander.ReputationScore	>= Consts.ReputationScoreAverage;
+					break;
+				case SpecialEventType.ScarabDestroyed:
+				case SpecialEventType.ScarabUpgradeHull:
+					show	= game.QuestStatusScarab == SpecialEvent.StatusScarabDestroyed;
+					break;
+				case SpecialEventType.SpaceMonsterKilled:
+					show	= game.QuestStatusSpaceMonster == SpecialEvent.StatusSpaceMonsterDestroyed;
+					break;
+				case SpecialEventType.TribbleBuyer:
+					show	= game.Commander.Ship.Tribbles > 0;
+					break;
+				case SpecialEventType.WildGetsOut:
+					show	= game.Commander.Ship.WildOnBoard;
+					break;
+				default:
+					break;
 			}
 
 			return show;
@@ -305,15 +341,23 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public PoliticalSystemType PoliticalSystemType
+		{
+			get
+			{
+				return _politicalSystemType;
+			}
+			set
+			{
+				_politicalSystemType	= value;
+			}
+		}
+
 		public PoliticalSystem PoliticalSystem
 		{
 			get
 			{
-				return _politicalSystem;
-			}
-			set
-			{
-				_politicalSystem	= value;
+				return Consts.PoliticalSystems[(int)_politicalSystemType];
 			}
 		}
 
@@ -337,15 +381,23 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public SpecialEventType SpecialEventType
+		{
+			get
+			{
+				return _specialEventType;
+			}
+			set
+			{
+				_specialEventType   = value;
+			}
+		}
+
 		public SpecialEvent SpecialEvent
 		{
 			get
 			{
-				return _specialEvent;
-			}
-			set
-			{
-				_specialEvent   = value;
+				return (_specialEventType == SpecialEventType.NA ? null : Consts.SpecialEvents[(int)_specialEventType]);
 			}
 		}
 

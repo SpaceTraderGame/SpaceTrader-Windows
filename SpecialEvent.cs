@@ -173,8 +173,7 @@ namespace Fryz.Apps.SpaceTrader
 				StarSystem[]	universe	= Game.CurrentGame.Universe;
 
 				for (int i = 0; i < universe.Length && location == null; i++)
-					if (universe[i].SpecialEvent != null &&
-							universe[i].SpecialEvent.Type == Type)
+					if (universe[i].SpecialEventType == Type)
 						location	= universe[i];
 
 				return location;

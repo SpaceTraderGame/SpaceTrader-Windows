@@ -117,7 +117,7 @@ namespace Fryz.Apps.SpaceTrader
 			ResetVeryRareEncounters();
 
 			if (Difficulty < Difficulty.Normal)
-				Commander.CurrentSystem.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.Lottery];
+				Commander.CurrentSystem.SpecialEventType	= SpecialEventType.Lottery;
 
 			// JAF - DEBUG
 			Commander.Cash	= 1000000;
@@ -679,7 +679,7 @@ namespace Fryz.Apps.SpaceTrader
 				showEncounter				= true;
 			}
 			// Encounter with the stolen Scarab
-			else if (ArrivedViaWormhole && Clicks == 20 && WarpSystem.SpecialEvent != null &&
+			else if (ArrivedViaWormhole && Clicks == 20 && WarpSystem.SpecialEventType != SpecialEventType.NA &&
 				WarpSystem.SpecialEvent.Type == SpecialEventType.ScarabDestroyed &&
 				QuestStatusScarab == SpecialEvent.StatusScarabHunting)
 			{
@@ -1036,14 +1036,14 @@ namespace Fryz.Apps.SpaceTrader
 			for (int i = 0; i < Universe.Length; i++)
 			{
 				int	distance	= Functions.Distance(Universe[(int)baseSystem], Universe[i]);
-				if (distance >= 70 && distance < bestDistance && Universe[i].SpecialEvent == null)
+				if (distance >= 70 && distance < bestDistance && Universe[i].SpecialEventType == SpecialEventType.NA)
 				{
 					system				= i;
 					bestDistance	= distance;
 				}
 			}
 			if (system >= 0)
-				Universe[system].SpecialEvent	= Consts.SpecialEvents[(int)specEvent];
+				Universe[system].SpecialEventType	= specEvent;
 
 			return (system >= 0);
 		}
@@ -1147,7 +1147,7 @@ namespace Fryz.Apps.SpaceTrader
 					}
 				}
 
-				Universe[i]	= new StarSystem(id, x, y, size, tech, polSys, pressure, specRes);
+				Universe[i]	= new StarSystem(id, x, y, size, tech, polSys.Type, pressure, specRes);
 			}
 
 			// Randomize the system locations a bit more, otherwise the systems with the first
@@ -1186,7 +1186,7 @@ namespace Fryz.Apps.SpaceTrader
 			bool				money		= false;
 			bool				remove	= true;
 
-			switch (curSys.SpecialEvent.Type)
+			switch (curSys.SpecialEventType)
 			{
 				case SpecialEventType.Artifact:
 					QuestStatusArtifact	= SpecialEvent.StatusArtifactOnBoard;
@@ -1209,8 +1209,8 @@ namespace Fryz.Apps.SpaceTrader
 					QuestStatusDragonfly++;
 					break;
 				case SpecialEventType.DragonflyDestroyed:
-					curSys.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.DragonflyShield];
-					remove							= false;
+					curSys.SpecialEventType	= SpecialEventType.DragonflyShield;
+					remove									= false;
 					break;
 				case SpecialEventType.DragonflyShield:
 					if (Commander.Ship.FreeSlotsShield == 0)
@@ -1257,9 +1257,9 @@ namespace Fryz.Apps.SpaceTrader
 					}
 					break;
 				case SpecialEventType.GemulonRescued:
-					curSys.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.GemulonFuel];
-					QuestStatusGemulon	= SpecialEvent.StatusGemulonFuel;
-					remove							= false;
+					curSys.SpecialEventType	= SpecialEventType.GemulonFuel;
+					QuestStatusGemulon			= SpecialEvent.StatusGemulonFuel;
+					remove									= false;
 					break;
 				case SpecialEventType.Japori:
 					if (Commander.Ship.FreeCargoBays < 10)
@@ -1335,9 +1335,9 @@ namespace Fryz.Apps.SpaceTrader
 					}
 					break;
 				case SpecialEventType.ReactorDelivered:
-					curSys.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.ReactorLaser];
-					QuestStatusReactor	= SpecialEvent.StatusReactorDelivered;
-					remove							= false;
+					curSys.SpecialEventType	= SpecialEventType.ReactorLaser;
+					QuestStatusReactor			= SpecialEvent.StatusReactorDelivered;
+					remove									= false;
 					break;	
 				case SpecialEventType.ReactorLaser:
 					if (Commander.Ship.FreeSlotsWeapon == 0)
@@ -1356,9 +1356,9 @@ namespace Fryz.Apps.SpaceTrader
 					QuestStatusScarab	= SpecialEvent.StatusScarabHunting;
 					break;
 				case SpecialEventType.ScarabDestroyed:
-					QuestStatusScarab		= SpecialEvent.StatusScarabDestroyed;
-					curSys.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.ScarabUpgradeHull];
-					remove							= false;
+					QuestStatusScarab				= SpecialEvent.StatusScarabDestroyed;
+					curSys.SpecialEventType	= SpecialEventType.ScarabUpgradeHull;
+					remove									= false;
 					break;	
 				case SpecialEventType.ScarabUpgradeHull:
 					FormAlert.Alert(AlertType.ShipHullUpgraded, ParentWindow);
@@ -1434,7 +1434,7 @@ namespace Fryz.Apps.SpaceTrader
 				Commander.Cash	-= curSys.SpecialEvent.Price;
 
 			if (remove)
-				curSys.SpecialEvent	= null;
+				curSys.SpecialEventType	= SpecialEventType.NA;
 		}
 
 		public void IncDays(int num, IWin32Window owner)
@@ -1447,10 +1447,10 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusGemulon	= Math.Min(QuestStatusGemulon + num, SpecialEvent.StatusGemulonTooLate);
 				if (QuestStatusGemulon == SpecialEvent.StatusGemulonTooLate)
 				{
-					StarSystem	gemulon			= Universe[(int)StarSystemId.Gemulon];
-					gemulon.SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.GemulonInvaded];
-					gemulon.TechLevel				= TechLevel.PreAgricultural;
-					gemulon.PoliticalSystem	= Consts.PoliticalSystems[(int)PoliticalSystemType.Anarchy];
+					StarSystem	gemulon					= Universe[(int)StarSystemId.Gemulon];
+					gemulon.SpecialEventType		= SpecialEventType.GemulonInvaded;
+					gemulon.TechLevel						= TechLevel.PreAgricultural;
+					gemulon.PoliticalSystemType	= PoliticalSystemType.Anarchy;
 				}
 			}
 
@@ -1463,8 +1463,8 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusExperiment	= Math.Min(QuestStatusExperiment + num, SpecialEvent.StatusExperimentPerformed);
 				if (QuestStatusExperiment == SpecialEvent.StatusExperimentPerformed)
 				{
-					FabricRipProbability														= Consts.FabricRipInitialProbability;
-					Universe[(int)StarSystemId.Daled].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.ExperimentFailed];
+					FabricRipProbability																= Consts.FabricRipInitialProbability;
+					Universe[(int)StarSystemId.Daled].SpecialEventType	= SpecialEventType.ExperimentFailed;
 					FormAlert.Alert(AlertType.SpecialExperimentPerformed, owner);
 					NewsAddEvent(NewsEvent.ExperimentPerformed);
 				}
@@ -1516,7 +1516,7 @@ namespace Fryz.Apps.SpaceTrader
 			while (Commander.CurrentSystem == null)
 			{
 				StarSystem	system	= Universe[Functions.GetRandom(Universe.Length)];
-				if (system.SpecialEvent == null &&
+				if (system.SpecialEventType == SpecialEventType.NA &&
 					system.TechLevel > TechLevel.PreAgricultural &&
 					system.TechLevel < TechLevel.HiTech)
 				{
@@ -1543,11 +1543,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void NewsAddEventsOnArrival()
 		{
-			if (Commander.CurrentSystem.SpecialEvent != null)
+			if (Commander.CurrentSystem.SpecialEventType != SpecialEventType.NA)
 			{
-				SpecialEventType	type	= Commander.CurrentSystem.SpecialEvent.Type;
-
-				switch (Commander.CurrentSystem.SpecialEvent.Type)
+				switch (Commander.CurrentSystem.SpecialEventType)
 				{
 					case SpecialEventType.ArtifactDelivery:
 						if (Commander.Ship.ArtifactOnBoard)
@@ -1674,23 +1672,24 @@ namespace Fryz.Apps.SpaceTrader
 			bool	goodUniverse	= true;
 			int		system;
 
-			Universe[(int)StarSystemId.Baratas].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.DragonflyBaratas];
-			Universe[(int)StarSystemId.Melina].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.DragonflyMelina];
-			Universe[(int)StarSystemId.Regulas].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.DragonflyRegulas];
-			Universe[(int)StarSystemId.Zalkon].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.DragonflyDestroyed];
-			Universe[(int)StarSystemId.Daled].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.ExperimentStopped];
-			Universe[(int)StarSystemId.Gemulon].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.GemulonRescued];
-			Universe[(int)StarSystemId.Japori].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.JaporiDelivery];
-			Universe[(int)StarSystemId.Devidia].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.JarekGetsOut];
-			Universe[(int)StarSystemId.Utopia].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.MoonRetirement];
-			Universe[(int)StarSystemId.Nix].SpecialEvent			= Consts.SpecialEvents[(int)SpecialEventType.ReactorDelivered];
-			Universe[(int)StarSystemId.Acamar].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.SpaceMonsterKilled];
-			Universe[(int)StarSystemId.Kravat].SpecialEvent		= Consts.SpecialEvents[(int)SpecialEventType.WildGetsOut];
+			Universe[(int)StarSystemId.Baratas].SpecialEventType	= SpecialEventType.DragonflyBaratas;
+			Universe[(int)StarSystemId.Melina].SpecialEventType		= SpecialEventType.DragonflyMelina;
+			Universe[(int)StarSystemId.Regulas].SpecialEventType	= SpecialEventType.DragonflyRegulas;
+			Universe[(int)StarSystemId.Zalkon].SpecialEventType		= SpecialEventType.DragonflyDestroyed;
+			Universe[(int)StarSystemId.Daled].SpecialEventType		= SpecialEventType.ExperimentStopped;
+			Universe[(int)StarSystemId.Gemulon].SpecialEventType	= SpecialEventType.GemulonRescued;
+			Universe[(int)StarSystemId.Japori].SpecialEventType		= SpecialEventType.JaporiDelivery;
+			Universe[(int)StarSystemId.Devidia].SpecialEventType	= SpecialEventType.JarekGetsOut;
+			Universe[(int)StarSystemId.Utopia].SpecialEventType		= SpecialEventType.MoonRetirement;
+			Universe[(int)StarSystemId.Nix].SpecialEventType			= SpecialEventType.ReactorDelivered;
+			Universe[(int)StarSystemId.Acamar].SpecialEventType		= SpecialEventType.SpaceMonsterKilled;
+			Universe[(int)StarSystemId.Kravat].SpecialEventType		= SpecialEventType.WildGetsOut;
 
 			// Assign a wormhole location endpoint for the Scarab.
-			for (system = 0; system < Wormholes.Length && Universe[Wormholes[system]].SpecialEvent != null; system++);
+			for (system = 0; system < Wormholes.Length &&
+				Universe[Wormholes[system]].SpecialEventType != SpecialEventType.NA; system++);
 			if (system < Wormholes.Length)
-				Universe[Wormholes[system]].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.ScarabDestroyed];
+				Universe[Wormholes[system]].SpecialEventType	= SpecialEventType.ScarabDestroyed;
 			else
 				goodUniverse	= false;
 
@@ -1698,9 +1697,10 @@ namespace Fryz.Apps.SpaceTrader
 			if (goodUniverse)
 			{
 				for (system = 0; system < Universe.Length &&
-					!(Universe[system].SpecialEvent == null && Universe[system].TechLevel == TechLevel.HiTech); system++);
+					!(Universe[system].SpecialEventType == SpecialEventType.NA &&
+					Universe[system].TechLevel == TechLevel.HiTech); system++);
 				if (system < Universe.Length)
-					Universe[system].SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.ArtifactDelivery];
+					Universe[system].SpecialEventType	= SpecialEventType.ArtifactDelivery;
 				else
 					goodUniverse	= false;
 			}
@@ -1756,8 +1756,8 @@ namespace Fryz.Apps.SpaceTrader
 					{
 						system	= Functions.GetRandom(Universe.Length);
 					}
-					while (Universe[system].SpecialEvent != null);
-					Universe[system].SpecialEvent	= Consts.SpecialEvents[(int)random[i]];
+					while (Universe[system].SpecialEventType != SpecialEventType.NA);
+					Universe[system].SpecialEventType	= random[i];
 				}
 			}
 
@@ -2249,7 +2249,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				string[]		heads		= Strings.NewsMastheads[(int)Commander.CurrentSystem.PoliticalSystem.Type];
+				string[]		heads		= Strings.NewsMastheads[(int)Commander.CurrentSystem.PoliticalSystemType];
 				string			head		= heads[Functions.GetSystemIndex(Commander.CurrentSystem) % heads.Length];
 
 				return Functions.StringVars(head, Commander.CurrentSystem.Name);
@@ -2295,11 +2295,11 @@ namespace Fryz.Apps.SpaceTrader
 					if (Universe[i].DestOk && Universe[i] != curSys)
 					{
 						// Special stories that always get shown: moon, millionaire
-						if (Universe[i].SpecialEvent != null)
+						if (Universe[i].SpecialEventType != SpecialEventType.NA)
 						{
-							if (Universe[i].SpecialEvent.Type == SpecialEventType.Moon)
+							if (Universe[i].SpecialEventType == SpecialEventType.Moon)
 								items.Add(Functions.StringVars(Strings.NewsMoonForSale, Universe[i].Name));
-							else if (Universe[i].SpecialEvent.Type == SpecialEventType.TribbleBuyer)
+							else if (Universe[i].SpecialEventType == SpecialEventType.TribbleBuyer)
 								items.Add(Functions.StringVars(Strings.NewsTribbleBuyer, Universe[i].Name));
 						}
 			
@@ -2319,7 +2319,7 @@ namespace Fryz.Apps.SpaceTrader
 				// headline from our canned news list.
 				if (!realNews)
 				{
-					string[]	headlines	= Strings.NewsHeadlines[(int)curSys.PoliticalSystem.Type];
+					string[]	headlines	= Strings.NewsHeadlines[(int)curSys.PoliticalSystemType];
 					bool[]		shown			= new bool[headlines.Length];
 
 					for (int i = 0; i <= Functions.GetRandom2(headlines.Length); i++)
