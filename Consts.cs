@@ -263,7 +263,7 @@ namespace Fryz.Apps.SpaceTrader
 			new ShipSpec(ShipType.Scarab,       Size.Large,  20, 2, 0, 0, 2,  1, 1, 400,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
 			new ShipSpec(ShipType.Bottle,       Size.Small,   0, 0, 0, 0, 0,  1, 1,  10,  1,    100,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
 			new ShipSpec(ShipType.Custom,       Size.Huge,    0, 0, 0, 0, 0,  0, 0,   0,  0,      0,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable)
-	};
+		};
 		#endregion
 
 		#region Shipyards
