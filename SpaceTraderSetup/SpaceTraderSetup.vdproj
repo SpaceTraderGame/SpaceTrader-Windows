@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_02BBC9571B7647508091BE6450CA3C0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -27,14 +33,80 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C730005F637F4CBC9B08F46C1BD98CFD"
+        "MsmKey" = "8:_5EB50CCF64F6480C8D350A078105E996"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_72B241286BFB4E2F8E124C5C7B042977"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7AF05FF1A65E4BD7A018B3FE60FAC18E"
         "OwnerKey" = "8:_286C9D30FD3747FC98C4827F04C47B82"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C730005F637F4CBC9B08F46C1BD98CFD"
+        "MsmKey" = "8:_7AF05FF1A65E4BD7A018B3FE60FAC18E"
         "OwnerKey" = "8:_2E15012B3E214D4CB02C0B3936F167DD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8050867091D24392813AAFF31F464B2E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BA14D6D07E2C4A3C8554144028D31842"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C11F412D5F7D40A3B885959296B3D78A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D588CC8F3DA64BE28DC9248E2FB9F781"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DA640A2178BE42CF8BF2D02B1B4429EB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DC4947D9C7484B91A765661563789106"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DDA5E1AB56AD485B9036EF54937E946C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E0D3B86F0BE440E2AA602DD546E0817A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EC97F7342ED84363B66F52C92DDAF364"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -158,6 +230,246 @@
         }
         "File"
         {
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_02BBC9571B7647508091BE6450CA3C0B"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\mantisd.bmp"
+            "TargetName" = "8:mantisd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_5EB50CCF64F6480C8D350A078105E996"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\mantis.bmp"
+            "TargetName" = "8:mantis.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_72B241286BFB4E2F8E124C5C7B042977"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\dfs.bmp"
+            "TargetName" = "8:dfs.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_8050867091D24392813AAFF31F464B2E"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\dfsd.bmp"
+            "TargetName" = "8:dfsd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_BA14D6D07E2C4A3C8554144028D31842"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\scarabs.bmp"
+            "TargetName" = "8:scarabs.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_C11F412D5F7D40A3B885959296B3D78A"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\mantissd.bmp"
+            "TargetName" = "8:mantissd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_D588CC8F3DA64BE28DC9248E2FB9F781"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\scarabd.bmp"
+            "TargetName" = "8:scarabd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_DA640A2178BE42CF8BF2D02B1B4429EB"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\scarabsd.bmp"
+            "TargetName" = "8:scarabsd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_DC4947D9C7484B91A765661563789106"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\mantiss.bmp"
+            "TargetName" = "8:mantiss.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_DDA5E1AB56AD485B9036EF54937E946C"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\dfd.bmp"
+            "TargetName" = "8:dfd.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_E0D3B86F0BE440E2AA602DD546E0817A"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\scarab.bmp"
+            "TargetName" = "8:scarab.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{A582A373-4685-4296-BEFE-614B80A702C3}:_EC97F7342ED84363B66F52C92DDAF364"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\custom\\images\\df.bmp"
+            "TargetName" = "8:df.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_3A5B15C3E4264E27A1342CFFBE6245BF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -174,17 +486,61 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                }
-            }
-            "{78BAF5CE-F2E5-45BE-83BC-DB6AF387E941}:_C3EB068B466D4DCFA2BAC57338D01590"
-            {
-            "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:DesktopFolder"
-                "Folders"
-                {
+                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_14601179577C4C43A4254E130D75F776"
+                    {
+                    "Name" = "8:custom"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_0EC769A6CD3E410189242AC391048952"
+                        "Folders"
+                        {
+                            "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_3A5B15C3E4264E27A1342CFFBE6245BF"
+                            {
+                            "Name" = "8:images"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_EEFA8209698049A6A2FF909756FA2125"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_A573151DE87C43DAA6D2E973481F855E"
+                            {
+                            "Name" = "8:templates"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_513D34DD76E94C8DA6E9A0C5BDC0D86D"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
+                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_9C59CCB3545F4F56BBC3D16F0A9D2257"
+                    {
+                    "Name" = "8:save"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_BA1CCB21AA8348CF967F57AF36E12795"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{F27BD5C5-A65D-4608-96D4-7C5DA1F76302}:_D18CCB3A98CB4733BF7E32923299C86A"
+                    {
+                    "Name" = "8:data"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_0324EF42A6FC4D61861075D9610BEC30"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{78BAF5CE-F2E5-45BE-83BC-DB6AF387E941}:_DE834AA39AC649948EBC32987CCBC2E4"
@@ -325,6 +681,20 @@
         }
         "Shortcut"
         {
+            "{478F747B-8505-45D1-9AAE-8C3B645C26E3}:_84D59FC0B6AB47CBA1ECA5C6AEF1FE3C"
+            {
+            "Name" = "8:SpaceTrader for Windows File Converter"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_286C9D30FD3747FC98C4827F04C47B82"
+            "Folder" = "8:_89DBF1846BB34FD5A76264013D2661C1"
+            "WorkingFolder" = "8:_45ED1A3BDB6A42A5928990043BF0F672"
+            "Icon" = "8:_286C9D30FD3747FC98C4827F04C47B82"
+            "Feature" = "8:"
+            }
             "{478F747B-8505-45D1-9AAE-8C3B645C26E3}:_DA8902BB3DBA4AB5BAEFDEF4170CFACD"
             {
             "Name" = "8:SpaceTrader for Windows"
@@ -722,7 +1092,7 @@
         }
         "MergeModule"
         {
-            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_C730005F637F4CBC9B08F46C1BD98CFD"
+            "{35A69C6E-5BA4-440D-803D-762B59A45393}:_7AF05FF1A65E4BD7A018B3FE60FAC18E"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
