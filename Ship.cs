@@ -194,25 +194,16 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void Fire(CrewMemberId crewId)
 		{
+			int		skill	= Trader;
 			bool	found	= false;
-			for (int i = 0; i < Crew.Length && !found; i++)
+			for (int i = 0; i < Crew.Length; i++)
 			{
 				if (Crew[i] != null && Crew[i].Id == crewId)
-				{
-					Fire(i);
 					found	= true;
-				}
+
+				if (found)
+					Crew[i]	= (i < Crew.Length - 1) ? Crew[i + 1] : null;
 			}
-		}
-
-		public void Fire(int crewId)
-		{
-			int	skill			= Trader;
-
-			int	last			= Crew.Length - 1;
-			for (int i = crewId; i < last; i++)
-				Crew[i]	= Crew[i + 1];
-			Crew[last]	= null;
 
 			if (Trader != skill)
 				Game.CurrentGame.RecalculateBuyPrices(Game.CurrentGame.Commander.CurrentSystem);

@@ -159,6 +159,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public override string ToString()
+		{
+			return Name;
+		}
+
 		#endregion
 
 		#region Properties

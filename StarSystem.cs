@@ -309,22 +309,21 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public CrewMember MercenaryForHire
+		public CrewMember[] MercenariesForHire
 		{
 			get
 			{
-				CrewMember[]	mercs	= Game.CurrentGame.Mercenaries;
-				CrewMember[]	crew	= Game.CurrentGame.Commander.Ship.Crew;
-				CrewMember		merc	= null;
+				Commander			cmdr		= Game.CurrentGame.Commander;
+				CrewMember[]	mercs		= Game.CurrentGame.Mercenaries;
+				ArrayList			forHire	= new ArrayList(3);
 
-				for (int i = 1; i < mercs.Length && merc == null; i++)
+				for (int i = 1; i < mercs.Length; i++)
 				{
-					if (mercs[i].CurrentSystem == mercs[0].CurrentSystem &&
-						!Game.CurrentGame.Commander.Ship.HasCrew(mercs[i].Id))
-						merc	= mercs[i];
+					if (mercs[i].CurrentSystem == cmdr.CurrentSystem && !cmdr.Ship.HasCrew(mercs[i].Id))
+						forHire.Add(mercs[i]);
 				}
 
-				return merc;
+				return (CrewMember[])forHire.ToArray(typeof(CrewMember));
 			}
 		}
 

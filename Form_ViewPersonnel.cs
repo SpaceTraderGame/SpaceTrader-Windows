@@ -35,65 +35,31 @@ namespace Fryz.Apps.SpaceTrader
 		#region Control Declarations
 
 		private System.Windows.Forms.Button btnClose;
-		private System.Windows.Forms.GroupBox boxCurrent;
 		private System.Windows.Forms.GroupBox boxForHire;
-		private System.Windows.Forms.Label lblEngineer0;
-		private System.Windows.Forms.Label lblTrader0;
-		private System.Windows.Forms.Label lblFighter0;
-		private System.Windows.Forms.Label lblPilot0;
-		private System.Windows.Forms.Label lblEngineerLabel0;
-		private System.Windows.Forms.Label lblTraderLabel0;
-		private System.Windows.Forms.Label lblFighterLabel0;
-		private System.Windows.Forms.Label lblPilotLabel0;
-		private System.Windows.Forms.Label lblName0;
-		private System.Windows.Forms.Label lblRate0;
-		private System.Windows.Forms.Label lblName1;
-		private System.Windows.Forms.Label lblTrader1;
-		private System.Windows.Forms.Label lblPilot1;
-		private System.Windows.Forms.Label lblTraderLabel1;
-		private System.Windows.Forms.Label lblPilotLabel1;
-		private System.Windows.Forms.Label lblRate1;
-		private System.Windows.Forms.Label lblEngineer1;
-		private System.Windows.Forms.Label lblFighter1;
-		private System.Windows.Forms.Label lblEngineerLabel1;
-		private System.Windows.Forms.Label lblFighterLabel1;
-		private System.Windows.Forms.Button btnFire0;
-		private System.Windows.Forms.Button btnFire1;
-		private System.Windows.Forms.PictureBox picLine1;
-		private System.Windows.Forms.Button btnHire2;
-		private System.Windows.Forms.Label lblRate2;
-		private System.Windows.Forms.Label lblName2;
-		private System.Windows.Forms.Label lblEngineer2;
-		private System.Windows.Forms.Label lblTrader2;
-		private System.Windows.Forms.Label lblFighter2;
-		private System.Windows.Forms.Label lblPilot2;
-		private System.Windows.Forms.Label lblEngineerLabel2;
-		private System.Windows.Forms.Label lblTraderLabel2;
-		private System.Windows.Forms.Label lblFighterLabel2;
-		private System.Windows.Forms.Label lblPilotLabel2;
-		private System.Windows.Forms.Label lblStatus2;
-		private System.Windows.Forms.Label lblStatus0;
-		private System.Windows.Forms.Label lblStatus1;
+		private System.Windows.Forms.GroupBox boxInfo;
+		private System.Windows.Forms.Button btnHireFire;
+		private System.Windows.Forms.Label lblRate;
+		private System.Windows.Forms.Label lblName;
+		private System.Windows.Forms.Label lblEngineer;
+		private System.Windows.Forms.Label lblTrader;
+		private System.Windows.Forms.Label lblFighter;
+		private System.Windows.Forms.Label lblPilot;
+		private System.Windows.Forms.Label lblEngineerLabel;
+		private System.Windows.Forms.Label lblTraderLabel;
+		private System.Windows.Forms.Label lblFighterLabel;
+		private System.Windows.Forms.Label lblPilotLabel;
+		private System.Windows.Forms.ListBox lstForHire;
 		private System.ComponentModel.Container components = null;
-
-		private Label[]		lblStatus;
-		private Label[]		lblName;
-		private Label[]		lblRate;
-		private Label[]		lblPilotLabel;
-		private Label[]		lblFighterLabel;
-		private Label[]		lblTraderLabel;
-		private Label[]		lblEngineerLabel;
-		private Label[]		lblPilot;
-		private Label[]		lblFighter;
-		private Label[]		lblTrader;
-		private Label[]		lblEngineer;
-		private Button[]	btnFire;
 
 		#endregion
 
 		#region Member Declarations
 
-		private Game			game	= Game.CurrentGame;
+		private Game				game								= Game.CurrentGame;
+		private CrewMember	selectedCrewMember	= null;
+		private System.Windows.Forms.GroupBox boxCurrentCrew;
+		private System.Windows.Forms.ListBox lstCrew;
+		private bool				handlingSelect			= false;
 
 		#endregion
 
@@ -102,80 +68,6 @@ namespace Fryz.Apps.SpaceTrader
 		public FormViewPersonnel()
 		{
 			InitializeComponent();
-
-			#region Arrays of Personnel controls
-			lblStatus	= new Label[]
-			{
-				lblStatus0,
-				lblStatus1
-			};
-
-			lblName	= new Label[]
-			{
-				lblName0,
-				lblName1
-			};
-
-			lblRate	= new Label[]
-			{
-				lblRate0,
-				lblRate1
-			};
-
-			lblPilotLabel	= new Label[]
-			{
-				lblPilotLabel0,
-				lblPilotLabel1
-			};
-
-			lblFighterLabel	= new Label[]
-			{
-				lblFighterLabel0,
-				lblFighterLabel1
-			};
-
-			lblTraderLabel	= new Label[]
-			{
-				lblTraderLabel0,
-				lblTraderLabel1
-			};
-
-			lblEngineerLabel	= new Label[]
-			{
-				lblEngineerLabel0,
-				lblEngineerLabel1
-			};
-
-			lblPilot	= new Label[]
-			{
-				lblPilot0,
-				lblPilot1
-			};
-
-			lblFighter	= new Label[]
-			{
-				lblFighter0,
-				lblFighter1
-			};
-
-			lblTrader	= new Label[]
-			{
-				lblTrader0,
-				lblTrader1
-			};
-
-			lblEngineer	= new Label[]
-			{
-				lblEngineer0,
-				lblEngineer1
-			};
-
-			btnFire	= new Button[]
-			{
-				btnFire0,
-				btnFire1
-			};
-			#endregion
 
 			UpdateAll();
 		}
@@ -195,51 +87,29 @@ namespace Fryz.Apps.SpaceTrader
 		private void InitializeComponent()
 		{
 			this.btnClose = new System.Windows.Forms.Button();
-			this.boxCurrent = new System.Windows.Forms.GroupBox();
-			this.picLine1 = new System.Windows.Forms.PictureBox();
-			this.btnFire1 = new System.Windows.Forms.Button();
-			this.btnFire0 = new System.Windows.Forms.Button();
-			this.lblRate1 = new System.Windows.Forms.Label();
-			this.lblName1 = new System.Windows.Forms.Label();
-			this.lblEngineer1 = new System.Windows.Forms.Label();
-			this.lblTrader1 = new System.Windows.Forms.Label();
-			this.lblFighter1 = new System.Windows.Forms.Label();
-			this.lblPilot1 = new System.Windows.Forms.Label();
-			this.lblEngineerLabel1 = new System.Windows.Forms.Label();
-			this.lblTraderLabel1 = new System.Windows.Forms.Label();
-			this.lblFighterLabel1 = new System.Windows.Forms.Label();
-			this.lblPilotLabel1 = new System.Windows.Forms.Label();
-			this.lblRate0 = new System.Windows.Forms.Label();
-			this.lblName0 = new System.Windows.Forms.Label();
-			this.lblEngineer0 = new System.Windows.Forms.Label();
-			this.lblTrader0 = new System.Windows.Forms.Label();
-			this.lblFighter0 = new System.Windows.Forms.Label();
-			this.lblPilot0 = new System.Windows.Forms.Label();
-			this.lblEngineerLabel0 = new System.Windows.Forms.Label();
-			this.lblTraderLabel0 = new System.Windows.Forms.Label();
-			this.lblFighterLabel0 = new System.Windows.Forms.Label();
-			this.lblPilotLabel0 = new System.Windows.Forms.Label();
+			this.boxCurrentCrew = new System.Windows.Forms.GroupBox();
+			this.lstCrew = new System.Windows.Forms.ListBox();
 			this.boxForHire = new System.Windows.Forms.GroupBox();
-			this.btnHire2 = new System.Windows.Forms.Button();
-			this.lblRate2 = new System.Windows.Forms.Label();
-			this.lblName2 = new System.Windows.Forms.Label();
-			this.lblEngineer2 = new System.Windows.Forms.Label();
-			this.lblTrader2 = new System.Windows.Forms.Label();
-			this.lblFighter2 = new System.Windows.Forms.Label();
-			this.lblPilot2 = new System.Windows.Forms.Label();
-			this.lblEngineerLabel2 = new System.Windows.Forms.Label();
-			this.lblTraderLabel2 = new System.Windows.Forms.Label();
-			this.lblFighterLabel2 = new System.Windows.Forms.Label();
-			this.lblPilotLabel2 = new System.Windows.Forms.Label();
-			this.lblStatus2 = new System.Windows.Forms.Label();
-			this.lblStatus0 = new System.Windows.Forms.Label();
-			this.lblStatus1 = new System.Windows.Forms.Label();
-			this.boxCurrent.SuspendLayout();
+			this.lstForHire = new System.Windows.Forms.ListBox();
+			this.boxInfo = new System.Windows.Forms.GroupBox();
+			this.btnHireFire = new System.Windows.Forms.Button();
+			this.lblRate = new System.Windows.Forms.Label();
+			this.lblName = new System.Windows.Forms.Label();
+			this.lblEngineer = new System.Windows.Forms.Label();
+			this.lblTrader = new System.Windows.Forms.Label();
+			this.lblFighter = new System.Windows.Forms.Label();
+			this.lblPilot = new System.Windows.Forms.Label();
+			this.lblEngineerLabel = new System.Windows.Forms.Label();
+			this.lblTraderLabel = new System.Windows.Forms.Label();
+			this.lblFighterLabel = new System.Windows.Forms.Label();
+			this.lblPilotLabel = new System.Windows.Forms.Label();
+			this.boxCurrentCrew.SuspendLayout();
 			this.boxForHire.SuspendLayout();
+			this.boxInfo.SuspendLayout();
 			this.SuspendLayout();
-			//
+			// 
 			// btnClose
-			//
+			// 
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -247,394 +117,171 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			//
-			// boxCurrent
-			//
-			this.boxCurrent.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						 this.picLine1,
-																																						 this.btnFire1,
-																																						 this.btnFire0,
-																																						 this.lblRate1,
-																																						 this.lblName1,
-																																						 this.lblEngineer1,
-																																						 this.lblTrader1,
-																																						 this.lblFighter1,
-																																						 this.lblPilot1,
-																																						 this.lblEngineerLabel1,
-																																						 this.lblTraderLabel1,
-																																						 this.lblFighterLabel1,
-																																						 this.lblPilotLabel1,
-																																						 this.lblRate0,
-																																						 this.lblName0,
-																																						 this.lblEngineer0,
-																																						 this.lblTrader0,
-																																						 this.lblFighter0,
-																																						 this.lblPilot0,
-																																						 this.lblEngineerLabel0,
-																																						 this.lblTraderLabel0,
-																																						 this.lblFighterLabel0,
-																																						 this.lblPilotLabel0,
-																																						 this.lblStatus0,
-																																						 this.lblStatus1});
-			this.boxCurrent.Location = new System.Drawing.Point(8, 8);
-			this.boxCurrent.Name = "boxCurrent";
-			this.boxCurrent.Size = new System.Drawing.Size(200, 136);
-			this.boxCurrent.TabIndex = 33;
-			this.boxCurrent.TabStop = false;
-			this.boxCurrent.Text = "Current Roster";
-			//
-			// picLine1
-			//
-			this.picLine1.BackColor = System.Drawing.Color.DimGray;
-			this.picLine1.Location = new System.Drawing.Point(8, 70);
-			this.picLine1.Name = "picLine1";
-			this.picLine1.Size = new System.Drawing.Size(184, 1);
-			this.picLine1.TabIndex = 132;
-			this.picLine1.TabStop = false;
-			//
-			// btnFire1
-			//
-			this.btnFire1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnFire1.Location = new System.Drawing.Point(152, 80);
-			this.btnFire1.Name = "btnFire1";
-			this.btnFire1.Size = new System.Drawing.Size(36, 22);
-			this.btnFire1.TabIndex = 2;
-			this.btnFire1.Text = "Fire";
-			this.btnFire1.Click += new System.EventHandler(this.btnFire1_Click);
-			//
-			// btnFire0
-			//
-			this.btnFire0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnFire0.Location = new System.Drawing.Point(152, 16);
-			this.btnFire0.Name = "btnFire0";
-			this.btnFire0.Size = new System.Drawing.Size(36, 22);
-			this.btnFire0.TabIndex = 1;
-			this.btnFire0.Text = "Fire";
-			this.btnFire0.Click += new System.EventHandler(this.btnFire0_Click);
-			//
-			// lblRate1
-			//
-			this.lblRate1.Location = new System.Drawing.Point(90, 80);
-			this.lblRate1.Name = "lblRate1";
-			this.lblRate1.Size = new System.Drawing.Size(59, 13);
-			this.lblRate1.TabIndex = 76;
-			this.lblRate1.Text = "88 cr. daily";
-			//
-			// lblName1
-			//
-			this.lblName1.Location = new System.Drawing.Point(12, 80);
-			this.lblName1.Name = "lblName1";
-			this.lblName1.Size = new System.Drawing.Size(72, 13);
-			this.lblName1.TabIndex = 75;
-			this.lblName1.Text = "Xxxxxxxxxxx";
-			//
-			// lblEngineer1
-			//
-			this.lblEngineer1.Location = new System.Drawing.Point(128, 112);
-			this.lblEngineer1.Name = "lblEngineer1";
-			this.lblEngineer1.Size = new System.Drawing.Size(17, 13);
-			this.lblEngineer1.TabIndex = 74;
-			this.lblEngineer1.Text = "88";
-			//
-			// lblTrader1
-			//
-			this.lblTrader1.Location = new System.Drawing.Point(52, 112);
-			this.lblTrader1.Name = "lblTrader1";
-			this.lblTrader1.Size = new System.Drawing.Size(17, 13);
-			this.lblTrader1.TabIndex = 73;
-			this.lblTrader1.Text = "88";
-			//
-			// lblFighter1
-			//
-			this.lblFighter1.Location = new System.Drawing.Point(128, 96);
-			this.lblFighter1.Name = "lblFighter1";
-			this.lblFighter1.Size = new System.Drawing.Size(17, 13);
-			this.lblFighter1.TabIndex = 72;
-			this.lblFighter1.Text = "88";
-			//
-			// lblPilot1
-			//
-			this.lblPilot1.Location = new System.Drawing.Point(52, 96);
-			this.lblPilot1.Name = "lblPilot1";
-			this.lblPilot1.Size = new System.Drawing.Size(17, 13);
-			this.lblPilot1.TabIndex = 71;
-			this.lblPilot1.Text = "88";
-			//
-			// lblEngineerLabel1
-			//
-			this.lblEngineerLabel1.AutoSize = true;
-			this.lblEngineerLabel1.Location = new System.Drawing.Point(76, 112);
-			this.lblEngineerLabel1.Name = "lblEngineerLabel1";
-			this.lblEngineerLabel1.Size = new System.Drawing.Size(53, 13);
-			this.lblEngineerLabel1.TabIndex = 70;
-			this.lblEngineerLabel1.Text = "Engineer:";
-			//
-			// lblTraderLabel1
-			//
-			this.lblTraderLabel1.AutoSize = true;
-			this.lblTraderLabel1.Location = new System.Drawing.Point(12, 112);
-			this.lblTraderLabel1.Name = "lblTraderLabel1";
-			this.lblTraderLabel1.Size = new System.Drawing.Size(41, 13);
-			this.lblTraderLabel1.TabIndex = 69;
-			this.lblTraderLabel1.Text = "Trader:";
-			//
-			// lblFighterLabel1
-			//
-			this.lblFighterLabel1.AutoSize = true;
-			this.lblFighterLabel1.Location = new System.Drawing.Point(76, 96);
-			this.lblFighterLabel1.Name = "lblFighterLabel1";
-			this.lblFighterLabel1.Size = new System.Drawing.Size(43, 13);
-			this.lblFighterLabel1.TabIndex = 68;
-			this.lblFighterLabel1.Text = "Fighter:";
-			//
-			// lblPilotLabel1
-			//
-			this.lblPilotLabel1.AutoSize = true;
-			this.lblPilotLabel1.Location = new System.Drawing.Point(12, 96);
-			this.lblPilotLabel1.Name = "lblPilotLabel1";
-			this.lblPilotLabel1.Size = new System.Drawing.Size(29, 13);
-			this.lblPilotLabel1.TabIndex = 67;
-			this.lblPilotLabel1.Text = "Pilot:";
-			//
-			// lblRate0
-			//
-			this.lblRate0.Location = new System.Drawing.Point(90, 16);
-			this.lblRate0.Name = "lblRate0";
-			this.lblRate0.Size = new System.Drawing.Size(59, 13);
-			this.lblRate0.TabIndex = 66;
-			this.lblRate0.Text = "88 cr. daily";
-			//
-			// lblName0
-			//
-			this.lblName0.Location = new System.Drawing.Point(12, 16);
-			this.lblName0.Name = "lblName0";
-			this.lblName0.Size = new System.Drawing.Size(72, 13);
-			this.lblName0.TabIndex = 65;
-			this.lblName0.Text = "Xxxxxxxxxxx";
-			//
-			// lblEngineer0
-			//
-			this.lblEngineer0.Location = new System.Drawing.Point(128, 48);
-			this.lblEngineer0.Name = "lblEngineer0";
-			this.lblEngineer0.Size = new System.Drawing.Size(17, 13);
-			this.lblEngineer0.TabIndex = 64;
-			this.lblEngineer0.Text = "88";
-			//
-			// lblTrader0
-			//
-			this.lblTrader0.Location = new System.Drawing.Point(52, 48);
-			this.lblTrader0.Name = "lblTrader0";
-			this.lblTrader0.Size = new System.Drawing.Size(17, 13);
-			this.lblTrader0.TabIndex = 63;
-			this.lblTrader0.Text = "88";
-			//
-			// lblFighter0
-			//
-			this.lblFighter0.Location = new System.Drawing.Point(128, 32);
-			this.lblFighter0.Name = "lblFighter0";
-			this.lblFighter0.Size = new System.Drawing.Size(17, 13);
-			this.lblFighter0.TabIndex = 62;
-			this.lblFighter0.Text = "88";
-			//
-			// lblPilot0
-			//
-			this.lblPilot0.Location = new System.Drawing.Point(52, 32);
-			this.lblPilot0.Name = "lblPilot0";
-			this.lblPilot0.Size = new System.Drawing.Size(17, 13);
-			this.lblPilot0.TabIndex = 61;
-			this.lblPilot0.Text = "88";
-			//
-			// lblEngineerLabel0
-			//
-			this.lblEngineerLabel0.AutoSize = true;
-			this.lblEngineerLabel0.Location = new System.Drawing.Point(76, 48);
-			this.lblEngineerLabel0.Name = "lblEngineerLabel0";
-			this.lblEngineerLabel0.Size = new System.Drawing.Size(53, 13);
-			this.lblEngineerLabel0.TabIndex = 60;
-			this.lblEngineerLabel0.Text = "Engineer:";
-			//
-			// lblTraderLabel0
-			//
-			this.lblTraderLabel0.AutoSize = true;
-			this.lblTraderLabel0.Location = new System.Drawing.Point(12, 48);
-			this.lblTraderLabel0.Name = "lblTraderLabel0";
-			this.lblTraderLabel0.Size = new System.Drawing.Size(41, 13);
-			this.lblTraderLabel0.TabIndex = 59;
-			this.lblTraderLabel0.Text = "Trader:";
-			//
-			// lblFighterLabel0
-			//
-			this.lblFighterLabel0.AutoSize = true;
-			this.lblFighterLabel0.Location = new System.Drawing.Point(76, 32);
-			this.lblFighterLabel0.Name = "lblFighterLabel0";
-			this.lblFighterLabel0.Size = new System.Drawing.Size(43, 13);
-			this.lblFighterLabel0.TabIndex = 58;
-			this.lblFighterLabel0.Text = "Fighter:";
-			//
-			// lblPilotLabel0
-			//
-			this.lblPilotLabel0.AutoSize = true;
-			this.lblPilotLabel0.Location = new System.Drawing.Point(12, 32);
-			this.lblPilotLabel0.Name = "lblPilotLabel0";
-			this.lblPilotLabel0.Size = new System.Drawing.Size(29, 13);
-			this.lblPilotLabel0.TabIndex = 57;
-			this.lblPilotLabel0.Text = "Pilot:";
-			//
+			// 
+			// boxCurrentCrew
+			// 
+			this.boxCurrentCrew.Controls.Add(this.lstCrew);
+			this.boxCurrentCrew.Location = new System.Drawing.Point(8, 8);
+			this.boxCurrentCrew.Name = "boxCurrentCrew";
+			this.boxCurrentCrew.Size = new System.Drawing.Size(144, 114);
+			this.boxCurrentCrew.TabIndex = 33;
+			this.boxCurrentCrew.TabStop = false;
+			this.boxCurrentCrew.Text = "Current Crew";
+			// 
+			// lstCrew
+			// 
+			this.lstCrew.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lstCrew.Location = new System.Drawing.Point(8, 24);
+			this.lstCrew.Name = "lstCrew";
+			this.lstCrew.Size = new System.Drawing.Size(126, 80);
+			this.lstCrew.TabIndex = 6;
+			this.lstCrew.DoubleClick += new System.EventHandler(this.HireFire);
+			this.lstCrew.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+			// 
 			// boxForHire
-			//
-			this.boxForHire.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						 this.btnHire2,
-																																						 this.lblRate2,
-																																						 this.lblName2,
-																																						 this.lblEngineer2,
-																																						 this.lblTrader2,
-																																						 this.lblFighter2,
-																																						 this.lblPilot2,
-																																						 this.lblEngineerLabel2,
-																																						 this.lblTraderLabel2,
-																																						 this.lblFighterLabel2,
-																																						 this.lblPilotLabel2,
-																																						 this.lblStatus2});
-			this.boxForHire.Location = new System.Drawing.Point(216, 8);
+			// 
+			this.boxForHire.Controls.Add(this.lstForHire);
+			this.boxForHire.Location = new System.Drawing.Point(160, 8);
 			this.boxForHire.Name = "boxForHire";
-			this.boxForHire.Size = new System.Drawing.Size(200, 136);
+			this.boxForHire.Size = new System.Drawing.Size(144, 114);
 			this.boxForHire.TabIndex = 34;
 			this.boxForHire.TabStop = false;
-			this.boxForHire.Text = "Mercenary For Hire";
-			//
-			// btnHire2
-			//
-			this.btnHire2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnHire2.Location = new System.Drawing.Point(152, 16);
-			this.btnHire2.Name = "btnHire2";
-			this.btnHire2.Size = new System.Drawing.Size(36, 22);
-			this.btnHire2.TabIndex = 4;
-			this.btnHire2.Text = "Hire";
-			this.btnHire2.Click += new System.EventHandler(this.btnHire2_Click);
-			//
-			// lblRate2
-			//
-			this.lblRate2.Location = new System.Drawing.Point(90, 16);
-			this.lblRate2.Name = "lblRate2";
-			this.lblRate2.Size = new System.Drawing.Size(59, 13);
-			this.lblRate2.TabIndex = 97;
-			this.lblRate2.Text = "88 cr. daily";
-			//
-			// lblName2
-			//
-			this.lblName2.Location = new System.Drawing.Point(12, 16);
-			this.lblName2.Name = "lblName2";
-			this.lblName2.Size = new System.Drawing.Size(72, 13);
-			this.lblName2.TabIndex = 96;
-			this.lblName2.Text = "Xxxxxxxxxxx";
-			//
-			// lblEngineer2
-			//
-			this.lblEngineer2.Location = new System.Drawing.Point(128, 48);
-			this.lblEngineer2.Name = "lblEngineer2";
-			this.lblEngineer2.Size = new System.Drawing.Size(17, 13);
-			this.lblEngineer2.TabIndex = 95;
-			this.lblEngineer2.Text = "88";
-			//
-			// lblTrader2
-			//
-			this.lblTrader2.Location = new System.Drawing.Point(52, 48);
-			this.lblTrader2.Name = "lblTrader2";
-			this.lblTrader2.Size = new System.Drawing.Size(17, 13);
-			this.lblTrader2.TabIndex = 94;
-			this.lblTrader2.Text = "88";
-			//
-			// lblFighter2
-			//
-			this.lblFighter2.Location = new System.Drawing.Point(128, 32);
-			this.lblFighter2.Name = "lblFighter2";
-			this.lblFighter2.Size = new System.Drawing.Size(17, 13);
-			this.lblFighter2.TabIndex = 93;
-			this.lblFighter2.Text = "88";
-			//
-			// lblPilot2
-			//
-			this.lblPilot2.Location = new System.Drawing.Point(52, 32);
-			this.lblPilot2.Name = "lblPilot2";
-			this.lblPilot2.Size = new System.Drawing.Size(17, 13);
-			this.lblPilot2.TabIndex = 92;
-			this.lblPilot2.Text = "88";
-			//
-			// lblEngineerLabel2
-			//
-			this.lblEngineerLabel2.AutoSize = true;
-			this.lblEngineerLabel2.Location = new System.Drawing.Point(76, 48);
-			this.lblEngineerLabel2.Name = "lblEngineerLabel2";
-			this.lblEngineerLabel2.Size = new System.Drawing.Size(53, 13);
-			this.lblEngineerLabel2.TabIndex = 91;
-			this.lblEngineerLabel2.Text = "Engineer:";
-			//
-			// lblTraderLabel2
-			//
-			this.lblTraderLabel2.AutoSize = true;
-			this.lblTraderLabel2.Location = new System.Drawing.Point(12, 48);
-			this.lblTraderLabel2.Name = "lblTraderLabel2";
-			this.lblTraderLabel2.Size = new System.Drawing.Size(41, 13);
-			this.lblTraderLabel2.TabIndex = 90;
-			this.lblTraderLabel2.Text = "Trader:";
-			//
-			// lblFighterLabel2
-			//
-			this.lblFighterLabel2.AutoSize = true;
-			this.lblFighterLabel2.Location = new System.Drawing.Point(76, 32);
-			this.lblFighterLabel2.Name = "lblFighterLabel2";
-			this.lblFighterLabel2.Size = new System.Drawing.Size(43, 13);
-			this.lblFighterLabel2.TabIndex = 89;
-			this.lblFighterLabel2.Text = "Fighter:";
-			//
-			// lblPilotLabel2
-			//
-			this.lblPilotLabel2.AutoSize = true;
-			this.lblPilotLabel2.Location = new System.Drawing.Point(12, 32);
-			this.lblPilotLabel2.Name = "lblPilotLabel2";
-			this.lblPilotLabel2.Size = new System.Drawing.Size(29, 13);
-			this.lblPilotLabel2.TabIndex = 88;
-			this.lblPilotLabel2.Text = "Pilot:";
-			//
-			// lblStatus2
-			//
-			this.lblStatus2.Location = new System.Drawing.Point(12, 32);
-			this.lblStatus2.Name = "lblStatus2";
-			this.lblStatus2.Size = new System.Drawing.Size(176, 13);
-			this.lblStatus2.TabIndex = 98;
-			this.lblStatus2.Text = "No one for hire.";
-			this.lblStatus2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.lblStatus2.Visible = false;
-			//
-			// lblStatus0
-			//
-			this.lblStatus0.Location = new System.Drawing.Point(12, 32);
-			this.lblStatus0.Name = "lblStatus0";
-			this.lblStatus0.Size = new System.Drawing.Size(176, 13);
-			this.lblStatus0.TabIndex = 133;
-			this.lblStatus0.Text = "No quarters available.";
-			this.lblStatus0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.lblStatus0.Visible = false;
-			//
-			// lblStatus1
-			//
-			this.lblStatus1.Location = new System.Drawing.Point(12, 96);
-			this.lblStatus1.Name = "lblStatus1";
-			this.lblStatus1.Size = new System.Drawing.Size(176, 13);
-			this.lblStatus1.TabIndex = 134;
-			this.lblStatus1.Text = "No quarters available.";
-			this.lblStatus1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.lblStatus1.Visible = false;
-			//
+			this.boxForHire.Text = "Mercenaries For Hire";
+			// 
+			// lstForHire
+			// 
+			this.lstForHire.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lstForHire.Location = new System.Drawing.Point(8, 24);
+			this.lstForHire.Name = "lstForHire";
+			this.lstForHire.Size = new System.Drawing.Size(126, 80);
+			this.lstForHire.TabIndex = 5;
+			this.lstForHire.DoubleClick += new System.EventHandler(this.HireFire);
+			this.lstForHire.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+			// 
+			// boxInfo
+			// 
+			this.boxInfo.Controls.Add(this.btnHireFire);
+			this.boxInfo.Controls.Add(this.lblRate);
+			this.boxInfo.Controls.Add(this.lblName);
+			this.boxInfo.Controls.Add(this.lblEngineer);
+			this.boxInfo.Controls.Add(this.lblTrader);
+			this.boxInfo.Controls.Add(this.lblFighter);
+			this.boxInfo.Controls.Add(this.lblPilot);
+			this.boxInfo.Controls.Add(this.lblEngineerLabel);
+			this.boxInfo.Controls.Add(this.lblTraderLabel);
+			this.boxInfo.Controls.Add(this.lblFighterLabel);
+			this.boxInfo.Controls.Add(this.lblPilotLabel);
+			this.boxInfo.Location = new System.Drawing.Point(312, 8);
+			this.boxInfo.Name = "boxInfo";
+			this.boxInfo.Size = new System.Drawing.Size(168, 114);
+			this.boxInfo.TabIndex = 35;
+			this.boxInfo.TabStop = false;
+			this.boxInfo.Text = "Mercenary Information";
+			// 
+			// btnHireFire
+			// 
+			this.btnHireFire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnHireFire.Location = new System.Drawing.Point(120, 80);
+			this.btnHireFire.Name = "btnHireFire";
+			this.btnHireFire.Size = new System.Drawing.Size(36, 22);
+			this.btnHireFire.TabIndex = 4;
+			this.btnHireFire.Text = "Hire";
+			this.btnHireFire.Click += new System.EventHandler(this.HireFire);
+			// 
+			// lblRate
+			// 
+			this.lblRate.Location = new System.Drawing.Point(104, 40);
+			this.lblRate.Name = "lblRate";
+			this.lblRate.Size = new System.Drawing.Size(59, 13);
+			this.lblRate.TabIndex = 97;
+			this.lblRate.Text = "88 cr. daily";
+			// 
+			// lblName
+			// 
+			this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblName.Location = new System.Drawing.Point(12, 18);
+			this.lblName.Name = "lblName";
+			this.lblName.Size = new System.Drawing.Size(72, 13);
+			this.lblName.TabIndex = 96;
+			this.lblName.Text = "Xxxxxxxxxxx";
+			// 
+			// lblEngineer
+			// 
+			this.lblEngineer.Location = new System.Drawing.Point(64, 88);
+			this.lblEngineer.Name = "lblEngineer";
+			this.lblEngineer.Size = new System.Drawing.Size(17, 13);
+			this.lblEngineer.TabIndex = 95;
+			this.lblEngineer.Text = "88";
+			// 
+			// lblTrader
+			// 
+			this.lblTrader.Location = new System.Drawing.Point(64, 72);
+			this.lblTrader.Name = "lblTrader";
+			this.lblTrader.Size = new System.Drawing.Size(17, 13);
+			this.lblTrader.TabIndex = 94;
+			this.lblTrader.Text = "88";
+			// 
+			// lblFighter
+			// 
+			this.lblFighter.Location = new System.Drawing.Point(64, 56);
+			this.lblFighter.Name = "lblFighter";
+			this.lblFighter.Size = new System.Drawing.Size(17, 13);
+			this.lblFighter.TabIndex = 93;
+			this.lblFighter.Text = "88";
+			// 
+			// lblPilot
+			// 
+			this.lblPilot.Location = new System.Drawing.Point(64, 40);
+			this.lblPilot.Name = "lblPilot";
+			this.lblPilot.Size = new System.Drawing.Size(17, 13);
+			this.lblPilot.TabIndex = 92;
+			this.lblPilot.Text = "88";
+			// 
+			// lblEngineerLabel
+			// 
+			this.lblEngineerLabel.AutoSize = true;
+			this.lblEngineerLabel.Location = new System.Drawing.Point(12, 88);
+			this.lblEngineerLabel.Name = "lblEngineerLabel";
+			this.lblEngineerLabel.Size = new System.Drawing.Size(53, 16);
+			this.lblEngineerLabel.TabIndex = 91;
+			this.lblEngineerLabel.Text = "Engineer:";
+			// 
+			// lblTraderLabel
+			// 
+			this.lblTraderLabel.AutoSize = true;
+			this.lblTraderLabel.Location = new System.Drawing.Point(12, 72);
+			this.lblTraderLabel.Name = "lblTraderLabel";
+			this.lblTraderLabel.Size = new System.Drawing.Size(41, 16);
+			this.lblTraderLabel.TabIndex = 90;
+			this.lblTraderLabel.Text = "Trader:";
+			// 
+			// lblFighterLabel
+			// 
+			this.lblFighterLabel.AutoSize = true;
+			this.lblFighterLabel.Location = new System.Drawing.Point(12, 56);
+			this.lblFighterLabel.Name = "lblFighterLabel";
+			this.lblFighterLabel.Size = new System.Drawing.Size(43, 16);
+			this.lblFighterLabel.TabIndex = 89;
+			this.lblFighterLabel.Text = "Fighter:";
+			// 
+			// lblPilotLabel
+			// 
+			this.lblPilotLabel.AutoSize = true;
+			this.lblPilotLabel.Location = new System.Drawing.Point(12, 40);
+			this.lblPilotLabel.Name = "lblPilotLabel";
+			this.lblPilotLabel.Size = new System.Drawing.Size(29, 16);
+			this.lblPilotLabel.TabIndex = 88;
+			this.lblPilotLabel.Text = "Pilot:";
+			// 
 			// FormViewPersonnel
-			//
+			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(424, 151);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.boxForHire,
-																																	this.boxCurrent,
-																																	this.btnClose});
+			this.ClientSize = new System.Drawing.Size(488, 129);
+			this.Controls.Add(this.boxInfo);
+			this.Controls.Add(this.boxForHire);
+			this.Controls.Add(this.boxCurrentCrew);
+			this.Controls.Add(this.btnClose);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -642,126 +289,147 @@ namespace Fryz.Apps.SpaceTrader
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Personnel";
-			this.boxCurrent.ResumeLayout(false);
+			this.boxCurrentCrew.ResumeLayout(false);
 			this.boxForHire.ResumeLayout(false);
+			this.boxInfo.ResumeLayout(false);
 			this.ResumeLayout(false);
+
 		}
 		#endregion
 
-		private void Fire(int crewId)
+		private void DeselectAll()
 		{
-			Ship					ship	= game.Commander.Ship;
-			CrewMember		merc	= game.Commander.CurrentSystem.MercenaryForHire;
-
-			if (FormAlert.Alert(AlertType.CrewFireMercenary, this, ship.Crew[crewId].Name) == DialogResult.Yes)
-			{
-				ship.Fire(crewId);
-
-				UpdateAll();
-				game.ParentWindow.UpdateAll();
-			}
+			lstForHire.ClearSelected();
+			lstCrew.ClearSelected();
 		}
 
 		private void UpdateAll()
 		{
-			CrewMember[]	crew		= game.Commander.Ship.Crew;
-			bool					visible;
+			selectedCrewMember	= null;
 
-			for (int i = 0; i < lblName.Length; i++)
+			UpdateForHire();
+			UpdateCurrentCrew();
+			UpdateInfo();
+		}
+
+		private void UpdateCurrentCrew()
+		{
+			CrewMember[]	crew	= game.Commander.Ship.Crew;
+
+			lstCrew.Items.Clear();
+			for (int i = 1; i < crew.Length; i++)
 			{
-				int		crewId								= i + 1;
-				visible											= (crewId < crew.Length && crew[crewId] != null);
-
-				lblName[i].Visible					= visible;
-				lblRate[i].Visible					= visible;
-				lblPilotLabel[i].Visible		= visible;
-				lblFighterLabel[i].Visible	= visible;
-				lblTraderLabel[i].Visible		= visible;
-				lblEngineerLabel[i].Visible	= visible;
-				lblPilot[i].Visible					= visible;
-				lblFighter[i].Visible				= visible;
-				lblTrader[i].Visible				= visible;
-				lblEngineer[i].Visible			= visible;
-				btnFire[i].Visible					= visible;
-				lblStatus[i].Visible				= !visible;
-
-				if (visible)
-				{
-					lblName[i].Text						= crew[crewId].Name;
-					lblRate[i].Text						= Functions.StringVars(Strings.MoneyRateSuffix,
-						Functions.FormatMoney(crew[crewId].Rate));
-					lblPilot[i].Text					= crew[crewId].Pilot.ToString();
-					lblFighter[i].Text				= crew[crewId].Fighter.ToString();
-					lblTrader[i].Text					= crew[crewId].Trader.ToString();
-					lblEngineer[i].Text				= crew[crewId].Engineer.ToString();
-
-					if (crew[crewId].Id >= CrewMemberId.Wild || crew[crewId].Id == CrewMemberId.Jarek)
-					{
-						lblRate[i].Visible			= false;
-						btnFire[i].Visible			= false;
-					}
-				}
+				if (crew[i] == null)
+					lstCrew.Items.Add(Strings.PersonnelVacancy);
 				else
-					lblStatus[i].Text					= (crewId >= crew.Length ? Strings.PersonnelNoQuarters : Strings.PersonnelVacancy);
+					lstCrew.Items.Add(crew[i]);
 			}
 
-			CrewMember	merc							= game.Commander.CurrentSystem.MercenaryForHire;
-			visible												= (merc != null);
+			lstCrew.Height	= lstCrew.ItemHeight * Math.Min(lstCrew.Items.Count, 6) + 2;
+		}
 
-			lblName2.Visible							= visible;
-			lblRate2.Visible							= visible;
-			lblPilotLabel2.Visible				= visible;
-			lblFighterLabel2.Visible			= visible;
-			lblTraderLabel2.Visible				= visible;
-			lblEngineerLabel2.Visible			= visible;
-			lblPilot2.Visible							= visible;
-			lblFighter2.Visible						= visible;
-			lblTrader2.Visible						= visible;
-			lblEngineer2.Visible					= visible;
-			btnHire2.Visible							= visible;
-			lblStatus2.Visible						= !visible;
+		private void UpdateForHire()
+		{
+			CrewMember[]	mercs	= game.Commander.CurrentSystem.MercenariesForHire;
 
-			if (visible)
+			lstForHire.Items.Clear();
+			for (int i = 0; i < mercs.Length; i++)
+				lstForHire.Items.Add(mercs[i]);
+
+			if (lstForHire.Items.Count == 0)
+				lstForHire.Items.Add(Strings.PersonnelNoMercenaries);
+
+			lstForHire.Height	= lstForHire.ItemHeight * Math.Min(lstForHire.Items.Count, 6) + 2;
+		}
+
+		private void UpdateInfo()
+		{
+			bool	visible							= false;
+			bool	rateVisible					= false;
+
+			if (selectedCrewMember != null)
 			{
-				lblName2.Text								= merc.Name;
-				lblRate2.Text								= Functions.StringVars(Strings.MoneyRateSuffix,
-					Functions.FormatMoney(merc.Rate));
-				lblPilot2.Text							= merc.Pilot.ToString();
-				lblFighter2.Text						= merc.Fighter.ToString();
-				lblTrader2.Text							= merc.Trader.ToString();
-				lblEngineer2.Text						= merc.Engineer.ToString();
+				visible									= true;
+				if (selectedCrewMember.Id <= CrewMemberId.Zeethibal)
+					rateVisible						= true;
+
+				lblName.Text						= selectedCrewMember.Name;
+				lblRate.Text						= Functions.StringVars(Strings.MoneyRateSuffix,
+																	Functions.FormatMoney(selectedCrewMember.Rate));
+				lblPilot.Text						= selectedCrewMember.Pilot.ToString();
+				lblFighter.Text					= selectedCrewMember.Fighter.ToString();
+				lblTrader.Text					= selectedCrewMember.Trader.ToString();
+				lblEngineer.Text				= selectedCrewMember.Engineer.ToString();
+
+				btnHireFire.Text				= game.Commander.Ship.HasCrew(selectedCrewMember.Id) ? Strings.MercenaryFire :
+																	Strings.MercenaryHire;
 			}
-			else
-				lblStatus2.Text							= Strings.PersonnelNoMercenaries;
+
+			lblName.Visible						= visible;
+			lblRate.Visible						= rateVisible;
+			lblPilotLabel.Visible			= visible;
+			lblFighterLabel.Visible		= visible;
+			lblTraderLabel.Visible		= visible;
+			lblEngineerLabel.Visible	= visible;
+			lblPilot.Visible					= visible;
+			lblFighter.Visible				= visible;
+			lblTrader.Visible					= visible;
+			lblEngineer.Visible				= visible;
+			btnHireFire.Visible				= rateVisible;
 		}
 
 		#endregion
 
 		#region Event Handlers
 
-		private void btnFire0_Click(object sender, System.EventArgs e)
+		private void HireFire(object sender, System.EventArgs e)
 		{
-			Fire(1);
-		}
-
-		private void btnFire1_Click(object sender, System.EventArgs e)
-		{
-			Fire(2);
-		}
-
-		private void btnHire2_Click(object sender, System.EventArgs e)
-		{
-			Ship					ship	= game.Commander.Ship;
-			CrewMember		merc	= game.Commander.CurrentSystem.MercenaryForHire;
-
-			if (ship.FreeCrewQuarters == 0)
-				FormAlert.Alert(AlertType.CrewNoQuarters, this, merc.Name);
-			else
+			if (selectedCrewMember != null)
 			{
-				ship.Hire(merc);
+				if (game.Commander.Ship.HasCrew(selectedCrewMember.Id))
+				{
+					if (FormAlert.Alert(AlertType.CrewFireMercenary, this, selectedCrewMember.Name) == DialogResult.Yes)
+					{
+						game.Commander.Ship.Fire(selectedCrewMember.Id);
 
-				UpdateAll();
-				game.ParentWindow.UpdateAll();
+						UpdateAll();
+						game.ParentWindow.UpdateAll();
+					}
+				}
+				else
+				{
+					if (game.Commander.Ship.FreeCrewQuarters == 0)
+						FormAlert.Alert(AlertType.CrewNoQuarters, this, selectedCrewMember.Name);
+					else
+					{
+						game.Commander.Ship.Hire(selectedCrewMember);
+
+						UpdateAll();
+						game.ParentWindow.UpdateAll();
+					}
+				}
+			}
+		}
+
+		private void SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (!handlingSelect)
+			{
+				handlingSelect	= true;
+
+				object obj			= ((ListBox)sender).SelectedItem;
+				DeselectAll();
+
+				if (typeof(CrewMember).IsInstanceOfType(obj))
+				{
+					((ListBox)sender).SelectedItem	= obj;
+					selectedCrewMember							= (CrewMember)obj;
+				}
+				else
+					selectedCrewMember							= null;
+
+				handlingSelect	= false;
+				UpdateInfo();
 			}
 		}
 

@@ -132,6 +132,10 @@ namespace Fryz.Apps.SpaceTrader
 
 		public static string	HighScoreStatus									= "^1 in ^2, worth ^3 on ^4 level.";
 
+		public static string	Mercenaries											= " mercenaries";
+		public static string	MercenariesForHire							= "^1 available for hire.";
+		public static string	MercenaryFire										= "Fire";
+		public static string	MercenaryHire										= "Hire";
 		public static string	MercOnBoard											= " (on board ship)";
 		public static string	MercSystemUnknown								= "Unknown";
 
