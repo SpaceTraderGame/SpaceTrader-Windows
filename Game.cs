@@ -720,9 +720,10 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void CreateFlea()
 		{
-			Commander.Ship			= new Ship(ShipType.Flea);
-			Commander.Insurance	= false;
-			Commander.NoClaim		= 0;
+			Commander.Ship					= new Ship(ShipType.Flea);
+			Commander.Ship.Crew[0]	= Commander;
+			Commander.Insurance			= false;
+			Commander.NoClaim				= 0;
 		}
 
 		private void CreateShips()
