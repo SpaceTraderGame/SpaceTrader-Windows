@@ -81,6 +81,8 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterActionOppHit						= "You hit the ^1.";
 		public static string	EncounterActionOppMissed				= "You missed the ^1.";
 		public static string	EncounterActionOppSurrender			= "The ^1 hails that they wish to surrender to you.";
+		public static string	EncounterHidePrincess						= "the Princess";
+		public static string	EncounterHideSculpture					= "the stolen sculpture";
 		public static string	EncounterHullStrength						= "Hull at ^1%";
 		public static string	EncounterPiratesDestroyed				= "destroyed";
 		public static string	EncounterPiratesDisabled				= "disabled";
@@ -104,9 +106,11 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterPretextMariePolice			= "the Customs Police in a";
 		public static string	EncounterPretextPirate					= "a pirate";
 		public static string	EncounterPretextPolice					= "a police";
+		public static string	EncounterPretextScorpion				= "the kidnappers in a";
 		public static string	EncounterPretextSpaceMonster		= "a horrifying";
 		public static string	EncounterPretextStolen					= "a stolen";
 		public static string	EncounterPretextTrader					= "a trader";
+		public static string	EncounterPrincessRescued				= "The Princess is revived and set free. Space Corps relays a message from her telling you to visit the Galvonian Ambassador before you depart the system.";
 		public static string	EncounterShieldStrength					= "Shields at ^1%";
 		public static string	EncounterShieldNone							= "No Shields";
 		public static string	EncounterShipCaptain						= "Captain";
@@ -167,10 +171,17 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	QuestGemulonFuel								= "Get your fuel compactor at Gemulon.";
 		public static string	QuestGemulonInformDays					= "Inform Gemulon about alien invasion within ^1.";
 		public static string	QuestGemulonInformTomorrow			= "Inform Gemulon about alien invasion by tomorrow.";
-		public static string	QuestJarek											= "Bring ambassador Jarek to Devidia.";
+		public static string	QuestJarek											= "Take ambassador Jarek to Devidia.";
 		public static string	QuestJarekImpatient							= QuestJarek + Environment.NewLine + "Jarek is wondering why the journey is taking so long, and is no longer of much help in negotiating trades.";
 		public static string	QuestJaporiDeliver							= "Deliver antidote to Japori.";
 		public static string	QuestMoon												= "Claim your moon at Utopia.";
+		public static string	QuestPrincessCentauri						= "Follow the Scorpion to Centauri.";
+		public static string	QuestPrincessInthara						= "Follow the Scorpion to Inthara.";
+		public static string	QuestPrincessQonos							= "Follow the Scorpion to Qonos.";
+		public static string	QuestPrincessQuantum						= "Get your Quantum Disruptor at Galvon.";
+		public static string	QuestPrincessReturn							= "Transport ^1 from Qonos to Galvon.";
+		public static string	QuestPrincessReturning					= "Return ^1 to Galvon.";
+		public static string	QuestPrincessReturningImpatient	= QuestPrincessReturning + Environment.NewLine + "She is becoming anxious to arrive at home, and is no longer of any help in engineering functions.";
 		public static string	QuestReactor										= "Deliver the unstable reactor to Nix for Henry Morgan.";
 		public static string	QuestReactorFuel								= "Deliver the unstable reactor to Nix before it consumes all its fuel.";
 		public static string	QuestReactorLaser								= "Get your special laser at Nix.";
@@ -308,7 +319,7 @@ namespace Fryz.Apps.SpaceTrader
 			"SpaceMonster",		// dummy crew member used in opponent ship
 			"Aragorn",				// My first son's middle name, and from Lord of the Rings
 			"Brady",					// My third son's middle name, and QB of the New England Patriots
-			"Eight of Nine",	// From Star Trek ;) - Seven's younger sibling
+			"Eight of Nine",	// From Star Trek - Seven's younger sibling ;)
 			"Fangorn",				// From Lord of the Rings
 			"Gagarin",				// The first man in space
 			"Hoshi",					// From ST: Enterprise
@@ -320,7 +331,9 @@ namespace Fryz.Apps.SpaceTrader
 			"Stilgar",				// From Dune
 			"Taggart",				// From Galaxy Quest
 			"Vansen",					// From Space: Above and Beyond
-			"Xizor"						// From Star Wars: Shadows of the Empire
+			"Xizor",					// From Star Wars: Shadows of the Empire
+			"Ziyal",					// From ST: Deep Space 9
+			"Scorpion"				// dummy crew member used in opponent ship 
 		};
 		#endregion
 
@@ -448,7 +461,13 @@ namespace Fryz.Apps.SpaceTrader
 			"Notorious Criminal Jonathan Wild Arrested!",
 			"Rumors Suggest Known Criminal J. Wild May Come to Kravat!",
 			"Priceless collector's item stolen from home of Geurge Locas!",
-			"Space Corps follows ^3 with alleged stolen sculpture to ^2."
+			"Space Corps follows ^3 with alleged stolen sculpture to ^2.",
+			"Member of Royal Family kidnapped!",
+			"Aggressive Ship Seen in Orbit Around Centauri",
+			"Dangerous Scorpion Damages Several Other Ships Near Inthara",
+			"Kidnappers Holding Out at Qonos",
+			"Scorpion Defeated! Kidnapped Member of Galvon Royal Family Freed!",
+			"Beloved Royal Returns Home!"
 		};
 		#endregion
 
@@ -638,7 +657,8 @@ namespace Fryz.Apps.SpaceTrader
 			"Mantis",
 			"Scarab",
 			"Bottle",
-			ShipNameCustomShip
+			ShipNameCustomShip,
+			"Scorpion"
 		};
 		#endregion
 
@@ -740,7 +760,13 @@ namespace Fryz.Apps.SpaceTrader
 			"Jonathan Wild is most grateful to you for spiriting him to safety. As a reward, he has one of his Cyber Criminals hack into the Police Database, and clean up your record. He also offers you the opportunity to take his talented nephew Zeethibal along as a Mercenary with no pay.",
 			"A hooded figure approaches you and asks if you'd be willing to deliver some recently aquired merchandise to Endor. He's holding a small sculpture of a man holding some kind of light sword that you strongly suspect was stolen. It appears to be made of plastic and not very valuable. \"I'll pay you 2,000 credits now, plus 15,000 on delivery,\" the figure says. After seeing the look on your face he adds, \"It's a collector's item. Will you deliver it or not?\"",
 			"Yet another dark, hooded figure approaches. \"Do you have the action fig- umm, the sculpture?\" You hand it over and hear what sounds very much like a giggle from under the hood. \"I know you were promised 15,000 credits on delivery, but I'm strapped for cash right now. However, I have something better for you. I have an acquaintance who can install hidden compartments in your ship.\" Return with an empty gadget slot when you're ready to have it installed.",
-			"You're taken to a warehouse and whisked through the door. A grubby alien of some humanoid species - you're not sure which one - approaches. \"So you're the being who needs Hidden Compartments. Should I install them in your ship?\" (It requires a free gadget slot.)"
+			"You're taken to a warehouse and whisked through the door. A grubby alien of some humanoid species - you're not sure which one - approaches. \"So you're the being who needs Hidden Compartments. Should I install them in your ship?\" (It requires a free gadget slot.)",
+			"A member of the Royal Family of Galvon has been kidnapped! Princess Ziyal was abducted by men while travelling across the planet. They escaped in a hi-tech ship called the Scorpion. Please rescue her! (You'll need to equip your ship with disruptors to be able to defeat the Scorpion without destroying it.)",
+			"A ship bristling with weapons was seen a few days ago. It's trajectory before going to warp indicates that its destination was Centauri.",
+			"A ship had its shields upgraded to Lighting Shields just two days ago. A shipyard worker overheard one of the crew saying they were headed to Inthara.",
+			"Just yesterday a ship was seen in docking bay 327. A trader sold goods to a member of the crew, who was a native of Qonos. It's a good bet that's where they were going next.",
+			"His Majesty's Shipyard: Do you want us to install a quantum disruptor on your current ship?",
+			"You land your ship near where the Space Corps has landed with the Scorpion in tow. The Princess is revived from hibernation and you get to see her for the first time. Instead of the spoiled child you were expecting, Ziyal is possible the most beautiful woman you've ever seen. \"What took you so long?\" she demands. You notice a twinkle in her eye, and then she smiles. Not only is she beautiful, but she's got a sense of humor. She says, \"Thank you for freeing me. I am in your debt.\" With that she give you a kiss on the cheek, then leaves."
 		};
 		#endregion
 
@@ -786,7 +812,13 @@ namespace Fryz.Apps.SpaceTrader
 			"Wild Gets Out",
 			"Stolen Sculpture",
 			"Sculpture Delivered",
-			"Install Hidden Compartments"
+			"Install Hidden Compartments",
+			"Kidnapped",
+			"Aggressive Ship",
+			"Dangerous Scorpion",
+			"Royal Rescue",
+			"Quantum Disruptor",
+			"Royal Return"
 		};
 		#endregion
 

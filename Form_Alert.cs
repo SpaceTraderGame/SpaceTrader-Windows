@@ -34,11 +34,11 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Constants
 
-		private const int	SPLASH_INDEX	= 3;
+		private const int	SPLASH_INDEX	= 4;
 
 		#endregion
 
-		#region Member Declarations
+		#region Control Declarations
 
 		private System.Windows.Forms.Label lblText;
 		private System.Windows.Forms.Button btn1;
@@ -178,17 +178,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.ilImages = new System.Windows.Forms.ImageList(this.components);
 			this.tmrTick = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
-			//
+			// 
 			// lblText
-			//
+			// 
 			this.lblText.Location = new System.Drawing.Point(8, 8);
 			this.lblText.Name = "lblText";
 			this.lblText.Size = new System.Drawing.Size(12, 13);
 			this.lblText.TabIndex = 3;
 			this.lblText.Text = "X";
-			//
+			// 
 			// btn1
-			//
+			// 
 			this.btn1.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btn1.Location = new System.Drawing.Point(115, 32);
@@ -196,9 +196,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btn1.Size = new System.Drawing.Size(40, 22);
 			this.btn1.TabIndex = 1;
 			this.btn1.Text = "Ok";
-			//
+			// 
 			// btn2
-			//
+			// 
 			this.btn2.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btn2.Location = new System.Drawing.Point(200, 32);
@@ -207,28 +207,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btn2.TabIndex = 2;
 			this.btn2.Text = "No";
 			this.btn2.Visible = false;
-			//
+			// 
 			// ilImages
-			//
-			this.ilImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			// 
+			this.ilImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
 			this.ilImages.ImageSize = new System.Drawing.Size(160, 160);
 			this.ilImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilImages.ImageStream")));
 			this.ilImages.TransparentColor = System.Drawing.Color.Empty;
-			//
+			// 
 			// tmrTick
-			//
+			// 
 			this.tmrTick.Interval = 4000;
 			this.tmrTick.Tick += new System.EventHandler(this.tmrTick_Tick);
-			//
+			// 
 			// FormAlert
-			//
+			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(270, 63);
 			this.ControlBox = false;
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.btn2,
-																																	this.btn1,
-																																	this.lblText});
+			this.Controls.Add(this.btn2);
+			this.Controls.Add(this.btn1);
+			this.Controls.Add(this.lblText);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormAlert";
 			this.ShowInTaskbar = false;
@@ -236,13 +235,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.Text = "Title";
 			this.Click += new System.EventHandler(this.FormAlert_Click);
 			this.ResumeLayout(false);
+
 		}
 		#endregion
-
-		public static DialogResult Alert(AlertType type)
-		{
-			return Alert(type, null, new string[] {});
-		}
 
 		public static DialogResult Alert(AlertType type, IWin32Window owner)
 		{
@@ -384,6 +379,9 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.EncounterAttackCaptain:
 					result	= (new FormAlert("Really Attack?", "Famous Captains get famous by, among other things, destroying everyone who attacks them. Do you really want to attack?", "Really Attack", DialogResult.Yes, "OK, I Won't", DialogResult.No, args)).ShowDialog(owner);
 					break;
+				case AlertType.EncounterAttackNoDisruptors:
+					result	= (new FormAlert("No Disabling Weapons", "You have no disabling weapons! You would only be able to destroy your opponent, which would defeat the purpose of your quest.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.EncounterAttackNoLasers:
 					result	= (new FormAlert("No Hull-Damaging Weapons", "You only have disabling weapons, but your opponent cannot be disabled!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
@@ -400,7 +398,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Both Destroyed", "You and your opponent have managed to destroy each other.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterDisabledOpponent:
-					result	= (new FormAlert("Opponent Disabled", "You have disabled your opponent. You notify Space Corps, and they come and arrest the crew of the ^1 and impound their ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Opponent Disabled", "You have disabled your opponent. Without life support they'll have to hibernate. You notify Space Corps, and they come and tow the ^1 to the planet, where the crew is revived and then arrested. ^2", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterDrinkContents:
 					result	= (new FormAlert("Drink Contents?", "You have come across an extremely rare bottle of Captain Marmoset's Amazing Skill Tonic! The \"use-by\" date is illegible, but might still be good.  Would you like to drink it?", "Yes, Drink It", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
@@ -441,6 +439,9 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.EncounterPiratesFindNoCargo:
 					result	= (new FormAlert("Pirates Find No Cargo", "The pirates are very angry that they find no cargo on your ship. To stop them from destroying you, you have no choice but to pay them an amount equal to 5% of your current worth - ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.EncounterPiratesSurrenderPrincess:
+					result	= (new FormAlert("You Have the Princess", "Pirates are not nice people, and there's no telling what they might do to the Princess. Better to die fighting than give her up to them!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPiratesTakeSculpture:
 					result	= (new FormAlert("Pirates Take Sculpture", "As the pirates ransack your ship, they find the stolen sculpture. \"This is worth thousands!\" one pirate exclaims, as he stuffs it into his pack.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -532,6 +533,9 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.EquipmentNotEnoughSlots:
 					result	= (new FormAlert("Not Enough Slots", "You have already filled all of your available slots for this type of item.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
+				case AlertType.EquipmentQuantumDisruptor:
+					result	= (new FormAlert("Quantum Disruptor", "You now have one quantum disruptor installed on your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.EquipmentSell:
 					result	= (new FormAlert("Sell Item", "Are you sure you want to sell this item?", "Yes", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
 					break;
@@ -552,6 +556,9 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.GameEndBoughtMoon:
 					(new FormAlert("You Have Retired", (int)GameEndType.BoughtMoon)).ShowDialog(owner);
+					break;
+				case AlertType.GameEndBoughtMoonGirl:
+					(new FormAlert("You Have Retired with the Princess", (int)GameEndType.BoughtMoonGirl)).ShowDialog(owner);
 					break;
 				case AlertType.GameEndHighScoreAchieved:
 					result	= (new FormAlert("Congratulations!", "You have made the high-score list!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -633,6 +640,12 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.OptionsNoGame:
 					result	= (new FormAlert("No Game Active", "You don't have a game open, so you can only change the default options.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.PreciousHidden:
+					result	= (new FormAlert("Precious Cargo Hidden", "You quickly hide ^1 in your hidden cargo bays before the pirates board your ship. This would never work with the police, but pirates are usually in more of a hurry.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.PrincessTakenHome:
+					result	= (new FormAlert("Princess Taken Home", "The Space Corps decides to give the Princess a ride home to Galvon since you obviously weren't up to the task.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.ReactorConfiscated:
 					result	= (new FormAlert("Police Confiscate Reactor", "The Police confiscate the Ion reactor as evidence of your dealings with unsavory characters.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
@@ -724,11 +737,17 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.SpecialPassengerConcernedJarek:
 					result	= (new FormAlert("Ship's Comm.", "Commander? Jarek here. Do you require any assitance in charting a course to Devidia?", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
-				case AlertType.SpecialPassengerImpatientJarek:
-					result	= (new FormAlert("Ship's Comm.", "Captain! This is the Ambassador speaking. We should have been there by now?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+				case AlertType.SpecialPassengerConcernedPrincess:
+					result	= (new FormAlert("Ship's Comm.", "Oh Captain? (giggles) Would it help if I got out and pushed?", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerConcernedWild:
 					result	= (new FormAlert("Ship's Comm.", "Bridge? This is Jonathan. Are we there yet? Heh, heh. Sorry, I couldn't resist.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.SpecialPassengerImpatientJarek:
+					result	= (new FormAlert("Ship's Comm.", "Captain! This is the Ambassador speaking. We should have been there by now?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.SpecialPassengerImpatientPrincess:
+					result	= (new FormAlert("Ship's Comm.", "Sir! Are you taking me home or merely replacing my previous captors in their crime?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerImpatientWild:
 					result	= (new FormAlert("Ship's Comm.", "Commander! Wild here. What's taking us so long?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);

@@ -161,8 +161,7 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.Dragonfly:
 				case SpecialEventType.Experiment:
 				case SpecialEventType.Jarek:
-					show	= game.Commander.PoliceRecordScore >=
-									Consts.PoliceRecordScoreDubious;
+					show	= game.Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious;
 					break;
 				case SpecialEventType.ArtifactDelivery:
 					show	= game.Commander.Ship.ArtifactOnBoard;
@@ -192,6 +191,7 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.GemulonInvaded:
 				case SpecialEventType.Lottery:
 				case SpecialEventType.ReactorLaser:
+				case SpecialEventType.PrincessQuantum:
 				case SpecialEventType.SculptureHiddenBays:
 				case SpecialEventType.Skill:
 				case SpecialEventType.SpaceMonster:
@@ -226,6 +226,25 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.MoonRetirement:
 					show	= game.QuestStatusMoon == SpecialEvent.StatusMoonBought;
+					break;
+				case SpecialEventType.Princess:
+					show	= game.Commander.PoliceRecordScore	>= Consts.PoliceRecordScoreLawful &&
+									game.Commander.ReputationScore		>= Consts.ReputationScoreAverage;
+					break;
+				case SpecialEventType.PrincessCentauri:
+					show	= game.QuestStatusPrincess >= SpecialEvent.StatusPrincessFlyCentauri &&
+									game.QuestStatusPrincess <= SpecialEvent.StatusPrincessFlyQonos;
+					break;
+				case SpecialEventType.PrincessInthara:
+					show	= game.QuestStatusPrincess >= SpecialEvent.StatusPrincessFlyInthara &&
+									game.QuestStatusPrincess <= SpecialEvent.StatusPrincessFlyQonos;
+					break;
+				case SpecialEventType.PrincessQonos:
+					show	= game.QuestStatusPrincess == SpecialEvent.StatusPrincessRescued &&
+						!game.Commander.Ship.PrincessOnBoard;
+					break;
+				case SpecialEventType.PrincessReturned:
+					show	= game.Commander.Ship.PrincessOnBoard;
 					break;
 				case SpecialEventType.Reactor:
 					show	= game.QuestStatusReactor						== SpecialEvent.StatusReactorNotStarted &&

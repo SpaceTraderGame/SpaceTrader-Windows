@@ -634,39 +634,27 @@ namespace Fryz.Apps.SpaceTrader
 		private void PopulateIdArrays()
 		{
 			// Populate the mercenary ids array.
-			mercIds			= new int[game.Mercenaries.Length - Consts.SpecialCrewMemberIds.Count];
-			int	idIndex	= 0;
-			for (int i = 0; i < game.Mercenaries.Length; i++)
+			ArrayList	ids	= new ArrayList();
+			foreach (CrewMember merc in game.Mercenaries)
 			{
-				if (!Consts.SpecialCrewMemberIds.Contains((CrewMemberId)i))
-					mercIds[idIndex++]	= i;
+				if (!Consts.SpecialCrewMemberIds.Contains(merc.Id))
+					ids.Add((int)merc.Id);
 			}
-
-			// Count the quests and shipyards.
-			int quests		= 0;
-			int shipyards	= 0;
-			for (int i = 0; i < game.Universe.Length; i++)
-			{
-				if (game.Universe[i].ShowSpecialButton())
-					quests++;
-
-				if (game.Universe[i].ShipyardId != ShipyardId.NA)
-					shipyards++;
-			}
+			mercIds				= (int[])ids.ToArray(System.Type.GetType("System.Int32"));
 
 			// Populate the quest and shipyard system ids arrays.
-			questSystemIds		= new int[quests];
-			shipyardSystemIds	= new int[shipyards];
-			int	qIndex				= 0;
-			int	sIndex				= 0;
-			for (int i = 0; i < game.Universe.Length; i++)
+			ArrayList	quests		= new ArrayList();
+			ArrayList shipyards	= new ArrayList();
+			foreach (StarSystem system in game.Universe)
 			{
-				if (game.Universe[i].ShowSpecialButton())
-					questSystemIds[qIndex++]		= i;
+				if (system.ShowSpecialButton())
+					quests.Add((int)system.Id);
 
-				if (game.Universe[i].ShipyardId != ShipyardId.NA)
-					shipyardSystemIds[sIndex++]	= i;
+				if (system.ShipyardId != ShipyardId.NA)
+					shipyards.Add((int)system.Id);
 			}
+			questSystemIds		= (int[])quests.ToArray(System.Type.GetType("System.Int32"));
+			shipyardSystemIds	= (int[])shipyards.ToArray(System.Type.GetType("System.Int32"));
 
 			// Sort the arrays.
 			Sort("M", "N");		// Sort mercenaries by name.

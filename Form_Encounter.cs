@@ -1084,6 +1084,7 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case EncounterType.DragonflyAttack:
 				case EncounterType.FamousCaptainAttack:
+				case EncounterType.ScorpionAttack:
 				case EncounterType.SpaceMonsterAttack:
 				case EncounterType.TraderAttack:
 					visible[ATTACK]			= true;
@@ -1098,6 +1099,7 @@ namespace Fryz.Apps.SpaceTrader
 				case EncounterType.PirateFlee:
 				case EncounterType.PirateIgnore:
 				case EncounterType.ScarabIgnore:
+				case EncounterType.ScorpionIgnore:
 				case EncounterType.SpaceMonsterIgnore:
 				case EncounterType.TraderFlee:
 				case EncounterType.TraderIgnore:
@@ -1313,7 +1315,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void picTrib_Click(object sender, System.EventArgs e)
 		{
-			FormAlert.Alert(AlertType.TribblesSqueek);
+			FormAlert.Alert(AlertType.TribblesSqueek, this);
 		}
 
 		private void tmrTick_Tick(object sender, System.EventArgs e)

@@ -15,7 +15,7 @@
 	Added lots more images for equipment, etc.
 	Require confirmation when loading a game, starting a new game, or quitting game (but only when at least one day has passed since the last save)
 	Fixed code that generates opponents - the opponents were usually weaker than they should have been
-	Added new weapons that can disable an opponent without distroying them
+	Added 2 new weapons that can disable an opponent without distroying them
 
 
 TODO:
@@ -26,3 +26,5 @@ TODO:
 	create images for trade goods
 	passenger modules
 	courier quests
+	more very rare encounters
+	fix GetValueFromHash calls

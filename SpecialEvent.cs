@@ -71,6 +71,15 @@ namespace Fryz.Apps.SpaceTrader
 		public const int StatusMoonBought							= 1;
 		public const int StatusMoonDone								= 2;
 
+		public const int StatusPrincessNotStarted			= 0;
+		public const int StatusPrincessFlyCentauri		= 1;
+		public const int StatusPrincessFlyInthara			= 2;
+		public const int StatusPrincessFlyQonos				= 3;
+		public const int StatusPrincessRescued				= 4;
+		public const int StatusPrincessImpatient			= 14;
+		public const int StatusPrincessReturned				= 15;
+		public const int StatusPrincessDone						= 16;
+
 		public const int StatusReactorNotStarted			= 0;
 		public const int StatusReactorFuelOk					= 1;
 		public const int StatusReactorDate						= 20;

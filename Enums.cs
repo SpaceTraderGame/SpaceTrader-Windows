@@ -66,6 +66,7 @@ namespace Fryz.Apps.SpaceTrader
 		EncounterAliensSurrender,
 		EncounterArrested,
 		EncounterAttackCaptain,
+		EncounterAttackNoDisruptors,
 		EncounterAttackNoLasers,
 		EncounterAttackNoWeapons,
 		EncounterAttackPolice,
@@ -85,6 +86,7 @@ namespace Fryz.Apps.SpaceTrader
 		EncounterPiratesBounty,
 		EncounterPiratesExamineReactor,
 		EncounterPiratesFindNoCargo,
+		EncounterPiratesSurrenderPrincess,
 		EncounterPiratesTakeSculpture,
 		EncounterPoliceBribe,
 		EncounterPoliceBribeCant,
@@ -115,6 +117,7 @@ namespace Fryz.Apps.SpaceTrader
 		EquipmentLightningShield,
 		EquipmentMorgansLaser,
 		EquipmentNotEnoughSlots,
+		EquipmentQuantumDisruptor,
 		EquipmentSell,
 		FileErrorOpen,
 		FileErrorSave,
@@ -122,6 +125,7 @@ namespace Fryz.Apps.SpaceTrader
 		GameAbandonConfirm,
 		GameClearHighScores,
 		GameEndBoughtMoon,
+		GameEndBoughtMoonGirl,
 		GameEndHighScoreAchieved,
 		GameEndHighScoreCheat,
 		GameEndHighScoreMissed,
@@ -149,6 +153,8 @@ namespace Fryz.Apps.SpaceTrader
 		NewGameConfirm,
 		NewGameMoreSkillPoints,
 		OptionsNoGame,
+		PreciousHidden,
+		PrincessTakenHome,
 		ReactorConfiscated,
 		ReactorDestroyed,
 		ReactorOnBoard,
@@ -179,8 +185,10 @@ namespace Fryz.Apps.SpaceTrader
 		SpecialNoQuarters,
 		SpecialNotEnoughBays,
 		SpecialPassengerConcernedJarek,
-		SpecialPassengerImpatientJarek,
+		SpecialPassengerConcernedPrincess,
 		SpecialPassengerConcernedWild,
+		SpecialPassengerImpatientJarek,
+		SpecialPassengerImpatientPrincess,
 		SpecialPassengerImpatientWild,
 		SpecialPassengerOnBoard,
 		SpecialSealedCanisters,
@@ -302,7 +310,9 @@ namespace Fryz.Apps.SpaceTrader
 		Stilgar							= 49,
 		Taggart							= 50,
 		Vansen							= 51,
-		Xizor								= 52
+		Xizor								= 52,
+		Princess						= 53,
+		Scorpion						= 54
 	};
 	#endregion
 
@@ -331,39 +341,41 @@ namespace Fryz.Apps.SpaceTrader
 	#region EncounterType
 	public enum EncounterType: int
 	{
-		BottleGood,
-		BottleOld,
-		CaptainAhab,
-		CaptainConrad,
-		CaptainHuie,
-		FamousCaptainAttack,
-		FamousCaptDisabled,
-		DragonflyAttack,
-		DragonflyIgnore,
-		MarieCeleste,
-		MarieCelestePolice,
-		PirateAttack,
-		PirateIgnore,
-		PirateFlee,
-		PirateSurrender,
-		PirateDisabled,
-		PoliceAttack,
-		PoliceIgnore,
-		PoliceFlee,
-		PoliceSurrender,
-		PoliceDisabled,
-		PoliceInspect,
-		ScarabAttack,
-		ScarabIgnore,
-		SpaceMonsterAttack,
-		SpaceMonsterIgnore,
-		TraderAttack,
-		TraderIgnore,
-		TraderFlee,
-		TraderSurrender,
-		TraderDisabled,
-		TraderBuy,
-		TraderSell
+		BottleGood					= 0,
+		BottleOld						= 1,
+		CaptainAhab					= 2,
+		CaptainConrad				= 3,
+		CaptainHuie					= 4,
+		DragonflyAttack			= 5,
+		DragonflyIgnore			= 6,
+		FamousCaptainAttack	= 7,
+		FamousCaptDisabled	= 8,
+		MarieCeleste				= 9,
+		MarieCelestePolice	= 10,
+		PirateAttack				= 11,
+		PirateIgnore				= 12,
+		PirateFlee					= 13,
+		PirateSurrender			= 14,
+		PirateDisabled			= 15,
+		PoliceAttack				= 16,
+		PoliceIgnore				= 17,
+		PoliceFlee					= 18,
+		PoliceSurrender			= 19,
+		PoliceDisabled			= 20,
+		PoliceInspect				= 21,
+		ScarabAttack				= 22,
+		ScarabIgnore				= 23,
+		ScorpionAttack			= 24,
+		ScorpionIgnore			= 25,
+		SpaceMonsterAttack	= 26,
+		SpaceMonsterIgnore	= 27,
+		TraderAttack				= 28,
+		TraderIgnore				= 29,
+		TraderFlee					= 30,
+		TraderSurrender			= 31,
+		TraderDisabled			= 32,
+		TraderBuy						= 33,
+		TraderSell					= 34
 	};
 	#endregion
 
@@ -395,7 +407,8 @@ namespace Fryz.Apps.SpaceTrader
 		NA									= -1,
 		Killed							= 0,
 		Retired							= 1,
-		BoughtMoon					= 2
+		BoughtMoon					= 2,
+		BoughtMoonGirl			= 3
 	};
 	#endregion
 
@@ -434,7 +447,13 @@ namespace Fryz.Apps.SpaceTrader
 		WildArrested				= 29,
 		WildGetsOut					= 30,
 		SculptureStolen			= 31,
-		SculptureTracked		= 32
+		SculptureTracked		= 32,
+		Princess						= 33,
+		PrincessCentauri		= 34,
+		PrincessInthara			= 35,
+		PrincessQonos				= 36,
+		PrincessRescued			= 37,
+		PrincessReturned		= 38
 	};
 	#endregion
 
@@ -531,7 +550,8 @@ namespace Fryz.Apps.SpaceTrader
 		Mantis							= 12,
 		Scarab							= 13,
 		Bottle							= 14,
-		Custom							= 15
+		Custom							= 15,
+		Scorpion						= 16
 	};
 	#endregion
 
@@ -624,7 +644,13 @@ namespace Fryz.Apps.SpaceTrader
 		WildGetsOut					= 36,
 		Sculpture						= 37,
 		SculptureDelivered	= 38,
-		SculptureHiddenBays	= 39
+		SculptureHiddenBays	= 39,
+		Princess						= 40,
+		PrincessCentauri		= 41,
+		PrincessInthara			= 42,
+		PrincessQonos				= 43,
+		PrincessQuantum			= 44,
+		PrincessReturned		= 45
 	};
 	#endregion
 

@@ -447,7 +447,7 @@ namespace Fryz.Apps.SpaceTrader
 						// The police will try to hunt you down with better ships if you are
 						// a villain, and they will try even harder when you are considered to
 						// be a psychopath (or are transporting Jonathan Wild)
-						if (cmdr.PoliceRecordScore < Consts.PoliceRecordScorePsychopath || WildOnBoard)
+						if (cmdr.PoliceRecordScore < Consts.PoliceRecordScorePsychopath || cmdr.Ship.WildOnBoard)
 							tries	= 5;
 						else if (cmdr.PoliceRecordScore < Consts.PoliceRecordScoreVillain)
 							tries	= 3;
@@ -766,7 +766,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		public int WeaponStrength()
 		{
-			return WeaponStrength(WeaponType.PulseLaser, WeaponType.MorgansLaser);
+			return WeaponStrength(WeaponType.PulseLaser, WeaponType.QuantumDistruptor);
 		}
 
 		public int WeaponStrength(WeaponType min, WeaponType max)
@@ -1140,8 +1140,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return CommandersShip && Game.CurrentGame.QuestStatusJarek > SpecialEvent.StatusJarekNotStarted &&
-					Game.CurrentGame.QuestStatusJarek < SpecialEvent.StatusJarekDone;
+				return HasCrew(CrewMemberId.Jarek);
 			}
 		}
 
@@ -1150,6 +1149,14 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return Skills[(int)SkillType.Pilot];
+			}
+		}
+
+		public bool PrincessOnBoard
+		{
+			get
+			{
+				return HasCrew(CrewMemberId.Princess);
 			}
 		}
 
@@ -1249,7 +1256,7 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		// Crew members that are not hired/fired - Commander, Jarek, and Wild - JAF
+		// Crew members that are not hired/fired - Commander, Jarek, Princess, and Wild - JAF
 		public CrewMember[]	SpecialCrew
 		{
 			get
@@ -1266,6 +1273,34 @@ namespace Fryz.Apps.SpaceTrader
 					crew[i]	= (CrewMember)list[i];
 
 				return crew;
+			}
+		}
+
+		// Sort all cargo based on value and put some of it in hidden bays, if they are present.
+		public ArrayList StealableCargo
+		{
+			get
+			{
+				// Put all of the cargo items in a list and sort it. Reverse it so the most expensive items are first.
+				ArrayList tradeItems	= new ArrayList();
+				for (int tradeItem = 0; tradeItem < Cargo.Length; tradeItem++)
+				{
+					for (int count = 0; count < Cargo[tradeItem]; count++)
+						tradeItems.Add((int)tradeItem);
+				}
+				tradeItems.Sort();
+				tradeItems.Reverse();
+
+				int hidden	= HiddenCargoBays;
+				if (PrincessOnBoard)
+					hidden--;
+				if (SculptureOnBoard)
+					hidden--;
+
+				if (hidden > 0)
+					tradeItems.RemoveRange(0, hidden);
+
+				return tradeItems;
 			}
 		}
 
@@ -1309,8 +1344,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return CommandersShip && Game.CurrentGame.QuestStatusWild > SpecialEvent.StatusWildNotStarted &&
-					Game.CurrentGame.QuestStatusWild < SpecialEvent.StatusWildDone;
+				return HasCrew(CrewMemberId.Wild);
 			}
 		}
 

@@ -26,7 +26,7 @@ using System;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class TradeItem
+	public class TradeItem: IComparable
 	{
 		#region Member Declarations
 
@@ -66,6 +66,22 @@ namespace Fryz.Apps.SpaceTrader
 			_minTradePrice			= minTradePrice;
 			_maxTradePrice			= maxTradePrice;
 			_roundOff						= roundOff;
+		}
+
+		public int CompareTo(object value)
+		{
+			int	compared	= 0;
+
+			if (value == null)
+				compared	= 1;
+			else
+			{
+				compared	= PriceLowTech.CompareTo(((TradeItem)value).PriceLowTech);
+				if (compared == 0)
+					compared	= -PriceInc.CompareTo(((TradeItem)value).PriceInc);
+			}
+
+			return compared;
 		}
 
 		public int StandardPrice(StarSystem target)

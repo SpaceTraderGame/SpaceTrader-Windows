@@ -3453,8 +3453,14 @@ namespace Fryz.Apps.SpaceTrader
 								case "Reactor":
 									game.QuestStatusReactor	= Math.Max(0, num2);
 									break;
+								case "Princess":
+									game.QuestStatusPrincess	= Math.Max(0, num2);
+									break;
 								case "Scarab":
 									game.QuestStatusScarab	= Math.Max(0, num2);
+									break;
+								case "Sculpture":
+									game.QuestStatusSculpture	= Math.Max(0, num2);
 									break;
 								case "SpaceMonster":
 									game.QuestStatusSpaceMonster	= Math.Max(0, num2);
@@ -3470,8 +3476,10 @@ namespace Fryz.Apps.SpaceTrader
 																	"Japori: " + game.QuestStatusJapori.ToString() + Environment.NewLine +
 																	"Jarek: " + game.QuestStatusJarek.ToString() + Environment.NewLine +
 																	"Moon: " + game.QuestStatusMoon.ToString() + Environment.NewLine +
+																	"Princess: " + game.QuestStatusPrincess.ToString() + Environment.NewLine +
 																	"Reactor: " + game.QuestStatusReactor.ToString() + Environment.NewLine +
 																	"Scarab: " + game.QuestStatusScarab.ToString() + Environment.NewLine +
+																	"Sculpture: " + game.QuestStatusSculpture.ToString() + Environment.NewLine +
 																	"SpaceMonster: " + game.QuestStatusSpaceMonster.ToString() + Environment.NewLine +
 																	"Wild: " + game.QuestStatusWild.ToString();
 

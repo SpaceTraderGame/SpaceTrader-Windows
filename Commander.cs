@@ -142,6 +142,7 @@ namespace Fryz.Apps.SpaceTrader
 				Equipment[]	special	= new Equipment[]
 				{
 					Consts.Weapons[(int)WeaponType.MorgansLaser],
+					Consts.Weapons[(int)WeaponType.QuantumDistruptor],
 					Consts.Shields[(int)ShieldType.Lightning],
 					Consts.Gadgets[(int)GadgetType.FuelCompactor],
 					Consts.Gadgets[(int)GadgetType.HiddenCargoBays]

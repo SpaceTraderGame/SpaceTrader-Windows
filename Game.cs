@@ -41,6 +41,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Commander			_commander;
 		private Ship					_dragonfly									= new Ship(ShipType.Dragonfly);
 		private Ship					_scarab											= new Ship(ShipType.Scarab);
+		private Ship					_scorpion										= new Ship(ShipType.Scorpion);
 		private Ship					_spaceMonster								= new Ship(ShipType.SpaceMonster);
 		private Ship					_opponent										= new Ship(ShipType.Gnat);
 		private bool					_opponentDisabled						= false;
@@ -77,6 +78,7 @@ namespace Fryz.Apps.SpaceTrader
 		private int						_questStatusJapori					= 0;									// 0 = no disease, 1 = Go to Japori (always at least 10 medicine cannisters), 2 = Assignment finished or canceled
 		private int						_questStatusJarek						= 0;									// 0 = not delivered, 1-11 = on board, 12 = delivered
 		private int						_questStatusMoon						= 0;									// 0 = not bought, 1 = bought, 2 = claimed
+		private int						_questStatusPrincess				= 0;									// 0 = not available, 1 = Go to Centauri, 2 = Go to Inthara, 3 = Go to Qonos, 4 = Princess Rescued, 5-14 = On Board, 15 = Princess Returned, 16 = Got Quantum Disruptor
 		private int						_questStatusReactor					= 0;									// 0 = not encountered, 1-20 = days of mission (bays of fuel left = 10 - (ReactorStatus / 2), 21 = delivered, 22 = Done
 		private int						_questStatusScarab					= 0;									// 0 = not given yet, 1 = not destroyed, 2 = destroyed - upgrade not performed, 3 = destroyed - hull upgrade performed
 		private int						_questStatusSculpture				= 0;									// 0 = not given yet, 1 = on board, 2 = delivered, 3 = done
@@ -111,10 +113,11 @@ namespace Fryz.Apps.SpaceTrader
 			_parentWin	= parentWin;
 			_difficulty	= difficulty;
 
-			// Keep Generating a new universe until PlaceSpecialEvents returns true, indicating all special events were placed.
+			// Keep Generating a new universe until PlaceSpecialEvents and PlaceShipyards return true,
+			// indicating all special events and shipyards were placed.
 			do
 				GenerateUniverse();
-			while (!PlaceSpecialEvents());
+			while (!(PlaceSpecialEvents() && PlaceShipyards()));
 
 			InitializeCommander(name, new CrewMember(CrewMemberId.Commander, pilot, fighter, trader, engineer, StarSystemId.NA));
 			GenerateCrewMemberList();
@@ -145,12 +148,13 @@ namespace Fryz.Apps.SpaceTrader
 
 			_universe										= (StarSystem[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_universe"), "StarSystem");
 			_wormholes									= (int[])GetValueFromHash(hash, "_wormholes", _wormholes);
-			_mercenaries								= (CrewMember[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_mercenaries", _mercenaries), "CrewMember");
-			_commander									= new Commander((Hashtable)GetValueFromHash(hash, "_commander", _commander));
-			_dragonfly									= new Ship((Hashtable)GetValueFromHash(hash, "_dragonfly", _dragonfly));
-			_scarab											= new Ship((Hashtable)GetValueFromHash(hash, "_scarab", _scarab));
-			_spaceMonster								= new Ship((Hashtable)GetValueFromHash(hash, "_spaceMonster", _spaceMonster));
-			_opponent										= new Ship((Hashtable)GetValueFromHash(hash, "_opponent", _opponent));
+			_mercenaries								= (CrewMember[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_mercenaries"), "CrewMember");
+			_commander									= new Commander((Hashtable)GetValueFromHash(hash, "_commander"));
+			_dragonfly									= new Ship((Hashtable)GetValueFromHash(hash, "_dragonfly", _dragonfly.Serialize()));
+			_scarab											= new Ship((Hashtable)GetValueFromHash(hash, "_scarab", _scarab.Serialize()));
+			_scorpion										= new Ship((Hashtable)GetValueFromHash(hash, "_scorpion", _scorpion.Serialize()));
+			_spaceMonster								= new Ship((Hashtable)GetValueFromHash(hash, "_spaceMonster", _spaceMonster.Serialize()));
+			_opponent										= new Ship((Hashtable)GetValueFromHash(hash, "_opponent", _opponent.Serialize()));
 			_chanceOfTradeInOrbit				= (int)GetValueFromHash(hash, "_chanceOfTradeInOrbit", _chanceOfTradeInOrbit);
 			_clicks											= (int)GetValueFromHash(hash, "_clicks", _clicks);
 			_raided											= (bool)GetValueFromHash(hash, "_raided", _raided);
@@ -159,7 +163,7 @@ namespace Fryz.Apps.SpaceTrader
 			_arrivedViaWormhole					= (bool)GetValueFromHash(hash, "_arrivedViaWormhole", _arrivedViaWormhole);
 			_paidForNewspaper						= (bool)GetValueFromHash(hash, "_paidForNewspaper", _paidForNewspaper);
 			_litterWarning							= (bool)GetValueFromHash(hash, "_litterWarning", _litterWarning);
-			_newsEvents									= new ArrayList((int[])GetValueFromHash(hash, "_newsEvents", _newsEvents));
+			_newsEvents									= new ArrayList((int[])GetValueFromHash(hash, "_newsEvents", _newsEvents.ToArray(System.Type.GetType("System.Int32"))));
 			_difficulty									= (Difficulty)GetValueFromHash(hash, "_difficulty", _difficulty);
 			_cheatEnabled								= (bool)GetValueFromHash(hash, "_cheatEnabled", _cheatEnabled);
 			_autoSave										= (bool)GetValueFromHash(hash, "_autoSave", _autoSave);
@@ -179,6 +183,7 @@ namespace Fryz.Apps.SpaceTrader
 			_questStatusJapori					= (int)GetValueFromHash(hash, "_questStatusJapori", _questStatusJapori);
 			_questStatusJarek						= (int)GetValueFromHash(hash, "_questStatusJarek", _questStatusJarek);
 			_questStatusMoon						= (int)GetValueFromHash(hash, "_questStatusMoon", _questStatusMoon);
+			_questStatusPrincess				= (int)GetValueFromHash(hash, "_questStatusPrincess", _questStatusPrincess);
 			_questStatusReactor					= (int)GetValueFromHash(hash, "_questStatusReactor", _questStatusReactor);
 			_questStatusScarab					= (int)GetValueFromHash(hash, "_questStatusScarab", _questStatusScarab);
 			_questStatusSculpture				= (int)GetValueFromHash(hash, "_questStatusSculpture", _questStatusSculpture);
@@ -188,8 +193,8 @@ namespace Fryz.Apps.SpaceTrader
 			_justLootedMarie						= (bool)GetValueFromHash(hash, "_justLootedMarie", _justLootedMarie);
 			_canSuperWarp								= (bool)GetValueFromHash(hash, "_canSuperWarp", _canSuperWarp);
 			_chanceOfVeryRareEncounter	= (int)GetValueFromHash(hash, "_chanceOfVeryRareEncounter", _chanceOfVeryRareEncounter);
-			_veryRareEncounters					= new ArrayList((int[])GetValueFromHash(hash, "_veryRareEncounters", _veryRareEncounters));
-			_options										= new GameOptions((Hashtable)GetValueFromHash(hash, "_options", _options));
+			_veryRareEncounters					= new ArrayList((int[])GetValueFromHash(hash, "_veryRareEncounters", _veryRareEncounters.ToArray(System.Type.GetType("System.Int32"))));
+			_options										= new GameOptions((Hashtable)GetValueFromHash(hash, "_options", _options.Serialize()));
 		}
 
 		public void Arrested()
@@ -255,6 +260,12 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				FormAlert.Alert(AlertType.JarekTakenHome, ParentWindow);
 				QuestStatusJarek	= SpecialEvent.StatusJarekNotStarted;
+			}
+
+			if (Commander.Ship.PrincessOnBoard)
+			{
+				FormAlert.Alert(AlertType.PrincessTakenHome, ParentWindow);
+				QuestStatusPrincess	= SpecialEvent.StatusPrincessNotStarted;
 			}
 
 			if (QuestStatusJapori == SpecialEvent.StatusJaporiInTransit)
@@ -742,6 +753,14 @@ namespace Fryz.Apps.SpaceTrader
 			Scarab.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
 			Scarab.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
 
+			Scorpion.Crew[0]			= Mercenaries[(int)CrewMemberId.Scorpion];
+			Scorpion.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
+			Scorpion.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
+			Scorpion.AddEquipment(Consts.Shields[(int)ShieldType.Reflective]);
+			Scorpion.AddEquipment(Consts.Shields[(int)ShieldType.Reflective]);
+			Scorpion.AddEquipment(Consts.Gadgets[(int)GadgetType.AutoRepairSystem]);
+			Scorpion.AddEquipment(Consts.Gadgets[(int)GadgetType.TargetingSystem]);
+
 			SpaceMonster.Crew[0]	= Mercenaries[(int)CrewMemberId.SpaceMonster];
 			SpaceMonster.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
 			SpaceMonster.AddEquipment(Consts.Weapons[(int)WeaponType.MilitaryLaser]);
@@ -781,6 +800,14 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				Opponent						= Dragonfly;
 				EncounterType				= Commander.Ship.Cloaked ? EncounterType.DragonflyIgnore : EncounterType.DragonflyAttack;
+				showEncounter				= true;
+			}
+			// Encounter with kidnappers in the Scorpion
+			else if (Clicks == 1 && WarpSystem.Id == StarSystemId.Qonos &&
+				QuestStatusPrincess == SpecialEvent.StatusPrincessFlyQonos)
+			{
+				Opponent						= Scorpion;
+				EncounterType				= Commander.Ship.Cloaked ? EncounterType.ScorpionIgnore : EncounterType.ScorpionAttack;
 				showEncounter				= true;
 			}
 			// ah, just when you thought you were gonna get away with it...
@@ -993,9 +1020,11 @@ namespace Fryz.Apps.SpaceTrader
 			switch ((VeryRareEncounter)VeryRareEncounters[Functions.GetRandom(VeryRareEncounters.Count)])
 			{
 				case VeryRareEncounter.MarieCeleste:
-					// Marie Celeste cannot be at Acamar or Zalkon as it may cause problems with the Space Monster or Dragonfly
+					// Marie Celeste cannot be at Acamar, Qonos, or Zalkon as it may cause problems with the
+					// Space Monster, Scorpion, or Dragonfly
 					if (Clicks > 1 && Commander.CurrentSystemId != StarSystemId.Acamar &&
-						Commander.CurrentSystemId != StarSystemId.Zalkon)
+						Commander.CurrentSystemId != StarSystemId.Zalkon &&
+						Commander.CurrentSystemId != StarSystemId.Qonos)
 					{
 						VeryRareEncounters.Remove(VeryRareEncounter.MarieCeleste);
 						EncounterType	= EncounterType.MarieCeleste;
@@ -1081,6 +1110,13 @@ namespace Fryz.Apps.SpaceTrader
 			QuestStatusScarab						= SpecialEvent.StatusScarabDestroyed;
 		}
 
+		private void EncounterDefeatScorpion()
+		{
+			Commander.KillsPirate++;
+			Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+			QuestStatusPrincess					= SpecialEvent.StatusPrincessRescued;
+		}
+
 		public void EncounterDrink(IWin32Window owner)
 		{
 			if (FormAlert.Alert(AlertType.EncounterDrinkContents, owner) == DialogResult.Yes)
@@ -1121,6 +1157,7 @@ namespace Fryz.Apps.SpaceTrader
 				case EncounterType.PirateAttack:
 				case EncounterType.PoliceAttack:
 				case EncounterType.ScarabAttack:
+				case EncounterType.ScorpionAttack:
 				case EncounterType.SpaceMonsterAttack:
 				case EncounterType.TraderAttack:
 					EncounterCmdrHit		= EncounterExecuteAttack(Opponent, Commander.Ship, EncounterCmdrFleeing);
@@ -1151,22 +1188,27 @@ namespace Fryz.Apps.SpaceTrader
 					result	= EncounterResult.Killed;
 				}
 			}
-			else if (Opponent.Hull <= 0)
-			{
-				EncounterWon(owner);
-
-				result	= EncounterResult.Normal;
-			}
 			else if (OpponentDisabled)
 			{
-				if (EncounterType == EncounterType.DragonflyAttack || EncounterType == EncounterType.ScarabAttack)
+				if (Opponent.Type == ShipType.Dragonfly || Opponent.Type == ShipType.Scarab || Opponent.Type == ShipType.Scorpion)
 				{
-					FormAlert.Alert(AlertType.EncounterDisabledOpponent, owner, EncounterShipText);
+					string str2	= "";
 
-					if (EncounterType == EncounterType.DragonflyAttack)
-						EncounterDefeatDragonfly();
-					else
-						EncounterDefeatScarab();
+					switch (Opponent.Type)
+					{
+						case ShipType.Dragonfly:
+							EncounterDefeatDragonfly();
+							break;
+						case ShipType.Scarab:
+							EncounterDefeatScarab();
+							break;
+						case ShipType.Scorpion:
+							str2	= Strings.EncounterPrincessRescued;
+							EncounterDefeatScorpion();
+							break;
+					}
+
+					FormAlert.Alert(AlertType.EncounterDisabledOpponent, owner, EncounterShipText, str2);
 
 					Commander.ReputationScore	+= (int)Opponent.Type / 2 + 1;
 				}
@@ -1175,6 +1217,12 @@ namespace Fryz.Apps.SpaceTrader
 					EncounterUpdateEncounterType(prevCmdrHull, prevOppHull);
 					EncounterOppFleeing	= false;
 				}
+			}
+			else if (Opponent.Hull <= 0)
+			{
+				EncounterWon(owner);
+
+				result	= EncounterResult.Normal;
 			}
 			else
 			{
@@ -1323,6 +1371,13 @@ namespace Fryz.Apps.SpaceTrader
 					if (defender.Hull > 0 && defender.Disableable && Functions.GetRandom(100) <
 						disrupt * Consts.DisruptorSystemsMultiplier * 100 / defender.Hull)
 						OpponentDisabled	= true;
+
+					// Make sure the Scorpion doesn't get destroyed.
+					if (defender.Type == ShipType.Scorpion && defender.Hull == 0)
+					{
+						defender.Hull			= 1;
+						OpponentDisabled	= true;
+					}
 				}
 			}
 
@@ -1536,6 +1591,11 @@ namespace Fryz.Apps.SpaceTrader
 				FormAlert.Alert(AlertType.EncounterAttackNoLasers, owner);
 				attack	= false;
 			}
+			else if (Opponent.Type == ShipType.Scorpion && Commander.Ship.WeaponStrength(WeaponType.PhotonDisruptor, WeaponType.QuantumDistruptor) == 0)
+			{
+				FormAlert.Alert(AlertType.EncounterAttackNoDisruptors, owner);
+				attack	= false;
+			}
 			else
 			{
 				switch (EncounterType)
@@ -1543,13 +1603,14 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.DragonflyIgnore:
 					case EncounterType.PirateIgnore:
 					case EncounterType.ScarabIgnore:
+					case EncounterType.ScorpionIgnore:
 					case EncounterType.SpaceMonsterIgnore:
 						EncounterType	= EncounterType - 1;
 
 						break;
 					case EncounterType.PoliceInspect:
 						if (!Commander.Ship.DetectableIllegalCargoOrPassengers &&
-							FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) != DialogResult.Yes)
+							FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal, owner) != DialogResult.Yes)
 							attack	= false;
 
 						// Fall through...
@@ -1697,7 +1758,7 @@ namespace Fryz.Apps.SpaceTrader
 			EncounterCmdrFleeing	= false;
 
 			if (EncounterType != EncounterType.PoliceInspect || Commander.Ship.DetectableIllegalCargoOrPassengers ||
-				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) == DialogResult.Yes)
+				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal, owner) == DialogResult.Yes)
 			{
 				EncounterCmdrFleeing	= true;
 
@@ -1787,17 +1848,34 @@ namespace Fryz.Apps.SpaceTrader
 												 Commander.Ship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
 					result		= EncounterResult.Arrested;
 			}
+			else if (Commander.Ship.PrincessOnBoard && !Commander.Ship.HasGadget(GadgetType.HiddenCargoBays))
+			{
+				FormAlert.Alert(AlertType.EncounterPiratesSurrenderPrincess, owner);
+			}
 			else
 			{
 				Raided	= true;
 
-				if (Commander.Ship.SculptureOnBoard)
+				if (Commander.Ship.HasGadget(GadgetType.HiddenCargoBays))
+				{
+					ArrayList	precious	= new ArrayList();
+					if (Commander.Ship.PrincessOnBoard)
+						precious.Add(Strings.EncounterHidePrincess);
+					if (Commander.Ship.SculptureOnBoard)
+						precious.Add(Strings.EncounterHideSculpture);
+
+					FormAlert.Alert(AlertType.PreciousHidden, owner,
+						Functions.StringVars(Strings.ListStrings[precious.Count],
+						(string[])precious.ToArray(System.Type.GetType("System.String"))));
+				}
+				else if (Commander.Ship.SculptureOnBoard)
 				{
 					QuestStatusSculpture	= SpecialEvent.StatusSculptureNotStarted;
-					FormAlert.Alert(AlertType.EncounterPiratesTakeSculpture);
+					FormAlert.Alert(AlertType.EncounterPiratesTakeSculpture, owner);
 				}
 
-				if (Commander.Ship.FilledNormalCargoBays == 0)
+				ArrayList	cargoToSteal	= Commander.Ship.StealableCargo;
+				if (cargoToSteal.Count == 0)
 				{
 					int	blackmail				 = Math.Min(25000, Math.Max(500, Commander.Worth / 20));
 					int	cashPayment			 = Math.Min(Commander.Cash, blackmail);
@@ -1811,16 +1889,16 @@ namespace Fryz.Apps.SpaceTrader
 					FormAlert.Alert(AlertType.EncounterLooting, owner);
 
 					// Pirates steal as much as they have room for, which could be everything - JAF.
-					int	bays	= Opponent.FreeCargoBays;
-					while (bays > 0 && Commander.Ship.FilledNormalCargoBays > 0)
+					// Take most high-priced items - JAF.
+					while (Opponent.FreeCargoBays > 0 && cargoToSteal.Count > 0)
 					{
-						int item	= Functions.GetRandom(Commander.Ship.Cargo.Length);
-						if (Commander.Ship.Cargo[item] > 0)
-						{
-							Commander.PriceCargo[item]	-= Commander.PriceCargo[item] / Commander.Ship.Cargo[item];
-							Commander.Ship.Cargo[item]--;
-							bays--;
-						}
+						int item	= (int)((TradeItem)cargoToSteal[0]).Type;
+
+						Commander.PriceCargo[item]	-= Commander.PriceCargo[item] / Commander.Ship.Cargo[item];
+						Commander.Ship.Cargo[item]--;
+						Opponent.Cargo[item]++;
+
+						cargoToSteal.RemoveAt(0);
 					}
 				}
 
@@ -1839,7 +1917,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				// pirates puzzled by reactor
 				if (Commander.Ship.ReactorOnBoard)
-					FormAlert.Alert(AlertType.EncounterPiratesExamineReactor);
+					FormAlert.Alert(AlertType.EncounterPiratesExamineReactor, owner);
 
 				result	= EncounterResult.Normal;
 			}
@@ -1976,6 +2054,12 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusJarek = SpecialEvent.StatusJarekNotStarted;
 			}
 
+			if (Commander.Ship.PrincessOnBoard)
+			{
+				FormAlert.Alert(AlertType.PrincessTakenHome, ParentWindow);
+				QuestStatusPrincess	= SpecialEvent.StatusPrincessNotStarted;
+			}
+
 			if (Commander.Ship.WildOnBoard)
 			{
 				FormAlert.Alert(AlertType.WildArrested, ParentWindow);
@@ -2041,9 +2125,11 @@ namespace Fryz.Apps.SpaceTrader
 			Mercenaries[(int)CrewMemberId.Opponent]				= new CrewMember(CrewMemberId.Opponent,       5,  5,  5,  5, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Wild]						= new CrewMember(CrewMemberId.Wild,           7, 10,  2,  5, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Jarek]					= new CrewMember(CrewMemberId.Jarek,          3,  2, 10,  4, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Princess]				= new CrewMember(CrewMemberId.Princess,       4,  3,  8,  9, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.FamousCaptain]	= new CrewMember(CrewMemberId.FamousCaptain, 10, 10, 10, 10, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Dragonfly]			= new CrewMember(CrewMemberId.Dragonfly,    4 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Scarab]					= new CrewMember(CrewMemberId.Scarab,       5 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
+			Mercenaries[(int)CrewMemberId.Scorpion]				= new CrewMember(CrewMemberId.Scorpion,     8 + d, 8 + d, 1, 6 + d, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.SpaceMonster]		= new CrewMember(CrewMemberId.SpaceMonster, 8 + d, 8 + d, 1, 1 + d, StarSystemId.NA);
 
 			// JAF - Changing this to allow multiple mercenaries in each system, but no more
@@ -2085,11 +2171,19 @@ namespace Fryz.Apps.SpaceTrader
 			for (i = 0; i < Universe.Length; i++)
 			{
 				StarSystemId		id				= (StarSystemId)i;
+				SystemPressure	pressure	= SystemPressure.None;
+				SpecialResource	specRes		= SpecialResource.Nothing;
 				Size						size			= (Size)Functions.GetRandom((int)Size.Huge + 1);
 				PoliticalSystem	polSys		= Consts.PoliticalSystems[Functions.GetRandom(Consts.PoliticalSystems.Length)];
 				TechLevel				tech			= (TechLevel)Functions.GetRandom((int)polSys.MinimumTechLevel, (int)polSys.MaximumTechLevel + 1);
-				SystemPressure	pressure	= SystemPressure.None;
-				SpecialResource	specRes		= SpecialResource.Nothing;
+
+				// Galvon must be a Monarchy.
+				if (id == StarSystemId.Galvon)
+				{
+					size		= Size.Large;
+					polSys	= Consts.PoliticalSystems[(int)PoliticalSystemType.Monarchy];
+					tech		= TechLevel.HiTech;
+				}
 
 				if (Functions.GetRandom(100) < 15)
 					pressure	= (SystemPressure)Functions.GetRandom((int)SystemPressure.War, (int)SystemPressure.Employment + 1);
@@ -2284,6 +2378,46 @@ namespace Fryz.Apps.SpaceTrader
 				case SpecialEventType.MoonRetirement:
 					QuestStatusMoon	= SpecialEvent.StatusMoonDone;
 					throw new GameEndException(GameEndType.BoughtMoon);
+				case SpecialEventType.Princess:
+					curSys.SpecialEventType	= SpecialEventType.PrincessReturned;
+					QuestStatusPrincess++;
+					break;
+				case SpecialEventType.PrincessCentauri:
+				case SpecialEventType.PrincessInthara:
+					QuestStatusPrincess++;
+					break;
+				case SpecialEventType.PrincessQonos:
+					if (Commander.Ship.FreeCrewQuarters == 0)
+					{
+						FormAlert.Alert(AlertType.SpecialNoQuarters, ParentWindow);
+						remove	= false;
+					}
+					else
+					{
+						CrewMember	princess	= Mercenaries[(int)CrewMemberId.Princess];
+						FormAlert.Alert(AlertType.SpecialPassengerOnBoard, ParentWindow, princess.Name);
+						Commander.Ship.Hire(princess);
+					}
+					break;
+				case SpecialEventType.PrincessQuantum:
+					if (Commander.Ship.FreeSlotsWeapon == 0)
+					{
+						FormAlert.Alert(AlertType.EquipmentNotEnoughSlots, ParentWindow);
+						remove	= false;
+					}
+					else
+					{
+						FormAlert.Alert(AlertType.EquipmentQuantumDisruptor, ParentWindow);
+						Commander.Ship.AddEquipment(Consts.Weapons[(int)WeaponType.QuantumDistruptor]);
+						QuestStatusPrincess	= SpecialEvent.StatusPrincessDone;
+					}
+					break;
+				case SpecialEventType.PrincessReturned:
+					Commander.Ship.Fire(CrewMemberId.Princess);
+					curSys.SpecialEventType	= SpecialEventType.PrincessQuantum;
+					QuestStatusPrincess			= SpecialEvent.StatusPrincessReturned;
+					remove									= false;
+					break;
 				case SpecialEventType.Reactor:
 					if (Commander.Ship.FreeCargoBays < 15)
 					{
@@ -2502,6 +2636,23 @@ namespace Fryz.Apps.SpaceTrader
 					QuestStatusJarek++;
 			}
 
+			if (Commander.Ship.PrincessOnBoard)
+			{
+				if (QuestStatusPrincess == (SpecialEvent.StatusPrincessImpatient + SpecialEvent.StatusPrincessRescued) / 2)
+					FormAlert.Alert(AlertType.SpecialPassengerConcernedPrincess, owner);
+				else if (QuestStatusPrincess == SpecialEvent.StatusPrincessImpatient - 1)
+				{
+					FormAlert.Alert(AlertType.SpecialPassengerImpatientPrincess, owner);
+					Mercenaries[(int)CrewMemberId.Princess].Pilot			= 0;
+					Mercenaries[(int)CrewMemberId.Princess].Fighter		= 0;
+					Mercenaries[(int)CrewMemberId.Princess].Trader		= 0;
+					Mercenaries[(int)CrewMemberId.Princess].Engineer	= 0;
+				}
+
+				if (QuestStatusPrincess < SpecialEvent.StatusPrincessImpatient)
+					QuestStatusPrincess++;
+			}
+
 			if (Commander.Ship.WildOnBoard)
 			{
 				if (QuestStatusWild == SpecialEvent.StatusWildImpatient / 2)
@@ -2617,6 +2768,27 @@ namespace Fryz.Apps.SpaceTrader
 						if (Commander.Ship.JarekOnBoard)
 							NewsAddEvent(NewsEvent.JarekGetsOut);
 						break;
+					case SpecialEventType.Princess:
+						NewsAddEvent(NewsEvent.Princess);
+						break;
+					case SpecialEventType.PrincessCentauri:
+						if (QuestStatusPrincess == SpecialEvent.StatusPrincessFlyCentauri)
+							NewsAddEvent(NewsEvent.PrincessCentauri);
+						break;
+					case SpecialEventType.PrincessInthara:
+						if (QuestStatusPrincess == SpecialEvent.StatusPrincessFlyInthara)
+							NewsAddEvent(NewsEvent.PrincessInthara);
+						break;
+					case SpecialEventType.PrincessQonos:
+						if (QuestStatusPrincess == SpecialEvent.StatusPrincessFlyQonos)
+							NewsAddEvent(NewsEvent.PrincessQonos);
+						else if (QuestStatusPrincess == SpecialEvent.StatusPrincessRescued)
+							NewsAddEvent(NewsEvent.PrincessRescued);
+						break;
+					case SpecialEventType.PrincessReturned:
+						if (QuestStatusPrincess == SpecialEvent.StatusPrincessReturned)
+							NewsAddEvent(NewsEvent.PrincessReturned);
+						break;
 					case SpecialEventType.Scarab:
 						NewsAddEvent(NewsEvent.Scarab);
 						break;
@@ -2671,6 +2843,29 @@ namespace Fryz.Apps.SpaceTrader
 			IncDays(1, ParentWindow);
 		}
 
+		private bool PlaceShipyards()
+		{
+			bool			goodUniverse	= true;
+
+			ArrayList	systemIdList	= new ArrayList();
+			for (int system = 0; system < Universe.Length; system++)
+			{
+				if (Universe[system].TechLevel	== TechLevel.HiTech)
+					systemIdList.Add(system);
+			}
+
+			if (systemIdList.Count < Consts.Shipyards.Length)
+				goodUniverse	= false;
+			else
+			{
+				// Assign the shipyards to High-Tech systems.
+				for (int shipyard = 0; shipyard < Consts.Shipyards.Length; shipyard++)
+					Universe[(int)systemIdList[Functions.GetRandom(systemIdList.Count)]].ShipyardId	= (ShipyardId)shipyard;
+			}
+
+			return goodUniverse;
+		}
+
 		private bool PlaceSpecialEvents()
 		{
 			bool	goodUniverse	= true;
@@ -2689,6 +2884,10 @@ namespace Fryz.Apps.SpaceTrader
 			Universe[(int)StarSystemId.Acamar].SpecialEventType		= SpecialEventType.SpaceMonsterKilled;
 			Universe[(int)StarSystemId.Kravat].SpecialEventType		= SpecialEventType.WildGetsOut;
 			Universe[(int)StarSystemId.Endor].SpecialEventType		= SpecialEventType.SculptureDelivered;
+			Universe[(int)StarSystemId.Galvon].SpecialEventType		= SpecialEventType.Princess;
+			Universe[(int)StarSystemId.Centauri].SpecialEventType	= SpecialEventType.PrincessCentauri;
+			Universe[(int)StarSystemId.Inthara].SpecialEventType	= SpecialEventType.PrincessInthara;
+			Universe[(int)StarSystemId.Qonos].SpecialEventType		= SpecialEventType.PrincessQonos;
 
 			// Assign a wormhole location endpoint for the Scarab.
 			for (system = 0; system < Wormholes.Length &&
@@ -2725,18 +2924,6 @@ namespace Fryz.Apps.SpaceTrader
 			// Find the closest system at least 70 parsecs away from Endor that doesn't already have a special event.
 			if (goodUniverse && !FindDistantSystem(StarSystemId.Endor, SpecialEventType.Sculpture))
 				goodUniverse	= false;
-
-			// Assign the shipyards to High-Tech systems without a special event.
-			if (goodUniverse)
-			{
-				int	shipyards	= 0;
-				for (system = 0; system < Universe.Length && shipyards < Consts.Shipyards.Length; system++)
-				{
-					if (Universe[system].TechLevel == TechLevel.HiTech)
-						Universe[system].ShipyardId	= (ShipyardId)shipyards++;
-				}
-				goodUniverse	= (shipyards == Consts.Shipyards.Length);
-			}
 
 			// Assign the rest of the events randomly.
 			if (goodUniverse)
@@ -2856,6 +3043,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_mercenaries",								ArrayToArrayList(_mercenaries));
 			hash.Add("_dragonfly",									_dragonfly.Serialize());
 			hash.Add("_scarab",											_scarab.Serialize());
+			hash.Add("_scorpion",										_scorpion.Serialize());
 			hash.Add("_spaceMonster",								_spaceMonster.Serialize());
 			hash.Add("_opponent",										_opponent.Serialize());
 			hash.Add("_chanceOfTradeInOrbit",				_chanceOfTradeInOrbit);
@@ -2886,6 +3074,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_questStatusJapori",					_questStatusJapori);
 			hash.Add("_questStatusJarek",						_questStatusJarek);
 			hash.Add("_questStatusMoon",						_questStatusMoon);
+			hash.Add("_questStatusPrincess",				_questStatusPrincess);
 			hash.Add("_questStatusReactor",					_questStatusReactor);
 			hash.Add("_questStatusScarab",					_questStatusScarab);
 			hash.Add("_questStatusSculpture",				_questStatusSculpture);
@@ -3247,6 +3436,7 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.PirateAttack:
 					case EncounterType.PoliceAttack:
 					case EncounterType.ScarabAttack:
+					case EncounterType.ScorpionAttack:
 					case EncounterType.SpaceMonsterAttack:
 						text	= Strings.EncounterTextOpponentAttack;
 						break;
@@ -3254,6 +3444,7 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.PirateIgnore:
 					case EncounterType.PoliceIgnore:
 					case EncounterType.ScarabIgnore:
+					case EncounterType.ScorpionIgnore:
 					case EncounterType.SpaceMonsterIgnore:
 					case EncounterType.TraderIgnore:
 						text	= Commander.Ship.Cloaked ? Strings.EncounterTextOpponentNoNotice : Strings.EncounterTextOpponentIgnore;
@@ -3352,6 +3543,8 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.DragonflyIgnore:
 					case EncounterType.ScarabAttack:
 					case EncounterType.ScarabIgnore:
+					case EncounterType.ScorpionAttack:
+					case EncounterType.ScorpionIgnore:
 						encounterImage		= Consts.EncounterImgPirate;
 						break;
 					case EncounterType.MarieCelestePolice:
@@ -3539,6 +3732,10 @@ namespace Fryz.Apps.SpaceTrader
 							encounterPretext	= Strings.EncounterPretextAlien;
 						else
 							encounterPretext	= Strings.EncounterPretextPirate;
+						break;
+					case EncounterType.ScorpionAttack:
+					case EncounterType.ScorpionIgnore:
+						encounterPretext	= Strings.EncounterPretextScorpion;
 						break;
 					case EncounterType.SpaceMonsterAttack:
 					case EncounterType.SpaceMonsterIgnore:
@@ -3943,6 +4140,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int						QuestStatusPrincess
+		{
+			get
+			{
+				return _questStatusPrincess;
+			}
+			set
+			{
+				_questStatusPrincess = value;
+			}
+		}
+
 		public int						QuestStatusReactor
 		{
 			get
@@ -4046,6 +4255,14 @@ namespace Fryz.Apps.SpaceTrader
 				}
 
 				return ((int)Difficulty + 1) * modifier * (daysMoon * 1000 + worth) / 250000;
+			}
+		}
+
+		public Ship						Scorpion
+		{
+			get
+			{
+				return _scorpion;
 			}
 		}
 

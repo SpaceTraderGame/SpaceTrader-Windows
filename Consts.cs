@@ -238,8 +238,10 @@ namespace Fryz.Apps.SpaceTrader
 			new Rectangle(15, 0, 34, 0),	// Mantis
 			new Rectangle( 7, 0, 49, 0),	// Scarab
 			new Rectangle( 9, 0, 46, 0),	// Bottle
-			new Rectangle( 2, 0, 60, 0)		// Custom
-	};
+			// TODO: fix offsets for custom image
+			new Rectangle( 2, 0, 60, 0),	// Custom
+			new Rectangle( 2, 0, 60, 0)		// Scorpion
+		};
 		#endregion
 
 		#region ShipSpecs
@@ -262,7 +264,8 @@ namespace Fryz.Apps.SpaceTrader
 			new ShipSpec(ShipType.Mantis,       Size.Medium,  0, 3, 1, 3, 3,  1, 1, 300,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
 			new ShipSpec(ShipType.Scarab,       Size.Large,  20, 2, 0, 0, 2,  1, 1, 400,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
 			new ShipSpec(ShipType.Bottle,       Size.Small,   0, 0, 0, 0, 0,  1, 1,  10,  1,    100,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
-			new ShipSpec(ShipType.Custom,       Size.Huge,    0, 0, 0, 0, 0,  0, 0,   0,  0,      0,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable)
+			new ShipSpec(ShipType.Custom,       Size.Huge,    0, 0, 0, 0, 0,  0, 0,   0,  0,      0,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Scorpion,     Size.Huge,   30, 2, 2, 2, 2,  1, 1, 300,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable)
 		};
 		#endregion
 
@@ -281,14 +284,16 @@ namespace Fryz.Apps.SpaceTrader
 		public static ArrayList	SpecialCrewMemberIds = new ArrayList(new CrewMemberId[]
 		{
 			CrewMemberId.Commander,
-			CrewMemberId.Opponent,
-			CrewMemberId.Wild,
-			CrewMemberId.Jarek,
-			CrewMemberId.FamousCaptain,
 			CrewMemberId.Dragonfly,
+			CrewMemberId.FamousCaptain,
+			CrewMemberId.Jarek,
+			CrewMemberId.Opponent,
+			CrewMemberId.Princess,
 			CrewMemberId.Scarab,
-			CrewMemberId.SpaceMonster
-		});
+			CrewMemberId.Scorpion,
+			CrewMemberId.SpaceMonster,
+			CrewMemberId.Wild
+	});
 		#endregion
 
 		#region SpecialEvents
@@ -332,8 +337,14 @@ namespace Fryz.Apps.SpaceTrader
 			new SpecialEvent(SpecialEventType.Wild,                    0, 1, false),
 			new	SpecialEvent(SpecialEventType.WildGetsOut,             0, 0, true),
 			new SpecialEvent(SpecialEventType.Sculpture,           -2000, 0, false),
-			new SpecialEvent(SpecialEventType.SculptureDelivered,  -2000, 0, true),
-			new SpecialEvent(SpecialEventType.SculptureHiddenBays,     0, 0, false)
+			new SpecialEvent(SpecialEventType.SculptureDelivered,      0, 0, true),
+			new SpecialEvent(SpecialEventType.SculptureHiddenBays,     0, 0, false),
+			new SpecialEvent(SpecialEventType.Princess,                0, 0, true),
+			new SpecialEvent(SpecialEventType.PrincessCentauri,        0, 0, true),
+			new SpecialEvent(SpecialEventType.PrincessInthara,         0, 0, true),
+			new SpecialEvent(SpecialEventType.PrincessQonos,           0, 0, true),
+			new SpecialEvent(SpecialEventType.PrincessQuantum,         0, 0, false),
+			new SpecialEvent(SpecialEventType.PrincessReturned,        0, 0, true)
 		};
 		#endregion
 

@@ -190,6 +190,36 @@ Claim your moon at Utopia.";
 					break;
 			}
 
+			switch (game.QuestStatusPrincess)
+			{
+				case SpecialEvent.StatusPrincessFlyCentauri:
+					quests.Add(Strings.QuestPrincessCentauri);
+					break;
+				case SpecialEvent.StatusPrincessFlyInthara:
+					quests.Add(Strings.QuestPrincessInthara);
+					break;
+				case SpecialEvent.StatusPrincessFlyQonos:
+					quests.Add(Strings.QuestPrincessQonos);
+					break;
+				case SpecialEvent.StatusPrincessRescued:
+					if (game.Commander.Ship.PrincessOnBoard)
+					{
+						if (game.QuestStatusPrincess == SpecialEvent.StatusPrincessImpatient)
+							quests.Add(Functions.StringVars(Strings.QuestPrincessReturningImpatient,
+								game.Mercenaries[(int)CrewMemberId.Princess].Name));
+						else
+							quests.Add(Functions.StringVars(Strings.QuestPrincessReturning,
+								game.Mercenaries[(int)CrewMemberId.Princess].Name));
+					}
+					else
+						quests.Add(Functions.StringVars(Strings.QuestPrincessReturn,
+							game.Mercenaries[(int)CrewMemberId.Princess].Name));
+					break;
+				case SpecialEvent.StatusPrincessReturned:
+					quests.Add(Strings.QuestPrincessQuantum);
+					break;
+			}
+
 			if (game.QuestStatusScarab == SpecialEvent.StatusScarabHunting)
 				quests.Add(Strings.QuestScarabFind);
 			else if (game.QuestStatusScarab == SpecialEvent.StatusScarabDestroyed)
