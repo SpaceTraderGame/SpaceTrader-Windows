@@ -12,8 +12,5 @@ Added a tooltip to the "Mercenary for hire" button to show the name of the merce
 TODO:
 in Form_Alert.cs : move the strings to a resource
 in Form_Encounter.cs: move as much code as possible out of the GUI class
-in Form_Shipyard.cs : allow saving ship templates
 hidden compartments gadget
-auto-show newspaper option
-use Environment.NewLine
 make shipyard news advertisements
