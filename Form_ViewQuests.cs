@@ -133,21 +133,6 @@ Claim your moon at Utopia.";
 			Game			game		= Game.CurrentGame;
 			ArrayList	quests	= new ArrayList(12);
 
-			// DEBUG show quest and shipyards location
-			string	locations	= "QUESTS :\r\n";
-			for (int i = 0; i < Consts.SpecialEvents.Length; i++)
-			{
-				SpecialEvent	curEvent	= Consts.SpecialEvents[i];
-				locations	+= curEvent.Title + ":" + (curEvent.Location == null ? "null" : curEvent.Location.Name) + "\r\n";
-			}
-			locations += "\r\nSHIPYARDS :\r\n";
-			for (int i = 0; i < Game.CurrentGame.Universe.Length; i++)
-			{
-				StarSystem system = Game.CurrentGame.Universe[i];
-				if (system.Shipyard != null) locations += system.Shipyard.Name + " in " + system.Name + "\r\n";
-			}
-			FormAlert.Alert(AlertType.Alert, this, "Alert", locations);
-
 			if (game.QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
 				game.QuestStatusGemulon < SpecialEvent.StatusGemulonDate)
 			{
