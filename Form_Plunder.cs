@@ -2,7 +2,7 @@
  *
  * Space Trader for Windows 2.00
  *
- * Copyright (C) 2004 Jay French, All Rights Reserved
+ * Copyright (C) 2005 Jay French, All Rights Reserved
  *
  * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
