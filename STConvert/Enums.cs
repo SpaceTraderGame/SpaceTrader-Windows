@@ -295,8 +295,8 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		NA									= -1,
 		Kessel							= 0,
-		Loronar							= 1,
-		Republic						= 2,
+		Kuat								= 1,
+		Loronar							= 2,
 		Sienar							= 3,
 		Sorosuub						= 4
 	};
