@@ -118,7 +118,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(Consts.HighScoreFile, FileMode.Open);
-				highScores								= (HighScoreRecord[])formatter.Deserialize(stream);
+				highScores								= (HighScoreRecord[])STSerializableObject.ArrayListToArray((ArrayList)formatter.Deserialize(stream), "HighScoreRecord");
 				stream.Close();
 			}
 			catch (FileNotFoundException)
@@ -155,16 +155,6 @@ namespace Fryz.Apps.SpaceTrader
 		public static RegistryKey GetRegistryKey()
 		{
 			return Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("FrenchFryz").CreateSubKey("SpaceTrader");
-		}
-
-		public static int GetSystemIndex(StarSystem system)
-		{
-			int						index;
-			StarSystem[]	universe	= Game.CurrentGame.Universe;
-
-			for (index = 0; index < universe.Length && universe[index] != system; index++);
-
-			return (index < universe.Length ? index : -1);
 		}
 
 		public static bool IsInt(string toParse)
@@ -280,7 +270,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			StarSystem[]	universe	= Game.CurrentGame.Universe;
 			int[]					wormholes	= Game.CurrentGame.Wormholes;
-			int						i					= Array.IndexOf(wormholes, Functions.GetSystemIndex(a));
+			int						i					= Array.IndexOf(wormholes, (int)a.Id);
 
 			return (i >= 0 && (universe[wormholes[(i + 1) % wormholes.Length]] == b));
 		}
