@@ -35,6 +35,24 @@ namespace Fryz.Apps.SpaceTrader
 
 		#endregion
 
+		#region Methods
+
+		// The following method is included only to prevent the Build Error saying
+		// the member variables are not used.
+		private object Dummy()
+		{
+			object	val;
+
+			val	= _price;
+			val	= _occurance;
+			val	= _messageOnly;
+			val	= _location;
+
+			return val;
+		}
+
+		#endregion
+
 		#region Properties
 
 		public SpecialEventType Type

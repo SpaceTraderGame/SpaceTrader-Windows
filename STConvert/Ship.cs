@@ -66,6 +66,17 @@ namespace Fryz.Apps.SpaceTrader
 			return hash;
 		}
 
+		// The following method is included only to prevent the Build Error saying
+		// the member variables are not used.
+		private object Dummy()
+		{
+			object	val;
+
+			val	= _tradeableItems;
+
+			return val;
+		}
+
 		#endregion
 	}
 }

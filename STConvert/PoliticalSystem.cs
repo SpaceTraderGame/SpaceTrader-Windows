@@ -41,6 +41,30 @@ namespace Fryz.Apps.SpaceTrader
 
 		#endregion
 
+		#region Methods
+
+		// The following method is included only to prevent the Build Error saying
+		// the member variables are not used.
+		private object Dummy()
+		{
+			object	val;
+
+			val	= _reactionIllegal;
+			val	= _activityPolice;
+			val	= _activityPirates;
+			val	= _activityTraders;
+			val	= _minTech;
+			val	= _maxTech;
+			val	= _bribeLevel;
+			val	= _drugsOk;
+			val	= _firearmsOk;
+			val	= _wanted;
+
+			return val;
+		}
+
+		#endregion
+
 		#region Properties
 
 		public PoliticalSystemType Type
