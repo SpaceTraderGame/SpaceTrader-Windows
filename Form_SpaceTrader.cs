@@ -283,6 +283,7 @@ namespace Fryz.Apps.SpaceTrader
 		private	Brush					DEFAULT_BRUSH	= new SolidBrush(Color.White);
 		private System.Windows.Forms.ToolTip tipSpecial;
 		private System.Windows.Forms.ToolTip tipMerc;
+		private System.Windows.Forms.ImageList ilEquipmentImages;
 
 		private string				SaveGameFile	= null;
 
@@ -662,6 +663,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.ilDirectionImages = new System.Windows.Forms.ImageList(this.components);
 			this.tipSpecial = new System.Windows.Forms.ToolTip(this.components);
 			this.tipMerc = new System.Windows.Forms.ToolTip(this.components);
+			this.ilEquipmentImages = new System.Windows.Forms.ImageList(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCash)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelBays)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCosts)).BeginInit();
@@ -2722,6 +2724,12 @@ namespace Fryz.Apps.SpaceTrader
 			this.ilDirectionImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilDirectionImages.ImageStream")));
 			this.ilDirectionImages.TransparentColor = System.Drawing.Color.White;
 			// 
+			// ilEquipmentImages
+			// 
+			this.ilEquipmentImages.ImageSize = new System.Drawing.Size(64, 52);
+			this.ilEquipmentImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilEquipmentImages.ImageStream")));
+			this.ilEquipmentImages.TransparentColor = System.Drawing.Color.Transparent;
+			// 
 			// SpaceTrader
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -3745,7 +3753,6 @@ namespace Fryz.Apps.SpaceTrader
 		private void mnuViewBank_Click(object sender, System.EventArgs e)
 		{
 			(new FormViewBank()).ShowDialog(this);
-			UpdateAll();
 		}
 
 		private void mnuViewCommander_Click(object sender, System.EventArgs e)
@@ -3756,7 +3763,6 @@ namespace Fryz.Apps.SpaceTrader
 		private void mnuViewPersonnel_Click(object sender, System.EventArgs e)
 		{
 			(new FormViewPersonnel()).ShowDialog(this);
-			UpdateAll();
 		}
 
 		private void mnuViewQuests_Click(object sender, System.EventArgs e)
@@ -4002,8 +4008,13 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void statusBar_PanelClick(object sender, System.Windows.Forms.StatusBarPanelClickEventArgs e)
 		{
-			if (e.StatusBarPanel == this.statusBarPanelCosts && game != null)
-				(new FormCosts()).ShowDialog(this);
+			if (game != null)
+			{
+				if (e.StatusBarPanel == this.statusBarPanelCash)
+					mnuViewBank_Click(sender, e);
+				else if (e.StatusBarPanel == this.statusBarPanelCosts)
+					(new FormCosts()).ShowDialog(this);
+			}
 		}
 
 		#endregion
@@ -4035,6 +4046,14 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return ilDirectionImages;
+			}
+		}
+
+		public ImageList EquipmentImages
+		{
+			get
+			{
+				return ilEquipmentImages;
 			}
 		}
 

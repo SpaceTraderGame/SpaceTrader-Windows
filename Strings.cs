@@ -337,25 +337,26 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			new string[]
 			{
-				"A Pulse Laser",
-				"A Beam Laser",
-				"A Military Laser",
-				"A Morgan's Laser"
+				"The Pulse Laser is the weakest weapon available. It's small size allows only enough energy to build up to emit pulses of light.",
+				"The Beam Laser is larger than the Pulse Laser, so can build up enough charge to power what are essentially two Pulse Lasers. The resulting effect appears more like a constant beam.",
+				"The Military Laser is the largest commecially available weapon. It can build up enough charge to power three Pulse Lasers in series, resulting in a more dense and concentrated beam.",
+				"Morgan's Laser has been constructed from a Beam Laser, which has been attached to an Ion Reactor that builds up an immense charge, resulting in the strongest weapon known to exist."
 			},
 			new string[]
 			{
-				"An Energy Shield",
-				"A Reflective Shield",
-				"A Lightning Shield"
+				"The Energy Shield is a very basic deflector shield. Its operating principle is to absorb the energy directed at it.",
+				"The Reflective Shield is twice as powerful as the Energy Shield. It works by reflecting the energy directed at it instead of absorbing that energy.",
+				"The Lightning Shield is the most powerful shield known to exist. It features a Reflective Shield operating on a rotating frequency, which causes what looks like lightning to play across the shield barrier."
 			},
 			new string[]
 			{
-				"5 Extra Cargo Bays",
-				"An Auto-Repair System",
-				"A Navigating System",
-				"A Targeting System",
-				"A Cloaking Device",
-				"A Fuel Compactor"
+				"Extra Cargo Bays to store anything your ship can take on as cargo.",
+				"The Auto-Repair System works to reduce the damage your ship sustains in battle, and repairs some damage in between encounters. It also boosts all other engineering functions.",
+				"The Navigating System increases the overall Pilot skill of the ship, making it harder to hit in battle, and making it easier to flee an encounter.",
+				"The Targeting System increases the overall Fighter skill of the ship, which increases the amount of damage done to an opponent in battle.",
+				"The Cloaking Device can enable your ship to evade detection by an opponent, but only if the Engineer skill of your ship is greater than that of your opponent. It also makes your ship harder to hit in battle.",
+				"The Fuel Compactor that you got as a reward for warning Gemulon of the invasion will increase the range of your ship by 3 parsecs.",
+				"These extra bays will not be detected during routine police searches. They may be detected if you are arrested and the police perform a more thorough search."
 			}
 		};
 		#endregion

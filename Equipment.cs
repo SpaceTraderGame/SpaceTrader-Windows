@@ -82,6 +82,29 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
+		protected int BaseImageIndex
+		{
+			get
+			{
+				int	baseImageIndex	= 0;
+
+				switch (EquipmentType)
+				{
+					case EquipmentType.Gadget:
+						baseImageIndex	= Strings.WeaponNames.Length + Strings.ShieldNames.Length;
+						break;
+					case EquipmentType.Shield:
+						baseImageIndex	= Strings.WeaponNames.Length;
+						break;
+					case EquipmentType.Weapon:
+						// baseImageIndex should be 0
+						break;
+				}
+
+				return baseImageIndex;
+			}
+		}
+
 		public int Chance
 		{
 			get
@@ -102,8 +125,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				// TODO: use real image.
-				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)ShipType.Bottle * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
+				return Game.CurrentGame.ParentWindow.EquipmentImages.Images[BaseImageIndex + (int)SubType];
 			}
 		}
 

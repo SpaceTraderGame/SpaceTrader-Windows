@@ -176,14 +176,14 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxSell.Controls.Add(this.lstSellWeapon);
 			this.boxSell.Location = new System.Drawing.Point(4, 2);
 			this.boxSell.Name = "boxSell";
-			this.boxSell.Size = new System.Drawing.Size(144, 296);
+			this.boxSell.Size = new System.Drawing.Size(144, 304);
 			this.boxSell.TabIndex = 1;
 			this.boxSell.TabStop = false;
 			this.boxSell.Text = "Current Inventory";
 			// 
 			// lblSellGadgetNoSlots
 			// 
-			this.lblSellGadgetNoSlots.Location = new System.Drawing.Point(24, 220);
+			this.lblSellGadgetNoSlots.Location = new System.Drawing.Point(24, 228);
 			this.lblSellGadgetNoSlots.Name = "lblSellGadgetNoSlots";
 			this.lblSellGadgetNoSlots.Size = new System.Drawing.Size(104, 16);
 			this.lblSellGadgetNoSlots.TabIndex = 149;
@@ -192,7 +192,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblSellShieldNoSlots
 			// 
-			this.lblSellShieldNoSlots.Location = new System.Drawing.Point(24, 128);
+			this.lblSellShieldNoSlots.Location = new System.Drawing.Point(24, 132);
 			this.lblSellShieldNoSlots.Name = "lblSellShieldNoSlots";
 			this.lblSellShieldNoSlots.Size = new System.Drawing.Size(104, 16);
 			this.lblSellShieldNoSlots.TabIndex = 148;
@@ -211,7 +211,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lblSellGadgets
 			// 
 			this.lblSellGadgets.AutoSize = true;
-			this.lblSellGadgets.Location = new System.Drawing.Point(8, 204);
+			this.lblSellGadgets.Location = new System.Drawing.Point(8, 212);
 			this.lblSellGadgets.Name = "lblSellGadgets";
 			this.lblSellGadgets.Size = new System.Drawing.Size(47, 16);
 			this.lblSellGadgets.TabIndex = 146;
@@ -220,7 +220,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lblSellShields
 			// 
 			this.lblSellShields.AutoSize = true;
-			this.lblSellShields.Location = new System.Drawing.Point(8, 112);
+			this.lblSellShields.Location = new System.Drawing.Point(8, 116);
 			this.lblSellShields.Name = "lblSellShields";
 			this.lblSellShields.Size = new System.Drawing.Size(41, 16);
 			this.lblSellShields.TabIndex = 145;
@@ -238,7 +238,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lstSellGadget
 			// 
 			this.lstSellGadget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lstSellGadget.Location = new System.Drawing.Point(8, 220);
+			this.lstSellGadget.Location = new System.Drawing.Point(8, 228);
 			this.lstSellGadget.Name = "lstSellGadget";
 			this.lstSellGadget.Size = new System.Drawing.Size(128, 67);
 			this.lstSellGadget.TabIndex = 3;
@@ -248,7 +248,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lstSellShield
 			// 
 			this.lstSellShield.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lstSellShield.Location = new System.Drawing.Point(8, 128);
+			this.lstSellShield.Location = new System.Drawing.Point(8, 132);
 			this.lstSellShield.Name = "lstSellShield";
 			this.lstSellShield.Size = new System.Drawing.Size(128, 67);
 			this.lstSellShield.TabIndex = 2;
@@ -278,14 +278,14 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxBuy.Controls.Add(this.lstBuyWeapon);
 			this.boxBuy.Location = new System.Drawing.Point(156, 2);
 			this.boxBuy.Name = "boxBuy";
-			this.boxBuy.Size = new System.Drawing.Size(144, 296);
+			this.boxBuy.Size = new System.Drawing.Size(144, 304);
 			this.boxBuy.TabIndex = 2;
 			this.boxBuy.TabStop = false;
 			this.boxBuy.Text = "Equipment For Sale";
 			// 
 			// lblBuyGadgetNone
 			// 
-			this.lblBuyGadgetNone.Location = new System.Drawing.Point(24, 220);
+			this.lblBuyGadgetNone.Location = new System.Drawing.Point(24, 228);
 			this.lblBuyGadgetNone.Name = "lblBuyGadgetNone";
 			this.lblBuyGadgetNone.Size = new System.Drawing.Size(104, 16);
 			this.lblBuyGadgetNone.TabIndex = 150;
@@ -294,7 +294,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblBuyShieldNone
 			// 
-			this.lblBuyShieldNone.Location = new System.Drawing.Point(24, 128);
+			this.lblBuyShieldNone.Location = new System.Drawing.Point(24, 132);
 			this.lblBuyShieldNone.Name = "lblBuyShieldNone";
 			this.lblBuyShieldNone.Size = new System.Drawing.Size(104, 16);
 			this.lblBuyShieldNone.TabIndex = 149;
@@ -313,7 +313,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lblBuyGadgets
 			// 
 			this.lblBuyGadgets.AutoSize = true;
-			this.lblBuyGadgets.Location = new System.Drawing.Point(8, 204);
+			this.lblBuyGadgets.Location = new System.Drawing.Point(8, 212);
 			this.lblBuyGadgets.Name = "lblBuyGadgets";
 			this.lblBuyGadgets.Size = new System.Drawing.Size(47, 16);
 			this.lblBuyGadgets.TabIndex = 143;
@@ -322,7 +322,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lblBuyShields
 			// 
 			this.lblBuyShields.AutoSize = true;
-			this.lblBuyShields.Location = new System.Drawing.Point(8, 112);
+			this.lblBuyShields.Location = new System.Drawing.Point(8, 116);
 			this.lblBuyShields.Name = "lblBuyShields";
 			this.lblBuyShields.Size = new System.Drawing.Size(41, 16);
 			this.lblBuyShields.TabIndex = 142;
@@ -340,7 +340,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lstBuyGadget
 			// 
 			this.lstBuyGadget.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lstBuyGadget.Location = new System.Drawing.Point(8, 220);
+			this.lstBuyGadget.Location = new System.Drawing.Point(8, 228);
 			this.lstBuyGadget.Name = "lstBuyGadget";
 			this.lstBuyGadget.Size = new System.Drawing.Size(128, 67);
 			this.lstBuyGadget.TabIndex = 6;
@@ -350,7 +350,7 @@ namespace Fryz.Apps.SpaceTrader
 			// lstBuyShield
 			// 
 			this.lstBuyShield.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.lstBuyShield.Location = new System.Drawing.Point(8, 128);
+			this.lstBuyShield.Location = new System.Drawing.Point(8, 132);
 			this.lstBuyShield.Name = "lstBuyShield";
 			this.lstBuyShield.Size = new System.Drawing.Size(128, 67);
 			this.lstBuyShield.TabIndex = 5;
@@ -383,18 +383,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShipInfo.Controls.Add(this.lblSellPriceLabel);
 			this.boxShipInfo.Controls.Add(this.picEquipment);
 			this.boxShipInfo.Controls.Add(this.lblSellPrice);
-			this.boxShipInfo.Controls.Add(this.lblDescription);
 			this.boxShipInfo.Controls.Add(this.lblName);
+			this.boxShipInfo.Controls.Add(this.lblDescription);
 			this.boxShipInfo.Location = new System.Drawing.Point(308, 2);
 			this.boxShipInfo.Name = "boxShipInfo";
-			this.boxShipInfo.Size = new System.Drawing.Size(192, 296);
+			this.boxShipInfo.Size = new System.Drawing.Size(208, 304);
 			this.boxShipInfo.TabIndex = 3;
 			this.boxShipInfo.TabStop = false;
 			this.boxShipInfo.Text = "Equipment Information";
 			// 
 			// lblCharge
 			// 
-			this.lblCharge.Location = new System.Drawing.Point(72, 168);
+			this.lblCharge.Location = new System.Drawing.Point(80, 164);
 			this.lblCharge.Name = "lblCharge";
 			this.lblCharge.Size = new System.Drawing.Size(116, 16);
 			this.lblCharge.TabIndex = 67;
@@ -402,7 +402,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblPower
 			// 
-			this.lblPower.Location = new System.Drawing.Point(72, 152);
+			this.lblPower.Location = new System.Drawing.Point(80, 148);
 			this.lblPower.Name = "lblPower";
 			this.lblPower.Size = new System.Drawing.Size(116, 16);
 			this.lblPower.TabIndex = 66;
@@ -412,7 +412,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblChargeLabel.AutoSize = true;
 			this.lblChargeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblChargeLabel.Location = new System.Drawing.Point(8, 168);
+			this.lblChargeLabel.Location = new System.Drawing.Point(8, 164);
 			this.lblChargeLabel.Name = "lblChargeLabel";
 			this.lblChargeLabel.Size = new System.Drawing.Size(46, 16);
 			this.lblChargeLabel.TabIndex = 65;
@@ -422,7 +422,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblPowerLabel.AutoSize = true;
 			this.lblPowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblPowerLabel.Location = new System.Drawing.Point(8, 152);
+			this.lblPowerLabel.Location = new System.Drawing.Point(8, 148);
 			this.lblPowerLabel.Name = "lblPowerLabel";
 			this.lblPowerLabel.Size = new System.Drawing.Size(41, 16);
 			this.lblPowerLabel.TabIndex = 64;
@@ -430,7 +430,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblType
 			// 
-			this.lblType.Location = new System.Drawing.Point(72, 104);
+			this.lblType.Location = new System.Drawing.Point(80, 100);
 			this.lblType.Name = "lblType";
 			this.lblType.Size = new System.Drawing.Size(116, 16);
 			this.lblType.TabIndex = 63;
@@ -440,7 +440,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblTypeLabel.AutoSize = true;
 			this.lblTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblTypeLabel.Location = new System.Drawing.Point(8, 104);
+			this.lblTypeLabel.Location = new System.Drawing.Point(8, 100);
 			this.lblTypeLabel.Name = "lblTypeLabel";
 			this.lblTypeLabel.Size = new System.Drawing.Size(34, 16);
 			this.lblTypeLabel.TabIndex = 62;
@@ -450,7 +450,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblNameLabel.AutoSize = true;
 			this.lblNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblNameLabel.Location = new System.Drawing.Point(8, 88);
+			this.lblNameLabel.Location = new System.Drawing.Point(8, 84);
 			this.lblNameLabel.Name = "lblNameLabel";
 			this.lblNameLabel.Size = new System.Drawing.Size(39, 16);
 			this.lblNameLabel.TabIndex = 61;
@@ -459,7 +459,7 @@ namespace Fryz.Apps.SpaceTrader
 			// btnSell
 			// 
 			this.btnSell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSell.Location = new System.Drawing.Point(103, 264);
+			this.btnSell.Location = new System.Drawing.Point(103, 272);
 			this.btnSell.Name = "btnSell";
 			this.btnSell.Size = new System.Drawing.Size(58, 22);
 			this.btnSell.TabIndex = 8;
@@ -469,7 +469,7 @@ namespace Fryz.Apps.SpaceTrader
 			// btnBuy
 			// 
 			this.btnBuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnBuy.Location = new System.Drawing.Point(31, 264);
+			this.btnBuy.Location = new System.Drawing.Point(31, 272);
 			this.btnBuy.Name = "btnBuy";
 			this.btnBuy.Size = new System.Drawing.Size(58, 22);
 			this.btnBuy.TabIndex = 7;
@@ -480,7 +480,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblBuyPriceLabel.AutoSize = true;
 			this.lblBuyPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblBuyPriceLabel.Location = new System.Drawing.Point(8, 120);
+			this.lblBuyPriceLabel.Location = new System.Drawing.Point(8, 116);
 			this.lblBuyPriceLabel.Name = "lblBuyPriceLabel";
 			this.lblBuyPriceLabel.Size = new System.Drawing.Size(58, 16);
 			this.lblBuyPriceLabel.TabIndex = 57;
@@ -488,7 +488,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblBuyPrice
 			// 
-			this.lblBuyPrice.Location = new System.Drawing.Point(72, 120);
+			this.lblBuyPrice.Location = new System.Drawing.Point(80, 116);
 			this.lblBuyPrice.Name = "lblBuyPrice";
 			this.lblBuyPrice.Size = new System.Drawing.Size(116, 16);
 			this.lblBuyPrice.TabIndex = 56;
@@ -498,7 +498,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblSellPriceLabel.AutoSize = true;
 			this.lblSellPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblSellPriceLabel.Location = new System.Drawing.Point(8, 136);
+			this.lblSellPriceLabel.Location = new System.Drawing.Point(8, 132);
 			this.lblSellPriceLabel.Name = "lblSellPriceLabel";
 			this.lblSellPriceLabel.Size = new System.Drawing.Size(58, 16);
 			this.lblSellPriceLabel.TabIndex = 55;
@@ -508,7 +508,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.picEquipment.BackColor = System.Drawing.Color.White;
 			this.picEquipment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.picEquipment.Location = new System.Drawing.Point(63, 20);
+			this.picEquipment.Location = new System.Drawing.Point(71, 20);
 			this.picEquipment.Name = "picEquipment";
 			this.picEquipment.Size = new System.Drawing.Size(66, 54);
 			this.picEquipment.TabIndex = 54;
@@ -517,7 +517,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblSellPrice
 			// 
-			this.lblSellPrice.Location = new System.Drawing.Point(72, 136);
+			this.lblSellPrice.Location = new System.Drawing.Point(80, 132);
 			this.lblSellPrice.Name = "lblSellPrice";
 			this.lblSellPrice.Size = new System.Drawing.Size(116, 16);
 			this.lblSellPrice.TabIndex = 52;
@@ -525,14 +525,14 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblDescription
 			// 
-			this.lblDescription.Location = new System.Drawing.Point(12, 192);
+			this.lblDescription.Location = new System.Drawing.Point(8, 188);
 			this.lblDescription.Name = "lblDescription";
-			this.lblDescription.Size = new System.Drawing.Size(176, 64);
+			this.lblDescription.Size = new System.Drawing.Size(196, 75);
 			this.lblDescription.TabIndex = 47;
 			// 
 			// lblName
 			// 
-			this.lblName.Location = new System.Drawing.Point(72, 88);
+			this.lblName.Location = new System.Drawing.Point(80, 84);
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(116, 16);
 			this.lblName.TabIndex = 35;
@@ -542,7 +542,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(506, 303);
+			this.ClientSize = new System.Drawing.Size(522, 311);
 			this.Controls.Add(this.boxShipInfo);
 			this.Controls.Add(this.boxBuy);
 			this.Controls.Add(this.boxSell);

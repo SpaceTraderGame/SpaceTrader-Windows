@@ -12,6 +12,7 @@
 	Added folders to the base folder for the saved games, images, etc. to reside in
 	Added 1 new quest and 1 new gadget
 	Numerous bug fixes
+	Added lots more images for equipment, etc.
 
 
 TODO:
@@ -20,5 +21,4 @@ TODO:
 	make shipyard news advertisements
 	rework escape pod sequence
 	kidnapped "princess" quest
-	create images & descriptions for equipment
 	create images for trade goods
