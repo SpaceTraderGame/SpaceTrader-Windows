@@ -43,6 +43,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Ship					_scarab											= new Ship(ShipType.Scarab);
 		private Ship					_spaceMonster								= new Ship(ShipType.SpaceMonster);
 		private Ship					_opponent										= new Ship(ShipType.Gnat);
+		private bool					_opponentDisabled						= false;
 
 		private int						_chanceOfTradeInOrbit				= 100;
 		private int						_clicks											= 0;									// Distance from target system, 0 = arrived
@@ -953,7 +954,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (!Commander.Ship.Cloaked && Commander.PoliceRecordScore <= Consts.PoliceRecordScoreCriminal &&
 					Functions.GetRandom(Consts.ReputationScoreElite) <= (Commander.ReputationScore * 10) / (1 + (int)Opponent.Type))
 					EncounterType = EncounterType.TraderFlee;
-					// Will there be trade in orbit?
+				// Will there be trade in orbit?
 				else if (Functions.GetRandom(1000) < ChanceOfTradeInOrbit)
 				{
 					if (Commander.Ship.FreeCargoBays > 0 && Opponent.HasTradeableItems())
@@ -1058,6 +1059,28 @@ namespace Fryz.Apps.SpaceTrader
 			return showEncounter;
 		}
 
+		public void EncounterBegin()
+		{
+			// Set up the encounter variables.
+			EncounterContinueFleeing		=
+			EncounterContinueAttacking	=
+			OpponentDisabled						= false;
+		}
+
+		private void EncounterDefeatDragonfly()
+		{
+			Commander.KillsPirate++;
+			Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+			QuestStatusDragonfly				= SpecialEvent.StatusDragonflyDestroyed;
+		}
+
+		private void EncounterDefeatScarab()
+		{
+			Commander.KillsPirate++;
+			Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+			QuestStatusScarab						= SpecialEvent.StatusScarabDestroyed;
+		}
+
 		public void EncounterDrink(IWin32Window owner)
 		{
 			if (FormAlert.Alert(AlertType.EncounterDrinkContents, owner) == DialogResult.Yes)
@@ -1104,10 +1127,10 @@ namespace Fryz.Apps.SpaceTrader
 					EncounterOppHit			= !EncounterCmdrFleeing && EncounterExecuteAttack(Commander.Ship, Opponent, false);
 					break;
 				case EncounterType.PirateFlee:
-				case EncounterType.PirateSurrender:  // Added - JAF
+				case EncounterType.PirateSurrender:
 				case EncounterType.PoliceFlee:
 				case EncounterType.TraderFlee:
-				case EncounterType.TraderSurrender:  // Added - JAF
+				case EncounterType.TraderSurrender:
 					EncounterOppHit			= !EncounterCmdrFleeing && EncounterExecuteAttack(Commander.Ship, Opponent, true);
 					EncounterOppFleeing	= true;
 					break;
@@ -1133,6 +1156,25 @@ namespace Fryz.Apps.SpaceTrader
 				EncounterWon(owner);
 
 				result	= EncounterResult.Normal;
+			}
+			else if (OpponentDisabled)
+			{
+				if (EncounterType == EncounterType.DragonflyAttack || EncounterType == EncounterType.ScarabAttack)
+				{
+					FormAlert.Alert(AlertType.EncounterDisabledOpponent, owner, EncounterShipText);
+
+					if (EncounterType == EncounterType.DragonflyAttack)
+						EncounterDefeatDragonfly();
+					else
+						EncounterDefeatScarab();
+
+					Commander.ReputationScore	+= (int)Opponent.Type / 2 + 1;
+				}
+				else
+				{
+					EncounterUpdateEncounterType(prevCmdrHull, prevOppHull);
+					EncounterOppFleeing	= false;
+				}
 			}
 			else
 			{
@@ -1199,47 +1241,88 @@ namespace Fryz.Apps.SpaceTrader
 			// On beginner level, if you flee, you will escape unharmed.
 			// Otherwise, Fighterskill attacker is pitted against pilotskill defender; if defender
 			// is fleeing the attacker has a free shot, but the chance to hit is smaller
-			if (Difficulty > Difficulty.Beginner || defender != Commander.Ship || !fleeing ||
+			// JAF - if the opponent is disabled and attacker has targeting system, they WILL be hit.
+			if (!(Difficulty == Difficulty.Beginner && defender.CommandersShip && fleeing) &&
+				(attacker.CommandersShip && OpponentDisabled && attacker.HasGadget(GadgetType.TargetingSystem) ||
 				Functions.GetRandom(attacker.Fighter + (int)defender.Size) >=
-				(fleeing ? 2 : 1) * Functions.GetRandom(5 + (defender.Pilot / 2)))
+				(fleeing ? 2 : 1) * Functions.GetRandom(5 + (defender.Pilot / 2))))
 			{
-				int	attackerWeapons	= attacker.WeaponStrength();
-				if (defender.Type == ShipType.Scarab)
-					attackerWeapons		-= attacker.WeaponStrength(WeaponType.BeamLaser, WeaponType.MilitaryLaser);
-
-				int	damage	= attackerWeapons > 0 ? Functions.GetRandom(attackerWeapons * (100 + 2 * attacker.Engineer) / 100) : 0;
-
-				if (damage > 0)
+				// If the defender is disabled, it only takes one shot to destroy it completely.
+				if (attacker.CommandersShip && OpponentDisabled)
+					defender.Hull						= 0;
+				else
 				{
-					hit	= true;
+					int	attackerLasers			= attacker.WeaponStrength(WeaponType.PulseLaser, WeaponType.MorgansLaser);
+					int attackerDisruptors	= attacker.WeaponStrength(WeaponType.PhotonDisruptor, WeaponType.QuantumDistruptor);
 
-					// Reactor on board -- damage is boosted!
-					if (defender.ReactorOnBoard)
-						damage	*= (int)(1 + ((int)Difficulty + 1) * (Difficulty < Difficulty.Normal ? 0.25 : 0.33));
-
-					// First, shields are depleted
-					for (int i = 0; i < defender.Shields.Length && defender.Shields[i] != null && damage > 0; i++)
+					if (defender.Type == ShipType.Scarab)
 					{
-						int	applied									 = Math.Min(defender.Shields[i].Charge, damage);
-						defender.Shields[i].Charge	-= applied;
-						damage											-= applied;
+						attackerLasers			-= attacker.WeaponStrength(WeaponType.BeamLaser, WeaponType.MilitaryLaser);
+						attackerDisruptors	-= attacker.WeaponStrength(WeaponType.PhotonDisruptor, WeaponType.PhotonDisruptor);
 					}
 
-					// If there still is damage after the shields have been depleted,
-					// this is subtracted from the hull, modified by the engineering skill
-					// of the defender.
-					if (damage > 0)
+					int attackerWeapons			= attackerLasers + attackerDisruptors;
+
+					int disrupt							= 0;
+
+					// Attempt to disable the opponent if they're not already disabled, their shields are down,
+					// we have disabling weapons, and the option is checked.
+					if (attacker.CommandersShip && defender.ShieldCharge == 0 && !OpponentDisabled &&
+						Options.DisableOpponents && attackerDisruptors > 0)
 					{
-						damage				= Math.Max(1, damage - Functions.GetRandom(defender.Engineer));
-
-						// At least 2 shots on Normal level are needed to destroy the hull
-						// (3 on Easy, 4 on Beginner, 1 on Hard or Impossible). For opponents,
-						// it is always 2.
-						damage				= Math.Min(damage, defender.HullStrength /
-							(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
-
-						defender.Hull	= Math.Max(0, defender.Hull - damage);
+						disrupt	= Functions.GetRandom(attackerDisruptors * (100 + 2 * attacker.Fighter) / 100);
 					}
+					else
+					{
+						int	damage	= attackerWeapons == 0 ? 0 :
+													Functions.GetRandom(attackerWeapons * (100 + 2 * attacker.Fighter) / 100);
+
+						if (damage > 0)
+						{
+							hit	= true;
+
+							// Reactor on board -- damage is boosted!
+							if (defender.ReactorOnBoard)
+								damage	*= (int)(1 + ((int)Difficulty + 1) * (Difficulty < Difficulty.Normal ? 0.25 : 0.33));
+
+							// First, shields are depleted
+							for (int i = 0; i < defender.Shields.Length && defender.Shields[i] != null && damage > 0; i++)
+							{
+								int	applied									 = Math.Min(defender.Shields[i].Charge, damage);
+								defender.Shields[i].Charge	-= applied;
+								damage											-= applied;
+							}
+
+							// If there still is damage after the shields have been depleted,
+							// this is subtracted from the hull, modified by the engineering skill
+							// of the defender.
+							// JAF - If the player only has disabling weapons, no damage will be done to the hull.
+							if (damage > 0)
+							{
+								damage				= Math.Max(1, damage - Functions.GetRandom(defender.Engineer));
+
+								disrupt				= damage * attackerDisruptors / attackerWeapons;
+
+								// Only that damage coming from Lasers will deplete the hull.
+								damage				-= disrupt;
+
+								// At least 2 shots on Normal level are needed to destroy the hull
+								// (3 on Easy, 4 on Beginner, 1 on Hard or Impossible). For opponents,
+								// it is always 2.
+								damage				= Math.Min(damage, defender.HullStrength /
+																(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
+
+								defender.Hull	= Math.Max(0, defender.Hull - damage);
+
+							}
+						}
+					}
+
+					// Did the opponent get disabled? (Disruptors are 3 times more effective against the ship's
+					// systems than they are against the shields).
+					if (defender.Hull > 0 && defender.Disableable && Functions.GetRandom(100) <
+						disrupt * Consts.DisruptorSystemsMultiplier * 100 / defender.Hull)
+						OpponentDisabled	= true;
 				}
 			}
 
@@ -1296,10 +1379,32 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void EncounterPlunder(IWin32Window owner)
 		{
-			Commander.PoliceRecordScore	+= (EncounterType >= EncounterType.TraderAttack) ? Consts.ScorePlunderTrader :
-																			Consts.ScorePlunderPirate;
-
 			(new FormPlunder()).ShowDialog(owner);
+
+			if (EncounterType >= EncounterType.TraderAttack)
+			{
+				Commander.PoliceRecordScore	+= Consts.ScorePlunderTrader;
+
+				if (OpponentDisabled)
+					Commander.KillsTrader++;
+			}
+			else if (OpponentDisabled)
+			{
+				if (Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious)
+				{
+					FormAlert.Alert(AlertType.EncounterPiratesBounty, owner, Strings.EncounterPiratesDisabled,
+						Strings.EncounterPiratesLocation, Functions.Multiples(Opponent.Bounty(), Strings.MoneyUnit));
+
+					Commander.Cash	+= Opponent.Bounty();
+				}
+
+				Commander.KillsPirate++;
+				Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
+			}
+			else
+				Commander.PoliceRecordScore	+= Consts.ScorePlunderPirate;
+
+			Commander.ReputationScore	+= (int)Opponent.Type / 2 + 1;
 		}
 
 		private void EncounterScoop(IWin32Window owner)
@@ -1354,14 +1459,20 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			int	chance	= Functions.GetRandom(100);
 
-			if (Opponent.Hull < prevOppHull)
+			if (Opponent.Hull < prevOppHull || OpponentDisabled)
 			{
 				switch (EncounterType)
 				{
+					case EncounterType.FamousCaptainAttack:
+						if (OpponentDisabled)
+							EncounterType	= EncounterType.FamousCaptDisabled;
+						break;
 					case EncounterType.PirateAttack:
 					case EncounterType.PirateFlee:
 					case EncounterType.PirateSurrender:
-						if (Opponent.Hull < (prevOppHull * 2) / 3)
+						if (OpponentDisabled)
+							EncounterType	= EncounterType.PirateDisabled;
+						else if (Opponent.Hull < (prevOppHull * 2) / 3)
 						{
 							if (Commander.Ship.Hull < (prevCmdrHull * 2) / 3)
 							{
@@ -1379,22 +1490,26 @@ namespace Fryz.Apps.SpaceTrader
 						break;
 					case EncounterType.PoliceAttack:
 					case EncounterType.PoliceFlee:
-						if (Opponent.Hull < prevOppHull / 2 && (Commander.Ship.Hull >= prevCmdrHull / 2 || chance < 40))
+						if (OpponentDisabled)
+							EncounterType	= EncounterType.PoliceDisabled;
+						else if (Opponent.Hull < prevOppHull / 2 && (Commander.Ship.Hull >= prevCmdrHull / 2 || chance < 40))
 							EncounterType	= EncounterType.PoliceFlee;
 						break;
 					case EncounterType.TraderAttack:
 					case EncounterType.TraderFlee:
 					case EncounterType.TraderSurrender:
-						if (Opponent.Hull < (prevOppHull * 2) / 3)
+						if (OpponentDisabled)
+							EncounterType	= EncounterType.TraderDisabled;
+						else if (Opponent.Hull < (prevOppHull * 2) / 3)
 						{
 							if (chance < 60)
 								EncounterType	= EncounterType.TraderSurrender;
 							else
 								EncounterType	= EncounterType.TraderFlee;
 						}
-							// If you get damaged a lot, the trader tends to keep shooting; if
-							// you get damaged a little, the trader may keep shooting; if you
-							// get damaged very little or not at all, the trader will flee.
+						// If you get damaged a lot, the trader tends to keep shooting; if
+						// you get damaged a little, the trader may keep shooting; if you
+						// get damaged very little or not at all, the trader will flee.
 						else if (Opponent.Hull < (prevOppHull * 9) / 10 &&
 							(Commander.Ship.Hull < (prevCmdrHull * 2) / 3 && chance < 20 ||
 							Commander.Ship.Hull < (prevCmdrHull * 9) / 10 && chance < 60 ||
@@ -1411,102 +1526,115 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			bool	attack	= true;
 
-			switch (EncounterType)
+			if (Commander.Ship.WeaponStrength() == 0)
 			{
-				case EncounterType.DragonflyIgnore:
-				case EncounterType.PirateIgnore:
-				case EncounterType.ScarabIgnore:
-				case EncounterType.SpaceMonsterIgnore:
-					EncounterType	= EncounterType - 1;
-
-					break;
-				case EncounterType.PoliceInspect:
-					if (!Commander.Ship.DetectableIllegalCargoOrPassengers &&
-						FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) != DialogResult.Yes)
-						attack	= false;
-
-					// Fall through...
-					if (attack)
-						goto case EncounterType.PoliceIgnore;
-
-					break;
-				case EncounterType.MarieCelestePolice:
-				case EncounterType.PoliceFlee:
-				case EncounterType.PoliceIgnore:
-				case EncounterType.PoliceSurrender:
-					if (Commander.PoliceRecordScore <= Consts.PoliceRecordScoreCriminal ||
-						FormAlert.Alert(AlertType.EncounterAttackPolice, owner) == DialogResult.Yes)
-					{
-						if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreCriminal)
-							Commander.PoliceRecordScore	= Consts.PoliceRecordScoreCriminal;
-
-						Commander.PoliceRecordScore	+= Consts.ScoreAttackPolice;
-
-						if (EncounterType != EncounterType.PoliceFlee)
-							EncounterType = EncounterType.PoliceAttack;
-					}
-					else
-						attack	= false;
-
-					break;
-				case EncounterType.TraderBuy:
-				case EncounterType.TraderIgnore:
-				case EncounterType.TraderSell:
-					if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreClean)
-						Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
-					else if (FormAlert.Alert(AlertType.EncounterAttackTrader, owner) == DialogResult.Yes)
-						Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
-					else
-						attack	= false;
-
-					// Fall through...
-					if (attack)
-						goto case EncounterType.TraderAttack;
-
-					break;
-				case EncounterType.TraderAttack:
-				case EncounterType.TraderSurrender:
-					if (Functions.GetRandom(Consts.ReputationScoreElite) <=
-						Commander.ReputationScore * 10 / ((int)Opponent.Type + 1) || Opponent.WeaponStrength() == 0)
-						EncounterType = EncounterType.TraderFlee;
-					else
-						EncounterType = EncounterType.TraderAttack;
-
-					break;
-				case EncounterType.CaptainAhab:
-				case EncounterType.CaptainConrad:
-				case EncounterType.CaptainHuie:
-					if (FormAlert.Alert(AlertType.EncounterAttackCaptain, owner) == DialogResult.Yes)
-					{
-						if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreVillain)
-							Commander.PoliceRecordScore	= Consts.PoliceRecordScoreVillain;
-
-						Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
-
-						switch (EncounterType)
-						{
-							case EncounterType.CaptainAhab:
-								NewsAddEvent(NewsEvent.CaptAhabAttacked);
-								break;
-							case EncounterType.CaptainConrad:
-								NewsAddEvent(NewsEvent.CaptConradAttacked);
-								break;
-							case EncounterType.CaptainHuie:
-								NewsAddEvent(NewsEvent.CaptHuieAttacked);
-								break;
-						}
-
-						EncounterType	= EncounterType.FamousCaptainAttack;
-					}
-					else
-						attack	= false;
-
-					break;
+				FormAlert.Alert(AlertType.EncounterAttackNoWeapons, owner);
+				attack	= false;
 			}
+			else if (!Opponent.Disableable && Commander.Ship.WeaponStrength(WeaponType.PulseLaser, WeaponType.MorgansLaser) == 0)
+			{
+				FormAlert.Alert(AlertType.EncounterAttackNoLasers, owner);
+				attack	= false;
+			}
+			else
+			{
+				switch (EncounterType)
+				{
+					case EncounterType.DragonflyIgnore:
+					case EncounterType.PirateIgnore:
+					case EncounterType.ScarabIgnore:
+					case EncounterType.SpaceMonsterIgnore:
+						EncounterType	= EncounterType - 1;
 
-			// Make sure the fleeing flag isn't set if we're attacking.
-			if (attack)
-				EncounterCmdrFleeing	= false;
+						break;
+					case EncounterType.PoliceInspect:
+						if (!Commander.Ship.DetectableIllegalCargoOrPassengers &&
+							FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) != DialogResult.Yes)
+							attack	= false;
+
+						// Fall through...
+						if (attack)
+							goto case EncounterType.PoliceIgnore;
+
+						break;
+					case EncounterType.MarieCelestePolice:
+					case EncounterType.PoliceFlee:
+					case EncounterType.PoliceIgnore:
+					case EncounterType.PoliceSurrender:
+						if (Commander.PoliceRecordScore <= Consts.PoliceRecordScoreCriminal ||
+							FormAlert.Alert(AlertType.EncounterAttackPolice, owner) == DialogResult.Yes)
+						{
+							if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreCriminal)
+								Commander.PoliceRecordScore	= Consts.PoliceRecordScoreCriminal;
+
+							Commander.PoliceRecordScore	+= Consts.ScoreAttackPolice;
+
+							if (EncounterType != EncounterType.PoliceFlee)
+								EncounterType = EncounterType.PoliceAttack;
+						}
+						else
+							attack	= false;
+
+						break;
+					case EncounterType.TraderBuy:
+					case EncounterType.TraderIgnore:
+					case EncounterType.TraderSell:
+						if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreClean)
+							Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
+						else if (FormAlert.Alert(AlertType.EncounterAttackTrader, owner) == DialogResult.Yes)
+							Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
+						else
+							attack	= false;
+
+						// Fall through...
+						if (attack)
+							goto case EncounterType.TraderAttack;
+
+						break;
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderSurrender:
+						if (Functions.GetRandom(Consts.ReputationScoreElite) <=
+							Commander.ReputationScore * 10 / ((int)Opponent.Type + 1) || Opponent.WeaponStrength() == 0)
+							EncounterType = EncounterType.TraderFlee;
+						else
+							EncounterType = EncounterType.TraderAttack;
+
+						break;
+					case EncounterType.CaptainAhab:
+					case EncounterType.CaptainConrad:
+					case EncounterType.CaptainHuie:
+						if (FormAlert.Alert(AlertType.EncounterAttackCaptain, owner) == DialogResult.Yes)
+						{
+							if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreVillain)
+								Commander.PoliceRecordScore	= Consts.PoliceRecordScoreVillain;
+
+							Commander.PoliceRecordScore	+= Consts.ScoreAttackTrader;
+
+							switch (EncounterType)
+							{
+								case EncounterType.CaptainAhab:
+									NewsAddEvent(NewsEvent.CaptAhabAttacked);
+									break;
+								case EncounterType.CaptainConrad:
+									NewsAddEvent(NewsEvent.CaptConradAttacked);
+									break;
+								case EncounterType.CaptainHuie:
+									NewsAddEvent(NewsEvent.CaptHuieAttacked);
+									break;
+							}
+
+							EncounterType	= EncounterType.FamousCaptainAttack;
+						}
+						else
+							attack	= false;
+
+						break;
+				}
+
+				// Make sure the fleeing flag isn't set if we're attacking.
+				if (attack)
+					EncounterCmdrFleeing	= false;
+			}
 
 			return attack;
 		}
@@ -1753,8 +1881,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			if (EncounterType >= EncounterType.PirateAttack && EncounterType <= EncounterType.PirateSurrender &&
 				Opponent.Type != ShipType.Mantis && Commander.PoliceRecordScore >= Consts.PoliceRecordScoreDubious)
-				FormAlert.Alert(AlertType.EncounterPiratesBounty, owner, Functions.Multiples(Opponent.Bounty(),
-					Strings.MoneyUnit));
+				FormAlert.Alert(AlertType.EncounterPiratesBounty, owner, Strings.EncounterPiratesDestroyed, "",
+					Functions.Multiples(Opponent.Bounty(), Strings.MoneyUnit));
 			else
 				FormAlert.Alert(AlertType.EncounterYouWin, owner);
 
@@ -1771,9 +1899,7 @@ namespace Fryz.Apps.SpaceTrader
 					NewsReplaceEvent(NewsLatestEvent(), NewsLatestEvent() + 1);
 					break;
 				case EncounterType.DragonflyAttack:
-					Commander.KillsPirate++;
-					Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
-					QuestStatusDragonfly				= SpecialEvent.StatusDragonflyDestroyed;
+					EncounterDefeatDragonfly();
 					break;
 				case EncounterType.PirateAttack:
 				case EncounterType.PirateFlee:
@@ -1793,9 +1919,7 @@ namespace Fryz.Apps.SpaceTrader
 					Commander.PoliceRecordScore	+= Consts.ScoreKillPolice;
 					break;
 				case EncounterType.ScarabAttack:
-					Commander.KillsPirate++;
-					Commander.PoliceRecordScore	+= Consts.ScoreKillPirate;
-					QuestStatusScarab						= SpecialEvent.StatusScarabDestroyed;
+					EncounterDefeatScarab();
 					break;
 				case EncounterType.SpaceMonsterAttack:
 					Commander.KillsPirate++;
@@ -3083,7 +3207,9 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				string	action		= "";
 
-				if (EncounterOppFleeing)
+				if (OpponentDisabled)
+					action	= Functions.StringVars(Strings.EncounterActionOppDisabled, EncounterShipText);
+				else if (EncounterOppFleeing)
 				{
 					if (EncounterType == EncounterType.PirateSurrender || EncounterType == EncounterType.TraderSurrender)
 						action	= Functions.StringVars(Strings.EncounterActionOppSurrender, EncounterShipText);
@@ -3101,7 +3227,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				string	text			= "";
+				string	text				= "";
 
 				// Set up the fleeing variable initially.
 				EncounterOppFleeing	= false;
@@ -3118,12 +3244,10 @@ namespace Fryz.Apps.SpaceTrader
 						text	= Strings.EncounterTextFamousCaptain;
 						break;
 					case EncounterType.DragonflyAttack:
-					case EncounterType.FamousCaptainAttack:
 					case EncounterType.PirateAttack:
 					case EncounterType.PoliceAttack:
 					case EncounterType.ScarabAttack:
 					case EncounterType.SpaceMonsterAttack:
-					case EncounterType.TraderAttack:
 						text	= Strings.EncounterTextOpponentAttack;
 						break;
 					case EncounterType.DragonflyIgnore:
@@ -3146,10 +3270,6 @@ namespace Fryz.Apps.SpaceTrader
 						text								= Strings.EncounterTextOpponentFlee;
 						EncounterOppFleeing	= true;
 						break;
-					case EncounterType.PirateSurrender:
-					case EncounterType.TraderSurrender:
-						text	= Strings.EncounterTextOpponentSurrender;
-						break;
 					case EncounterType.PoliceInspect:
 						text	= Strings.EncounterTextPoliceInspection;
 						break;
@@ -3159,6 +3279,16 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.TraderBuy:
 					case EncounterType.TraderSell:
 						text	= Strings.EncounterTextTrader;
+						break;
+					case EncounterType.FamousCaptainAttack:
+					case EncounterType.FamousCaptDisabled:
+					case EncounterType.PoliceDisabled:
+					case EncounterType.PirateDisabled:
+					case EncounterType.PirateSurrender:
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderDisabled:
+					case EncounterType.TraderSurrender:
+						// These should never be the initial encounter type.
 						break;
 				}
 
@@ -3250,6 +3380,16 @@ namespace Fryz.Apps.SpaceTrader
 					case EncounterType.TraderSell:
 						encounterImage		= Consts.EncounterImgTrader;
 						break;
+					case EncounterType.FamousCaptainAttack:
+					case EncounterType.FamousCaptDisabled:
+					case EncounterType.PoliceDisabled:
+					case EncounterType.PirateDisabled:
+					case EncounterType.PirateSurrender:
+					case EncounterType.TraderAttack:
+					case EncounterType.TraderDisabled:
+					case EncounterType.TraderSurrender:
+						// These should never be the initial encounter type.
+						break;
 				}
 
 				return encounterImage;
@@ -3301,18 +3441,22 @@ namespace Fryz.Apps.SpaceTrader
 				switch (EncounterType)
 				{
 					case EncounterType.FamousCaptainAttack:
+					case EncounterType.FamousCaptDisabled:
 						shipText	= Strings.EncounterShipCaptain;
 						break;
 					case EncounterType.PirateAttack:
+					case EncounterType.PirateDisabled:
 					case EncounterType.PirateFlee:
 					case EncounterType.PirateSurrender:
 						shipText	= Opponent.Type == ShipType.Mantis ? Strings.EncounterShipMantis : Strings.EncounterShipPirate;
 						break;
 					case EncounterType.PoliceAttack:
+					case EncounterType.PoliceDisabled:
 					case EncounterType.PoliceFlee:
 						shipText	= Strings.EncounterShipPolice;
 						break;
 					case EncounterType.TraderAttack:
+					case EncounterType.TraderDisabled:
 					case EncounterType.TraderFlee:
 					case EncounterType.TraderSurrender:
 						shipText	= Strings.EncounterShipTrader;
@@ -3407,8 +3551,12 @@ namespace Fryz.Apps.SpaceTrader
 						encounterPretext	= Strings.EncounterPretextTrader;
 						break;
 					case EncounterType.FamousCaptainAttack:
+					case EncounterType.FamousCaptDisabled:
+					case EncounterType.PoliceDisabled:
+					case EncounterType.PirateDisabled:
 					case EncounterType.PirateSurrender:
 					case EncounterType.TraderAttack:
+					case EncounterType.TraderDisabled:
 					case EncounterType.TraderSurrender:
 						// These should never be the initial encounter type.
 						break;
@@ -3648,6 +3796,18 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_opponent	= value;
+			}
+		}
+
+		public bool						OpponentDisabled
+		{
+			get
+			{
+				return _opponentDisabled;
+			}
+			set
+			{
+				_opponentDisabled	= value;
 			}
 		}
 

@@ -41,6 +41,7 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.CheckBox chkFuel;
 		private System.Windows.Forms.CheckBox chkContinuousAttack;
 		private System.Windows.Forms.CheckBox chkAttackFleeing;
+		private System.Windows.Forms.CheckBox chkDisable;
 		private System.Windows.Forms.CheckBox chkNewspaper;
 		private System.Windows.Forms.CheckBox chkNewspaperShow;
 		private System.Windows.Forms.CheckBox chkRange;
@@ -121,6 +122,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnLoad = new System.Windows.Forms.Button();
 			this.chkNewspaperShow = new System.Windows.Forms.CheckBox();
+			this.chkDisable = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.numEmpty)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -128,7 +130,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnOk.Location = new System.Drawing.Point(14, 224);
+			this.btnOk.Location = new System.Drawing.Point(14, 240);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(40, 22);
 			this.btnOk.TabIndex = 15;
@@ -138,7 +140,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCancel.Location = new System.Drawing.Point(62, 224);
+			this.btnCancel.Location = new System.Drawing.Point(62, 240);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(49, 22);
 			this.btnCancel.TabIndex = 16;
@@ -149,7 +151,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblEmpty.AutoSize = true;
 			this.lblEmpty.Location = new System.Drawing.Point(52, 90);
 			this.lblEmpty.Name = "lblEmpty";
-			this.lblEmpty.Size = new System.Drawing.Size(292, 13);
+			this.lblEmpty.Size = new System.Drawing.Size(292, 16);
 			this.lblEmpty.TabIndex = 38;
 			this.lblEmpty.Text = "Cargo Bays to leave empty when buying goods in-system";
 			// 
@@ -275,7 +277,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblIgnore.AutoSize = true;
 			this.lblIgnore.Location = new System.Drawing.Point(8, 120);
 			this.lblIgnore.Name = "lblIgnore";
-			this.lblIgnore.Size = new System.Drawing.Size(152, 13);
+			this.lblIgnore.Size = new System.Drawing.Size(152, 16);
 			this.lblIgnore.TabIndex = 52;
 			this.lblIgnore.Text = "Always ignore when it is safe:";
 			// 
@@ -300,7 +302,7 @@ namespace Fryz.Apps.SpaceTrader
 			// btnSave
 			// 
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSave.Location = new System.Drawing.Point(119, 224);
+			this.btnSave.Location = new System.Drawing.Point(119, 240);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(107, 22);
 			this.btnSave.TabIndex = 17;
@@ -310,7 +312,7 @@ namespace Fryz.Apps.SpaceTrader
 			// btnLoad
 			// 
 			this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLoad.Location = new System.Drawing.Point(234, 224);
+			this.btnLoad.Location = new System.Drawing.Point(234, 240);
 			this.btnLoad.Name = "btnLoad";
 			this.btnLoad.Size = new System.Drawing.Size(114, 22);
 			this.btnLoad.TabIndex = 18;
@@ -326,34 +328,43 @@ namespace Fryz.Apps.SpaceTrader
 			this.chkNewspaperShow.Text = "Show newspaper on arrival";
 			this.chkNewspaperShow.CheckedChanged += new System.EventHandler(this.controlChanged);
 			// 
+			// chkDisable
+			// 
+			this.chkDisable.Location = new System.Drawing.Point(8, 208);
+			this.chkDisable.Name = "chkDisable";
+			this.chkDisable.Size = new System.Drawing.Size(244, 16);
+			this.chkDisable.TabIndex = 54;
+			this.chkDisable.Text = "Attempt to disable opponents when possible";
+			this.chkDisable.CheckedChanged += new System.EventHandler(this.controlChanged);
+			// 
 			// FormOptions
 			// 
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(362, 255);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.chkLoan,
-																																	this.chkNewspaperShow,
-																																	this.btnLoad,
-																																	this.btnSave,
-																																	this.numEmpty,
-																																	this.lblIgnore,
-																																	this.lblEmpty,
-																																	this.chkRepair,
-																																	this.chkIgnorePolice,
-																																	this.chkIgnorePirates,
-																																	this.chkIgnoreTraders,
-																																	this.chkReserveMoney,
-																																	this.chkIgnoreTradersDealing,
-																																	this.chkStopTracking,
-																																	this.chkRange,
-																																	this.chkNewspaper,
-																																	this.chkAttackFleeing,
-																																	this.chkContinuousAttack,
-																																	this.chkFuel,
-																																	this.btnCancel,
-																																	this.btnOk});
+			this.ClientSize = new System.Drawing.Size(362, 271);
+			this.Controls.Add(this.chkDisable);
+			this.Controls.Add(this.chkLoan);
+			this.Controls.Add(this.chkNewspaperShow);
+			this.Controls.Add(this.btnLoad);
+			this.Controls.Add(this.btnSave);
+			this.Controls.Add(this.numEmpty);
+			this.Controls.Add(this.lblIgnore);
+			this.Controls.Add(this.lblEmpty);
+			this.Controls.Add(this.chkRepair);
+			this.Controls.Add(this.chkIgnorePolice);
+			this.Controls.Add(this.chkIgnorePirates);
+			this.Controls.Add(this.chkIgnoreTraders);
+			this.Controls.Add(this.chkReserveMoney);
+			this.Controls.Add(this.chkIgnoreTradersDealing);
+			this.Controls.Add(this.chkStopTracking);
+			this.Controls.Add(this.chkRange);
+			this.Controls.Add(this.chkNewspaper);
+			this.Controls.Add(this.chkAttackFleeing);
+			this.Controls.Add(this.chkContinuousAttack);
+			this.Controls.Add(this.chkFuel);
+			this.Controls.Add(this.btnCancel);
+			this.Controls.Add(this.btnOk);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -386,6 +397,7 @@ namespace Fryz.Apps.SpaceTrader
 			chkIgnoreTradersDealing.Checked	= Options.AlwaysIgnoreTradeInOrbit;
 			chkContinuousAttack.Checked			= Options.ContinuousAttack;
 			chkAttackFleeing.Checked				= Options.ContinuousAttackFleeing;
+			chkDisable.Checked							= Options.DisableOpponents;
 
 			UpdateContinueAttackFleeing();
 			UpdateIgnoreTradersDealing();
@@ -458,6 +470,7 @@ namespace Fryz.Apps.SpaceTrader
 				Options.AlwaysIgnoreTradeInOrbit	= chkIgnoreTradersDealing.Checked;
 				Options.ContinuousAttack					= chkContinuousAttack.Checked;
 				Options.ContinuousAttackFleeing		= chkAttackFleeing.Checked;
+				Options.DisableOpponents					= chkDisable.Checked;
 			}
 		}
 

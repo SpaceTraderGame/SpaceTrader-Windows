@@ -76,11 +76,15 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterActionCmdrMissed				= "The ^1 missed you.";
 		public static string	EncounterActionOppAttacks				= "The ^1 attacks.";
 		public static string	EncounterActionOppChased				= "The ^1 didn't get away.";
+		public static string	EncounterActionOppDisabled			= "The ^1 has been disabled.";
 		public static string	EncounterActionOppFleeing				= "The ^1 is fleeing.";
 		public static string	EncounterActionOppHit						= "You hit the ^1.";
 		public static string	EncounterActionOppMissed				= "You missed the ^1.";
 		public static string	EncounterActionOppSurrender			= "The ^1 hails that they wish to surrender to you.";
 		public static string	EncounterHullStrength						= "Hull at ^1%";
+		public static string	EncounterPiratesDestroyed				= "destroyed";
+		public static string	EncounterPiratesDisabled				= "disabled";
+		public static string	EncounterPiratesLocation				= " (informing the police of the pirate's location)";
 		public static string	EncounterPoliceSubmitArrested		= "You will be arrested!";
 		public static string	EncounterPoliceSubmitGoods			= "illegal goods";
 		public static string	EncounterPoliceSubmitReactor		= "an illegal Ion Reactor";
@@ -118,7 +122,6 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	EncounterTextOpponentFlee				= "Your opponent is fleeing.";
 		public static string	EncounterTextOpponentIgnore			= "It ignores you.";
 		public static string	EncounterTextOpponentNoNotice		= "It doesn't notice you.";
-		public static string	EncounterTextOpponentSurrender	= "Your opponent hails that he surrenders to you.";
 		public static string	EncounterTextPoliceInspection		= "The police summon you to submit to an inspection.";
 		public static string	EncounterTextPolicePostMarie		= "\"We know you removed illegal goods from the Marie Celeste. You must give them up at once!\"";
 		public static string	EncounterTextPoliceSurrender		= "The police hail they want you to surrender.";
@@ -340,7 +343,9 @@ namespace Fryz.Apps.SpaceTrader
 				"The Pulse Laser is the weakest weapon available. It's small size allows only enough energy to build up to emit pulses of light.",
 				"The Beam Laser is larger than the Pulse Laser, so can build up enough charge to power what are essentially two Pulse Lasers. The resulting effect appears more like a constant beam.",
 				"The Military Laser is the largest commecially available weapon. It can build up enough charge to power three Pulse Lasers in series, resulting in a more dense and concentrated beam.",
-				"Morgan's Laser has been constructed from a Beam Laser, which has been attached to an Ion Reactor that builds up an immense charge, resulting in the strongest weapon known to exist."
+				"Morgan's Laser has been constructed from a Beam Laser, which has been attached to an Ion Reactor that builds up an immense charge, resulting in the strongest weapon known to exist.",
+				"The Photon Disruptor is a relatively weak weapon, but has the ability to disable an opponent's electrical systems, rendering them helpless.",
+				"The Quantum Disruptor is a very powerful disabling weapon. Once an opponent's sheilds are down it will usually require only a single shot with the Quantum Disruptor to disable them."
 			},
 			new string[]
 			{
@@ -699,7 +704,7 @@ namespace Fryz.Apps.SpaceTrader
 			"This alien artifact should be delivered to professor Berger, who is currently traveling. You can probably find him at a hi-tech solar system. The alien race which produced this artifact seems keen on getting it back, however, and may hinder the carrier. Are you, for a price, willing to deliver it?",
 			"This is professor Berger. I thank you for delivering the alien artifact to me. I hope the aliens weren't too much of a nuisance. I have transferred 20000 credits to your account, which I assume compensates for your troubles.",
 			"A trader in second-hand goods offers you 3 sealed cargo canisters for the sum of 1000 credits. It could be a good deal: they could contain robots. Then again, it might just be water. Do you want the canisters?",
-			"This is colonel Jackson of the Space Corps. An experimental ship, code-named \"Dragonfly\", has been stolen. It is equipped with very special, almost indestructible shields. It shouldn't fall into the wrong hands and we will reward you if you destroy it. It has been last seen in the Baratas system.",
+			"This is Colonel Jackson of the Space Corps. An experimental ship, code-named \"Dragonfly\", has been stolen. It is equipped with very special, almost indestructible shields. It shouldn't fall into the wrong hands and we will reward you if you destroy it. It has been last seen in the Baratas system.",
 			"A small ship of a weird design docked here recently for repairs. The engineer who worked on it said that it had a weak hull, but incredibly strong shields. I heard it took off in the direction of the Melina system.",
 			"Hello, Commander. This is Colonel Jackson again. On behalf of the Space Corps, I thank you for your valuable assistance in destroying the Dragonfly. As a reward, we will install one of the experimental shields on your ship. Return here for that when you're ready.",
 			"A ship with shields that seemed to be like lightning recently fought many other ships in our system. I have never seen anything like it before. After it left, I heard it went to the Regulas system.",
@@ -1007,7 +1012,9 @@ namespace Fryz.Apps.SpaceTrader
 			"Pulse Laser",
 			"Beam Laser",
 			"Military Laser",
-			"Morgan's Laser"
+			"Morgan's Laser",
+			"Photon Disruptor",
+			"Quantum Disruptor"
 		};
 		#endregion
 

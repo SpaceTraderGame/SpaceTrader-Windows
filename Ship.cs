@@ -310,7 +310,7 @@ namespace Fryz.Apps.SpaceTrader
 						int x						= Functions.GetRandom(100);
 						int	sum					= Consts.Gadgets[0].Chance;
 						int	gadgetType	= 0;
-						while (sum < x && gadgetType >= Consts.Gadgets.Length - 1)
+						while (sum < x && gadgetType <= Consts.Gadgets.Length - 1)
 						{
 							gadgetType++;
 							sum	+= Consts.Gadgets[gadgetType].Chance;
@@ -347,7 +347,7 @@ namespace Fryz.Apps.SpaceTrader
 						int x						= Functions.GetRandom(100);
 						int	sum					= Consts.Shields[0].Chance;
 						int	shieldType	= 0;
-						while (sum < x && shieldType >= Consts.Shields.Length - 1)
+						while (sum < x && shieldType <= Consts.Shields.Length - 1)
 						{
 							shieldType++;
 							sum	+= Consts.Shields[shieldType].Chance;
@@ -394,12 +394,12 @@ namespace Fryz.Apps.SpaceTrader
 						int x						= Functions.GetRandom(100);
 						int	sum					= Consts.Weapons[0].Chance;
 						int	weaponType	= 0;
-						while (sum < x && weaponType >= Consts.Weapons.Length - 1)
+						while (sum < x && weaponType <= Consts.Weapons.Length - 1)
 						{
 							weaponType++;
 							sum	+= Consts.Weapons[weaponType].Chance;
 						}
-						if (!HasWeapon(Consts.Weapons[weaponType].Type, true) && weaponType > bestWeaponType)
+						if (!HasWeapon((WeaponType)weaponType, true) && weaponType > bestWeaponType)
 							bestWeaponType = weaponType;
 					}
 
@@ -663,27 +663,31 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void PerformRepairs()
 		{
-			// Engineer may do some repairs
-			int repairs	 = Functions.GetRandom(Engineer) / 2;
-			if (repairs > 0)
+			// A disabled ship cannot be repaired.
+			if (CommandersShip || !Game.CurrentGame.OpponentDisabled)
 			{
-				int used	 = Math.Min(repairs, HullStrength - Hull);
-				Hull			+= used;
-				repairs		-= used;
-			}
-
-			// Shields are easier to repair
-			if (repairs > 0)
-			{
-				repairs	*= 2;
-
-				for (int i = 0; i < Shields.Length && repairs > 0; i++)
+				// Engineer may do some repairs
+				int repairs	 = Functions.GetRandom(Engineer);
+				if (repairs > 0)
 				{
-					if (Shields[i] != null)
+					int used	 = Math.Min(repairs, HullStrength - Hull);
+					Hull			+= used;
+					repairs		-= used;
+				}
+
+				// Shields are easier to repair
+				if (repairs > 0)
+				{
+					repairs	*= 2;
+
+					for (int i = 0; i < Shields.Length && repairs > 0; i++)
 					{
-						int used					 = Math.Min(repairs, Shields[i].Power - Shields[i].Charge);
-						Shields[i].Charge	+= used;
-						repairs						-= used;
+						if (Shields[i] != null)
+						{
+							int used					 = Math.Min(repairs, Shields[i].Power - Shields[i].Charge);
+							Shields[i].Charge	+= used;
+							repairs						-= used;
+						}
 					}
 				}
 			}
@@ -895,6 +899,15 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return DetectableIllegalCargo || IllegalSpecialCargo;
+			}
+		}
+
+		public bool Disableable
+		{
+			get
+			{
+				return !CommandersShip && Type != ShipType.Bottle && Type != ShipType.Mantis &&
+					Type != ShipType.SpaceMonster;
 			}
 		}
 
@@ -1222,7 +1235,7 @@ namespace Fryz.Apps.SpaceTrader
 							max	= Crew[crew].Skills[skill];
 					}
 
-					max	= Math.Max(1, Functions.AdjustSkillForDifficulty(max));
+					skills[skill]	= Math.Max(1, Functions.AdjustSkillForDifficulty(max));
 				}
 
 				// Adjust skills based on any gadgets on board.

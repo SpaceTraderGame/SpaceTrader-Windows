@@ -33,35 +33,39 @@ namespace Fryz.Apps.SpaceTrader
 
 		private WeaponType	_type;
 		private int					_power;
+		private bool				_disabling;
 
 		#endregion
 
 		#region Methods
 
-		public Weapon(WeaponType type, int power, int price, TechLevel minTechLevel, int chance):
+		public Weapon(WeaponType type, int power, bool disabling, int price, TechLevel minTechLevel, int chance):
 			base(EquipmentType.Weapon, price, minTechLevel, chance)
 		{
-			_type			= type;
-			_power		= power;
+			_type				= type;
+			_power			= power;
+			_disabling	= disabling;
 		}
 
 		public Weapon(Hashtable hash): base(hash)
 		{
-			_type		= (WeaponType)GetValueFromHash(hash, "_type");
-			_power	= (int)GetValueFromHash(hash, "_power");
+			_type				= (WeaponType)GetValueFromHash(hash, "_type");
+			_power			= (int)GetValueFromHash(hash, "_power");
+			_disabling	= (bool)GetValueFromHash(hash, "_disabling", false);
 		}
 
 		public override Equipment Clone()
 		{
-			return new Weapon(_type, _power, _price, _minTech, _chance);
+			return new Weapon(_type, _power, _disabling, _price, _minTech, _chance);
 		}
 
 		public override Hashtable Serialize()
 		{
 			Hashtable	hash	= base.Serialize();
 
-			hash.Add("_type",		(int)_type);
-			hash.Add("_power",	_power);
+			hash.Add("_type",				(int)_type);
+			hash.Add("_power",			_power);
+			hash.Add("_disabling",	_disabling);
 
 			return hash;
 		}
@@ -83,6 +87,14 @@ namespace Fryz.Apps.SpaceTrader
 		#endregion
 
 		#region Properties
+
+		public bool Disabling
+		{
+			get
+			{
+				return _disabling;
+			}
+		}
 
 		public override string Name
 		{

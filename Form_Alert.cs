@@ -384,6 +384,9 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.EncounterAttackCaptain:
 					result	= (new FormAlert("Really Attack?", "Famous Captains get famous by, among other things, destroying everyone who attacks them. Do you really want to attack?", "Really Attack", DialogResult.Yes, "OK, I Won't", DialogResult.No, args)).ShowDialog(owner);
 					break;
+				case AlertType.EncounterAttackNoLasers:
+					result	= (new FormAlert("No Hull-Damaging Weapons", "You only have disabling weapons, but your opponent cannot be disabled!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.EncounterAttackNoWeapons:
 					result	= (new FormAlert("No Weapons", "You can't attack without weapons!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
@@ -395,6 +398,9 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.EncounterBothDestroyed:
 					result	= (new FormAlert("Both Destroyed", "You and your opponent have managed to destroy each other.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
+				case AlertType.EncounterDisabledOpponent:
+					result	= (new FormAlert("Opponent Disabled", "You have disabled your opponent. You notify Space Corps, and they come and arrest the crew of the ^1 and impound their ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterDrinkContents:
 					result	= (new FormAlert("Drink Contents?", "You have come across an extremely rare bottle of Captain Marmoset's Amazing Skill Tonic! The \"use-by\" date is illegible, but might still be good.  Would you like to drink it?", "Yes, Drink It", DialogResult.Yes, "No", DialogResult.No, args)).ShowDialog(owner);
@@ -428,7 +434,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Opponent Escaped", "Your opponent has managed to escape.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPiratesBounty:
-					result	= (new FormAlert("Bounty", "You destroyed the pirate ship and earned a bounty of ^1.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Bounty", "You ^1 the pirate ship^2 and earned a bounty of ^3.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.EncounterPiratesExamineReactor:
 					result	= (new FormAlert("Pirates Examine Reactor", "The pirates poke around the Ion Reactor while trying to figure out if it's valuable. They finally conclude that the Reactor is worthless, not to mention dangerous, and leave it on your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);

@@ -143,8 +143,7 @@ namespace Fryz.Apps.SpaceTrader
 			InitializeComponent();
 
 			// Set up the Game encounter variables.
-			game.EncounterContinueFleeing		= false;
-			game.EncounterContinueAttacking	= false;
+			game.EncounterBegin();
 
 			// Enable the control box (the X button) if cheats are enabled.
 			if (game.EasyEncounters)
@@ -310,7 +309,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblOpponentLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblOpponentLabel.Location = new System.Drawing.Point(141, 8);
 			this.lblOpponentLabel.Name = "lblOpponentLabel";
-			this.lblOpponentLabel.Size = new System.Drawing.Size(59, 13);
+			this.lblOpponentLabel.Size = new System.Drawing.Size(59, 16);
 			this.lblOpponentLabel.TabIndex = 16;
 			this.lblOpponentLabel.Text = "Opponent:";
 			// 
@@ -320,7 +319,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblYouLabel.Location = new System.Drawing.Point(45, 8);
 			this.lblYouLabel.Name = "lblYouLabel";
-			this.lblYouLabel.Size = new System.Drawing.Size(28, 13);
+			this.lblYouLabel.Size = new System.Drawing.Size(28, 16);
 			this.lblYouLabel.TabIndex = 17;
 			this.lblYouLabel.Text = "You:";
 			// 
@@ -526,7 +525,6 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilContinuous
 			// 
-			this.ilContinuous.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilContinuous.ImageSize = new System.Drawing.Size(9, 9);
 			this.ilContinuous.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilContinuous.ImageStream")));
 			this.ilContinuous.TransparentColor = System.Drawing.Color.White;
@@ -541,7 +539,6 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilEncounterType
 			// 
-			this.ilEncounterType.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilEncounterType.ImageSize = new System.Drawing.Size(12, 12);
 			this.ilEncounterType.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilEncounterType.ImageStream")));
 			this.ilEncounterType.TransparentColor = System.Drawing.Color.White;
@@ -559,7 +556,6 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilTribbles
 			// 
-			this.ilTribbles.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilTribbles.ImageSize = new System.Drawing.Size(12, 12);
 			this.ilTribbles.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilTribbles.ImageStream")));
 			this.ilTribbles.TransparentColor = System.Drawing.Color.White;
@@ -959,70 +955,69 @@ namespace Fryz.Apps.SpaceTrader
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(234, 271);
 			this.ControlBox = false;
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.picTrib55,
-																																	this.picTrib54,
-																																	this.picTrib45,
-																																	this.picTrib44,
-																																	this.picTrib53,
-																																	this.picTrib43,
-																																	this.picTrib52,
-																																	this.picTrib42,
-																																	this.picTrib51,
-																																	this.picTrib41,
-																																	this.picTrib35,
-																																	this.picTrib34,
-																																	this.picTrib33,
-																																	this.picTrib32,
-																																	this.picTrib31,
-																																	this.picTrib25,
-																																	this.picTrib24,
-																																	this.picTrib23,
-																																	this.picTrib22,
-																																	this.picTrib21,
-																																	this.picTrib15,
-																																	this.picTrib14,
-																																	this.picTrib13,
-																																	this.picTrib12,
-																																	this.picTrib11,
-																																	this.picTrib05,
-																																	this.picTrib01,
-																																	this.picTrib02,
-																																	this.picTrib03,
-																																	this.picTrib04,
-																																	this.picTrib30,
-																																	this.picTrib20,
-																																	this.picTrib40,
-																																	this.picTrib10,
-																																	this.picTrib50,
-																																	this.picTrib00,
-																																	this.picEncounterType,
-																																	this.picContinuous,
-																																	this.btnYield,
-																																	this.btnInt,
-																																	this.btnMeet,
-																																	this.btnPlunder,
-																																	this.btnTrade,
-																																	this.btnIgnore,
-																																	this.btnSurrender,
-																																	this.btnBribe,
-																																	this.btnSubmit,
-																																	this.btnFlee,
-																																	this.lblOpponentShields,
-																																	this.lblOpponentHull,
-																																	this.lblYouShields,
-																																	this.lblYouHull,
-																																	this.lblYouShip,
-																																	this.lblOpponentShip,
-																																	this.lblYouLabel,
-																																	this.lblOpponentLabel,
-																																	this.lblAction,
-																																	this.picShipOpponent,
-																																	this.picShipYou,
-																																	this.lblEncounter,
-																																	this.btnDrink,
-																																	this.btnBoard,
-																																	this.btnAttack});
+			this.Controls.Add(this.picTrib55);
+			this.Controls.Add(this.picTrib54);
+			this.Controls.Add(this.picTrib45);
+			this.Controls.Add(this.picTrib44);
+			this.Controls.Add(this.picTrib53);
+			this.Controls.Add(this.picTrib43);
+			this.Controls.Add(this.picTrib52);
+			this.Controls.Add(this.picTrib42);
+			this.Controls.Add(this.picTrib51);
+			this.Controls.Add(this.picTrib41);
+			this.Controls.Add(this.picTrib35);
+			this.Controls.Add(this.picTrib34);
+			this.Controls.Add(this.picTrib33);
+			this.Controls.Add(this.picTrib32);
+			this.Controls.Add(this.picTrib31);
+			this.Controls.Add(this.picTrib25);
+			this.Controls.Add(this.picTrib24);
+			this.Controls.Add(this.picTrib23);
+			this.Controls.Add(this.picTrib22);
+			this.Controls.Add(this.picTrib21);
+			this.Controls.Add(this.picTrib15);
+			this.Controls.Add(this.picTrib14);
+			this.Controls.Add(this.picTrib13);
+			this.Controls.Add(this.picTrib12);
+			this.Controls.Add(this.picTrib11);
+			this.Controls.Add(this.picTrib05);
+			this.Controls.Add(this.picTrib01);
+			this.Controls.Add(this.picTrib02);
+			this.Controls.Add(this.picTrib03);
+			this.Controls.Add(this.picTrib04);
+			this.Controls.Add(this.picTrib30);
+			this.Controls.Add(this.picTrib20);
+			this.Controls.Add(this.picTrib40);
+			this.Controls.Add(this.picTrib10);
+			this.Controls.Add(this.picTrib50);
+			this.Controls.Add(this.picTrib00);
+			this.Controls.Add(this.picEncounterType);
+			this.Controls.Add(this.picContinuous);
+			this.Controls.Add(this.btnYield);
+			this.Controls.Add(this.btnInt);
+			this.Controls.Add(this.btnMeet);
+			this.Controls.Add(this.btnPlunder);
+			this.Controls.Add(this.btnTrade);
+			this.Controls.Add(this.btnIgnore);
+			this.Controls.Add(this.btnSurrender);
+			this.Controls.Add(this.btnBribe);
+			this.Controls.Add(this.btnSubmit);
+			this.Controls.Add(this.btnFlee);
+			this.Controls.Add(this.lblOpponentShields);
+			this.Controls.Add(this.lblOpponentHull);
+			this.Controls.Add(this.lblYouShields);
+			this.Controls.Add(this.lblYouHull);
+			this.Controls.Add(this.lblYouShip);
+			this.Controls.Add(this.lblOpponentShip);
+			this.Controls.Add(this.lblYouLabel);
+			this.Controls.Add(this.lblOpponentLabel);
+			this.Controls.Add(this.lblAction);
+			this.Controls.Add(this.picShipOpponent);
+			this.Controls.Add(this.picShipYou);
+			this.Controls.Add(this.lblEncounter);
+			this.Controls.Add(this.btnDrink);
+			this.Controls.Add(this.btnBoard);
+			this.Controls.Add(this.btnAttack);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -1096,6 +1091,8 @@ namespace Fryz.Apps.SpaceTrader
 					btnInt.Left					= btnFlee.Left + btnFlee.Width + 8;
 					break;
 				case EncounterType.DragonflyIgnore:
+				case EncounterType.FamousCaptDisabled:
+				case EncounterType.PoliceDisabled:
 				case EncounterType.PoliceFlee:
 				case EncounterType.PoliceIgnore:
 				case EncounterType.PirateFlee:
@@ -1128,7 +1125,9 @@ namespace Fryz.Apps.SpaceTrader
 					visible[SURRENDER]	= true;
 					btnInt.Left					= btnSurrender.Left + btnSurrender.Width + 8;
 					break;
+				case EncounterType.PirateDisabled:
 				case EncounterType.PirateSurrender:
+				case EncounterType.TraderDisabled:
 				case EncounterType.TraderSurrender:
 					visible[ATTACK]			= true;
 					visible[PLUNDER]		= true;
@@ -1216,9 +1215,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			DisableAuto();
 
-			if (cmdrship.WeaponStrength() == 0)
-				FormAlert.Alert(AlertType.EncounterAttackNoWeapons, this);
-			else if (game.EncounterVerifyAttack(this))
+			if (game.EncounterVerifyAttack(this))
 				ExecuteAction();
 		}
 

@@ -97,6 +97,8 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			DirectionLeft									= 2;
 		public const	int			DirectionRight								= 3;
 
+		public const	int			DisruptorSystemsMultiplier		= 3;
+
 		public const	int			MaxTribbles										= 100000;
 
 		public const	int			PoliceRecordScorePsychopath		= -100;
@@ -354,11 +356,12 @@ namespace Fryz.Apps.SpaceTrader
 		#region Weapons
 		public static Weapon[]	Weapons	= new Weapon[]
 		{
-			new Weapon(WeaponType.PulseLaser,    15,  2000, TechLevel.Industrial,     50),
-			new Weapon(WeaponType.BeamLaser,     25, 12500, TechLevel.PostIndustrial, 35),
-			new Weapon(WeaponType.MilitaryLaser, 35, 35000, TechLevel.HiTech,         15),
-			// The weapons below cannot be bought
-			new Weapon(WeaponType.MorgansLaser,	 85, 50000, TechLevel.Unavailable,     0)
+			new Weapon(WeaponType.PulseLaser,        15, false,  2000, TechLevel.Industrial,     50),
+			new Weapon(WeaponType.BeamLaser,         25, false, 12500, TechLevel.PostIndustrial, 35),
+			new Weapon(WeaponType.MilitaryLaser,     35, false, 35000, TechLevel.HiTech,         15),
+			new Weapon(WeaponType.MorgansLaser,      85, false, 50000, TechLevel.Unavailable,     0),
+			new Weapon(WeaponType.PhotonDisruptor,   20, true,  15000, TechLevel.PostIndustrial,  0),
+			new Weapon(WeaponType.QuantumDistruptor, 60, true,  50000, TechLevel.Unavailable,     0)
 		};
 		#endregion
 
@@ -368,6 +371,7 @@ namespace Fryz.Apps.SpaceTrader
 			Weapons[(int)WeaponType.PulseLaser],
 			Weapons[(int)WeaponType.BeamLaser],
 			Weapons[(int)WeaponType.MilitaryLaser],
+			Weapons[(int)WeaponType.PhotonDisruptor],
 			Shields[(int)ShieldType.Energy],
 			Shields[(int)ShieldType.Reflective],
 			Gadgets[(int)GadgetType.ExtraCargoBays],

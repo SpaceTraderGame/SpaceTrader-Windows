@@ -2891,7 +2891,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (obj != null)
 				{
 					game					= new Game((Hashtable)obj, this);
-					SaveGameFile	= dlgOpen.FileName;
+					SaveGameFile	= fileName;
 					SaveGameDays	= game.Commander.Days;
 
 					SetInGameControlsEnabled(true);

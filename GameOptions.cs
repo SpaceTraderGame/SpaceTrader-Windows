@@ -39,6 +39,7 @@ namespace Fryz.Apps.SpaceTrader
 		private bool	_autoRepair								= false;	// Automatically get a full hull repair when arriving in a new system
 		private bool	_continuousAttack					= false;	// Continuous attack/flee mode
 		private bool	_continuousAttackFleeing	= false;	// Continue attack on fleeing ship
+		private bool	_disableOpponents					= false;	// Disable opponents when possible (when you have disabling weapons and the opponent is a pirate, trader, or mantis)
 		private bool	_newsAutoPay							= false;	// by default, ask each time someone buys a newspaper
 		private bool	_newsAutoShow							= false;	// by default, don't show newspaper
 		private bool	_remindLoans							= true;		// remind you every five days about outstanding loan balances
@@ -67,6 +68,7 @@ namespace Fryz.Apps.SpaceTrader
 			_autoRepair								= (bool)GetValueFromHash(hash, "_autoRepair", _autoRepair);
 			_continuousAttack					= (bool)GetValueFromHash(hash, "_continuousAttack", _continuousAttack);
 			_continuousAttackFleeing	= (bool)GetValueFromHash(hash, "_continuousAttackFleeing", _continuousAttackFleeing);
+			_disableOpponents					= (bool)GetValueFromHash(hash, "_disableOpponents", _disableOpponents);
 			_newsAutoPay							= (bool)GetValueFromHash(hash, "_newsAutoPay", _newsAutoPay);
 			_newsAutoShow							= (bool)GetValueFromHash(hash, "_newsAutoShow", _newsAutoShow);
 			_remindLoans							= (bool)GetValueFromHash(hash, "_remindLoans", _remindLoans);
@@ -86,6 +88,7 @@ namespace Fryz.Apps.SpaceTrader
 			AutoRepair								= source.AutoRepair;
 			ContinuousAttack					= source.ContinuousAttack;
 			ContinuousAttackFleeing		= source.ContinuousAttackFleeing;
+			DisableOpponents					= source.DisableOpponents;
 			NewsAutoPay								= source.NewsAutoPay;
 			NewsAutoShow							= source.NewsAutoShow;
 			RemindLoans								= source.RemindLoans;
@@ -130,6 +133,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_autoRepair",								_autoRepair);
 			hash.Add("_continuousAttack",					_continuousAttack);
 			hash.Add("_continuousAttackFleeing",	_continuousAttackFleeing);
+			hash.Add("_disableOpponents",					_disableOpponents);
 			hash.Add("_newsAutoPay",							_newsAutoPay);
 			hash.Add("_newsAutoShow",							_newsAutoShow);
 			hash.Add("_remindLoans",							_remindLoans);
@@ -238,6 +242,18 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_continuousAttackFleeing = value;
+			}
+		}
+
+		public bool DisableOpponents
+		{
+			get
+			{
+				return _disableOpponents;
+			}
+			set
+			{
+				_disableOpponents	= value;
 			}
 		}
 
