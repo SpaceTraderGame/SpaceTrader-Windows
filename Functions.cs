@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -208,7 +209,7 @@ namespace Fryz.Apps.SpaceTrader
 				SeedY	= seed2;
 			else
 				SeedY	= DEFSEEDY;
-		} 
+		}
 
 		public static string StringVars(string toParse, string[] vars)
 		{
@@ -231,8 +232,8 @@ namespace Fryz.Apps.SpaceTrader
 		}
 
 		// *************************************************************************
-		// Returns true if there exists a wormhole from a to b. 
-		// If b < 0, then return true if there exists a wormhole 
+		// Returns true if there exists a wormhole from a to b.
+		// If b < 0, then return true if there exists a wormhole
 		// at all from a.
 		// *************************************************************************
 		public static bool WormholeExists(int a, int b)
