@@ -237,6 +237,7 @@ namespace Fryz.Apps.SpaceTrader
 	#region CrewMemberId
 	public enum CrewMemberId: int
 	{
+		NA									= -1,
 		Commander						= 0,
 		Alyssa							= 1,
 		Armatur							= 2,
