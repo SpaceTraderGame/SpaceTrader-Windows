@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -58,7 +59,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Game			game		= Game.CurrentGame;
 		private Commander	cmdr		= Game.CurrentGame.Commander;
-		private int				MaxLoan	= Game.CurrentGame.Commander.PoliceRecordScore >= 
+		private int				MaxLoan	= Game.CurrentGame.Commander.PoliceRecordScore >=
 																Consts.PoliceRecordScoreClean ?
 																Math.Min(25000, Math.Max(1000, Game.CurrentGame.Commander.Worth / 5000 * 500)) :
 																500;
@@ -106,9 +107,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose = new System.Windows.Forms.Button();
 			this.lblMaxNoClaim = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
+			//
 			// lblLoan
-			// 
+			//
 			this.lblLoan.AutoSize = true;
 			this.lblLoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblLoan.Location = new System.Drawing.Point(8, 8);
@@ -116,9 +117,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblLoan.Size = new System.Drawing.Size(44, 19);
 			this.lblLoan.TabIndex = 1;
 			this.lblLoan.Text = "Loan";
-			// 
+			//
 			// lblCurrentDebtLabel
-			// 
+			//
 			this.lblCurrentDebtLabel.AutoSize = true;
 			this.lblCurrentDebtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblCurrentDebtLabel.Location = new System.Drawing.Point(16, 32);
@@ -126,9 +127,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblCurrentDebtLabel.Size = new System.Drawing.Size(75, 13);
 			this.lblCurrentDebtLabel.TabIndex = 2;
 			this.lblCurrentDebtLabel.Text = "Current Debt:";
-			// 
+			//
 			// lblMaxLoanLabel
-			// 
+			//
 			this.lblMaxLoanLabel.AutoSize = true;
 			this.lblMaxLoanLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblMaxLoanLabel.Location = new System.Drawing.Point(16, 52);
@@ -136,27 +137,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMaxLoanLabel.Size = new System.Drawing.Size(88, 13);
 			this.lblMaxLoanLabel.TabIndex = 3;
 			this.lblMaxLoanLabel.Text = "Maximum Loan:";
-			// 
+			//
 			// lblCurrentDebt
-			// 
+			//
 			this.lblCurrentDebt.Location = new System.Drawing.Point(136, 32);
 			this.lblCurrentDebt.Name = "lblCurrentDebt";
 			this.lblCurrentDebt.Size = new System.Drawing.Size(56, 13);
 			this.lblCurrentDebt.TabIndex = 4;
 			this.lblCurrentDebt.Text = "88,888 cr.";
 			this.lblCurrentDebt.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblMaxLoan
-			// 
+			//
 			this.lblMaxLoan.Location = new System.Drawing.Point(136, 52);
 			this.lblMaxLoan.Name = "lblMaxLoan";
 			this.lblMaxLoan.Size = new System.Drawing.Size(56, 13);
 			this.lblMaxLoan.TabIndex = 5;
 			this.lblMaxLoan.Text = "88,888 cr.";
 			this.lblMaxLoan.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// btnGetLoan
-			// 
+			//
 			this.btnGetLoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnGetLoan.Location = new System.Drawing.Point(16, 72);
 			this.btnGetLoan.Name = "btnGetLoan";
@@ -164,9 +165,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnGetLoan.TabIndex = 1;
 			this.btnGetLoan.Text = "Get Loan";
 			this.btnGetLoan.Click += new System.EventHandler(this.btnGetLoan_Click);
-			// 
+			//
 			// btnBuyInsurance
-			// 
+			//
 			this.btnBuyInsurance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyInsurance.Location = new System.Drawing.Point(16, 196);
 			this.btnBuyInsurance.Name = "btnBuyInsurance";
@@ -174,27 +175,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyInsurance.TabIndex = 3;
 			this.btnBuyInsurance.Text = "Stop Insurance";
 			this.btnBuyInsurance.Click += new System.EventHandler(this.btnBuyInsurance_Click);
-			// 
+			//
 			// lblNoClaim
-			// 
+			//
 			this.lblNoClaim.Location = new System.Drawing.Point(154, 156);
 			this.lblNoClaim.Name = "lblNoClaim";
 			this.lblNoClaim.Size = new System.Drawing.Size(32, 13);
 			this.lblNoClaim.TabIndex = 27;
 			this.lblNoClaim.Text = "88%";
 			this.lblNoClaim.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblShipValue
-			// 
+			//
 			this.lblShipValue.Location = new System.Drawing.Point(136, 136);
 			this.lblShipValue.Name = "lblShipValue";
 			this.lblShipValue.Size = new System.Drawing.Size(56, 13);
 			this.lblShipValue.TabIndex = 26;
 			this.lblShipValue.Text = "88,888 cr.";
 			this.lblShipValue.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblNoClaimLabel
-			// 
+			//
 			this.lblNoClaimLabel.AutoSize = true;
 			this.lblNoClaimLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblNoClaimLabel.Location = new System.Drawing.Point(16, 156);
@@ -202,9 +203,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblNoClaimLabel.Size = new System.Drawing.Size(106, 13);
 			this.lblNoClaimLabel.TabIndex = 25;
 			this.lblNoClaimLabel.Text = "No-Claim Discount:";
-			// 
+			//
 			// lblShipValueLabel
-			// 
+			//
 			this.lblShipValueLabel.AutoSize = true;
 			this.lblShipValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblShipValueLabel.Location = new System.Drawing.Point(16, 136);
@@ -212,9 +213,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblShipValueLabel.Size = new System.Drawing.Size(65, 13);
 			this.lblShipValueLabel.TabIndex = 24;
 			this.lblShipValueLabel.Text = "Ship Value:";
-			// 
+			//
 			// lblInsurance
-			// 
+			//
 			this.lblInsurance.AutoSize = true;
 			this.lblInsurance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblInsurance.Location = new System.Drawing.Point(8, 112);
@@ -222,18 +223,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblInsurance.Size = new System.Drawing.Size(81, 19);
 			this.lblInsurance.TabIndex = 23;
 			this.lblInsurance.Text = "Insurance";
-			// 
+			//
 			// lblInsAmt
-			// 
+			//
 			this.lblInsAmt.Location = new System.Drawing.Point(136, 176);
 			this.lblInsAmt.Name = "lblInsAmt";
 			this.lblInsAmt.Size = new System.Drawing.Size(82, 13);
 			this.lblInsAmt.TabIndex = 30;
 			this.lblInsAmt.Text = "8,888 cr. daily";
 			this.lblInsAmt.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblInsAmtLabel
-			// 
+			//
 			this.lblInsAmtLabel.AutoSize = true;
 			this.lblInsAmtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblInsAmtLabel.Location = new System.Drawing.Point(16, 176);
@@ -241,9 +242,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblInsAmtLabel.Size = new System.Drawing.Size(38, 13);
 			this.lblInsAmtLabel.TabIndex = 29;
 			this.lblInsAmtLabel.Text = "Costs:";
-			// 
+			//
 			// btnPayBack
-			// 
+			//
 			this.btnPayBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPayBack.Location = new System.Drawing.Point(88, 72);
 			this.btnPayBack.Name = "btnPayBack";
@@ -251,9 +252,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPayBack.TabIndex = 2;
 			this.btnPayBack.Text = "Pay Back Loan";
 			this.btnPayBack.Click += new System.EventHandler(this.btnPayBack_Click);
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -261,9 +262,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// lblMaxNoClaim
-			// 
+			//
 			this.lblMaxNoClaim.AutoSize = true;
 			this.lblMaxNoClaim.Location = new System.Drawing.Point(182, 156);
 			this.lblMaxNoClaim.Name = "lblMaxNoClaim";
@@ -271,9 +272,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMaxNoClaim.TabIndex = 33;
 			this.lblMaxNoClaim.Text = "(max)";
 			this.lblMaxNoClaim.Visible = false;
-			// 
+			//
 			// FormViewBank
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(226, 231);

@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -119,9 +120,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnLoad = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numEmpty)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// btnOk
-			// 
+			//
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnOk.Location = new System.Drawing.Point(14, 184);
@@ -129,9 +130,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnOk.Size = new System.Drawing.Size(40, 22);
 			this.btnOk.TabIndex = 15;
 			this.btnOk.Text = "Ok";
-			// 
+			//
 			// btnCancel
-			// 
+			//
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCancel.Location = new System.Drawing.Point(62, 184);
@@ -139,144 +140,144 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnCancel.Size = new System.Drawing.Size(49, 22);
 			this.btnCancel.TabIndex = 16;
 			this.btnCancel.Text = "Cancel";
-			// 
+			//
 			// lblEmpty
-			// 
+			//
 			this.lblEmpty.AutoSize = true;
 			this.lblEmpty.Location = new System.Drawing.Point(176, 58);
 			this.lblEmpty.Name = "lblEmpty";
 			this.lblEmpty.Size = new System.Drawing.Size(143, 13);
 			this.lblEmpty.TabIndex = 38;
 			this.lblEmpty.Text = "Cargo Bays to leave empty:";
-			// 
+			//
 			// chkFuel
-			// 
+			//
 			this.chkFuel.Location = new System.Drawing.Point(8, 8);
 			this.chkFuel.Name = "chkFuel";
 			this.chkFuel.Size = new System.Drawing.Size(160, 16);
 			this.chkFuel.TabIndex = 1;
 			this.chkFuel.Text = "Get full fuel tanks on arrival";
 			this.chkFuel.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkContinuousAttack
-			// 
+			//
 			this.chkContinuousAttack.Location = new System.Drawing.Point(8, 144);
 			this.chkContinuousAttack.Name = "chkContinuousAttack";
 			this.chkContinuousAttack.Size = new System.Drawing.Size(163, 16);
 			this.chkContinuousAttack.TabIndex = 13;
 			this.chkContinuousAttack.Text = "Continuous attack and flight";
 			this.chkContinuousAttack.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkAttackFleeing
-			// 
+			//
 			this.chkAttackFleeing.Location = new System.Drawing.Point(8, 160);
 			this.chkAttackFleeing.Name = "chkAttackFleeing";
 			this.chkAttackFleeing.Size = new System.Drawing.Size(177, 16);
 			this.chkAttackFleeing.TabIndex = 14;
 			this.chkAttackFleeing.Text = "Continue attacking fleeing ship";
 			this.chkAttackFleeing.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkNewspaper
-			// 
+			//
 			this.chkNewspaper.Location = new System.Drawing.Point(8, 40);
 			this.chkNewspaper.Name = "chkNewspaper";
 			this.chkNewspaper.Size = new System.Drawing.Size(155, 16);
 			this.chkNewspaper.TabIndex = 3;
 			this.chkNewspaper.Text = "Always pay for newspaper";
 			this.chkNewspaper.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkRange
-			// 
+			//
 			this.chkRange.Location = new System.Drawing.Point(176, 8);
 			this.chkRange.Name = "chkRange";
 			this.chkRange.Size = new System.Drawing.Size(175, 16);
 			this.chkRange.TabIndex = 5;
 			this.chkRange.Text = "Show range to tracked system";
 			this.chkRange.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkStopTracking
-			// 
+			//
 			this.chkStopTracking.Location = new System.Drawing.Point(176, 24);
 			this.chkStopTracking.Name = "chkStopTracking";
 			this.chkStopTracking.Size = new System.Drawing.Size(139, 16);
 			this.chkStopTracking.TabIndex = 6;
 			this.chkStopTracking.Text = "Stop tracking on arrival";
 			this.chkStopTracking.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkLoan
-			// 
+			//
 			this.chkLoan.Location = new System.Drawing.Point(8, 56);
 			this.chkLoan.Name = "chkLoan";
 			this.chkLoan.Size = new System.Drawing.Size(124, 16);
 			this.chkLoan.TabIndex = 4;
 			this.chkLoan.Text = "Remind about loans";
 			this.chkLoan.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkIgnoreTradersDealing
-			// 
+			//
 			this.chkIgnoreTradersDealing.Location = new System.Drawing.Point(136, 120);
 			this.chkIgnoreTradersDealing.Name = "chkIgnoreTradersDealing";
 			this.chkIgnoreTradersDealing.Size = new System.Drawing.Size(133, 16);
 			this.chkIgnoreTradersDealing.TabIndex = 12;
 			this.chkIgnoreTradersDealing.Text = "Ignore dealing traders";
 			this.chkIgnoreTradersDealing.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkReserveMoney
-			// 
+			//
 			this.chkReserveMoney.Location = new System.Drawing.Point(176, 40);
 			this.chkReserveMoney.Name = "chkReserveMoney";
 			this.chkReserveMoney.Size = new System.Drawing.Size(176, 16);
 			this.chkReserveMoney.TabIndex = 7;
 			this.chkReserveMoney.Text = "Reserve money for warp costs";
 			this.chkReserveMoney.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkIgnoreTraders
-			// 
+			//
 			this.chkIgnoreTraders.Location = new System.Drawing.Point(136, 104);
 			this.chkIgnoreTraders.Name = "chkIgnoreTraders";
 			this.chkIgnoreTraders.Size = new System.Drawing.Size(62, 16);
 			this.chkIgnoreTraders.TabIndex = 11;
 			this.chkIgnoreTraders.Text = "Traders";
 			this.chkIgnoreTraders.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkIgnorePirates
-			// 
+			//
 			this.chkIgnorePirates.Location = new System.Drawing.Point(8, 104);
 			this.chkIgnorePirates.Name = "chkIgnorePirates";
 			this.chkIgnorePirates.Size = new System.Drawing.Size(58, 16);
 			this.chkIgnorePirates.TabIndex = 9;
 			this.chkIgnorePirates.Text = "Pirates";
 			this.chkIgnorePirates.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkIgnorePolice
-			// 
+			//
 			this.chkIgnorePolice.Location = new System.Drawing.Point(74, 104);
 			this.chkIgnorePolice.Name = "chkIgnorePolice";
 			this.chkIgnorePolice.Size = new System.Drawing.Size(54, 16);
 			this.chkIgnorePolice.TabIndex = 10;
 			this.chkIgnorePolice.Text = "Police";
 			this.chkIgnorePolice.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// chkRepair
-			// 
+			//
 			this.chkRepair.Location = new System.Drawing.Point(8, 24);
 			this.chkRepair.Name = "chkRepair";
 			this.chkRepair.Size = new System.Drawing.Size(167, 16);
 			this.chkRepair.TabIndex = 2;
 			this.chkRepair.Text = "Get full hull repairs on arrival";
 			this.chkRepair.CheckedChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// lblIgnore
-			// 
+			//
 			this.lblIgnore.AutoSize = true;
 			this.lblIgnore.Location = new System.Drawing.Point(8, 88);
 			this.lblIgnore.Name = "lblIgnore";
 			this.lblIgnore.Size = new System.Drawing.Size(152, 13);
 			this.lblIgnore.TabIndex = 52;
 			this.lblIgnore.Text = "Always ignore when it is safe:";
-			// 
+			//
 			// numEmpty
-			// 
+			//
 			this.numEmpty.Location = new System.Drawing.Point(312, 56);
 			this.numEmpty.Maximum = new System.Decimal(new int[] {
 																														 99,
@@ -292,9 +293,9 @@ namespace Fryz.Apps.SpaceTrader
 																													 0,
 																													 0});
 			this.numEmpty.ValueChanged += new System.EventHandler(this.controlChanged);
-			// 
+			//
 			// btnSave
-			// 
+			//
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Location = new System.Drawing.Point(119, 184);
 			this.btnSave.Name = "btnSave";
@@ -302,9 +303,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSave.TabIndex = 17;
 			this.btnSave.Text = "Save As Defaults";
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-			// 
+			//
 			// btnLoad
-			// 
+			//
 			this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnLoad.Location = new System.Drawing.Point(234, 184);
 			this.btnLoad.Name = "btnLoad";
@@ -312,9 +313,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnLoad.TabIndex = 18;
 			this.btnLoad.Text = "Load from Defaults";
 			this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-			// 
+			//
 			// FormOptions
-			// 
+			//
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnCancel;

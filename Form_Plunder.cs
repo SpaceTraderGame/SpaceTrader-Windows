@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -168,9 +169,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnDone = new System.Windows.Forms.Button();
 			this.btnJettison = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
+			//
 			// btnPlunderAll9
-			// 
+			//
 			this.btnPlunderAll9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll9.Location = new System.Drawing.Point(100, 220);
 			this.btnPlunderAll9.Name = "btnPlunderAll9";
@@ -178,9 +179,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll9.TabIndex = 141;
 			this.btnPlunderAll9.Text = "All";
 			this.btnPlunderAll9.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty9
-			// 
+			//
 			this.btnPlunderQty9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty9.Location = new System.Drawing.Point(68, 220);
 			this.btnPlunderQty9.Name = "btnPlunderQty9";
@@ -188,9 +189,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty9.TabIndex = 140;
 			this.btnPlunderQty9.Text = "88";
 			this.btnPlunderQty9.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll8
-			// 
+			//
 			this.btnPlunderAll8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll8.Location = new System.Drawing.Point(100, 196);
 			this.btnPlunderAll8.Name = "btnPlunderAll8";
@@ -198,9 +199,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll8.TabIndex = 139;
 			this.btnPlunderAll8.Text = "All";
 			this.btnPlunderAll8.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty8
-			// 
+			//
 			this.btnPlunderQty8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty8.Location = new System.Drawing.Point(68, 196);
 			this.btnPlunderQty8.Name = "btnPlunderQty8";
@@ -208,9 +209,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty8.TabIndex = 138;
 			this.btnPlunderQty8.Text = "88";
 			this.btnPlunderQty8.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll7
-			// 
+			//
 			this.btnPlunderAll7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll7.Location = new System.Drawing.Point(100, 172);
 			this.btnPlunderAll7.Name = "btnPlunderAll7";
@@ -218,9 +219,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll7.TabIndex = 137;
 			this.btnPlunderAll7.Text = "All";
 			this.btnPlunderAll7.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty7
-			// 
+			//
 			this.btnPlunderQty7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty7.Location = new System.Drawing.Point(68, 172);
 			this.btnPlunderQty7.Name = "btnPlunderQty7";
@@ -228,9 +229,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty7.TabIndex = 136;
 			this.btnPlunderQty7.Text = "88";
 			this.btnPlunderQty7.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll6
-			// 
+			//
 			this.btnPlunderAll6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll6.Location = new System.Drawing.Point(100, 148);
 			this.btnPlunderAll6.Name = "btnPlunderAll6";
@@ -238,9 +239,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll6.TabIndex = 135;
 			this.btnPlunderAll6.Text = "All";
 			this.btnPlunderAll6.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty6
-			// 
+			//
 			this.btnPlunderQty6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty6.Location = new System.Drawing.Point(68, 148);
 			this.btnPlunderQty6.Name = "btnPlunderQty6";
@@ -248,9 +249,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty6.TabIndex = 134;
 			this.btnPlunderQty6.Text = "88";
 			this.btnPlunderQty6.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll5
-			// 
+			//
 			this.btnPlunderAll5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll5.Location = new System.Drawing.Point(100, 124);
 			this.btnPlunderAll5.Name = "btnPlunderAll5";
@@ -258,9 +259,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll5.TabIndex = 133;
 			this.btnPlunderAll5.Text = "All";
 			this.btnPlunderAll5.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty5
-			// 
+			//
 			this.btnPlunderQty5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty5.Location = new System.Drawing.Point(68, 124);
 			this.btnPlunderQty5.Name = "btnPlunderQty5";
@@ -268,9 +269,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty5.TabIndex = 132;
 			this.btnPlunderQty5.Text = "88";
 			this.btnPlunderQty5.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll4
-			// 
+			//
 			this.btnPlunderAll4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll4.Location = new System.Drawing.Point(100, 100);
 			this.btnPlunderAll4.Name = "btnPlunderAll4";
@@ -278,9 +279,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll4.TabIndex = 131;
 			this.btnPlunderAll4.Text = "All";
 			this.btnPlunderAll4.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty4
-			// 
+			//
 			this.btnPlunderQty4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty4.Location = new System.Drawing.Point(68, 100);
 			this.btnPlunderQty4.Name = "btnPlunderQty4";
@@ -288,9 +289,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty4.TabIndex = 130;
 			this.btnPlunderQty4.Text = "88";
 			this.btnPlunderQty4.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll3
-			// 
+			//
 			this.btnPlunderAll3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll3.Location = new System.Drawing.Point(100, 76);
 			this.btnPlunderAll3.Name = "btnPlunderAll3";
@@ -298,9 +299,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll3.TabIndex = 129;
 			this.btnPlunderAll3.Text = "All";
 			this.btnPlunderAll3.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty3
-			// 
+			//
 			this.btnPlunderQty3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty3.Location = new System.Drawing.Point(68, 76);
 			this.btnPlunderQty3.Name = "btnPlunderQty3";
@@ -308,9 +309,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty3.TabIndex = 128;
 			this.btnPlunderQty3.Text = "88";
 			this.btnPlunderQty3.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll2
-			// 
+			//
 			this.btnPlunderAll2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll2.Location = new System.Drawing.Point(100, 52);
 			this.btnPlunderAll2.Name = "btnPlunderAll2";
@@ -318,9 +319,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll2.TabIndex = 127;
 			this.btnPlunderAll2.Text = "All";
 			this.btnPlunderAll2.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty2
-			// 
+			//
 			this.btnPlunderQty2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty2.Location = new System.Drawing.Point(68, 52);
 			this.btnPlunderQty2.Name = "btnPlunderQty2";
@@ -328,9 +329,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty2.TabIndex = 126;
 			this.btnPlunderQty2.Text = "88";
 			this.btnPlunderQty2.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll1
-			// 
+			//
 			this.btnPlunderAll1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll1.Location = new System.Drawing.Point(100, 28);
 			this.btnPlunderAll1.Name = "btnPlunderAll1";
@@ -338,9 +339,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll1.TabIndex = 125;
 			this.btnPlunderAll1.Text = "All";
 			this.btnPlunderAll1.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty1
-			// 
+			//
 			this.btnPlunderQty1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty1.Location = new System.Drawing.Point(68, 28);
 			this.btnPlunderQty1.Name = "btnPlunderQty1";
@@ -348,9 +349,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty1.TabIndex = 124;
 			this.btnPlunderQty1.Text = "88";
 			this.btnPlunderQty1.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderAll0
-			// 
+			//
 			this.btnPlunderAll0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderAll0.Location = new System.Drawing.Point(100, 4);
 			this.btnPlunderAll0.Name = "btnPlunderAll0";
@@ -358,9 +359,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderAll0.TabIndex = 123;
 			this.btnPlunderAll0.Text = "All";
 			this.btnPlunderAll0.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// btnPlunderQty0
-			// 
+			//
 			this.btnPlunderQty0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPlunderQty0.Location = new System.Drawing.Point(68, 4);
 			this.btnPlunderQty0.Name = "btnPlunderQty0";
@@ -368,116 +369,116 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPlunderQty0.TabIndex = 122;
 			this.btnPlunderQty0.Text = "88";
 			this.btnPlunderQty0.Click += new System.EventHandler(this.btnPlunder_Click);
-			// 
+			//
 			// lblTradeCmdty9
-			// 
+			//
 			this.lblTradeCmdty9.AutoSize = true;
 			this.lblTradeCmdty9.Location = new System.Drawing.Point(8, 224);
 			this.lblTradeCmdty9.Name = "lblTradeCmdty9";
 			this.lblTradeCmdty9.Size = new System.Drawing.Size(40, 13);
 			this.lblTradeCmdty9.TabIndex = 151;
 			this.lblTradeCmdty9.Text = "Robots";
-			// 
+			//
 			// lblTradeCmdty8
-			// 
+			//
 			this.lblTradeCmdty8.AutoSize = true;
 			this.lblTradeCmdty8.Location = new System.Drawing.Point(8, 200);
 			this.lblTradeCmdty8.Name = "lblTradeCmdty8";
 			this.lblTradeCmdty8.Size = new System.Drawing.Size(51, 13);
 			this.lblTradeCmdty8.TabIndex = 150;
 			this.lblTradeCmdty8.Text = "Narcotics";
-			// 
+			//
 			// lblTradeCmdty2
-			// 
+			//
 			this.lblTradeCmdty2.AutoSize = true;
 			this.lblTradeCmdty2.Location = new System.Drawing.Point(8, 56);
 			this.lblTradeCmdty2.Name = "lblTradeCmdty2";
 			this.lblTradeCmdty2.Size = new System.Drawing.Size(30, 13);
 			this.lblTradeCmdty2.TabIndex = 149;
 			this.lblTradeCmdty2.Text = "Food";
-			// 
+			//
 			// lblTradeCmdty0
-			// 
+			//
 			this.lblTradeCmdty0.AutoSize = true;
 			this.lblTradeCmdty0.Location = new System.Drawing.Point(8, 8);
 			this.lblTradeCmdty0.Name = "lblTradeCmdty0";
 			this.lblTradeCmdty0.Size = new System.Drawing.Size(34, 13);
 			this.lblTradeCmdty0.TabIndex = 148;
 			this.lblTradeCmdty0.Text = "Water";
-			// 
+			//
 			// lblTradeCmdty1
-			// 
+			//
 			this.lblTradeCmdty1.AutoSize = true;
 			this.lblTradeCmdty1.Location = new System.Drawing.Point(8, 32);
 			this.lblTradeCmdty1.Name = "lblTradeCmdty1";
 			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 13);
 			this.lblTradeCmdty1.TabIndex = 147;
 			this.lblTradeCmdty1.Text = "Furs";
-			// 
+			//
 			// lblTradeCmdty6
-			// 
+			//
 			this.lblTradeCmdty6.AutoSize = true;
 			this.lblTradeCmdty6.Location = new System.Drawing.Point(8, 152);
 			this.lblTradeCmdty6.Name = "lblTradeCmdty6";
 			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 13);
 			this.lblTradeCmdty6.TabIndex = 146;
 			this.lblTradeCmdty6.Text = "Medicine";
-			// 
+			//
 			// lblTradeCmdty5
-			// 
+			//
 			this.lblTradeCmdty5.AutoSize = true;
 			this.lblTradeCmdty5.Location = new System.Drawing.Point(8, 128);
 			this.lblTradeCmdty5.Name = "lblTradeCmdty5";
 			this.lblTradeCmdty5.Size = new System.Drawing.Size(49, 13);
 			this.lblTradeCmdty5.TabIndex = 145;
 			this.lblTradeCmdty5.Text = "Firearms";
-			// 
+			//
 			// lblTradeCmdty4
-			// 
+			//
 			this.lblTradeCmdty4.AutoSize = true;
 			this.lblTradeCmdty4.Location = new System.Drawing.Point(8, 104);
 			this.lblTradeCmdty4.Name = "lblTradeCmdty4";
 			this.lblTradeCmdty4.Size = new System.Drawing.Size(41, 13);
 			this.lblTradeCmdty4.TabIndex = 144;
 			this.lblTradeCmdty4.Text = "Games";
-			// 
+			//
 			// lblTradeCmdty3
-			// 
+			//
 			this.lblTradeCmdty3.AutoSize = true;
 			this.lblTradeCmdty3.Location = new System.Drawing.Point(8, 80);
 			this.lblTradeCmdty3.Name = "lblTradeCmdty3";
 			this.lblTradeCmdty3.Size = new System.Drawing.Size(23, 13);
 			this.lblTradeCmdty3.TabIndex = 143;
 			this.lblTradeCmdty3.Text = "Ore";
-			// 
+			//
 			// lblTradeCmdty7
-			// 
+			//
 			this.lblTradeCmdty7.AutoSize = true;
 			this.lblTradeCmdty7.Location = new System.Drawing.Point(8, 176);
 			this.lblTradeCmdty7.Name = "lblTradeCmdty7";
 			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 13);
 			this.lblTradeCmdty7.TabIndex = 142;
 			this.lblTradeCmdty7.Text = "Machines";
-			// 
+			//
 			// lblBaysLabel
-			// 
+			//
 			this.lblBaysLabel.AutoSize = true;
 			this.lblBaysLabel.Location = new System.Drawing.Point(144, 8);
 			this.lblBaysLabel.Name = "lblBaysLabel";
 			this.lblBaysLabel.Size = new System.Drawing.Size(33, 13);
 			this.lblBaysLabel.TabIndex = 152;
 			this.lblBaysLabel.Text = "Bays:";
-			// 
+			//
 			// lblBays
-			// 
+			//
 			this.lblBays.Location = new System.Drawing.Point(176, 8);
 			this.lblBays.Name = "lblBays";
 			this.lblBays.Size = new System.Drawing.Size(33, 13);
 			this.lblBays.TabIndex = 153;
 			this.lblBays.Text = "88/88";
-			// 
+			//
 			// btnDone
-			// 
+			//
 			this.btnDone.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDone.Location = new System.Drawing.Point(87, 252);
@@ -485,9 +486,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnDone.Size = new System.Drawing.Size(44, 22);
 			this.btnDone.TabIndex = 154;
 			this.btnDone.Text = "Done";
-			// 
+			//
 			// btnJettison
-			// 
+			//
 			this.btnJettison.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnJettison.Location = new System.Drawing.Point(150, 24);
 			this.btnJettison.Name = "btnJettison";
@@ -495,9 +496,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnJettison.TabIndex = 155;
 			this.btnJettison.Text = "Jettison";
 			this.btnJettison.Click += new System.EventHandler(this.btnJettison_Click);
-			// 
+			//
 			// FormPlunder
-			// 
+			//
 			this.AcceptButton = this.btnDone;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnDone;

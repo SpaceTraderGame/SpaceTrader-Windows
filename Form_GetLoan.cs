@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -77,18 +78,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblStatement = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// lblQuestion
-			// 
+			//
 			this.lblQuestion.AutoSize = true;
 			this.lblQuestion.Location = new System.Drawing.Point(8, 24);
 			this.lblQuestion.Name = "lblQuestion";
 			this.lblQuestion.Size = new System.Drawing.Size(178, 13);
 			this.lblQuestion.TabIndex = 3;
 			this.lblQuestion.Text = "How much do you want to borrow?";
-			// 
+			//
 			// numAmount
-			// 
+			//
 			this.numAmount.Location = new System.Drawing.Point(184, 22);
 			this.numAmount.Maximum = new System.Decimal(new int[] {
 																															99999,
@@ -109,9 +110,9 @@ namespace Fryz.Apps.SpaceTrader
 																														0,
 																														0,
 																														0});
-			// 
+			//
 			// btnOk
-			// 
+			//
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnOk.Location = new System.Drawing.Point(52, 48);
@@ -119,9 +120,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnOk.Size = new System.Drawing.Size(41, 22);
 			this.btnOk.TabIndex = 2;
 			this.btnOk.Text = "Ok";
-			// 
+			//
 			// btnMax
-			// 
+			//
 			this.btnMax.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMax.Location = new System.Drawing.Point(100, 48);
@@ -130,9 +131,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnMax.TabIndex = 3;
 			this.btnMax.Text = "Max";
 			this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
-			// 
+			//
 			// btnNothing
-			// 
+			//
 			this.btnNothing.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnNothing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNothing.Location = new System.Drawing.Point(148, 48);
@@ -140,17 +141,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnNothing.Size = new System.Drawing.Size(53, 22);
 			this.btnNothing.TabIndex = 4;
 			this.btnNothing.Text = "Nothing";
-			// 
+			//
 			// lblStatement
-			// 
+			//
 			this.lblStatement.Location = new System.Drawing.Point(8, 8);
 			this.lblStatement.Name = "lblStatement";
 			this.lblStatement.Size = new System.Drawing.Size(189, 13);
 			this.lblStatement.TabIndex = 5;
 			this.lblStatement.Text = "You can borrow up to 88,888 credits.";
-			// 
+			//
 			// FormGetLoan
-			// 
+			//
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnNothing;

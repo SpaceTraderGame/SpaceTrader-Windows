@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -236,9 +237,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxCurrent.SuspendLayout();
 			this.boxForHire.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -246,9 +247,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// boxCurrent
-			// 
+			//
 			this.boxCurrent.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																						 this.picLine1,
 																																						 this.btnFire1,
@@ -281,18 +282,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxCurrent.TabIndex = 33;
 			this.boxCurrent.TabStop = false;
 			this.boxCurrent.Text = "Current Roster";
-			// 
+			//
 			// picLine1
-			// 
+			//
 			this.picLine1.BackColor = System.Drawing.Color.DimGray;
 			this.picLine1.Location = new System.Drawing.Point(8, 70);
 			this.picLine1.Name = "picLine1";
 			this.picLine1.Size = new System.Drawing.Size(184, 1);
 			this.picLine1.TabIndex = 132;
 			this.picLine1.TabStop = false;
-			// 
+			//
 			// btnFire1
-			// 
+			//
 			this.btnFire1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFire1.Location = new System.Drawing.Point(152, 80);
 			this.btnFire1.Name = "btnFire1";
@@ -300,9 +301,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnFire1.TabIndex = 2;
 			this.btnFire1.Text = "Fire";
 			this.btnFire1.Click += new System.EventHandler(this.btnFire1_Click);
-			// 
+			//
 			// btnFire0
-			// 
+			//
 			this.btnFire0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFire0.Location = new System.Drawing.Point(152, 16);
 			this.btnFire0.Name = "btnFire0";
@@ -310,177 +311,177 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnFire0.TabIndex = 1;
 			this.btnFire0.Text = "Fire";
 			this.btnFire0.Click += new System.EventHandler(this.btnFire0_Click);
-			// 
+			//
 			// lblRate1
-			// 
+			//
 			this.lblRate1.Location = new System.Drawing.Point(90, 80);
 			this.lblRate1.Name = "lblRate1";
 			this.lblRate1.Size = new System.Drawing.Size(59, 13);
 			this.lblRate1.TabIndex = 76;
 			this.lblRate1.Text = "88 cr. daily";
-			// 
+			//
 			// lblName1
-			// 
+			//
 			this.lblName1.Location = new System.Drawing.Point(12, 80);
 			this.lblName1.Name = "lblName1";
 			this.lblName1.Size = new System.Drawing.Size(72, 13);
 			this.lblName1.TabIndex = 75;
 			this.lblName1.Text = "Xxxxxxxxxxx";
-			// 
+			//
 			// lblEngineer1
-			// 
+			//
 			this.lblEngineer1.Location = new System.Drawing.Point(128, 112);
 			this.lblEngineer1.Name = "lblEngineer1";
 			this.lblEngineer1.Size = new System.Drawing.Size(17, 13);
 			this.lblEngineer1.TabIndex = 74;
 			this.lblEngineer1.Text = "88";
-			// 
+			//
 			// lblTrader1
-			// 
+			//
 			this.lblTrader1.Location = new System.Drawing.Point(52, 112);
 			this.lblTrader1.Name = "lblTrader1";
 			this.lblTrader1.Size = new System.Drawing.Size(17, 13);
 			this.lblTrader1.TabIndex = 73;
 			this.lblTrader1.Text = "88";
-			// 
+			//
 			// lblFighter1
-			// 
+			//
 			this.lblFighter1.Location = new System.Drawing.Point(128, 96);
 			this.lblFighter1.Name = "lblFighter1";
 			this.lblFighter1.Size = new System.Drawing.Size(17, 13);
 			this.lblFighter1.TabIndex = 72;
 			this.lblFighter1.Text = "88";
-			// 
+			//
 			// lblPilot1
-			// 
+			//
 			this.lblPilot1.Location = new System.Drawing.Point(52, 96);
 			this.lblPilot1.Name = "lblPilot1";
 			this.lblPilot1.Size = new System.Drawing.Size(17, 13);
 			this.lblPilot1.TabIndex = 71;
 			this.lblPilot1.Text = "88";
-			// 
+			//
 			// lblEngineerLabel1
-			// 
+			//
 			this.lblEngineerLabel1.AutoSize = true;
 			this.lblEngineerLabel1.Location = new System.Drawing.Point(76, 112);
 			this.lblEngineerLabel1.Name = "lblEngineerLabel1";
 			this.lblEngineerLabel1.Size = new System.Drawing.Size(53, 13);
 			this.lblEngineerLabel1.TabIndex = 70;
 			this.lblEngineerLabel1.Text = "Engineer:";
-			// 
+			//
 			// lblTraderLabel1
-			// 
+			//
 			this.lblTraderLabel1.AutoSize = true;
 			this.lblTraderLabel1.Location = new System.Drawing.Point(12, 112);
 			this.lblTraderLabel1.Name = "lblTraderLabel1";
 			this.lblTraderLabel1.Size = new System.Drawing.Size(41, 13);
 			this.lblTraderLabel1.TabIndex = 69;
 			this.lblTraderLabel1.Text = "Trader:";
-			// 
+			//
 			// lblFighterLabel1
-			// 
+			//
 			this.lblFighterLabel1.AutoSize = true;
 			this.lblFighterLabel1.Location = new System.Drawing.Point(76, 96);
 			this.lblFighterLabel1.Name = "lblFighterLabel1";
 			this.lblFighterLabel1.Size = new System.Drawing.Size(43, 13);
 			this.lblFighterLabel1.TabIndex = 68;
 			this.lblFighterLabel1.Text = "Fighter:";
-			// 
+			//
 			// lblPilotLabel1
-			// 
+			//
 			this.lblPilotLabel1.AutoSize = true;
 			this.lblPilotLabel1.Location = new System.Drawing.Point(12, 96);
 			this.lblPilotLabel1.Name = "lblPilotLabel1";
 			this.lblPilotLabel1.Size = new System.Drawing.Size(29, 13);
 			this.lblPilotLabel1.TabIndex = 67;
 			this.lblPilotLabel1.Text = "Pilot:";
-			// 
+			//
 			// lblRate0
-			// 
+			//
 			this.lblRate0.Location = new System.Drawing.Point(90, 16);
 			this.lblRate0.Name = "lblRate0";
 			this.lblRate0.Size = new System.Drawing.Size(59, 13);
 			this.lblRate0.TabIndex = 66;
 			this.lblRate0.Text = "88 cr. daily";
-			// 
+			//
 			// lblName0
-			// 
+			//
 			this.lblName0.Location = new System.Drawing.Point(12, 16);
 			this.lblName0.Name = "lblName0";
 			this.lblName0.Size = new System.Drawing.Size(72, 13);
 			this.lblName0.TabIndex = 65;
 			this.lblName0.Text = "Xxxxxxxxxxx";
-			// 
+			//
 			// lblEngineer0
-			// 
+			//
 			this.lblEngineer0.Location = new System.Drawing.Point(128, 48);
 			this.lblEngineer0.Name = "lblEngineer0";
 			this.lblEngineer0.Size = new System.Drawing.Size(17, 13);
 			this.lblEngineer0.TabIndex = 64;
 			this.lblEngineer0.Text = "88";
-			// 
+			//
 			// lblTrader0
-			// 
+			//
 			this.lblTrader0.Location = new System.Drawing.Point(52, 48);
 			this.lblTrader0.Name = "lblTrader0";
 			this.lblTrader0.Size = new System.Drawing.Size(17, 13);
 			this.lblTrader0.TabIndex = 63;
 			this.lblTrader0.Text = "88";
-			// 
+			//
 			// lblFighter0
-			// 
+			//
 			this.lblFighter0.Location = new System.Drawing.Point(128, 32);
 			this.lblFighter0.Name = "lblFighter0";
 			this.lblFighter0.Size = new System.Drawing.Size(17, 13);
 			this.lblFighter0.TabIndex = 62;
 			this.lblFighter0.Text = "88";
-			// 
+			//
 			// lblPilot0
-			// 
+			//
 			this.lblPilot0.Location = new System.Drawing.Point(52, 32);
 			this.lblPilot0.Name = "lblPilot0";
 			this.lblPilot0.Size = new System.Drawing.Size(17, 13);
 			this.lblPilot0.TabIndex = 61;
 			this.lblPilot0.Text = "88";
-			// 
+			//
 			// lblEngineerLabel0
-			// 
+			//
 			this.lblEngineerLabel0.AutoSize = true;
 			this.lblEngineerLabel0.Location = new System.Drawing.Point(76, 48);
 			this.lblEngineerLabel0.Name = "lblEngineerLabel0";
 			this.lblEngineerLabel0.Size = new System.Drawing.Size(53, 13);
 			this.lblEngineerLabel0.TabIndex = 60;
 			this.lblEngineerLabel0.Text = "Engineer:";
-			// 
+			//
 			// lblTraderLabel0
-			// 
+			//
 			this.lblTraderLabel0.AutoSize = true;
 			this.lblTraderLabel0.Location = new System.Drawing.Point(12, 48);
 			this.lblTraderLabel0.Name = "lblTraderLabel0";
 			this.lblTraderLabel0.Size = new System.Drawing.Size(41, 13);
 			this.lblTraderLabel0.TabIndex = 59;
 			this.lblTraderLabel0.Text = "Trader:";
-			// 
+			//
 			// lblFighterLabel0
-			// 
+			//
 			this.lblFighterLabel0.AutoSize = true;
 			this.lblFighterLabel0.Location = new System.Drawing.Point(76, 32);
 			this.lblFighterLabel0.Name = "lblFighterLabel0";
 			this.lblFighterLabel0.Size = new System.Drawing.Size(43, 13);
 			this.lblFighterLabel0.TabIndex = 58;
 			this.lblFighterLabel0.Text = "Fighter:";
-			// 
+			//
 			// lblPilotLabel0
-			// 
+			//
 			this.lblPilotLabel0.AutoSize = true;
 			this.lblPilotLabel0.Location = new System.Drawing.Point(12, 32);
 			this.lblPilotLabel0.Name = "lblPilotLabel0";
 			this.lblPilotLabel0.Size = new System.Drawing.Size(29, 13);
 			this.lblPilotLabel0.TabIndex = 57;
 			this.lblPilotLabel0.Text = "Pilot:";
-			// 
+			//
 			// boxForHire
-			// 
+			//
 			this.boxForHire.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																						 this.btnHire2,
 																																						 this.lblRate2,
@@ -500,9 +501,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxForHire.TabIndex = 34;
 			this.boxForHire.TabStop = false;
 			this.boxForHire.Text = "Mercenary For Hire";
-			// 
+			//
 			// btnHire2
-			// 
+			//
 			this.btnHire2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnHire2.Location = new System.Drawing.Point(152, 16);
 			this.btnHire2.Name = "btnHire2";
@@ -510,93 +511,93 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnHire2.TabIndex = 4;
 			this.btnHire2.Text = "Hire";
 			this.btnHire2.Click += new System.EventHandler(this.btnHire2_Click);
-			// 
+			//
 			// lblRate2
-			// 
+			//
 			this.lblRate2.Location = new System.Drawing.Point(90, 16);
 			this.lblRate2.Name = "lblRate2";
 			this.lblRate2.Size = new System.Drawing.Size(59, 13);
 			this.lblRate2.TabIndex = 97;
 			this.lblRate2.Text = "88 cr. daily";
-			// 
+			//
 			// lblName2
-			// 
+			//
 			this.lblName2.Location = new System.Drawing.Point(12, 16);
 			this.lblName2.Name = "lblName2";
 			this.lblName2.Size = new System.Drawing.Size(72, 13);
 			this.lblName2.TabIndex = 96;
 			this.lblName2.Text = "Xxxxxxxxxxx";
-			// 
+			//
 			// lblEngineer2
-			// 
+			//
 			this.lblEngineer2.Location = new System.Drawing.Point(128, 48);
 			this.lblEngineer2.Name = "lblEngineer2";
 			this.lblEngineer2.Size = new System.Drawing.Size(17, 13);
 			this.lblEngineer2.TabIndex = 95;
 			this.lblEngineer2.Text = "88";
-			// 
+			//
 			// lblTrader2
-			// 
+			//
 			this.lblTrader2.Location = new System.Drawing.Point(52, 48);
 			this.lblTrader2.Name = "lblTrader2";
 			this.lblTrader2.Size = new System.Drawing.Size(17, 13);
 			this.lblTrader2.TabIndex = 94;
 			this.lblTrader2.Text = "88";
-			// 
+			//
 			// lblFighter2
-			// 
+			//
 			this.lblFighter2.Location = new System.Drawing.Point(128, 32);
 			this.lblFighter2.Name = "lblFighter2";
 			this.lblFighter2.Size = new System.Drawing.Size(17, 13);
 			this.lblFighter2.TabIndex = 93;
 			this.lblFighter2.Text = "88";
-			// 
+			//
 			// lblPilot2
-			// 
+			//
 			this.lblPilot2.Location = new System.Drawing.Point(52, 32);
 			this.lblPilot2.Name = "lblPilot2";
 			this.lblPilot2.Size = new System.Drawing.Size(17, 13);
 			this.lblPilot2.TabIndex = 92;
 			this.lblPilot2.Text = "88";
-			// 
+			//
 			// lblEngineerLabel2
-			// 
+			//
 			this.lblEngineerLabel2.AutoSize = true;
 			this.lblEngineerLabel2.Location = new System.Drawing.Point(76, 48);
 			this.lblEngineerLabel2.Name = "lblEngineerLabel2";
 			this.lblEngineerLabel2.Size = new System.Drawing.Size(53, 13);
 			this.lblEngineerLabel2.TabIndex = 91;
 			this.lblEngineerLabel2.Text = "Engineer:";
-			// 
+			//
 			// lblTraderLabel2
-			// 
+			//
 			this.lblTraderLabel2.AutoSize = true;
 			this.lblTraderLabel2.Location = new System.Drawing.Point(12, 48);
 			this.lblTraderLabel2.Name = "lblTraderLabel2";
 			this.lblTraderLabel2.Size = new System.Drawing.Size(41, 13);
 			this.lblTraderLabel2.TabIndex = 90;
 			this.lblTraderLabel2.Text = "Trader:";
-			// 
+			//
 			// lblFighterLabel2
-			// 
+			//
 			this.lblFighterLabel2.AutoSize = true;
 			this.lblFighterLabel2.Location = new System.Drawing.Point(76, 32);
 			this.lblFighterLabel2.Name = "lblFighterLabel2";
 			this.lblFighterLabel2.Size = new System.Drawing.Size(43, 13);
 			this.lblFighterLabel2.TabIndex = 89;
 			this.lblFighterLabel2.Text = "Fighter:";
-			// 
+			//
 			// lblPilotLabel2
-			// 
+			//
 			this.lblPilotLabel2.AutoSize = true;
 			this.lblPilotLabel2.Location = new System.Drawing.Point(12, 32);
 			this.lblPilotLabel2.Name = "lblPilotLabel2";
 			this.lblPilotLabel2.Size = new System.Drawing.Size(29, 13);
 			this.lblPilotLabel2.TabIndex = 88;
 			this.lblPilotLabel2.Text = "Pilot:";
-			// 
+			//
 			// lblStatus2
-			// 
+			//
 			this.lblStatus2.Location = new System.Drawing.Point(12, 32);
 			this.lblStatus2.Name = "lblStatus2";
 			this.lblStatus2.Size = new System.Drawing.Size(176, 13);
@@ -604,9 +605,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblStatus2.Text = "No one for hire.";
 			this.lblStatus2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.lblStatus2.Visible = false;
-			// 
+			//
 			// lblStatus0
-			// 
+			//
 			this.lblStatus0.Location = new System.Drawing.Point(12, 32);
 			this.lblStatus0.Name = "lblStatus0";
 			this.lblStatus0.Size = new System.Drawing.Size(176, 13);
@@ -614,9 +615,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblStatus0.Text = "No quarters available.";
 			this.lblStatus0.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.lblStatus0.Visible = false;
-			// 
+			//
 			// lblStatus1
-			// 
+			//
 			this.lblStatus1.Location = new System.Drawing.Point(12, 96);
 			this.lblStatus1.Name = "lblStatus1";
 			this.lblStatus1.Size = new System.Drawing.Size(176, 13);
@@ -624,9 +625,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblStatus1.Text = "No quarters available.";
 			this.lblStatus1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.lblStatus1.Visible = false;
-			// 
+			//
 			// FormViewPersonnel
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(424, 151);

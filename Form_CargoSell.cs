@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -118,25 +119,25 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblProfit = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// lblQuestion
-			// 
+			//
 			this.lblQuestion.Location = new System.Drawing.Point(8, 50);
 			this.lblQuestion.Name = "lblQuestion";
 			this.lblQuestion.Size = new System.Drawing.Size(160, 13);
 			this.lblQuestion.TabIndex = 1;
 			this.lblQuestion.Text = "How many do you want to sell?";
-			// 
+			//
 			// lblStatement
-			// 
+			//
 			this.lblStatement.Location = new System.Drawing.Point(8, 8);
 			this.lblStatement.Name = "lblStatement";
 			this.lblStatement.Size = new System.Drawing.Size(302, 13);
 			this.lblStatement.TabIndex = 3;
 			this.lblStatement.Text = "The trader wants to by Machines, and offers 8,888 cr. each.";
-			// 
+			//
 			// numAmount
-			// 
+			//
 			this.numAmount.Location = new System.Drawing.Point(168, 48);
 			this.numAmount.Minimum = new System.Decimal(new int[] {
 																															1,
@@ -151,9 +152,9 @@ namespace Fryz.Apps.SpaceTrader
 																														0,
 																														0,
 																														0});
-			// 
+			//
 			// btnOk
-			// 
+			//
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnOk.Location = new System.Drawing.Point(83, 74);
@@ -161,9 +162,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnOk.Size = new System.Drawing.Size(41, 22);
 			this.btnOk.TabIndex = 2;
 			this.btnOk.Text = "Ok";
-			// 
+			//
 			// btnAll
-			// 
+			//
 			this.btnAll.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAll.Location = new System.Drawing.Point(131, 74);
@@ -172,9 +173,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnAll.TabIndex = 3;
 			this.btnAll.Text = "All";
 			this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
-			// 
+			//
 			// btnNone
-			// 
+			//
 			this.btnNone.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNone.Location = new System.Drawing.Point(179, 74);
@@ -182,25 +183,25 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnNone.Size = new System.Drawing.Size(41, 22);
 			this.btnNone.TabIndex = 4;
 			this.btnNone.Text = "None";
-			// 
+			//
 			// lblPaid
-			// 
+			//
 			this.lblPaid.Location = new System.Drawing.Point(8, 21);
 			this.lblPaid.Name = "lblPaid";
 			this.lblPaid.Size = new System.Drawing.Size(266, 13);
 			this.lblPaid.TabIndex = 5;
 			this.lblPaid.Text = "You paid about 8,888 cr. per unit, and have 88 units.";
-			// 
+			//
 			// lblProfit
-			// 
+			//
 			this.lblProfit.Location = new System.Drawing.Point(8, 34);
 			this.lblProfit.Name = "lblProfit";
 			this.lblProfit.Size = new System.Drawing.Size(200, 13);
 			this.lblProfit.TabIndex = 6;
 			this.lblProfit.Text = "It costs 8,888 cr. per unit for disposal.";
-			// 
+			//
 			// FormCargoSell
-			// 
+			//
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnNone;

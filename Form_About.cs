@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -71,9 +72,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblAbout = new System.Windows.Forms.Label();
 			this.picLogo = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -81,9 +82,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// lblTitle
-			// 
+			//
 			this.lblTitle.AutoSize = true;
 			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTitle.Location = new System.Drawing.Point(172, 8);
@@ -91,9 +92,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTitle.Size = new System.Drawing.Size(163, 13);
 			this.lblTitle.TabIndex = 33;
 			this.lblTitle.Text = "Space Trader for Windows 1.3";
-			// 
+			//
 			// lblAbout
-			// 
+			//
 			this.lblAbout.Location = new System.Drawing.Point(172, 32);
 			this.lblAbout.Name = "lblAbout";
 			this.lblAbout.Size = new System.Drawing.Size(272, 160);
@@ -103,18 +104,18 @@ namespace Fryz.Apps.SpaceTrader
 				Strings.CopyrightChar + " 2000-2002 by Peter Spronk\r\nspace_trader@hotmail.com\r\n\r\nPictures copyright " +
 				Strings.CopyrightChar + " 2000 by Alexander Lawrence\r\n\r\nThis game is freeware under a GNU General " +
 				"Public License.\r\n\r\nhttp://www.frenchfryz.com/jay/spacetrader/";
-			// 
+			//
 			// picLogo
-			// 
+			//
 			this.picLogo.Image = ((System.Drawing.Bitmap)(resources.GetObject("picLogo.Image")));
 			this.picLogo.Location = new System.Drawing.Point(8, 8);
 			this.picLogo.Name = "picLogo";
 			this.picLogo.Size = new System.Drawing.Size(160, 160);
 			this.picLogo.TabIndex = 35;
 			this.picLogo.TabStop = false;
-			// 
+			//
 			// FormAbout
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(446, 191);

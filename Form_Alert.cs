@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -175,17 +176,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.ilImages = new System.Windows.Forms.ImageList(this.components);
 			this.tmrTick = new System.Windows.Forms.Timer(this.components);
 			this.SuspendLayout();
-			// 
+			//
 			// lblText
-			// 
+			//
 			this.lblText.Location = new System.Drawing.Point(8, 8);
 			this.lblText.Name = "lblText";
 			this.lblText.Size = new System.Drawing.Size(12, 13);
 			this.lblText.TabIndex = 3;
 			this.lblText.Text = "X";
-			// 
+			//
 			// btn1
-			// 
+			//
 			this.btn1.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btn1.Location = new System.Drawing.Point(115, 32);
@@ -193,9 +194,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btn1.Size = new System.Drawing.Size(40, 22);
 			this.btn1.TabIndex = 1;
 			this.btn1.Text = "Ok";
-			// 
+			//
 			// btn2
-			// 
+			//
 			this.btn2.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btn2.Location = new System.Drawing.Point(200, 32);
@@ -204,21 +205,21 @@ namespace Fryz.Apps.SpaceTrader
 			this.btn2.TabIndex = 2;
 			this.btn2.Text = "No";
 			this.btn2.Visible = false;
-			// 
+			//
 			// ilImages
-			// 
+			//
 			this.ilImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilImages.ImageSize = new System.Drawing.Size(160, 160);
 			this.ilImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilImages.ImageStream")));
 			this.ilImages.TransparentColor = System.Drawing.Color.Empty;
-			// 
+			//
 			// tmrTick
-			// 
+			//
 			this.tmrTick.Interval = 4000;
 			this.tmrTick.Tick += new System.EventHandler(this.tmrTick_Tick);
-			// 
+			//
 			// FormAlert
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(270, 63);
 			this.ControlBox = false;

@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -95,9 +96,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblInsLabel = new System.Windows.Forms.Label();
 			this.picLine = new System.Windows.Forms.PictureBox();
 			this.SuspendLayout();
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -105,54 +106,54 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// lblMerc
-			// 
+			//
 			this.lblMerc.Location = new System.Drawing.Point(104, 8);
 			this.lblMerc.Name = "lblMerc";
 			this.lblMerc.Size = new System.Drawing.Size(39, 13);
 			this.lblMerc.TabIndex = 36;
 			this.lblMerc.Text = "888 cr.";
 			this.lblMerc.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblIns
-			// 
+			//
 			this.lblIns.Location = new System.Drawing.Point(104, 24);
 			this.lblIns.Name = "lblIns";
 			this.lblIns.Size = new System.Drawing.Size(39, 13);
 			this.lblIns.TabIndex = 40;
 			this.lblIns.Text = "888 cr.";
 			this.lblIns.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblInt
-			// 
+			//
 			this.lblInt.Location = new System.Drawing.Point(104, 40);
 			this.lblInt.Name = "lblInt";
 			this.lblInt.Size = new System.Drawing.Size(39, 13);
 			this.lblInt.TabIndex = 44;
 			this.lblInt.Text = "888 cr.";
 			this.lblInt.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblTax
-			// 
+			//
 			this.lblTax.Location = new System.Drawing.Point(104, 56);
 			this.lblTax.Name = "lblTax";
 			this.lblTax.Size = new System.Drawing.Size(39, 13);
 			this.lblTax.TabIndex = 48;
 			this.lblTax.Text = "888 cr.";
 			this.lblTax.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblTotal
-			// 
+			//
 			this.lblTotal.Location = new System.Drawing.Point(104, 79);
 			this.lblTotal.Name = "lblTotal";
 			this.lblTotal.Size = new System.Drawing.Size(39, 13);
 			this.lblTotal.TabIndex = 52;
 			this.lblTotal.Text = "888 cr.";
 			this.lblTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
+			//
 			// lblTotalLabel
-			// 
+			//
 			this.lblTotalLabel.AutoSize = true;
 			this.lblTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTotalLabel.Location = new System.Drawing.Point(8, 79);
@@ -160,9 +161,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTotalLabel.Size = new System.Drawing.Size(34, 13);
 			this.lblTotalLabel.TabIndex = 7;
 			this.lblTotalLabel.Text = "Total:";
-			// 
+			//
 			// lblTaxLabel
-			// 
+			//
 			this.lblTaxLabel.AutoSize = true;
 			this.lblTaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTaxLabel.Location = new System.Drawing.Point(8, 56);
@@ -170,9 +171,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTaxLabel.Size = new System.Drawing.Size(84, 13);
 			this.lblTaxLabel.TabIndex = 6;
 			this.lblTaxLabel.Text = "Wormhole Tax:";
-			// 
+			//
 			// lblIntLabel
-			// 
+			//
 			this.lblIntLabel.AutoSize = true;
 			this.lblIntLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblIntLabel.Location = new System.Drawing.Point(8, 40);
@@ -180,9 +181,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblIntLabel.Size = new System.Drawing.Size(47, 13);
 			this.lblIntLabel.TabIndex = 5;
 			this.lblIntLabel.Text = "Interest:";
-			// 
+			//
 			// lblMercLabel
-			// 
+			//
 			this.lblMercLabel.AutoSize = true;
 			this.lblMercLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblMercLabel.Location = new System.Drawing.Point(8, 8);
@@ -190,9 +191,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblMercLabel.Size = new System.Drawing.Size(72, 13);
 			this.lblMercLabel.TabIndex = 4;
 			this.lblMercLabel.Text = "Mercenaries:";
-			// 
+			//
 			// lblInsLabel
-			// 
+			//
 			this.lblInsLabel.AutoSize = true;
 			this.lblInsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblInsLabel.Location = new System.Drawing.Point(8, 24);
@@ -200,18 +201,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblInsLabel.Size = new System.Drawing.Size(59, 13);
 			this.lblInsLabel.TabIndex = 3;
 			this.lblInsLabel.Text = "Insurance:";
-			// 
+			//
 			// picLine
-			// 
+			//
 			this.picLine.BackColor = System.Drawing.Color.DimGray;
 			this.picLine.Location = new System.Drawing.Point(6, 73);
 			this.picLine.Name = "picLine";
 			this.picLine.Size = new System.Drawing.Size(138, 1);
 			this.picLine.TabIndex = 134;
 			this.picLine.TabStop = false;
-			// 
+			//
 			// FormCosts
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(148, 99);

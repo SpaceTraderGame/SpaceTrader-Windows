@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -65,9 +66,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose = new System.Windows.Forms.Button();
 			this.lblQuests = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
-			// 
+			//
 			// btnClose
-			// 
+			//
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -75,9 +76,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			// 
+			//
 			// lblQuests
-			// 
+			//
 			this.lblQuests.LinkArea = new System.Windows.Forms.LinkArea(0, 0);
 			this.lblQuests.Location = new System.Drawing.Point(8, 8);
 			this.lblQuests.Name = "lblQuests";
@@ -107,9 +108,9 @@ Get rid of those pesky tribbles.
 
 Claim your moon at Utopia.";
 			this.lblQuests.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblQuests_LinkClicked);
-			// 
+			//
 			// FormViewQuests
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(378, 325);

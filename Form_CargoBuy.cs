@@ -1,9 +1,10 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
+ * Additional coding by David Pierron
  * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -17,7 +18,7 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
+ *
  * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
@@ -129,26 +130,26 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblAfford = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numAmount)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// lblQuestion
-			// 
+			//
 			this.lblQuestion.AutoSize = true;
 			this.lblQuestion.Location = new System.Drawing.Point(8, 24);
 			this.lblQuestion.Name = "lblQuestion";
 			this.lblQuestion.Size = new System.Drawing.Size(161, 13);
 			this.lblQuestion.TabIndex = 1;
 			this.lblQuestion.Text = "How many do you want to buy?";
-			// 
+			//
 			// lblStatement
-			// 
+			//
 			this.lblStatement.Location = new System.Drawing.Point(8, 8);
 			this.lblStatement.Name = "lblStatement";
 			this.lblStatement.Size = new System.Drawing.Size(326, 13);
 			this.lblStatement.TabIndex = 3;
 			this.lblStatement.Text = "The trader wants to sell Machines for the price of 8,888 cr. each.";
-			// 
+			//
 			// numAmount
-			// 
+			//
 			this.numAmount.Location = new System.Drawing.Point(168, 22);
 			this.numAmount.Maximum = new System.Decimal(new int[] {
 																															999,
@@ -168,9 +169,9 @@ namespace Fryz.Apps.SpaceTrader
 																														0,
 																														0,
 																														0});
-			// 
+			//
 			// btnOk
-			// 
+			//
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnOk.Location = new System.Drawing.Point(95, 48);
@@ -178,9 +179,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnOk.Size = new System.Drawing.Size(41, 22);
 			this.btnOk.TabIndex = 2;
 			this.btnOk.Text = "Ok";
-			// 
+			//
 			// btnAll
-			// 
+			//
 			this.btnAll.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAll.Location = new System.Drawing.Point(143, 48);
@@ -189,9 +190,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnAll.TabIndex = 3;
 			this.btnAll.Text = "All";
 			this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
-			// 
+			//
 			// btnNone
-			// 
+			//
 			this.btnNone.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNone.Location = new System.Drawing.Point(191, 48);
@@ -199,27 +200,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnNone.Size = new System.Drawing.Size(41, 22);
 			this.btnNone.TabIndex = 4;
 			this.btnNone.Text = "None";
-			// 
+			//
 			// lblAvailable
-			// 
+			//
 			this.lblAvailable.Location = new System.Drawing.Point(8, 21);
 			this.lblAvailable.Name = "lblAvailable";
 			this.lblAvailable.Size = new System.Drawing.Size(163, 13);
 			this.lblAvailable.TabIndex = 5;
 			this.lblAvailable.Text = "The trader has 88 units for sale.";
 			this.lblAvailable.Visible = false;
-			// 
+			//
 			// lblAfford
-			// 
+			//
 			this.lblAfford.Location = new System.Drawing.Point(8, 34);
 			this.lblAfford.Name = "lblAfford";
 			this.lblAfford.Size = new System.Drawing.Size(157, 13);
 			this.lblAfford.TabIndex = 6;
 			this.lblAfford.Text = "You can afford to buy 88 units.";
 			this.lblAfford.Visible = false;
-			// 
+			//
 			// FormCargoBuy
-			// 
+			//
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnNone;
