@@ -1,6 +1,6 @@
 /*******************************************************************************
  *
- * Space Trader for Windows File Converter 2.0.0
+ * Space Trader for Windows File Converter 2.00
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
  *
@@ -39,9 +39,9 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Hashtable	hash	= base.Serialize();
 
-			hash.Add("_id",					(int)_id);
-			hash.Add("_skills",			_skills);
-			hash.Add("_curSystem",	(int)(_curSystem == null ? StarSystemId.NA : _curSystem.Id));
+			hash.Add("_id",						(int)_id);
+			hash.Add("_skills",				_skills);
+			hash.Add("_curSystemId",	(int)(_curSystem == null ? StarSystemId.NA : _curSystem.Id));
 
 			return hash;
 		}
