@@ -662,7 +662,7 @@ namespace Fryz.Apps.SpaceTrader
 					FormAlert.Alert(AlertType.EncounterDumpWarning, owner) == DialogResult.Yes)
 				{
 					int	unitCost	= 0;
-					int	maxAmount	= qtyInHand;
+					int	maxAmount	= (op == CargoSellOp.SellTrader) ? Math.Min(qtyInHand, Opponent.FreeCargoBays) : qtyInHand;
 					if (op == CargoSellOp.Dump)
 					{
 						unitCost		= 5 * ((int)Difficulty + 1);
