@@ -281,6 +281,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Pen						DEFAULT_PEN		= new Pen(Color.Black);
 		private	Brush					DEFAULT_BRUSH	= new SolidBrush(Color.White);
+		private System.Windows.Forms.ToolTip tipSpecial;
+		private System.Windows.Forms.ToolTip tipMerc;
 
 		private string				SaveGameFile	= null;
 
@@ -658,6 +660,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.ilChartImages = new System.Windows.Forms.ImageList(this.components);
 			this.ilShipImages = new System.Windows.Forms.ImageList(this.components);
 			this.ilDirectionImages = new System.Windows.Forms.ImageList(this.components);
+			this.tipSpecial = new System.Windows.Forms.ToolTip(this.components);
+			this.tipMerc = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCash)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelBays)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCosts)).BeginInit();
@@ -896,9 +900,8 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxShortRangeChart
 			// 
-			this.boxShortRangeChart.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
-			this.boxShortRangeChart.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																										 this.picShortRangeChart});
+			this.boxShortRangeChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.boxShortRangeChart.Controls.Add(this.picShortRangeChart);
 			this.boxShortRangeChart.Location = new System.Drawing.Point(364, 306);
 			this.boxShortRangeChart.Name = "boxShortRangeChart";
 			this.boxShortRangeChart.Size = new System.Drawing.Size(176, 168);
@@ -908,14 +911,13 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxGalacticChart
 			// 
-			this.boxGalacticChart.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
+			this.boxGalacticChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.boxGalacticChart.BackColor = System.Drawing.SystemColors.Control;
-			this.boxGalacticChart.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																									 this.lblWormhole,
-																																									 this.lblWormholeLabel,
-																																									 this.btnJump,
-																																									 this.btnFind,
-																																									 this.picGalacticChart});
+			this.boxGalacticChart.Controls.Add(this.lblWormhole);
+			this.boxGalacticChart.Controls.Add(this.lblWormholeLabel);
+			this.boxGalacticChart.Controls.Add(this.btnJump);
+			this.boxGalacticChart.Controls.Add(this.btnFind);
+			this.boxGalacticChart.Controls.Add(this.picGalacticChart);
 			this.boxGalacticChart.Location = new System.Drawing.Point(180, 306);
 			this.boxGalacticChart.Name = "boxGalacticChart";
 			this.boxGalacticChart.Size = new System.Drawing.Size(176, 168);
@@ -961,29 +963,28 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxTargetSystem
 			// 
-			this.boxTargetSystem.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
-			this.boxTargetSystem.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																									this.btnTrack,
-																																									this.btnNextSystem,
-																																									this.btnPrevSystem,
-																																									this.lblTargetOutOfRange,
-																																									this.btnWarp,
-																																									this.lblTargetPolSys,
-																																									this.lblTargetSize,
-																																									this.lblTargetTech,
-																																									this.lblTargetDistance,
-																																									this.lblTargetPirates,
-																																									this.lblTargetPolice,
-																																									this.lblTargetResource,
-																																									this.lblTargetDistanceLabel,
-																																									this.lblTargetPiratesLabel,
-																																									this.lblTargetPoliceLabel,
-																																									this.lblTargetResourceLabel,
-																																									this.lblTargetGovtLabel,
-																																									this.lblTargetTechLabel,
-																																									this.lblTargetSizeLabel,
-																																									this.lblTargetName,
-																																									this.lblTargetNameLabel});
+			this.boxTargetSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.boxTargetSystem.Controls.Add(this.btnTrack);
+			this.boxTargetSystem.Controls.Add(this.btnNextSystem);
+			this.boxTargetSystem.Controls.Add(this.btnPrevSystem);
+			this.boxTargetSystem.Controls.Add(this.lblTargetOutOfRange);
+			this.boxTargetSystem.Controls.Add(this.btnWarp);
+			this.boxTargetSystem.Controls.Add(this.lblTargetPolSys);
+			this.boxTargetSystem.Controls.Add(this.lblTargetSize);
+			this.boxTargetSystem.Controls.Add(this.lblTargetTech);
+			this.boxTargetSystem.Controls.Add(this.lblTargetDistance);
+			this.boxTargetSystem.Controls.Add(this.lblTargetPirates);
+			this.boxTargetSystem.Controls.Add(this.lblTargetPolice);
+			this.boxTargetSystem.Controls.Add(this.lblTargetResource);
+			this.boxTargetSystem.Controls.Add(this.lblTargetDistanceLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetPiratesLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetPoliceLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetResourceLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetGovtLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetTechLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetSizeLabel);
+			this.boxTargetSystem.Controls.Add(this.lblTargetName);
+			this.boxTargetSystem.Controls.Add(this.lblTargetNameLabel);
 			this.boxTargetSystem.Location = new System.Drawing.Point(548, 306);
 			this.boxTargetSystem.Name = "boxTargetSystem";
 			this.boxTargetSystem.Size = new System.Drawing.Size(216, 168);
@@ -1102,7 +1103,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetDistanceLabel.Location = new System.Drawing.Point(8, 128);
 			this.lblTargetDistanceLabel.Name = "lblTargetDistanceLabel";
-			this.lblTargetDistanceLabel.Size = new System.Drawing.Size(53, 13);
+			this.lblTargetDistanceLabel.Size = new System.Drawing.Size(53, 16);
 			this.lblTargetDistanceLabel.TabIndex = 8;
 			this.lblTargetDistanceLabel.Text = "Distance:";
 			// 
@@ -1112,7 +1113,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetPiratesLabel.Location = new System.Drawing.Point(8, 112);
 			this.lblTargetPiratesLabel.Name = "lblTargetPiratesLabel";
-			this.lblTargetPiratesLabel.Size = new System.Drawing.Size(44, 13);
+			this.lblTargetPiratesLabel.Size = new System.Drawing.Size(44, 16);
 			this.lblTargetPiratesLabel.TabIndex = 7;
 			this.lblTargetPiratesLabel.Text = "Pirates:";
 			// 
@@ -1122,7 +1123,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetPoliceLabel.Location = new System.Drawing.Point(8, 96);
 			this.lblTargetPoliceLabel.Name = "lblTargetPoliceLabel";
-			this.lblTargetPoliceLabel.Size = new System.Drawing.Size(40, 13);
+			this.lblTargetPoliceLabel.Size = new System.Drawing.Size(40, 16);
 			this.lblTargetPoliceLabel.TabIndex = 6;
 			this.lblTargetPoliceLabel.Text = "Police:";
 			// 
@@ -1132,7 +1133,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetResourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetResourceLabel.Location = new System.Drawing.Point(8, 80);
 			this.lblTargetResourceLabel.Name = "lblTargetResourceLabel";
-			this.lblTargetResourceLabel.Size = new System.Drawing.Size(58, 13);
+			this.lblTargetResourceLabel.Size = new System.Drawing.Size(58, 16);
 			this.lblTargetResourceLabel.TabIndex = 5;
 			this.lblTargetResourceLabel.Text = "Resource:";
 			// 
@@ -1142,7 +1143,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetGovtLabel.Location = new System.Drawing.Point(8, 64);
 			this.lblTargetGovtLabel.Name = "lblTargetGovtLabel";
-			this.lblTargetGovtLabel.Size = new System.Drawing.Size(72, 13);
+			this.lblTargetGovtLabel.Size = new System.Drawing.Size(72, 16);
 			this.lblTargetGovtLabel.TabIndex = 4;
 			this.lblTargetGovtLabel.Text = "Government:";
 			// 
@@ -1152,7 +1153,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetTechLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblTargetTechLabel.Name = "lblTargetTechLabel";
-			this.lblTargetTechLabel.Size = new System.Drawing.Size(65, 13);
+			this.lblTargetTechLabel.Size = new System.Drawing.Size(65, 16);
 			this.lblTargetTechLabel.TabIndex = 3;
 			this.lblTargetTechLabel.Text = "Tech Level:";
 			// 
@@ -1162,7 +1163,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetSizeLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblTargetSizeLabel.Name = "lblTargetSizeLabel";
-			this.lblTargetSizeLabel.Size = new System.Drawing.Size(31, 13);
+			this.lblTargetSizeLabel.Size = new System.Drawing.Size(31, 16);
 			this.lblTargetSizeLabel.TabIndex = 2;
 			this.lblTargetSizeLabel.Text = "Size:";
 			// 
@@ -1180,124 +1181,123 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetNameLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblTargetNameLabel.Name = "lblTargetNameLabel";
-			this.lblTargetNameLabel.Size = new System.Drawing.Size(39, 13);
+			this.lblTargetNameLabel.Size = new System.Drawing.Size(39, 16);
 			this.lblTargetNameLabel.TabIndex = 0;
 			this.lblTargetNameLabel.Text = "Name:";
 			// 
 			// boxCargo
 			// 
-			this.boxCargo.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
-			this.boxCargo.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																					 this.picCargoLine3,
-																																					 this.picCargoLine2,
-																																					 this.picCargoLine0,
-																																					 this.picCargoLine1,
-																																					 this.lblTargetPct9,
-																																					 this.lblTargetDiff9,
-																																					 this.lblTargetPrice9,
-																																					 this.btnBuyMax9,
-																																					 this.btnBuyQty9,
-																																					 this.lblBuyPrice9,
-																																					 this.btnSellAll9,
-																																					 this.btnSellQty9,
-																																					 this.lblSellPrice9,
-																																					 this.lblTargetPct8,
-																																					 this.lblTargetDiff8,
-																																					 this.lblTargetPrice8,
-																																					 this.btnBuyMax8,
-																																					 this.btnBuyQty8,
-																																					 this.lblBuyPrice8,
-																																					 this.btnSellAll8,
-																																					 this.btnSellQty8,
-																																					 this.lblSellPrice8,
-																																					 this.lblTargetPct7,
-																																					 this.lblTargetDiff7,
-																																					 this.lblTargetPrice7,
-																																					 this.btnBuyMax7,
-																																					 this.btnBuyQty7,
-																																					 this.lblBuyPrice7,
-																																					 this.btnSellAll7,
-																																					 this.btnSellQty7,
-																																					 this.lblSellPrice7,
-																																					 this.lblTargetPct6,
-																																					 this.lblTargetDiff6,
-																																					 this.lblTargetPrice6,
-																																					 this.btnBuyMax6,
-																																					 this.btnBuyQty6,
-																																					 this.lblBuyPrice6,
-																																					 this.btnSellAll6,
-																																					 this.btnSellQty6,
-																																					 this.lblSellPrice6,
-																																					 this.lblTargetPct5,
-																																					 this.lblTargetDiff5,
-																																					 this.lblTargetPrice5,
-																																					 this.btnBuyMax5,
-																																					 this.btnBuyQty5,
-																																					 this.lblBuyPrice5,
-																																					 this.btnSellAll5,
-																																					 this.btnSellQty5,
-																																					 this.lblSellPrice5,
-																																					 this.lblTargetPct4,
-																																					 this.lblTargetDiff4,
-																																					 this.lblTargetPrice4,
-																																					 this.btnBuyMax4,
-																																					 this.btnBuyQty4,
-																																					 this.lblBuyPrice4,
-																																					 this.btnSellAll4,
-																																					 this.btnSellQty4,
-																																					 this.lblSellPrice4,
-																																					 this.lblTargetPct3,
-																																					 this.lblTargetDiff3,
-																																					 this.lblTargetPrice3,
-																																					 this.btnBuyMax3,
-																																					 this.btnBuyQty3,
-																																					 this.lblBuyPrice3,
-																																					 this.btnSellAll3,
-																																					 this.btnSellQty3,
-																																					 this.lblSellPrice3,
-																																					 this.lblTargetPct2,
-																																					 this.lblTargetDiff2,
-																																					 this.lblTargetPrice2,
-																																					 this.btnBuyMax2,
-																																					 this.btnBuyQty2,
-																																					 this.lblBuyPrice2,
-																																					 this.btnSellAll2,
-																																					 this.btnSellQty2,
-																																					 this.lblSellPrice2,
-																																					 this.lblTargetPct1,
-																																					 this.lblTargetDiff1,
-																																					 this.lblTargetPrice1,
-																																					 this.btnBuyMax1,
-																																					 this.btnBuyQty1,
-																																					 this.lblBuyPrice1,
-																																					 this.lblTargetPctLabel,
-																																					 this.lblTargetDiffLabel,
-																																					 this.lblTargetPriceLabel,
-																																					 this.lblTargetPct0,
-																																					 this.lblTargetDiff0,
-																																					 this.lblTargetPrice0,
-																																					 this.btnBuyMax0,
-																																					 this.btnBuyQty0,
-																																					 this.lblBuyPrice0,
-																																					 this.btnSellAll1,
-																																					 this.btnSellQty1,
-																																					 this.lblSellPrice1,
-																																					 this.btnSellAll0,
-																																					 this.btnSellQty0,
-																																					 this.lblSellPrice0,
-																																					 this.lblTradeTarget,
-																																					 this.lblBuy,
-																																					 this.lblSell,
-																																					 this.lblTradeCmdty9,
-																																					 this.lblTradeCmdty8,
-																																					 this.lblTradeCmdty2,
-																																					 this.lblTradeCmdty0,
-																																					 this.lblTradeCmdty1,
-																																					 this.lblTradeCmdty6,
-																																					 this.lblTradeCmdty5,
-																																					 this.lblTradeCmdty4,
-																																					 this.lblTradeCmdty3,
-																																					 this.lblTradeCmdty7});
+			this.boxCargo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.boxCargo.Controls.Add(this.picCargoLine3);
+			this.boxCargo.Controls.Add(this.picCargoLine2);
+			this.boxCargo.Controls.Add(this.picCargoLine0);
+			this.boxCargo.Controls.Add(this.picCargoLine1);
+			this.boxCargo.Controls.Add(this.lblTargetPct9);
+			this.boxCargo.Controls.Add(this.lblTargetDiff9);
+			this.boxCargo.Controls.Add(this.lblTargetPrice9);
+			this.boxCargo.Controls.Add(this.btnBuyMax9);
+			this.boxCargo.Controls.Add(this.btnBuyQty9);
+			this.boxCargo.Controls.Add(this.lblBuyPrice9);
+			this.boxCargo.Controls.Add(this.btnSellAll9);
+			this.boxCargo.Controls.Add(this.btnSellQty9);
+			this.boxCargo.Controls.Add(this.lblSellPrice9);
+			this.boxCargo.Controls.Add(this.lblTargetPct8);
+			this.boxCargo.Controls.Add(this.lblTargetDiff8);
+			this.boxCargo.Controls.Add(this.lblTargetPrice8);
+			this.boxCargo.Controls.Add(this.btnBuyMax8);
+			this.boxCargo.Controls.Add(this.btnBuyQty8);
+			this.boxCargo.Controls.Add(this.lblBuyPrice8);
+			this.boxCargo.Controls.Add(this.btnSellAll8);
+			this.boxCargo.Controls.Add(this.btnSellQty8);
+			this.boxCargo.Controls.Add(this.lblSellPrice8);
+			this.boxCargo.Controls.Add(this.lblTargetPct7);
+			this.boxCargo.Controls.Add(this.lblTargetDiff7);
+			this.boxCargo.Controls.Add(this.lblTargetPrice7);
+			this.boxCargo.Controls.Add(this.btnBuyMax7);
+			this.boxCargo.Controls.Add(this.btnBuyQty7);
+			this.boxCargo.Controls.Add(this.lblBuyPrice7);
+			this.boxCargo.Controls.Add(this.btnSellAll7);
+			this.boxCargo.Controls.Add(this.btnSellQty7);
+			this.boxCargo.Controls.Add(this.lblSellPrice7);
+			this.boxCargo.Controls.Add(this.lblTargetPct6);
+			this.boxCargo.Controls.Add(this.lblTargetDiff6);
+			this.boxCargo.Controls.Add(this.lblTargetPrice6);
+			this.boxCargo.Controls.Add(this.btnBuyMax6);
+			this.boxCargo.Controls.Add(this.btnBuyQty6);
+			this.boxCargo.Controls.Add(this.lblBuyPrice6);
+			this.boxCargo.Controls.Add(this.btnSellAll6);
+			this.boxCargo.Controls.Add(this.btnSellQty6);
+			this.boxCargo.Controls.Add(this.lblSellPrice6);
+			this.boxCargo.Controls.Add(this.lblTargetPct5);
+			this.boxCargo.Controls.Add(this.lblTargetDiff5);
+			this.boxCargo.Controls.Add(this.lblTargetPrice5);
+			this.boxCargo.Controls.Add(this.btnBuyMax5);
+			this.boxCargo.Controls.Add(this.btnBuyQty5);
+			this.boxCargo.Controls.Add(this.lblBuyPrice5);
+			this.boxCargo.Controls.Add(this.btnSellAll5);
+			this.boxCargo.Controls.Add(this.btnSellQty5);
+			this.boxCargo.Controls.Add(this.lblSellPrice5);
+			this.boxCargo.Controls.Add(this.lblTargetPct4);
+			this.boxCargo.Controls.Add(this.lblTargetDiff4);
+			this.boxCargo.Controls.Add(this.lblTargetPrice4);
+			this.boxCargo.Controls.Add(this.btnBuyMax4);
+			this.boxCargo.Controls.Add(this.btnBuyQty4);
+			this.boxCargo.Controls.Add(this.lblBuyPrice4);
+			this.boxCargo.Controls.Add(this.btnSellAll4);
+			this.boxCargo.Controls.Add(this.btnSellQty4);
+			this.boxCargo.Controls.Add(this.lblSellPrice4);
+			this.boxCargo.Controls.Add(this.lblTargetPct3);
+			this.boxCargo.Controls.Add(this.lblTargetDiff3);
+			this.boxCargo.Controls.Add(this.lblTargetPrice3);
+			this.boxCargo.Controls.Add(this.btnBuyMax3);
+			this.boxCargo.Controls.Add(this.btnBuyQty3);
+			this.boxCargo.Controls.Add(this.lblBuyPrice3);
+			this.boxCargo.Controls.Add(this.btnSellAll3);
+			this.boxCargo.Controls.Add(this.btnSellQty3);
+			this.boxCargo.Controls.Add(this.lblSellPrice3);
+			this.boxCargo.Controls.Add(this.lblTargetPct2);
+			this.boxCargo.Controls.Add(this.lblTargetDiff2);
+			this.boxCargo.Controls.Add(this.lblTargetPrice2);
+			this.boxCargo.Controls.Add(this.btnBuyMax2);
+			this.boxCargo.Controls.Add(this.btnBuyQty2);
+			this.boxCargo.Controls.Add(this.lblBuyPrice2);
+			this.boxCargo.Controls.Add(this.btnSellAll2);
+			this.boxCargo.Controls.Add(this.btnSellQty2);
+			this.boxCargo.Controls.Add(this.lblSellPrice2);
+			this.boxCargo.Controls.Add(this.lblTargetPct1);
+			this.boxCargo.Controls.Add(this.lblTargetDiff1);
+			this.boxCargo.Controls.Add(this.lblTargetPrice1);
+			this.boxCargo.Controls.Add(this.btnBuyMax1);
+			this.boxCargo.Controls.Add(this.btnBuyQty1);
+			this.boxCargo.Controls.Add(this.lblBuyPrice1);
+			this.boxCargo.Controls.Add(this.lblTargetPctLabel);
+			this.boxCargo.Controls.Add(this.lblTargetDiffLabel);
+			this.boxCargo.Controls.Add(this.lblTargetPriceLabel);
+			this.boxCargo.Controls.Add(this.lblTargetPct0);
+			this.boxCargo.Controls.Add(this.lblTargetDiff0);
+			this.boxCargo.Controls.Add(this.lblTargetPrice0);
+			this.boxCargo.Controls.Add(this.btnBuyMax0);
+			this.boxCargo.Controls.Add(this.btnBuyQty0);
+			this.boxCargo.Controls.Add(this.lblBuyPrice0);
+			this.boxCargo.Controls.Add(this.btnSellAll1);
+			this.boxCargo.Controls.Add(this.btnSellQty1);
+			this.boxCargo.Controls.Add(this.lblSellPrice1);
+			this.boxCargo.Controls.Add(this.btnSellAll0);
+			this.boxCargo.Controls.Add(this.btnSellQty0);
+			this.boxCargo.Controls.Add(this.lblSellPrice0);
+			this.boxCargo.Controls.Add(this.lblTradeTarget);
+			this.boxCargo.Controls.Add(this.lblBuy);
+			this.boxCargo.Controls.Add(this.lblSell);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty9);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty8);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty2);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty0);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty1);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty6);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty5);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty4);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty3);
+			this.boxCargo.Controls.Add(this.lblTradeCmdty7);
 			this.boxCargo.Location = new System.Drawing.Point(252, 2);
 			this.boxCargo.Name = "boxCargo";
 			this.boxCargo.Size = new System.Drawing.Size(512, 300);
@@ -2083,7 +2083,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPctLabel.AutoSize = true;
 			this.lblTargetPctLabel.Location = new System.Drawing.Point(476, 34);
 			this.lblTargetPctLabel.Name = "lblTargetPctLabel";
-			this.lblTargetPctLabel.Size = new System.Drawing.Size(14, 13);
+			this.lblTargetPctLabel.Size = new System.Drawing.Size(14, 16);
 			this.lblTargetPctLabel.TabIndex = 49;
 			this.lblTargetPctLabel.Text = "%";
 			// 
@@ -2092,7 +2092,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetDiffLabel.AutoSize = true;
 			this.lblTargetDiffLabel.Location = new System.Drawing.Point(424, 34);
 			this.lblTargetDiffLabel.Name = "lblTargetDiffLabel";
-			this.lblTargetDiffLabel.Size = new System.Drawing.Size(18, 13);
+			this.lblTargetDiffLabel.Size = new System.Drawing.Size(18, 16);
 			this.lblTargetDiffLabel.TabIndex = 48;
 			this.lblTargetDiffLabel.Text = "+/-";
 			// 
@@ -2101,7 +2101,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPriceLabel.AutoSize = true;
 			this.lblTargetPriceLabel.Location = new System.Drawing.Point(360, 34);
 			this.lblTargetPriceLabel.Name = "lblTargetPriceLabel";
-			this.lblTargetPriceLabel.Size = new System.Drawing.Size(30, 13);
+			this.lblTargetPriceLabel.Size = new System.Drawing.Size(30, 16);
 			this.lblTargetPriceLabel.TabIndex = 47;
 			this.lblTargetPriceLabel.Text = "Price";
 			// 
@@ -2224,7 +2224,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeTarget.AutoSize = true;
 			this.lblTradeTarget.Location = new System.Drawing.Point(391, 16);
 			this.lblTradeTarget.Name = "lblTradeTarget";
-			this.lblTradeTarget.Size = new System.Drawing.Size(78, 13);
+			this.lblTradeTarget.Size = new System.Drawing.Size(78, 16);
 			this.lblTradeTarget.TabIndex = 28;
 			this.lblTradeTarget.Text = "Target System";
 			// 
@@ -2233,7 +2233,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblBuy.AutoSize = true;
 			this.lblBuy.Location = new System.Drawing.Point(273, 34);
 			this.lblBuy.Name = "lblBuy";
-			this.lblBuy.Size = new System.Drawing.Size(24, 13);
+			this.lblBuy.Size = new System.Drawing.Size(24, 16);
 			this.lblBuy.TabIndex = 27;
 			this.lblBuy.Text = "Buy";
 			// 
@@ -2243,7 +2243,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSell.Location = new System.Drawing.Point(132, 34);
 			this.lblSell.Name = "lblSell";
-			this.lblSell.Size = new System.Drawing.Size(23, 13);
+			this.lblSell.Size = new System.Drawing.Size(23, 16);
 			this.lblSell.TabIndex = 26;
 			this.lblSell.Text = "Sell";
 			// 
@@ -2252,7 +2252,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty9.AutoSize = true;
 			this.lblTradeCmdty9.Location = new System.Drawing.Point(8, 276);
 			this.lblTradeCmdty9.Name = "lblTradeCmdty9";
-			this.lblTradeCmdty9.Size = new System.Drawing.Size(40, 13);
+			this.lblTradeCmdty9.Size = new System.Drawing.Size(40, 16);
 			this.lblTradeCmdty9.TabIndex = 25;
 			this.lblTradeCmdty9.Text = "Robots";
 			// 
@@ -2261,7 +2261,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty8.AutoSize = true;
 			this.lblTradeCmdty8.Location = new System.Drawing.Point(8, 252);
 			this.lblTradeCmdty8.Name = "lblTradeCmdty8";
-			this.lblTradeCmdty8.Size = new System.Drawing.Size(51, 13);
+			this.lblTradeCmdty8.Size = new System.Drawing.Size(51, 16);
 			this.lblTradeCmdty8.TabIndex = 24;
 			this.lblTradeCmdty8.Text = "Narcotics";
 			// 
@@ -2270,7 +2270,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty2.AutoSize = true;
 			this.lblTradeCmdty2.Location = new System.Drawing.Point(8, 108);
 			this.lblTradeCmdty2.Name = "lblTradeCmdty2";
-			this.lblTradeCmdty2.Size = new System.Drawing.Size(30, 13);
+			this.lblTradeCmdty2.Size = new System.Drawing.Size(30, 16);
 			this.lblTradeCmdty2.TabIndex = 23;
 			this.lblTradeCmdty2.Text = "Food";
 			// 
@@ -2279,7 +2279,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty0.AutoSize = true;
 			this.lblTradeCmdty0.Location = new System.Drawing.Point(8, 60);
 			this.lblTradeCmdty0.Name = "lblTradeCmdty0";
-			this.lblTradeCmdty0.Size = new System.Drawing.Size(34, 13);
+			this.lblTradeCmdty0.Size = new System.Drawing.Size(34, 16);
 			this.lblTradeCmdty0.TabIndex = 22;
 			this.lblTradeCmdty0.Text = "Water";
 			// 
@@ -2288,7 +2288,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty1.AutoSize = true;
 			this.lblTradeCmdty1.Location = new System.Drawing.Point(8, 84);
 			this.lblTradeCmdty1.Name = "lblTradeCmdty1";
-			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 13);
+			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 16);
 			this.lblTradeCmdty1.TabIndex = 21;
 			this.lblTradeCmdty1.Text = "Furs";
 			// 
@@ -2297,7 +2297,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty6.AutoSize = true;
 			this.lblTradeCmdty6.Location = new System.Drawing.Point(8, 204);
 			this.lblTradeCmdty6.Name = "lblTradeCmdty6";
-			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 13);
+			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 16);
 			this.lblTradeCmdty6.TabIndex = 20;
 			this.lblTradeCmdty6.Text = "Medicine";
 			// 
@@ -2306,7 +2306,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty5.AutoSize = true;
 			this.lblTradeCmdty5.Location = new System.Drawing.Point(8, 180);
 			this.lblTradeCmdty5.Name = "lblTradeCmdty5";
-			this.lblTradeCmdty5.Size = new System.Drawing.Size(49, 13);
+			this.lblTradeCmdty5.Size = new System.Drawing.Size(49, 16);
 			this.lblTradeCmdty5.TabIndex = 19;
 			this.lblTradeCmdty5.Text = "Firearms";
 			// 
@@ -2315,7 +2315,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty4.AutoSize = true;
 			this.lblTradeCmdty4.Location = new System.Drawing.Point(8, 156);
 			this.lblTradeCmdty4.Name = "lblTradeCmdty4";
-			this.lblTradeCmdty4.Size = new System.Drawing.Size(41, 13);
+			this.lblTradeCmdty4.Size = new System.Drawing.Size(41, 16);
 			this.lblTradeCmdty4.TabIndex = 18;
 			this.lblTradeCmdty4.Text = "Games";
 			// 
@@ -2324,7 +2324,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty3.AutoSize = true;
 			this.lblTradeCmdty3.Location = new System.Drawing.Point(8, 132);
 			this.lblTradeCmdty3.Name = "lblTradeCmdty3";
-			this.lblTradeCmdty3.Size = new System.Drawing.Size(23, 13);
+			this.lblTradeCmdty3.Size = new System.Drawing.Size(23, 16);
 			this.lblTradeCmdty3.TabIndex = 17;
 			this.lblTradeCmdty3.Text = "Ore";
 			// 
@@ -2333,32 +2333,31 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty7.AutoSize = true;
 			this.lblTradeCmdty7.Location = new System.Drawing.Point(8, 228);
 			this.lblTradeCmdty7.Name = "lblTradeCmdty7";
-			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 13);
+			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 16);
 			this.lblTradeCmdty7.TabIndex = 16;
 			this.lblTradeCmdty7.Text = "Machines";
 			// 
 			// boxSystem
 			// 
-			this.boxSystem.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																						this.btnMerc,
-																																						this.btnSpecial,
-																																						this.btnNews,
-																																						this.lblSystemPressure,
-																																						this.lblSystemPressurePre,
-																																						this.lblSystemPolSys,
-																																						this.lblSystemSize,
-																																						this.lblSystemTech,
-																																						this.lblSystemPirates,
-																																						this.lblSystemPolice,
-																																						this.lblSystemResource,
-																																						this.lblSystemPiratesLabel,
-																																						this.lblSystemPoliceLabel,
-																																						this.lblSystemResourseLabel,
-																																						this.lblSystemGovtLabel,
-																																						this.lblSystemTechLabel,
-																																						this.lblSystemSizeLabel,
-																																						this.lblSystemName,
-																																						this.lblSystemNameLabel});
+			this.boxSystem.Controls.Add(this.btnMerc);
+			this.boxSystem.Controls.Add(this.btnSpecial);
+			this.boxSystem.Controls.Add(this.btnNews);
+			this.boxSystem.Controls.Add(this.lblSystemPressure);
+			this.boxSystem.Controls.Add(this.lblSystemPressurePre);
+			this.boxSystem.Controls.Add(this.lblSystemPolSys);
+			this.boxSystem.Controls.Add(this.lblSystemSize);
+			this.boxSystem.Controls.Add(this.lblSystemTech);
+			this.boxSystem.Controls.Add(this.lblSystemPirates);
+			this.boxSystem.Controls.Add(this.lblSystemPolice);
+			this.boxSystem.Controls.Add(this.lblSystemResource);
+			this.boxSystem.Controls.Add(this.lblSystemPiratesLabel);
+			this.boxSystem.Controls.Add(this.lblSystemPoliceLabel);
+			this.boxSystem.Controls.Add(this.lblSystemResourseLabel);
+			this.boxSystem.Controls.Add(this.lblSystemGovtLabel);
+			this.boxSystem.Controls.Add(this.lblSystemTechLabel);
+			this.boxSystem.Controls.Add(this.lblSystemSizeLabel);
+			this.boxSystem.Controls.Add(this.lblSystemName);
+			this.boxSystem.Controls.Add(this.lblSystemNameLabel);
 			this.boxSystem.Location = new System.Drawing.Point(4, 2);
 			this.boxSystem.Name = "boxSystem";
 			this.boxSystem.Size = new System.Drawing.Size(240, 206);
@@ -2410,7 +2409,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPressurePre.AutoSize = true;
 			this.lblSystemPressurePre.Location = new System.Drawing.Point(8, 134);
 			this.lblSystemPressurePre.Name = "lblSystemPressurePre";
-			this.lblSystemPressurePre.Size = new System.Drawing.Size(122, 13);
+			this.lblSystemPressurePre.Size = new System.Drawing.Size(122, 16);
 			this.lblSystemPressurePre.TabIndex = 17;
 			this.lblSystemPressurePre.Text = "This system is currently";
 			// 
@@ -2468,7 +2467,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemPiratesLabel.Location = new System.Drawing.Point(8, 112);
 			this.lblSystemPiratesLabel.Name = "lblSystemPiratesLabel";
-			this.lblSystemPiratesLabel.Size = new System.Drawing.Size(44, 13);
+			this.lblSystemPiratesLabel.Size = new System.Drawing.Size(44, 16);
 			this.lblSystemPiratesLabel.TabIndex = 7;
 			this.lblSystemPiratesLabel.Text = "Pirates:";
 			// 
@@ -2478,7 +2477,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemPoliceLabel.Location = new System.Drawing.Point(8, 96);
 			this.lblSystemPoliceLabel.Name = "lblSystemPoliceLabel";
-			this.lblSystemPoliceLabel.Size = new System.Drawing.Size(40, 13);
+			this.lblSystemPoliceLabel.Size = new System.Drawing.Size(40, 16);
 			this.lblSystemPoliceLabel.TabIndex = 6;
 			this.lblSystemPoliceLabel.Text = "Police:";
 			// 
@@ -2488,7 +2487,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemResourseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemResourseLabel.Location = new System.Drawing.Point(8, 80);
 			this.lblSystemResourseLabel.Name = "lblSystemResourseLabel";
-			this.lblSystemResourseLabel.Size = new System.Drawing.Size(58, 13);
+			this.lblSystemResourseLabel.Size = new System.Drawing.Size(58, 16);
 			this.lblSystemResourseLabel.TabIndex = 5;
 			this.lblSystemResourseLabel.Text = "Resource:";
 			// 
@@ -2498,7 +2497,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemGovtLabel.Location = new System.Drawing.Point(8, 64);
 			this.lblSystemGovtLabel.Name = "lblSystemGovtLabel";
-			this.lblSystemGovtLabel.Size = new System.Drawing.Size(72, 13);
+			this.lblSystemGovtLabel.Size = new System.Drawing.Size(72, 16);
 			this.lblSystemGovtLabel.TabIndex = 4;
 			this.lblSystemGovtLabel.Text = "Government:";
 			// 
@@ -2508,7 +2507,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemTechLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblSystemTechLabel.Name = "lblSystemTechLabel";
-			this.lblSystemTechLabel.Size = new System.Drawing.Size(65, 13);
+			this.lblSystemTechLabel.Size = new System.Drawing.Size(65, 16);
 			this.lblSystemTechLabel.TabIndex = 3;
 			this.lblSystemTechLabel.Text = "Tech Level:";
 			// 
@@ -2518,7 +2517,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemSizeLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblSystemSizeLabel.Name = "lblSystemSizeLabel";
-			this.lblSystemSizeLabel.Size = new System.Drawing.Size(31, 13);
+			this.lblSystemSizeLabel.Size = new System.Drawing.Size(31, 16);
 			this.lblSystemSizeLabel.TabIndex = 2;
 			this.lblSystemSizeLabel.Text = "Size:";
 			// 
@@ -2536,20 +2535,19 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemNameLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblSystemNameLabel.Name = "lblSystemNameLabel";
-			this.lblSystemNameLabel.Size = new System.Drawing.Size(39, 13);
+			this.lblSystemNameLabel.Size = new System.Drawing.Size(39, 16);
 			this.lblSystemNameLabel.TabIndex = 0;
 			this.lblSystemNameLabel.Text = "Name:";
 			// 
 			// boxShipYard
 			// 
-			this.boxShipYard.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																							this.btnDesign,
-																																							this.btnPod,
-																																							this.lblEscapePod,
-																																							this.btnEquip,
-																																							this.btnBuyShip,
-																																							this.lblEquipForSale,
-																																							this.lblShipsForSale});
+			this.boxShipYard.Controls.Add(this.btnDesign);
+			this.boxShipYard.Controls.Add(this.btnPod);
+			this.boxShipYard.Controls.Add(this.lblEscapePod);
+			this.boxShipYard.Controls.Add(this.btnEquip);
+			this.boxShipYard.Controls.Add(this.btnBuyShip);
+			this.boxShipYard.Controls.Add(this.lblEquipForSale);
+			this.boxShipYard.Controls.Add(this.lblShipsForSale);
 			this.boxShipYard.Location = new System.Drawing.Point(4, 306);
 			this.boxShipYard.Name = "boxShipYard";
 			this.boxShipYard.Size = new System.Drawing.Size(168, 168);
@@ -2623,13 +2621,12 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// boxDock
 			// 
-			this.boxDock.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																					this.btnRepair,
-																																					this.btnFuel,
-																																					this.lblFuelStatus,
-																																					this.lblFuelCost,
-																																					this.lblHullStatus,
-																																					this.lblRepairCost});
+			this.boxDock.Controls.Add(this.btnRepair);
+			this.boxDock.Controls.Add(this.btnFuel);
+			this.boxDock.Controls.Add(this.lblFuelStatus);
+			this.boxDock.Controls.Add(this.lblFuelCost);
+			this.boxDock.Controls.Add(this.lblHullStatus);
+			this.boxDock.Controls.Add(this.lblRepairCost);
 			this.boxDock.Location = new System.Drawing.Point(4, 212);
 			this.boxDock.Name = "boxDock";
 			this.boxDock.Size = new System.Drawing.Size(240, 90);
@@ -2692,6 +2689,7 @@ namespace Fryz.Apps.SpaceTrader
 			// picLine
 			// 
 			this.picLine.BackColor = System.Drawing.Color.DimGray;
+			this.picLine.Location = new System.Drawing.Point(0, 0);
 			this.picLine.Name = "picLine";
 			this.picLine.Size = new System.Drawing.Size(770, 1);
 			this.picLine.TabIndex = 132;
@@ -2708,21 +2706,18 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilChartImages
 			// 
-			this.ilChartImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilChartImages.ImageSize = new System.Drawing.Size(7, 7);
 			this.ilChartImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilChartImages.ImageStream")));
 			this.ilChartImages.TransparentColor = System.Drawing.Color.White;
 			// 
 			// ilShipImages
 			// 
-			this.ilShipImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilShipImages.ImageSize = new System.Drawing.Size(64, 52);
 			this.ilShipImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilShipImages.ImageStream")));
 			this.ilShipImages.TransparentColor = System.Drawing.Color.White;
 			// 
 			// ilDirectionImages
 			// 
-			this.ilDirectionImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilDirectionImages.ImageSize = new System.Drawing.Size(13, 13);
 			this.ilDirectionImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilDirectionImages.ImageStream")));
 			this.ilDirectionImages.TransparentColor = System.Drawing.Color.White;
@@ -2731,16 +2726,15 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(768, 505);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.picLine,
-																																	this.boxDock,
-																																	this.boxCargo,
-																																	this.boxTargetSystem,
-																																	this.boxGalacticChart,
-																																	this.boxShortRangeChart,
-																																	this.statusBar,
-																																	this.boxSystem,
-																																	this.boxShipYard});
+			this.Controls.Add(this.picLine);
+			this.Controls.Add(this.boxDock);
+			this.Controls.Add(this.boxCargo);
+			this.Controls.Add(this.boxTargetSystem);
+			this.Controls.Add(this.boxGalacticChart);
+			this.Controls.Add(this.boxShortRangeChart);
+			this.Controls.Add(this.statusBar);
+			this.Controls.Add(this.boxSystem);
+			this.Controls.Add(this.boxShipYard);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
@@ -3174,16 +3168,12 @@ namespace Fryz.Apps.SpaceTrader
 				btnMerc.Visible								= mercs.Length > 0;
 				if (btnMerc.Visible)
 				{
-					ToolTip hint = new ToolTip();
-					hint.SetToolTip(btnMerc, Functions.StringVars(Strings.MercenariesForHire, mercs.Length == 1 ? mercs[0].Name :
+					tipMerc.SetToolTip(btnMerc, Functions.StringVars(Strings.MercenariesForHire, mercs.Length == 1 ? mercs[0].Name :
 						mercs.Length.ToString() + Strings.Mercenaries));
 				}
 				btnSpecial.Visible						= system.ShowSpecialButton();
 				if (btnSpecial.Visible)
-				{
-					ToolTip hint = new ToolTip();
-					hint.SetToolTip(btnSpecial, system.SpecialEvent.Title);
-				}
+					tipSpecial.SetToolTip(btnSpecial, system.SpecialEvent.Title);
 			}
 		}
 
