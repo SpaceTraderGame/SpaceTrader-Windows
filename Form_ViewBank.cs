@@ -377,7 +377,10 @@ namespace Fryz.Apps.SpaceTrader
 			else if (!cmdr.Ship.EscapePod)
 				FormAlert.Alert(AlertType.InsuranceNoEscapePod, this);
 			else
-				cmdr.Insurance		= true;
+			{
+				cmdr.Insurance	= true;
+				cmdr.NoClaim		= 0;
+			}
 
 			UpdateAll();
 			game.ParentWindow.UpdateAll();
