@@ -280,6 +280,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Pen						DEFAULT_PEN		= new Pen(Color.Black);
 		private	Brush					DEFAULT_BRUSH	= new SolidBrush(Color.White);
+		private System.Windows.Forms.Button btnDesign;
 
 		private string				SaveGameFile	= null;
 
@@ -636,6 +637,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemName = new System.Windows.Forms.Label();
 			this.lblSystemNameLabel = new System.Windows.Forms.Label();
 			this.boxShipYard = new System.Windows.Forms.GroupBox();
+			this.btnDesign = new System.Windows.Forms.Button();
 			this.btnPod = new System.Windows.Forms.Button();
 			this.lblEscapePod = new System.Windows.Forms.Label();
 			this.btnEquip = new System.Windows.Forms.Button();
@@ -666,16 +668,16 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShipYard.SuspendLayout();
 			this.boxDock.SuspendLayout();
 			this.SuspendLayout();
-			//
+			// 
 			// mnuMain
-			//
+			// 
 			this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																																						this.mnuGame,
 																																						this.mnuView,
 																																						this.mnuHelp});
-			//
+			// 
 			// mnuGame
-			//
+			// 
 			this.mnuGame.Index = 0;
 			this.mnuGame.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																																						this.mnuGameNew,
@@ -687,61 +689,61 @@ namespace Fryz.Apps.SpaceTrader
 																																						this.mnuGameLine2,
 																																						this.mnuGameExit});
 			this.mnuGame.Text = "&Game";
-			//
+			// 
 			// mnuGameNew
-			//
+			// 
 			this.mnuGameNew.Index = 0;
 			this.mnuGameNew.Text = "&New...";
 			this.mnuGameNew.Click += new System.EventHandler(this.mnuGameNew_Click);
-			//
+			// 
 			// mnuGameLoad
-			//
+			// 
 			this.mnuGameLoad.Index = 1;
 			this.mnuGameLoad.Shortcut = System.Windows.Forms.Shortcut.CtrlL;
 			this.mnuGameLoad.Text = "&Load...";
 			this.mnuGameLoad.Click += new System.EventHandler(this.mnuGameLoad_Click);
-			//
+			// 
 			// mnuGameSave
-			//
+			// 
 			this.mnuGameSave.Enabled = false;
 			this.mnuGameSave.Index = 2;
 			this.mnuGameSave.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
 			this.mnuGameSave.Text = "&Save";
 			this.mnuGameSave.Click += new System.EventHandler(this.mnuGameSave_Click);
-			//
+			// 
 			// mnuGameSaveAs
-			//
+			// 
 			this.mnuGameSaveAs.Enabled = false;
 			this.mnuGameSaveAs.Index = 3;
 			this.mnuGameSaveAs.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
 			this.mnuGameSaveAs.Text = "Save &As...";
 			this.mnuGameSaveAs.Click += new System.EventHandler(this.mnuGameSaveAs_Click);
-			//
+			// 
 			// mnuGameLine1
-			//
+			// 
 			this.mnuGameLine1.Index = 4;
 			this.mnuGameLine1.Text = "-";
-			//
+			// 
 			// mnuRetire
-			//
+			// 
 			this.mnuRetire.Enabled = false;
 			this.mnuRetire.Index = 5;
 			this.mnuRetire.Text = "&Retire";
 			this.mnuRetire.Click += new System.EventHandler(this.mnuRetire_Click);
-			//
+			// 
 			// mnuGameLine2
-			//
+			// 
 			this.mnuGameLine2.Index = 6;
 			this.mnuGameLine2.Text = "-";
-			//
+			// 
 			// mnuGameExit
-			//
+			// 
 			this.mnuGameExit.Index = 7;
 			this.mnuGameExit.Text = "E&xit";
 			this.mnuGameExit.Click += new System.EventHandler(this.mnuGameExit_Click);
-			//
+			// 
 			// mnuView
-			//
+			// 
 			this.mnuView.Index = 1;
 			this.mnuView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																																						this.mnuViewCommander,
@@ -754,84 +756,84 @@ namespace Fryz.Apps.SpaceTrader
 																																						this.mnuViewLine2,
 																																						this.mnuOptions});
 			this.mnuView.Text = "&View";
-			//
+			// 
 			// mnuViewCommander
-			//
+			// 
 			this.mnuViewCommander.Enabled = false;
 			this.mnuViewCommander.Index = 0;
 			this.mnuViewCommander.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
 			this.mnuViewCommander.Text = "&Commander Status";
 			this.mnuViewCommander.Click += new System.EventHandler(this.mnuViewCommander_Click);
-			//
+			// 
 			// mnuViewShip
-			//
+			// 
 			this.mnuViewShip.Enabled = false;
 			this.mnuViewShip.Index = 1;
 			this.mnuViewShip.Shortcut = System.Windows.Forms.Shortcut.CtrlH;
 			this.mnuViewShip.Text = "&Ship";
 			this.mnuViewShip.Click += new System.EventHandler(this.mnuViewShip_Click);
-			//
+			// 
 			// mnuViewPersonnel
-			//
+			// 
 			this.mnuViewPersonnel.Enabled = false;
 			this.mnuViewPersonnel.Index = 2;
 			this.mnuViewPersonnel.Shortcut = System.Windows.Forms.Shortcut.CtrlP;
 			this.mnuViewPersonnel.Text = "&Personnel";
 			this.mnuViewPersonnel.Click += new System.EventHandler(this.mnuViewPersonnel_Click);
-			//
+			// 
 			// mnuViewQuests
-			//
+			// 
 			this.mnuViewQuests.Enabled = false;
 			this.mnuViewQuests.Index = 3;
 			this.mnuViewQuests.Shortcut = System.Windows.Forms.Shortcut.CtrlQ;
 			this.mnuViewQuests.Text = "&Quests";
 			this.mnuViewQuests.Click += new System.EventHandler(this.mnuViewQuests_Click);
-			//
+			// 
 			// mnuViewBank
-			//
+			// 
 			this.mnuViewBank.Enabled = false;
 			this.mnuViewBank.Index = 4;
 			this.mnuViewBank.Shortcut = System.Windows.Forms.Shortcut.CtrlB;
 			this.mnuViewBank.Text = "&Bank";
 			this.mnuViewBank.Click += new System.EventHandler(this.mnuViewBank_Click);
-			//
+			// 
 			// mnuViewLine1
-			//
+			// 
 			this.mnuViewLine1.Index = 5;
 			this.mnuViewLine1.Text = "-";
-			//
+			// 
 			// mnuHighScores
-			//
+			// 
 			this.mnuHighScores.Index = 6;
 			this.mnuHighScores.Text = "&High Scores";
 			this.mnuHighScores.Click += new System.EventHandler(this.mnuHighScores_Click);
-			//
+			// 
 			// mnuViewLine2
-			//
+			// 
 			this.mnuViewLine2.Index = 7;
 			this.mnuViewLine2.Text = "-";
-			//
+			// 
 			// mnuOptions
-			//
+			// 
 			this.mnuOptions.Index = 8;
 			this.mnuOptions.Text = "Options";
 			this.mnuOptions.Click += new System.EventHandler(this.mnuOptions_Click);
-			//
+			// 
 			// mnuHelp
-			//
+			// 
 			this.mnuHelp.Index = 2;
 			this.mnuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																																						this.mnuHelpAbout});
 			this.mnuHelp.Text = "&Help";
-			//
+			// 
 			// mnuHelpAbout
-			//
+			// 
 			this.mnuHelpAbout.Index = 0;
 			this.mnuHelpAbout.Text = "&About Space Trader";
 			this.mnuHelpAbout.Click += new System.EventHandler(this.mnuHelpAbout_Click);
-			//
+			// 
 			// picGalacticChart
-			//
+			// 
 			this.picGalacticChart.BackColor = System.Drawing.Color.White;
 			this.picGalacticChart.Location = new System.Drawing.Point(8, 16);
 			this.picGalacticChart.Name = "picGalacticChart";
@@ -840,9 +842,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.picGalacticChart.TabStop = false;
 			this.picGalacticChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picGalacticChart_Paint);
 			this.picGalacticChart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picGalacticChart_MouseDown);
-			//
+			// 
 			// picShortRangeChart
-			//
+			// 
 			this.picShortRangeChart.BackColor = System.Drawing.Color.White;
 			this.picShortRangeChart.Location = new System.Drawing.Point(8, 16);
 			this.picShortRangeChart.Name = "picShortRangeChart";
@@ -851,9 +853,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.picShortRangeChart.TabStop = false;
 			this.picShortRangeChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picShortRangeChart_Paint);
 			this.picShortRangeChart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picShortRangeChart_MouseDown);
-			//
+			// 
 			// statusBar
-			//
+			// 
 			this.statusBar.Location = new System.Drawing.Point(0, 481);
 			this.statusBar.Name = "statusBar";
 			this.statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
@@ -866,32 +868,32 @@ namespace Fryz.Apps.SpaceTrader
 			this.statusBar.SizingGrip = false;
 			this.statusBar.TabIndex = 2;
 			this.statusBar.PanelClick += new System.Windows.Forms.StatusBarPanelClickEventHandler(this.statusBar_PanelClick);
-			//
+			// 
 			// statusBarPanelCash
-			//
+			// 
 			this.statusBarPanelCash.MinWidth = 112;
 			this.statusBarPanelCash.Text = " Cash: 88,888,888 cr.";
 			this.statusBarPanelCash.Width = 112;
-			//
+			// 
 			// statusBarPanelBays
-			//
+			// 
 			this.statusBarPanelBays.MinWidth = 80;
 			this.statusBarPanelBays.Text = " Bays: 88/88";
 			this.statusBarPanelBays.Width = 80;
-			//
+			// 
 			// statusBarPanelCosts
-			//
+			// 
 			this.statusBarPanelCosts.MinWidth = 120;
 			this.statusBarPanelCosts.Text = " Current Costs: 888 cr.";
 			this.statusBarPanelCosts.Width = 120;
-			//
+			// 
 			// statusBarPanelExtra
-			//
+			// 
 			this.statusBarPanelExtra.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
 			this.statusBarPanelExtra.Width = 456;
-			//
+			// 
 			// boxShortRangeChart
-			//
+			// 
 			this.boxShortRangeChart.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.boxShortRangeChart.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																										 this.picShortRangeChart});
@@ -901,9 +903,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShortRangeChart.TabIndex = 6;
 			this.boxShortRangeChart.TabStop = false;
 			this.boxShortRangeChart.Text = "Short-Range Chart";
-			//
+			// 
 			// boxGalacticChart
-			//
+			// 
 			this.boxGalacticChart.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.boxGalacticChart.BackColor = System.Drawing.SystemColors.Control;
 			this.boxGalacticChart.Controls.AddRange(new System.Windows.Forms.Control[] {
@@ -918,25 +920,25 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxGalacticChart.TabIndex = 5;
 			this.boxGalacticChart.TabStop = false;
 			this.boxGalacticChart.Text = "Galactic Chart";
-			//
+			// 
 			// lblWormhole
-			//
+			// 
 			this.lblWormhole.Location = new System.Drawing.Point(8, 148);
 			this.lblWormhole.Name = "lblWormhole";
 			this.lblWormhole.Size = new System.Drawing.Size(72, 13);
 			this.lblWormhole.TabIndex = 29;
 			this.lblWormhole.Text = "Tarchannen";
-			//
+			// 
 			// lblWormholeLabel
-			//
+			// 
 			this.lblWormholeLabel.Location = new System.Drawing.Point(8, 135);
 			this.lblWormholeLabel.Name = "lblWormholeLabel";
 			this.lblWormholeLabel.Size = new System.Drawing.Size(72, 13);
 			this.lblWormholeLabel.TabIndex = 28;
 			this.lblWormholeLabel.Text = "Wormhole to";
-			//
+			// 
 			// btnJump
-			//
+			// 
 			this.btnJump.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnJump.Location = new System.Drawing.Point(81, 138);
 			this.btnJump.Name = "btnJump";
@@ -944,9 +946,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnJump.TabIndex = 55;
 			this.btnJump.Text = "Jump";
 			this.btnJump.Click += new System.EventHandler(this.btnJump_Click);
-			//
+			// 
 			// btnFind
-			//
+			// 
 			this.btnFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFind.Location = new System.Drawing.Point(132, 138);
 			this.btnFind.Name = "btnFind";
@@ -954,9 +956,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnFind.TabIndex = 56;
 			this.btnFind.Text = "Find";
 			this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
-			//
+			// 
 			// boxTargetSystem
-			//
+			// 
 			this.boxTargetSystem.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.boxTargetSystem.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																									this.btnTrack,
@@ -986,9 +988,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxTargetSystem.TabIndex = 7;
 			this.boxTargetSystem.TabStop = false;
 			this.boxTargetSystem.Text = "Target System";
-			//
+			// 
 			// btnTrack
-			//
+			// 
 			this.btnTrack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTrack.Location = new System.Drawing.Point(160, 140);
 			this.btnTrack.Name = "btnTrack";
@@ -997,9 +999,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnTrack.Text = "Track";
 			this.btnTrack.Visible = false;
 			this.btnTrack.Click += new System.EventHandler(this.btnTrack_Click);
-			//
+			// 
 			// btnNextSystem
-			//
+			// 
 			this.btnNextSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNextSystem.Location = new System.Drawing.Point(186, 16);
 			this.btnNextSystem.Name = "btnNextSystem";
@@ -1007,9 +1009,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnNextSystem.TabIndex = 58;
 			this.btnNextSystem.Text = ">";
 			this.btnNextSystem.Click += new System.EventHandler(this.btnNextSystem_Click);
-			//
+			// 
 			// btnPrevSystem
-			//
+			// 
 			this.btnPrevSystem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPrevSystem.Location = new System.Drawing.Point(160, 16);
 			this.btnPrevSystem.Name = "btnPrevSystem";
@@ -1017,17 +1019,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPrevSystem.TabIndex = 57;
 			this.btnPrevSystem.Text = "<";
 			this.btnPrevSystem.Click += new System.EventHandler(this.btnPrevSystem_Click);
-			//
+			// 
 			// lblTargetOutOfRange
-			//
+			// 
 			this.lblTargetOutOfRange.Location = new System.Drawing.Point(8, 144);
 			this.lblTargetOutOfRange.Name = "lblTargetOutOfRange";
 			this.lblTargetOutOfRange.Size = new System.Drawing.Size(144, 13);
 			this.lblTargetOutOfRange.TabIndex = 17;
 			this.lblTargetOutOfRange.Text = "This system is out of range.";
-			//
+			// 
 			// btnWarp
-			//
+			// 
 			this.btnWarp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnWarp.Location = new System.Drawing.Point(160, 98);
 			this.btnWarp.Name = "btnWarp";
@@ -1035,65 +1037,65 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnWarp.TabIndex = 59;
 			this.btnWarp.Text = "Warp";
 			this.btnWarp.Click += new System.EventHandler(this.btnWarp_Click);
-			//
+			// 
 			// lblTargetPolSys
-			//
+			// 
 			this.lblTargetPolSys.Location = new System.Drawing.Point(88, 64);
 			this.lblTargetPolSys.Name = "lblTargetPolSys";
 			this.lblTargetPolSys.Size = new System.Drawing.Size(91, 13);
 			this.lblTargetPolSys.TabIndex = 15;
 			this.lblTargetPolSys.Text = "Communist State";
-			//
+			// 
 			// lblTargetSize
-			//
+			// 
 			this.lblTargetSize.Location = new System.Drawing.Point(88, 32);
 			this.lblTargetSize.Name = "lblTargetSize";
 			this.lblTargetSize.Size = new System.Drawing.Size(45, 13);
 			this.lblTargetSize.TabIndex = 14;
 			this.lblTargetSize.Text = "Medium";
-			//
+			// 
 			// lblTargetTech
-			//
+			// 
 			this.lblTargetTech.Location = new System.Drawing.Point(88, 48);
 			this.lblTargetTech.Name = "lblTargetTech";
 			this.lblTargetTech.Size = new System.Drawing.Size(82, 13);
 			this.lblTargetTech.TabIndex = 13;
 			this.lblTargetTech.Text = "Pre-Agricultural";
-			//
+			// 
 			// lblTargetDistance
-			//
+			// 
 			this.lblTargetDistance.Location = new System.Drawing.Point(88, 128);
 			this.lblTargetDistance.Name = "lblTargetDistance";
 			this.lblTargetDistance.Size = new System.Drawing.Size(66, 13);
 			this.lblTargetDistance.TabIndex = 12;
 			this.lblTargetDistance.Text = "888 parsecs";
-			//
+			// 
 			// lblTargetPirates
-			//
+			// 
 			this.lblTargetPirates.Location = new System.Drawing.Point(88, 112);
 			this.lblTargetPirates.Name = "lblTargetPirates";
 			this.lblTargetPirates.Size = new System.Drawing.Size(53, 13);
 			this.lblTargetPirates.TabIndex = 11;
 			this.lblTargetPirates.Text = "Abundant";
-			//
+			// 
 			// lblTargetPolice
-			//
+			// 
 			this.lblTargetPolice.Location = new System.Drawing.Point(88, 96);
 			this.lblTargetPolice.Name = "lblTargetPolice";
 			this.lblTargetPolice.Size = new System.Drawing.Size(53, 13);
 			this.lblTargetPolice.TabIndex = 10;
 			this.lblTargetPolice.Text = "Abundant";
-			//
+			// 
 			// lblTargetResource
-			//
+			// 
 			this.lblTargetResource.Location = new System.Drawing.Point(88, 80);
 			this.lblTargetResource.Name = "lblTargetResource";
 			this.lblTargetResource.Size = new System.Drawing.Size(105, 13);
 			this.lblTargetResource.TabIndex = 9;
 			this.lblTargetResource.Text = "Sweetwater Oceans";
-			//
+			// 
 			// lblTargetDistanceLabel
-			//
+			// 
 			this.lblTargetDistanceLabel.AutoSize = true;
 			this.lblTargetDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetDistanceLabel.Location = new System.Drawing.Point(8, 128);
@@ -1101,9 +1103,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetDistanceLabel.Size = new System.Drawing.Size(53, 13);
 			this.lblTargetDistanceLabel.TabIndex = 8;
 			this.lblTargetDistanceLabel.Text = "Distance:";
-			//
+			// 
 			// lblTargetPiratesLabel
-			//
+			// 
 			this.lblTargetPiratesLabel.AutoSize = true;
 			this.lblTargetPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetPiratesLabel.Location = new System.Drawing.Point(8, 112);
@@ -1111,9 +1113,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPiratesLabel.Size = new System.Drawing.Size(44, 13);
 			this.lblTargetPiratesLabel.TabIndex = 7;
 			this.lblTargetPiratesLabel.Text = "Pirates:";
-			//
+			// 
 			// lblTargetPoliceLabel
-			//
+			// 
 			this.lblTargetPoliceLabel.AutoSize = true;
 			this.lblTargetPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetPoliceLabel.Location = new System.Drawing.Point(8, 96);
@@ -1121,9 +1123,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPoliceLabel.Size = new System.Drawing.Size(40, 13);
 			this.lblTargetPoliceLabel.TabIndex = 6;
 			this.lblTargetPoliceLabel.Text = "Police:";
-			//
+			// 
 			// lblTargetResourceLabel
-			//
+			// 
 			this.lblTargetResourceLabel.AutoSize = true;
 			this.lblTargetResourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetResourceLabel.Location = new System.Drawing.Point(8, 80);
@@ -1131,9 +1133,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetResourceLabel.Size = new System.Drawing.Size(58, 13);
 			this.lblTargetResourceLabel.TabIndex = 5;
 			this.lblTargetResourceLabel.Text = "Resource:";
-			//
+			// 
 			// lblTargetGovtLabel
-			//
+			// 
 			this.lblTargetGovtLabel.AutoSize = true;
 			this.lblTargetGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetGovtLabel.Location = new System.Drawing.Point(8, 64);
@@ -1141,9 +1143,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetGovtLabel.Size = new System.Drawing.Size(72, 13);
 			this.lblTargetGovtLabel.TabIndex = 4;
 			this.lblTargetGovtLabel.Text = "Government:";
-			//
+			// 
 			// lblTargetTechLabel
-			//
+			// 
 			this.lblTargetTechLabel.AutoSize = true;
 			this.lblTargetTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetTechLabel.Location = new System.Drawing.Point(8, 48);
@@ -1151,9 +1153,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetTechLabel.Size = new System.Drawing.Size(65, 13);
 			this.lblTargetTechLabel.TabIndex = 3;
 			this.lblTargetTechLabel.Text = "Tech Level:";
-			//
+			// 
 			// lblTargetSizeLabel
-			//
+			// 
 			this.lblTargetSizeLabel.AutoSize = true;
 			this.lblTargetSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetSizeLabel.Location = new System.Drawing.Point(8, 32);
@@ -1161,17 +1163,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetSizeLabel.Size = new System.Drawing.Size(31, 13);
 			this.lblTargetSizeLabel.TabIndex = 2;
 			this.lblTargetSizeLabel.Text = "Size:";
-			//
+			// 
 			// lblTargetName
-			//
+			// 
 			this.lblTargetName.Location = new System.Drawing.Point(88, 16);
 			this.lblTargetName.Name = "lblTargetName";
 			this.lblTargetName.Size = new System.Drawing.Size(65, 13);
 			this.lblTargetName.TabIndex = 1;
 			this.lblTargetName.Text = "Tarchannen";
-			//
+			// 
 			// lblTargetNameLabel
-			//
+			// 
 			this.lblTargetNameLabel.AutoSize = true;
 			this.lblTargetNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetNameLabel.Location = new System.Drawing.Point(8, 16);
@@ -1179,9 +1181,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetNameLabel.Size = new System.Drawing.Size(39, 13);
 			this.lblTargetNameLabel.TabIndex = 0;
 			this.lblTargetNameLabel.Text = "Name:";
-			//
+			// 
 			// boxCargo
-			//
+			// 
 			this.boxCargo.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.boxCargo.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																					 this.picCargoLine3,
@@ -1300,72 +1302,72 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxCargo.TabIndex = 8;
 			this.boxCargo.TabStop = false;
 			this.boxCargo.Text = "Cargo";
-			//
+			// 
 			// picCargoLine3
-			//
+			// 
 			this.picCargoLine3.BackColor = System.Drawing.Color.DimGray;
 			this.picCargoLine3.Location = new System.Drawing.Point(8, 52);
 			this.picCargoLine3.Name = "picCargoLine3";
 			this.picCargoLine3.Size = new System.Drawing.Size(496, 1);
 			this.picCargoLine3.TabIndex = 131;
 			this.picCargoLine3.TabStop = false;
-			//
+			// 
 			// picCargoLine2
-			//
+			// 
 			this.picCargoLine2.BackColor = System.Drawing.Color.DimGray;
 			this.picCargoLine2.Location = new System.Drawing.Point(352, 32);
 			this.picCargoLine2.Name = "picCargoLine2";
 			this.picCargoLine2.Size = new System.Drawing.Size(1, 262);
 			this.picCargoLine2.TabIndex = 130;
 			this.picCargoLine2.TabStop = false;
-			//
+			// 
 			// picCargoLine0
-			//
+			// 
 			this.picCargoLine0.BackColor = System.Drawing.Color.DimGray;
 			this.picCargoLine0.Location = new System.Drawing.Point(71, 32);
 			this.picCargoLine0.Name = "picCargoLine0";
 			this.picCargoLine0.Size = new System.Drawing.Size(1, 262);
 			this.picCargoLine0.TabIndex = 129;
 			this.picCargoLine0.TabStop = false;
-			//
+			// 
 			// picCargoLine1
-			//
+			// 
 			this.picCargoLine1.BackColor = System.Drawing.Color.DimGray;
 			this.picCargoLine1.Location = new System.Drawing.Point(218, 32);
 			this.picCargoLine1.Name = "picCargoLine1";
 			this.picCargoLine1.Size = new System.Drawing.Size(1, 262);
 			this.picCargoLine1.TabIndex = 128;
 			this.picCargoLine1.TabStop = false;
-			//
+			// 
 			// lblTargetPct9
-			//
+			// 
 			this.lblTargetPct9.Location = new System.Drawing.Point(466, 276);
 			this.lblTargetPct9.Name = "lblTargetPct9";
 			this.lblTargetPct9.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct9.TabIndex = 127;
 			this.lblTargetPct9.Text = "--------";
 			this.lblTargetPct9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff9
-			//
+			// 
 			this.lblTargetDiff9.Location = new System.Drawing.Point(410, 276);
 			this.lblTargetDiff9.Name = "lblTargetDiff9";
 			this.lblTargetDiff9.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff9.TabIndex = 126;
 			this.lblTargetDiff9.Text = "------------";
 			this.lblTargetDiff9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice9
-			//
+			// 
 			this.lblTargetPrice9.Location = new System.Drawing.Point(358, 276);
 			this.lblTargetPrice9.Name = "lblTargetPrice9";
 			this.lblTargetPrice9.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice9.TabIndex = 125;
 			this.lblTargetPrice9.Text = "-----------";
 			this.lblTargetPrice9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax9
-			//
+			// 
 			this.btnBuyMax9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax9.Location = new System.Drawing.Point(262, 272);
 			this.btnBuyMax9.Name = "btnBuyMax9";
@@ -1373,9 +1375,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax9.TabIndex = 51;
 			this.btnBuyMax9.Text = "Max";
 			this.btnBuyMax9.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty9
-			//
+			// 
 			this.btnBuyQty9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty9.Location = new System.Drawing.Point(227, 272);
 			this.btnBuyQty9.Name = "btnBuyQty9";
@@ -1383,18 +1385,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty9.TabIndex = 50;
 			this.btnBuyQty9.Text = "88";
 			this.btnBuyQty9.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice9
-			//
+			// 
 			this.lblBuyPrice9.Location = new System.Drawing.Point(302, 276);
 			this.lblBuyPrice9.Name = "lblBuyPrice9";
 			this.lblBuyPrice9.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice9.TabIndex = 122;
 			this.lblBuyPrice9.Text = "not sold";
 			this.lblBuyPrice9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll9
-			//
+			// 
 			this.btnSellAll9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll9.Location = new System.Drawing.Point(115, 272);
 			this.btnSellAll9.Name = "btnSellAll9";
@@ -1402,9 +1404,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll9.TabIndex = 49;
 			this.btnSellAll9.Text = "Dump";
 			this.btnSellAll9.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty9
-			//
+			// 
 			this.btnSellQty9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty9.Location = new System.Drawing.Point(80, 272);
 			this.btnSellQty9.Name = "btnSellQty9";
@@ -1412,45 +1414,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty9.TabIndex = 48;
 			this.btnSellQty9.Text = "88";
 			this.btnSellQty9.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice9
-			//
+			// 
 			this.lblSellPrice9.Location = new System.Drawing.Point(163, 276);
 			this.lblSellPrice9.Name = "lblSellPrice9";
 			this.lblSellPrice9.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice9.TabIndex = 119;
 			this.lblSellPrice9.Text = "no trade";
 			this.lblSellPrice9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct8
-			//
+			// 
 			this.lblTargetPct8.Location = new System.Drawing.Point(466, 252);
 			this.lblTargetPct8.Name = "lblTargetPct8";
 			this.lblTargetPct8.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct8.TabIndex = 118;
 			this.lblTargetPct8.Text = "-888%";
 			this.lblTargetPct8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff8
-			//
+			// 
 			this.lblTargetDiff8.Location = new System.Drawing.Point(410, 252);
 			this.lblTargetDiff8.Name = "lblTargetDiff8";
 			this.lblTargetDiff8.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff8.TabIndex = 117;
 			this.lblTargetDiff8.Text = "-8,888 cr.";
 			this.lblTargetDiff8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice8
-			//
+			// 
 			this.lblTargetPrice8.Location = new System.Drawing.Point(358, 252);
 			this.lblTargetPrice8.Name = "lblTargetPrice8";
 			this.lblTargetPrice8.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice8.TabIndex = 116;
 			this.lblTargetPrice8.Text = "8,888 cr.";
 			this.lblTargetPrice8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax8
-			//
+			// 
 			this.btnBuyMax8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax8.Location = new System.Drawing.Point(262, 248);
 			this.btnBuyMax8.Name = "btnBuyMax8";
@@ -1458,9 +1460,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax8.TabIndex = 47;
 			this.btnBuyMax8.Text = "Max";
 			this.btnBuyMax8.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty8
-			//
+			// 
 			this.btnBuyQty8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty8.Location = new System.Drawing.Point(227, 248);
 			this.btnBuyQty8.Name = "btnBuyQty8";
@@ -1468,18 +1470,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty8.TabIndex = 46;
 			this.btnBuyQty8.Text = "88";
 			this.btnBuyQty8.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice8
-			//
+			// 
 			this.lblBuyPrice8.Location = new System.Drawing.Point(302, 252);
 			this.lblBuyPrice8.Name = "lblBuyPrice8";
 			this.lblBuyPrice8.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice8.TabIndex = 113;
 			this.lblBuyPrice8.Text = "8,888 cr.";
 			this.lblBuyPrice8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll8
-			//
+			// 
 			this.btnSellAll8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll8.Location = new System.Drawing.Point(115, 248);
 			this.btnSellAll8.Name = "btnSellAll8";
@@ -1487,9 +1489,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll8.TabIndex = 45;
 			this.btnSellAll8.Text = "All";
 			this.btnSellAll8.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty8
-			//
+			// 
 			this.btnSellQty8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty8.Location = new System.Drawing.Point(80, 248);
 			this.btnSellQty8.Name = "btnSellQty8";
@@ -1497,27 +1499,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty8.TabIndex = 44;
 			this.btnSellQty8.Text = "88";
 			this.btnSellQty8.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice8
-			//
+			// 
 			this.lblSellPrice8.Location = new System.Drawing.Point(163, 252);
 			this.lblSellPrice8.Name = "lblSellPrice8";
 			this.lblSellPrice8.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice8.TabIndex = 110;
 			this.lblSellPrice8.Text = "8,888 cr.";
 			this.lblSellPrice8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct7
-			//
+			// 
 			this.lblTargetPct7.Location = new System.Drawing.Point(466, 228);
 			this.lblTargetPct7.Name = "lblTargetPct7";
 			this.lblTargetPct7.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct7.TabIndex = 109;
 			this.lblTargetPct7.Text = "-888%";
 			this.lblTargetPct7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff7
-			//
+			// 
 			this.lblTargetDiff7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblTargetDiff7.Location = new System.Drawing.Point(410, 228);
 			this.lblTargetDiff7.Name = "lblTargetDiff7";
@@ -1525,18 +1527,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetDiff7.TabIndex = 108;
 			this.lblTargetDiff7.Text = "-8,888 cr.";
 			this.lblTargetDiff7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice7
-			//
+			// 
 			this.lblTargetPrice7.Location = new System.Drawing.Point(358, 228);
 			this.lblTargetPrice7.Name = "lblTargetPrice7";
 			this.lblTargetPrice7.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice7.TabIndex = 107;
 			this.lblTargetPrice7.Text = "8,888 cr.";
 			this.lblTargetPrice7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax7
-			//
+			// 
 			this.btnBuyMax7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax7.Location = new System.Drawing.Point(262, 224);
 			this.btnBuyMax7.Name = "btnBuyMax7";
@@ -1544,9 +1546,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax7.TabIndex = 43;
 			this.btnBuyMax7.Text = "Max";
 			this.btnBuyMax7.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty7
-			//
+			// 
 			this.btnBuyQty7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty7.Location = new System.Drawing.Point(227, 224);
 			this.btnBuyQty7.Name = "btnBuyQty7";
@@ -1554,18 +1556,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty7.TabIndex = 42;
 			this.btnBuyQty7.Text = "88";
 			this.btnBuyQty7.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice7
-			//
+			// 
 			this.lblBuyPrice7.Location = new System.Drawing.Point(302, 228);
 			this.lblBuyPrice7.Name = "lblBuyPrice7";
 			this.lblBuyPrice7.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice7.TabIndex = 104;
 			this.lblBuyPrice7.Text = "8,888 cr.";
 			this.lblBuyPrice7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll7
-			//
+			// 
 			this.btnSellAll7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll7.Location = new System.Drawing.Point(115, 224);
 			this.btnSellAll7.Name = "btnSellAll7";
@@ -1573,9 +1575,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll7.TabIndex = 41;
 			this.btnSellAll7.Text = "All";
 			this.btnSellAll7.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty7
-			//
+			// 
 			this.btnSellQty7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty7.Location = new System.Drawing.Point(80, 224);
 			this.btnSellQty7.Name = "btnSellQty7";
@@ -1583,45 +1585,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty7.TabIndex = 40;
 			this.btnSellQty7.Text = "88";
 			this.btnSellQty7.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice7
-			//
+			// 
 			this.lblSellPrice7.Location = new System.Drawing.Point(163, 228);
 			this.lblSellPrice7.Name = "lblSellPrice7";
 			this.lblSellPrice7.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice7.TabIndex = 101;
 			this.lblSellPrice7.Text = "8,888 cr.";
 			this.lblSellPrice7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct6
-			//
+			// 
 			this.lblTargetPct6.Location = new System.Drawing.Point(466, 204);
 			this.lblTargetPct6.Name = "lblTargetPct6";
 			this.lblTargetPct6.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct6.TabIndex = 100;
 			this.lblTargetPct6.Text = "-888%";
 			this.lblTargetPct6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff6
-			//
+			// 
 			this.lblTargetDiff6.Location = new System.Drawing.Point(410, 204);
 			this.lblTargetDiff6.Name = "lblTargetDiff6";
 			this.lblTargetDiff6.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff6.TabIndex = 99;
 			this.lblTargetDiff6.Text = "-8,888 cr.";
 			this.lblTargetDiff6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice6
-			//
+			// 
 			this.lblTargetPrice6.Location = new System.Drawing.Point(358, 204);
 			this.lblTargetPrice6.Name = "lblTargetPrice6";
 			this.lblTargetPrice6.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice6.TabIndex = 98;
 			this.lblTargetPrice6.Text = "8,888 cr.";
 			this.lblTargetPrice6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax6
-			//
+			// 
 			this.btnBuyMax6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax6.Location = new System.Drawing.Point(262, 200);
 			this.btnBuyMax6.Name = "btnBuyMax6";
@@ -1629,9 +1631,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax6.TabIndex = 39;
 			this.btnBuyMax6.Text = "Max";
 			this.btnBuyMax6.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty6
-			//
+			// 
 			this.btnBuyQty6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty6.Location = new System.Drawing.Point(227, 200);
 			this.btnBuyQty6.Name = "btnBuyQty6";
@@ -1639,18 +1641,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty6.TabIndex = 38;
 			this.btnBuyQty6.Text = "88";
 			this.btnBuyQty6.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice6
-			//
+			// 
 			this.lblBuyPrice6.Location = new System.Drawing.Point(302, 204);
 			this.lblBuyPrice6.Name = "lblBuyPrice6";
 			this.lblBuyPrice6.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice6.TabIndex = 95;
 			this.lblBuyPrice6.Text = "8,888 cr.";
 			this.lblBuyPrice6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll6
-			//
+			// 
 			this.btnSellAll6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll6.Location = new System.Drawing.Point(115, 200);
 			this.btnSellAll6.Name = "btnSellAll6";
@@ -1658,9 +1660,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll6.TabIndex = 37;
 			this.btnSellAll6.Text = "All";
 			this.btnSellAll6.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty6
-			//
+			// 
 			this.btnSellQty6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty6.Location = new System.Drawing.Point(80, 200);
 			this.btnSellQty6.Name = "btnSellQty6";
@@ -1668,45 +1670,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty6.TabIndex = 36;
 			this.btnSellQty6.Text = "88";
 			this.btnSellQty6.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice6
-			//
+			// 
 			this.lblSellPrice6.Location = new System.Drawing.Point(163, 204);
 			this.lblSellPrice6.Name = "lblSellPrice6";
 			this.lblSellPrice6.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice6.TabIndex = 92;
 			this.lblSellPrice6.Text = "8,888 cr.";
 			this.lblSellPrice6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct5
-			//
+			// 
 			this.lblTargetPct5.Location = new System.Drawing.Point(466, 180);
 			this.lblTargetPct5.Name = "lblTargetPct5";
 			this.lblTargetPct5.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct5.TabIndex = 91;
 			this.lblTargetPct5.Text = "-888%";
 			this.lblTargetPct5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff5
-			//
+			// 
 			this.lblTargetDiff5.Location = new System.Drawing.Point(410, 180);
 			this.lblTargetDiff5.Name = "lblTargetDiff5";
 			this.lblTargetDiff5.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff5.TabIndex = 90;
 			this.lblTargetDiff5.Text = "-8,888 cr.";
 			this.lblTargetDiff5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice5
-			//
+			// 
 			this.lblTargetPrice5.Location = new System.Drawing.Point(358, 180);
 			this.lblTargetPrice5.Name = "lblTargetPrice5";
 			this.lblTargetPrice5.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice5.TabIndex = 89;
 			this.lblTargetPrice5.Text = "8,888 cr.";
 			this.lblTargetPrice5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax5
-			//
+			// 
 			this.btnBuyMax5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax5.Location = new System.Drawing.Point(262, 176);
 			this.btnBuyMax5.Name = "btnBuyMax5";
@@ -1714,9 +1716,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax5.TabIndex = 35;
 			this.btnBuyMax5.Text = "Max";
 			this.btnBuyMax5.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty5
-			//
+			// 
 			this.btnBuyQty5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty5.Location = new System.Drawing.Point(227, 176);
 			this.btnBuyQty5.Name = "btnBuyQty5";
@@ -1724,18 +1726,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty5.TabIndex = 34;
 			this.btnBuyQty5.Text = "88";
 			this.btnBuyQty5.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice5
-			//
+			// 
 			this.lblBuyPrice5.Location = new System.Drawing.Point(302, 180);
 			this.lblBuyPrice5.Name = "lblBuyPrice5";
 			this.lblBuyPrice5.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice5.TabIndex = 86;
 			this.lblBuyPrice5.Text = "8,888 cr.";
 			this.lblBuyPrice5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll5
-			//
+			// 
 			this.btnSellAll5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll5.Location = new System.Drawing.Point(115, 176);
 			this.btnSellAll5.Name = "btnSellAll5";
@@ -1743,9 +1745,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll5.TabIndex = 33;
 			this.btnSellAll5.Text = "All";
 			this.btnSellAll5.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty5
-			//
+			// 
 			this.btnSellQty5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty5.Location = new System.Drawing.Point(80, 176);
 			this.btnSellQty5.Name = "btnSellQty5";
@@ -1753,45 +1755,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty5.TabIndex = 32;
 			this.btnSellQty5.Text = "88";
 			this.btnSellQty5.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice5
-			//
+			// 
 			this.lblSellPrice5.Location = new System.Drawing.Point(163, 180);
 			this.lblSellPrice5.Name = "lblSellPrice5";
 			this.lblSellPrice5.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice5.TabIndex = 83;
 			this.lblSellPrice5.Text = "8,888 cr.";
 			this.lblSellPrice5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct4
-			//
+			// 
 			this.lblTargetPct4.Location = new System.Drawing.Point(466, 156);
 			this.lblTargetPct4.Name = "lblTargetPct4";
 			this.lblTargetPct4.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct4.TabIndex = 82;
 			this.lblTargetPct4.Text = "-888%";
 			this.lblTargetPct4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff4
-			//
+			// 
 			this.lblTargetDiff4.Location = new System.Drawing.Point(410, 156);
 			this.lblTargetDiff4.Name = "lblTargetDiff4";
 			this.lblTargetDiff4.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff4.TabIndex = 81;
 			this.lblTargetDiff4.Text = "-8,888 cr.";
 			this.lblTargetDiff4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice4
-			//
+			// 
 			this.lblTargetPrice4.Location = new System.Drawing.Point(358, 156);
 			this.lblTargetPrice4.Name = "lblTargetPrice4";
 			this.lblTargetPrice4.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice4.TabIndex = 80;
 			this.lblTargetPrice4.Text = "8,888 cr.";
 			this.lblTargetPrice4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax4
-			//
+			// 
 			this.btnBuyMax4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax4.Location = new System.Drawing.Point(262, 152);
 			this.btnBuyMax4.Name = "btnBuyMax4";
@@ -1799,9 +1801,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax4.TabIndex = 31;
 			this.btnBuyMax4.Text = "Max";
 			this.btnBuyMax4.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty4
-			//
+			// 
 			this.btnBuyQty4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty4.Location = new System.Drawing.Point(227, 152);
 			this.btnBuyQty4.Name = "btnBuyQty4";
@@ -1809,18 +1811,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty4.TabIndex = 30;
 			this.btnBuyQty4.Text = "88";
 			this.btnBuyQty4.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice4
-			//
+			// 
 			this.lblBuyPrice4.Location = new System.Drawing.Point(302, 156);
 			this.lblBuyPrice4.Name = "lblBuyPrice4";
 			this.lblBuyPrice4.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice4.TabIndex = 77;
 			this.lblBuyPrice4.Text = "8,888 cr.";
 			this.lblBuyPrice4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll4
-			//
+			// 
 			this.btnSellAll4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll4.Location = new System.Drawing.Point(115, 152);
 			this.btnSellAll4.Name = "btnSellAll4";
@@ -1828,9 +1830,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll4.TabIndex = 29;
 			this.btnSellAll4.Text = "All";
 			this.btnSellAll4.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty4
-			//
+			// 
 			this.btnSellQty4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty4.Location = new System.Drawing.Point(80, 152);
 			this.btnSellQty4.Name = "btnSellQty4";
@@ -1838,45 +1840,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty4.TabIndex = 28;
 			this.btnSellQty4.Text = "88";
 			this.btnSellQty4.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice4
-			//
+			// 
 			this.lblSellPrice4.Location = new System.Drawing.Point(163, 156);
 			this.lblSellPrice4.Name = "lblSellPrice4";
 			this.lblSellPrice4.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice4.TabIndex = 74;
 			this.lblSellPrice4.Text = "8,888 cr.";
 			this.lblSellPrice4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct3
-			//
+			// 
 			this.lblTargetPct3.Location = new System.Drawing.Point(466, 132);
 			this.lblTargetPct3.Name = "lblTargetPct3";
 			this.lblTargetPct3.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct3.TabIndex = 73;
 			this.lblTargetPct3.Text = "-888%";
 			this.lblTargetPct3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff3
-			//
+			// 
 			this.lblTargetDiff3.Location = new System.Drawing.Point(410, 132);
 			this.lblTargetDiff3.Name = "lblTargetDiff3";
 			this.lblTargetDiff3.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff3.TabIndex = 72;
 			this.lblTargetDiff3.Text = "-8,888 cr.";
 			this.lblTargetDiff3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice3
-			//
+			// 
 			this.lblTargetPrice3.Location = new System.Drawing.Point(358, 132);
 			this.lblTargetPrice3.Name = "lblTargetPrice3";
 			this.lblTargetPrice3.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice3.TabIndex = 71;
 			this.lblTargetPrice3.Text = "8,888 cr.";
 			this.lblTargetPrice3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax3
-			//
+			// 
 			this.btnBuyMax3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax3.Location = new System.Drawing.Point(262, 128);
 			this.btnBuyMax3.Name = "btnBuyMax3";
@@ -1884,9 +1886,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax3.TabIndex = 27;
 			this.btnBuyMax3.Text = "Max";
 			this.btnBuyMax3.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty3
-			//
+			// 
 			this.btnBuyQty3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty3.Location = new System.Drawing.Point(227, 128);
 			this.btnBuyQty3.Name = "btnBuyQty3";
@@ -1894,18 +1896,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty3.TabIndex = 26;
 			this.btnBuyQty3.Text = "88";
 			this.btnBuyQty3.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice3
-			//
+			// 
 			this.lblBuyPrice3.Location = new System.Drawing.Point(302, 132);
 			this.lblBuyPrice3.Name = "lblBuyPrice3";
 			this.lblBuyPrice3.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice3.TabIndex = 68;
 			this.lblBuyPrice3.Text = "8,888 cr.";
 			this.lblBuyPrice3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll3
-			//
+			// 
 			this.btnSellAll3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll3.Location = new System.Drawing.Point(115, 128);
 			this.btnSellAll3.Name = "btnSellAll3";
@@ -1913,9 +1915,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll3.TabIndex = 25;
 			this.btnSellAll3.Text = "All";
 			this.btnSellAll3.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty3
-			//
+			// 
 			this.btnSellQty3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty3.Location = new System.Drawing.Point(80, 128);
 			this.btnSellQty3.Name = "btnSellQty3";
@@ -1923,45 +1925,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty3.TabIndex = 24;
 			this.btnSellQty3.Text = "88";
 			this.btnSellQty3.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice3
-			//
+			// 
 			this.lblSellPrice3.Location = new System.Drawing.Point(163, 132);
 			this.lblSellPrice3.Name = "lblSellPrice3";
 			this.lblSellPrice3.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice3.TabIndex = 65;
 			this.lblSellPrice3.Text = "8,888 cr.";
 			this.lblSellPrice3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct2
-			//
+			// 
 			this.lblTargetPct2.Location = new System.Drawing.Point(466, 108);
 			this.lblTargetPct2.Name = "lblTargetPct2";
 			this.lblTargetPct2.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct2.TabIndex = 64;
 			this.lblTargetPct2.Text = "-888%";
 			this.lblTargetPct2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff2
-			//
+			// 
 			this.lblTargetDiff2.Location = new System.Drawing.Point(410, 108);
 			this.lblTargetDiff2.Name = "lblTargetDiff2";
 			this.lblTargetDiff2.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff2.TabIndex = 63;
 			this.lblTargetDiff2.Text = "-8,888 cr.";
 			this.lblTargetDiff2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice2
-			//
+			// 
 			this.lblTargetPrice2.Location = new System.Drawing.Point(358, 108);
 			this.lblTargetPrice2.Name = "lblTargetPrice2";
 			this.lblTargetPrice2.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice2.TabIndex = 62;
 			this.lblTargetPrice2.Text = "8,888 cr.";
 			this.lblTargetPrice2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax2
-			//
+			// 
 			this.btnBuyMax2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax2.Location = new System.Drawing.Point(262, 104);
 			this.btnBuyMax2.Name = "btnBuyMax2";
@@ -1969,9 +1971,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax2.TabIndex = 23;
 			this.btnBuyMax2.Text = "Max";
 			this.btnBuyMax2.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty2
-			//
+			// 
 			this.btnBuyQty2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty2.Location = new System.Drawing.Point(227, 104);
 			this.btnBuyQty2.Name = "btnBuyQty2";
@@ -1979,18 +1981,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty2.TabIndex = 22;
 			this.btnBuyQty2.Text = "88";
 			this.btnBuyQty2.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice2
-			//
+			// 
 			this.lblBuyPrice2.Location = new System.Drawing.Point(302, 108);
 			this.lblBuyPrice2.Name = "lblBuyPrice2";
 			this.lblBuyPrice2.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice2.TabIndex = 59;
 			this.lblBuyPrice2.Text = "8,888 cr.";
 			this.lblBuyPrice2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll2
-			//
+			// 
 			this.btnSellAll2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll2.Location = new System.Drawing.Point(115, 104);
 			this.btnSellAll2.Name = "btnSellAll2";
@@ -1998,9 +2000,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll2.TabIndex = 21;
 			this.btnSellAll2.Text = "All";
 			this.btnSellAll2.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty2
-			//
+			// 
 			this.btnSellQty2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty2.Location = new System.Drawing.Point(80, 104);
 			this.btnSellQty2.Name = "btnSellQty2";
@@ -2008,45 +2010,45 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty2.TabIndex = 20;
 			this.btnSellQty2.Text = "88";
 			this.btnSellQty2.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice2
-			//
+			// 
 			this.lblSellPrice2.Location = new System.Drawing.Point(163, 108);
 			this.lblSellPrice2.Name = "lblSellPrice2";
 			this.lblSellPrice2.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice2.TabIndex = 56;
 			this.lblSellPrice2.Text = "8,888 cr.";
 			this.lblSellPrice2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPct1
-			//
+			// 
 			this.lblTargetPct1.Location = new System.Drawing.Point(466, 84);
 			this.lblTargetPct1.Name = "lblTargetPct1";
 			this.lblTargetPct1.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct1.TabIndex = 55;
 			this.lblTargetPct1.Text = "-888%";
 			this.lblTargetPct1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff1
-			//
+			// 
 			this.lblTargetDiff1.Location = new System.Drawing.Point(410, 84);
 			this.lblTargetDiff1.Name = "lblTargetDiff1";
 			this.lblTargetDiff1.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff1.TabIndex = 54;
 			this.lblTargetDiff1.Text = "-8,888 cr.";
 			this.lblTargetDiff1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice1
-			//
+			// 
 			this.lblTargetPrice1.Location = new System.Drawing.Point(358, 84);
 			this.lblTargetPrice1.Name = "lblTargetPrice1";
 			this.lblTargetPrice1.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice1.TabIndex = 53;
 			this.lblTargetPrice1.Text = "8,888 cr.";
 			this.lblTargetPrice1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax1
-			//
+			// 
 			this.btnBuyMax1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax1.Location = new System.Drawing.Point(262, 80);
 			this.btnBuyMax1.Name = "btnBuyMax1";
@@ -2054,9 +2056,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax1.TabIndex = 19;
 			this.btnBuyMax1.Text = "Max";
 			this.btnBuyMax1.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty1
-			//
+			// 
 			this.btnBuyQty1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty1.Location = new System.Drawing.Point(227, 80);
 			this.btnBuyQty1.Name = "btnBuyQty1";
@@ -2064,72 +2066,72 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty1.TabIndex = 18;
 			this.btnBuyQty1.Text = "88";
 			this.btnBuyQty1.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice1
-			//
+			// 
 			this.lblBuyPrice1.Location = new System.Drawing.Point(302, 84);
 			this.lblBuyPrice1.Name = "lblBuyPrice1";
 			this.lblBuyPrice1.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice1.TabIndex = 50;
 			this.lblBuyPrice1.Text = "8,888 cr.";
 			this.lblBuyPrice1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPctLabel
-			//
+			// 
 			this.lblTargetPctLabel.AutoSize = true;
 			this.lblTargetPctLabel.Location = new System.Drawing.Point(476, 34);
 			this.lblTargetPctLabel.Name = "lblTargetPctLabel";
 			this.lblTargetPctLabel.Size = new System.Drawing.Size(14, 13);
 			this.lblTargetPctLabel.TabIndex = 49;
 			this.lblTargetPctLabel.Text = "%";
-			//
+			// 
 			// lblTargetDiffLabel
-			//
+			// 
 			this.lblTargetDiffLabel.AutoSize = true;
 			this.lblTargetDiffLabel.Location = new System.Drawing.Point(424, 34);
 			this.lblTargetDiffLabel.Name = "lblTargetDiffLabel";
 			this.lblTargetDiffLabel.Size = new System.Drawing.Size(18, 13);
 			this.lblTargetDiffLabel.TabIndex = 48;
 			this.lblTargetDiffLabel.Text = "+/-";
-			//
+			// 
 			// lblTargetPriceLabel
-			//
+			// 
 			this.lblTargetPriceLabel.AutoSize = true;
 			this.lblTargetPriceLabel.Location = new System.Drawing.Point(360, 34);
 			this.lblTargetPriceLabel.Name = "lblTargetPriceLabel";
 			this.lblTargetPriceLabel.Size = new System.Drawing.Size(30, 13);
 			this.lblTargetPriceLabel.TabIndex = 47;
 			this.lblTargetPriceLabel.Text = "Price";
-			//
+			// 
 			// lblTargetPct0
-			//
+			// 
 			this.lblTargetPct0.Location = new System.Drawing.Point(466, 60);
 			this.lblTargetPct0.Name = "lblTargetPct0";
 			this.lblTargetPct0.Size = new System.Drawing.Size(37, 13);
 			this.lblTargetPct0.TabIndex = 46;
 			this.lblTargetPct0.Text = "-888%";
 			this.lblTargetPct0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetDiff0
-			//
+			// 
 			this.lblTargetDiff0.Location = new System.Drawing.Point(410, 60);
 			this.lblTargetDiff0.Name = "lblTargetDiff0";
 			this.lblTargetDiff0.Size = new System.Drawing.Size(52, 13);
 			this.lblTargetDiff0.TabIndex = 45;
 			this.lblTargetDiff0.Text = "-8,888 cr.";
 			this.lblTargetDiff0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTargetPrice0
-			//
+			// 
 			this.lblTargetPrice0.Location = new System.Drawing.Point(358, 60);
 			this.lblTargetPrice0.Name = "lblTargetPrice0";
 			this.lblTargetPrice0.Size = new System.Drawing.Size(48, 13);
 			this.lblTargetPrice0.TabIndex = 44;
 			this.lblTargetPrice0.Text = "8,888 cr.";
 			this.lblTargetPrice0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnBuyMax0
-			//
+			// 
 			this.btnBuyMax0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyMax0.Location = new System.Drawing.Point(262, 56);
 			this.btnBuyMax0.Name = "btnBuyMax0";
@@ -2137,9 +2139,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyMax0.TabIndex = 15;
 			this.btnBuyMax0.Text = "Max";
 			this.btnBuyMax0.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnBuyQty0
-			//
+			// 
 			this.btnBuyQty0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyQty0.Location = new System.Drawing.Point(227, 56);
 			this.btnBuyQty0.Name = "btnBuyQty0";
@@ -2147,18 +2149,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyQty0.TabIndex = 14;
 			this.btnBuyQty0.Text = "88";
 			this.btnBuyQty0.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblBuyPrice0
-			//
+			// 
 			this.lblBuyPrice0.Location = new System.Drawing.Point(302, 60);
 			this.lblBuyPrice0.Name = "lblBuyPrice0";
 			this.lblBuyPrice0.Size = new System.Drawing.Size(48, 13);
 			this.lblBuyPrice0.TabIndex = 41;
 			this.lblBuyPrice0.Text = "8,888 cr.";
 			this.lblBuyPrice0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll1
-			//
+			// 
 			this.btnSellAll1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll1.Location = new System.Drawing.Point(115, 80);
 			this.btnSellAll1.Name = "btnSellAll1";
@@ -2166,9 +2168,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll1.TabIndex = 17;
 			this.btnSellAll1.Text = "All";
 			this.btnSellAll1.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty1
-			//
+			// 
 			this.btnSellQty1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty1.Location = new System.Drawing.Point(80, 80);
 			this.btnSellQty1.Name = "btnSellQty1";
@@ -2176,18 +2178,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty1.TabIndex = 16;
 			this.btnSellQty1.Text = "88";
 			this.btnSellQty1.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice1
-			//
+			// 
 			this.lblSellPrice1.Location = new System.Drawing.Point(163, 84);
 			this.lblSellPrice1.Name = "lblSellPrice1";
 			this.lblSellPrice1.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice1.TabIndex = 38;
 			this.lblSellPrice1.Text = "8,888 cr.";
 			this.lblSellPrice1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// btnSellAll0
-			//
+			// 
 			this.btnSellAll0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellAll0.Location = new System.Drawing.Point(115, 56);
 			this.btnSellAll0.Name = "btnSellAll0";
@@ -2195,9 +2197,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellAll0.TabIndex = 13;
 			this.btnSellAll0.Text = "All";
 			this.btnSellAll0.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// btnSellQty0
-			//
+			// 
 			this.btnSellQty0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSellQty0.Location = new System.Drawing.Point(80, 56);
 			this.btnSellQty0.Name = "btnSellQty0";
@@ -2205,36 +2207,36 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSellQty0.TabIndex = 12;
 			this.btnSellQty0.Text = "88";
 			this.btnSellQty0.Click += new System.EventHandler(this.btnBuySell_Click);
-			//
+			// 
 			// lblSellPrice0
-			//
+			// 
 			this.lblSellPrice0.Location = new System.Drawing.Point(163, 60);
 			this.lblSellPrice0.Name = "lblSellPrice0";
 			this.lblSellPrice0.Size = new System.Drawing.Size(48, 13);
 			this.lblSellPrice0.TabIndex = 35;
 			this.lblSellPrice0.Text = "8,888 cr.";
 			this.lblSellPrice0.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// lblTradeTarget
-			//
+			// 
 			this.lblTradeTarget.AutoSize = true;
 			this.lblTradeTarget.Location = new System.Drawing.Point(391, 16);
 			this.lblTradeTarget.Name = "lblTradeTarget";
 			this.lblTradeTarget.Size = new System.Drawing.Size(78, 13);
 			this.lblTradeTarget.TabIndex = 28;
 			this.lblTradeTarget.Text = "Target System";
-			//
+			// 
 			// lblBuy
-			//
+			// 
 			this.lblBuy.AutoSize = true;
 			this.lblBuy.Location = new System.Drawing.Point(273, 34);
 			this.lblBuy.Name = "lblBuy";
 			this.lblBuy.Size = new System.Drawing.Size(24, 13);
 			this.lblBuy.TabIndex = 27;
 			this.lblBuy.Text = "Buy";
-			//
+			// 
 			// lblSell
-			//
+			// 
 			this.lblSell.AutoSize = true;
 			this.lblSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSell.Location = new System.Drawing.Point(132, 34);
@@ -2242,99 +2244,99 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSell.Size = new System.Drawing.Size(23, 13);
 			this.lblSell.TabIndex = 26;
 			this.lblSell.Text = "Sell";
-			//
+			// 
 			// lblTradeCmdty9
-			//
+			// 
 			this.lblTradeCmdty9.AutoSize = true;
 			this.lblTradeCmdty9.Location = new System.Drawing.Point(8, 276);
 			this.lblTradeCmdty9.Name = "lblTradeCmdty9";
 			this.lblTradeCmdty9.Size = new System.Drawing.Size(40, 13);
 			this.lblTradeCmdty9.TabIndex = 25;
 			this.lblTradeCmdty9.Text = "Robots";
-			//
+			// 
 			// lblTradeCmdty8
-			//
+			// 
 			this.lblTradeCmdty8.AutoSize = true;
 			this.lblTradeCmdty8.Location = new System.Drawing.Point(8, 252);
 			this.lblTradeCmdty8.Name = "lblTradeCmdty8";
 			this.lblTradeCmdty8.Size = new System.Drawing.Size(51, 13);
 			this.lblTradeCmdty8.TabIndex = 24;
 			this.lblTradeCmdty8.Text = "Narcotics";
-			//
+			// 
 			// lblTradeCmdty2
-			//
+			// 
 			this.lblTradeCmdty2.AutoSize = true;
 			this.lblTradeCmdty2.Location = new System.Drawing.Point(8, 108);
 			this.lblTradeCmdty2.Name = "lblTradeCmdty2";
 			this.lblTradeCmdty2.Size = new System.Drawing.Size(30, 13);
 			this.lblTradeCmdty2.TabIndex = 23;
 			this.lblTradeCmdty2.Text = "Food";
-			//
+			// 
 			// lblTradeCmdty0
-			//
+			// 
 			this.lblTradeCmdty0.AutoSize = true;
 			this.lblTradeCmdty0.Location = new System.Drawing.Point(8, 60);
 			this.lblTradeCmdty0.Name = "lblTradeCmdty0";
 			this.lblTradeCmdty0.Size = new System.Drawing.Size(34, 13);
 			this.lblTradeCmdty0.TabIndex = 22;
 			this.lblTradeCmdty0.Text = "Water";
-			//
+			// 
 			// lblTradeCmdty1
-			//
+			// 
 			this.lblTradeCmdty1.AutoSize = true;
 			this.lblTradeCmdty1.Location = new System.Drawing.Point(8, 84);
 			this.lblTradeCmdty1.Name = "lblTradeCmdty1";
 			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 13);
 			this.lblTradeCmdty1.TabIndex = 21;
 			this.lblTradeCmdty1.Text = "Furs";
-			//
+			// 
 			// lblTradeCmdty6
-			//
+			// 
 			this.lblTradeCmdty6.AutoSize = true;
 			this.lblTradeCmdty6.Location = new System.Drawing.Point(8, 204);
 			this.lblTradeCmdty6.Name = "lblTradeCmdty6";
 			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 13);
 			this.lblTradeCmdty6.TabIndex = 20;
 			this.lblTradeCmdty6.Text = "Medicine";
-			//
+			// 
 			// lblTradeCmdty5
-			//
+			// 
 			this.lblTradeCmdty5.AutoSize = true;
 			this.lblTradeCmdty5.Location = new System.Drawing.Point(8, 180);
 			this.lblTradeCmdty5.Name = "lblTradeCmdty5";
 			this.lblTradeCmdty5.Size = new System.Drawing.Size(49, 13);
 			this.lblTradeCmdty5.TabIndex = 19;
 			this.lblTradeCmdty5.Text = "Firearms";
-			//
+			// 
 			// lblTradeCmdty4
-			//
+			// 
 			this.lblTradeCmdty4.AutoSize = true;
 			this.lblTradeCmdty4.Location = new System.Drawing.Point(8, 156);
 			this.lblTradeCmdty4.Name = "lblTradeCmdty4";
 			this.lblTradeCmdty4.Size = new System.Drawing.Size(41, 13);
 			this.lblTradeCmdty4.TabIndex = 18;
 			this.lblTradeCmdty4.Text = "Games";
-			//
+			// 
 			// lblTradeCmdty3
-			//
+			// 
 			this.lblTradeCmdty3.AutoSize = true;
 			this.lblTradeCmdty3.Location = new System.Drawing.Point(8, 132);
 			this.lblTradeCmdty3.Name = "lblTradeCmdty3";
 			this.lblTradeCmdty3.Size = new System.Drawing.Size(23, 13);
 			this.lblTradeCmdty3.TabIndex = 17;
 			this.lblTradeCmdty3.Text = "Ore";
-			//
+			// 
 			// lblTradeCmdty7
-			//
+			// 
 			this.lblTradeCmdty7.AutoSize = true;
 			this.lblTradeCmdty7.Location = new System.Drawing.Point(8, 228);
 			this.lblTradeCmdty7.Name = "lblTradeCmdty7";
 			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 13);
 			this.lblTradeCmdty7.TabIndex = 16;
 			this.lblTradeCmdty7.Text = "Machines";
-			//
+			// 
 			// boxSystem
-			//
+			// 
 			this.boxSystem.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																						this.btnMerc,
 																																						this.btnSpecial,
@@ -2361,9 +2363,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxSystem.TabIndex = 1;
 			this.boxSystem.TabStop = false;
 			this.boxSystem.Text = "System Info";
-			//
+			// 
 			// btnMerc
-			//
+			// 
 			this.btnMerc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMerc.Location = new System.Drawing.Point(118, 174);
 			this.btnMerc.Name = "btnMerc";
@@ -2371,9 +2373,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnMerc.TabIndex = 3;
 			this.btnMerc.Text = "Mercenary For Hire";
 			this.btnMerc.Click += new System.EventHandler(this.btnMerc_Click);
-			//
+			// 
 			// btnSpecial
-			//
+			// 
 			this.btnSpecial.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(128)));
 			this.btnSpecial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSpecial.Location = new System.Drawing.Point(58, 174);
@@ -2382,9 +2384,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnSpecial.TabIndex = 2;
 			this.btnSpecial.Text = "Special";
 			this.btnSpecial.Click += new System.EventHandler(this.btnSpecial_Click);
-			//
+			// 
 			// btnNews
-			//
+			// 
 			this.btnNews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNews.Location = new System.Drawing.Point(8, 174);
 			this.btnNews.Name = "btnNews";
@@ -2392,74 +2394,74 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnNews.TabIndex = 1;
 			this.btnNews.Text = "News";
 			this.btnNews.Click += new System.EventHandler(this.btnNews_Click);
-			//
+			// 
 			// lblSystemPressure
-			//
+			// 
 			this.lblSystemPressure.Location = new System.Drawing.Point(8, 147);
 			this.lblSystemPressure.Name = "lblSystemPressure";
 			this.lblSystemPressure.Size = new System.Drawing.Size(168, 16);
 			this.lblSystemPressure.TabIndex = 18;
 			this.lblSystemPressure.Text = "suffering from extreme bordom.";
-			//
+			// 
 			// lblSystemPressurePre
-			//
+			// 
 			this.lblSystemPressurePre.AutoSize = true;
 			this.lblSystemPressurePre.Location = new System.Drawing.Point(8, 134);
 			this.lblSystemPressurePre.Name = "lblSystemPressurePre";
 			this.lblSystemPressurePre.Size = new System.Drawing.Size(122, 13);
 			this.lblSystemPressurePre.TabIndex = 17;
 			this.lblSystemPressurePre.Text = "This system is currently";
-			//
+			// 
 			// lblSystemPolSys
-			//
+			// 
 			this.lblSystemPolSys.Location = new System.Drawing.Point(88, 64);
 			this.lblSystemPolSys.Name = "lblSystemPolSys";
 			this.lblSystemPolSys.Size = new System.Drawing.Size(91, 13);
 			this.lblSystemPolSys.TabIndex = 15;
 			this.lblSystemPolSys.Text = "Cybernetic State";
-			//
+			// 
 			// lblSystemSize
-			//
+			// 
 			this.lblSystemSize.Location = new System.Drawing.Point(88, 32);
 			this.lblSystemSize.Name = "lblSystemSize";
 			this.lblSystemSize.Size = new System.Drawing.Size(45, 13);
 			this.lblSystemSize.TabIndex = 14;
 			this.lblSystemSize.Text = "Medium";
-			//
+			// 
 			// lblSystemTech
-			//
+			// 
 			this.lblSystemTech.Location = new System.Drawing.Point(88, 48);
 			this.lblSystemTech.Name = "lblSystemTech";
 			this.lblSystemTech.Size = new System.Drawing.Size(82, 13);
 			this.lblSystemTech.TabIndex = 13;
 			this.lblSystemTech.Text = "Pre-Agricultural";
-			//
+			// 
 			// lblSystemPirates
-			//
+			// 
 			this.lblSystemPirates.Location = new System.Drawing.Point(88, 112);
 			this.lblSystemPirates.Name = "lblSystemPirates";
 			this.lblSystemPirates.Size = new System.Drawing.Size(53, 13);
 			this.lblSystemPirates.TabIndex = 11;
 			this.lblSystemPirates.Text = "Abundant";
-			//
+			// 
 			// lblSystemPolice
-			//
+			// 
 			this.lblSystemPolice.Location = new System.Drawing.Point(88, 96);
 			this.lblSystemPolice.Name = "lblSystemPolice";
 			this.lblSystemPolice.Size = new System.Drawing.Size(53, 13);
 			this.lblSystemPolice.TabIndex = 10;
 			this.lblSystemPolice.Text = "Moderate";
-			//
+			// 
 			// lblSystemResource
-			//
+			// 
 			this.lblSystemResource.Location = new System.Drawing.Point(88, 80);
 			this.lblSystemResource.Name = "lblSystemResource";
 			this.lblSystemResource.Size = new System.Drawing.Size(105, 13);
 			this.lblSystemResource.TabIndex = 9;
 			this.lblSystemResource.Text = "Sweetwater Oceans";
-			//
+			// 
 			// lblSystemPiratesLabel
-			//
+			// 
 			this.lblSystemPiratesLabel.AutoSize = true;
 			this.lblSystemPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemPiratesLabel.Location = new System.Drawing.Point(8, 112);
@@ -2467,9 +2469,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPiratesLabel.Size = new System.Drawing.Size(44, 13);
 			this.lblSystemPiratesLabel.TabIndex = 7;
 			this.lblSystemPiratesLabel.Text = "Pirates:";
-			//
+			// 
 			// lblSystemPoliceLabel
-			//
+			// 
 			this.lblSystemPoliceLabel.AutoSize = true;
 			this.lblSystemPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemPoliceLabel.Location = new System.Drawing.Point(8, 96);
@@ -2477,9 +2479,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPoliceLabel.Size = new System.Drawing.Size(40, 13);
 			this.lblSystemPoliceLabel.TabIndex = 6;
 			this.lblSystemPoliceLabel.Text = "Police:";
-			//
+			// 
 			// lblSystemResourseLabel
-			//
+			// 
 			this.lblSystemResourseLabel.AutoSize = true;
 			this.lblSystemResourseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemResourseLabel.Location = new System.Drawing.Point(8, 80);
@@ -2487,9 +2489,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemResourseLabel.Size = new System.Drawing.Size(58, 13);
 			this.lblSystemResourseLabel.TabIndex = 5;
 			this.lblSystemResourseLabel.Text = "Resource:";
-			//
+			// 
 			// lblSystemGovtLabel
-			//
+			// 
 			this.lblSystemGovtLabel.AutoSize = true;
 			this.lblSystemGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemGovtLabel.Location = new System.Drawing.Point(8, 64);
@@ -2497,9 +2499,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemGovtLabel.Size = new System.Drawing.Size(72, 13);
 			this.lblSystemGovtLabel.TabIndex = 4;
 			this.lblSystemGovtLabel.Text = "Government:";
-			//
+			// 
 			// lblSystemTechLabel
-			//
+			// 
 			this.lblSystemTechLabel.AutoSize = true;
 			this.lblSystemTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemTechLabel.Location = new System.Drawing.Point(8, 48);
@@ -2507,9 +2509,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemTechLabel.Size = new System.Drawing.Size(65, 13);
 			this.lblSystemTechLabel.TabIndex = 3;
 			this.lblSystemTechLabel.Text = "Tech Level:";
-			//
+			// 
 			// lblSystemSizeLabel
-			//
+			// 
 			this.lblSystemSizeLabel.AutoSize = true;
 			this.lblSystemSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemSizeLabel.Location = new System.Drawing.Point(8, 32);
@@ -2517,17 +2519,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemSizeLabel.Size = new System.Drawing.Size(31, 13);
 			this.lblSystemSizeLabel.TabIndex = 2;
 			this.lblSystemSizeLabel.Text = "Size:";
-			//
+			// 
 			// lblSystemName
-			//
+			// 
 			this.lblSystemName.Location = new System.Drawing.Point(88, 16);
 			this.lblSystemName.Name = "lblSystemName";
 			this.lblSystemName.Size = new System.Drawing.Size(65, 13);
 			this.lblSystemName.TabIndex = 1;
 			this.lblSystemName.Text = "Tarchannen";
-			//
+			// 
 			// lblSystemNameLabel
-			//
+			// 
 			this.lblSystemNameLabel.AutoSize = true;
 			this.lblSystemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.lblSystemNameLabel.Location = new System.Drawing.Point(8, 16);
@@ -2535,10 +2537,11 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemNameLabel.Size = new System.Drawing.Size(39, 13);
 			this.lblSystemNameLabel.TabIndex = 0;
 			this.lblSystemNameLabel.Text = "Name:";
-			//
+			// 
 			// boxShipYard
-			//
+			// 
 			this.boxShipYard.Controls.AddRange(new System.Windows.Forms.Control[] {
+																																							this.btnDesign,
 																																							this.btnPod,
 																																							this.lblEscapePod,
 																																							this.btnEquip,
@@ -2551,9 +2554,19 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShipYard.TabIndex = 4;
 			this.boxShipYard.TabStop = false;
 			this.boxShipYard.Text = "Ship Yard";
-			//
+			// 
+			// btnDesign
+			// 
+			this.btnDesign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDesign.Location = new System.Drawing.Point(8, 32);
+			this.btnDesign.Name = "btnDesign";
+			this.btnDesign.Size = new System.Drawing.Size(54, 22);
+			this.btnDesign.TabIndex = 55;
+			this.btnDesign.Text = "Design";
+			this.btnDesign.Click += new System.EventHandler(this.btnDesign_Click);
+			// 
 			// btnPod
-			//
+			// 
 			this.btnPod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPod.Location = new System.Drawing.Point(98, 138);
 			this.btnPod.Name = "btnPod";
@@ -2561,17 +2574,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnPod.TabIndex = 54;
 			this.btnPod.Text = "Buy Pod";
 			this.btnPod.Click += new System.EventHandler(this.btnPod_Click);
-			//
+			// 
 			// lblEscapePod
-			//
+			// 
 			this.lblEscapePod.Location = new System.Drawing.Point(8, 122);
 			this.lblEscapePod.Name = "lblEscapePod";
 			this.lblEscapePod.Size = new System.Drawing.Size(152, 26);
 			this.lblEscapePod.TabIndex = 27;
 			this.lblEscapePod.Text = "You can buy an escape pod for  2,000 cr.";
-			//
+			// 
 			// btnEquip
-			//
+			// 
 			this.btnEquip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnEquip.Location = new System.Drawing.Point(43, 85);
 			this.btnEquip.Name = "btnEquip";
@@ -2579,9 +2592,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnEquip.TabIndex = 53;
 			this.btnEquip.Text = "Buy/Sell Equipment";
 			this.btnEquip.Click += new System.EventHandler(this.btnEquip_Click);
-			//
+			// 
 			// btnBuyShip
-			//
+			// 
 			this.btnBuyShip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBuyShip.Location = new System.Drawing.Point(70, 32);
 			this.btnBuyShip.Name = "btnBuyShip";
@@ -2589,25 +2602,25 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnBuyShip.TabIndex = 52;
 			this.btnBuyShip.Text = "View Ship Info";
 			this.btnBuyShip.Click += new System.EventHandler(this.btnBuyShip_Click);
-			//
+			// 
 			// lblEquipForSale
-			//
+			// 
 			this.lblEquipForSale.Location = new System.Drawing.Point(8, 69);
 			this.lblEquipForSale.Name = "lblEquipForSale";
 			this.lblEquipForSale.Size = new System.Drawing.Size(152, 13);
 			this.lblEquipForSale.TabIndex = 21;
 			this.lblEquipForSale.Text = "There is equipment for sale.";
-			//
+			// 
 			// lblShipsForSale
-			//
+			// 
 			this.lblShipsForSale.Location = new System.Drawing.Point(8, 16);
 			this.lblShipsForSale.Name = "lblShipsForSale";
 			this.lblShipsForSale.Size = new System.Drawing.Size(152, 13);
 			this.lblShipsForSale.TabIndex = 20;
 			this.lblShipsForSale.Text = "There are new ships for sale.";
-			//
+			// 
 			// boxDock
-			//
+			// 
 			this.boxDock.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																					this.btnRepair,
 																																					this.btnFuel,
@@ -2621,9 +2634,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxDock.TabIndex = 2;
 			this.boxDock.TabStop = false;
 			this.boxDock.Text = "Dock";
-			//
+			// 
 			// btnRepair
-			//
+			// 
 			this.btnRepair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRepair.Location = new System.Drawing.Point(180, 56);
 			this.btnRepair.Name = "btnRepair";
@@ -2631,9 +2644,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnRepair.TabIndex = 5;
 			this.btnRepair.Text = "Repair";
 			this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
-			//
+			// 
 			// btnFuel
-			//
+			// 
 			this.btnFuel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFuel.Location = new System.Drawing.Point(192, 18);
 			this.btnFuel.Name = "btnFuel";
@@ -2641,72 +2654,72 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnFuel.TabIndex = 4;
 			this.btnFuel.Text = "Fuel";
 			this.btnFuel.Click += new System.EventHandler(this.btnFuel_Click);
-			//
+			// 
 			// lblFuelStatus
-			//
+			// 
 			this.lblFuelStatus.Location = new System.Drawing.Point(8, 16);
 			this.lblFuelStatus.Name = "lblFuelStatus";
 			this.lblFuelStatus.Size = new System.Drawing.Size(162, 13);
 			this.lblFuelStatus.TabIndex = 20;
 			this.lblFuelStatus.Text = "You have fuel to fly 88 parsecs.";
-			//
+			// 
 			// lblFuelCost
-			//
+			// 
 			this.lblFuelCost.Location = new System.Drawing.Point(8, 31);
 			this.lblFuelCost.Name = "lblFuelCost";
 			this.lblFuelCost.Size = new System.Drawing.Size(121, 13);
 			this.lblFuelCost.TabIndex = 19;
 			this.lblFuelCost.Text = "A full tank costs 888 cr.";
-			//
+			// 
 			// lblHullStatus
-			//
+			// 
 			this.lblHullStatus.Location = new System.Drawing.Point(8, 52);
 			this.lblHullStatus.Name = "lblHullStatus";
 			this.lblHullStatus.Size = new System.Drawing.Size(152, 13);
 			this.lblHullStatus.TabIndex = 18;
 			this.lblHullStatus.Text = "Your hull strength is at 888%.";
-			//
+			// 
 			// lblRepairCost
-			//
+			// 
 			this.lblRepairCost.Location = new System.Drawing.Point(8, 67);
 			this.lblRepairCost.Name = "lblRepairCost";
 			this.lblRepairCost.Size = new System.Drawing.Size(150, 13);
 			this.lblRepairCost.TabIndex = 19;
 			this.lblRepairCost.Text = "Full repairs will cost 8,888 cr.";
-			//
+			// 
 			// picLine
-			//
+			// 
 			this.picLine.BackColor = System.Drawing.Color.DimGray;
 			this.picLine.Name = "picLine";
 			this.picLine.Size = new System.Drawing.Size(770, 1);
 			this.picLine.TabIndex = 132;
 			this.picLine.TabStop = false;
-			//
+			// 
 			// dlgOpen
-			//
+			// 
 			this.dlgOpen.Filter = "Saved-Game Files (*.sav)|*.sav|All Files (*.*)|*.*";
-			//
+			// 
 			// dlgSave
-			//
+			// 
 			this.dlgSave.FileName = "SpaceTrader.sav";
 			this.dlgSave.Filter = "Saved-Game Files (*.sav)|*.sav|All Files (*.*)|*.*";
-			//
+			// 
 			// ilChartImages
-			//
+			// 
 			this.ilChartImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilChartImages.ImageSize = new System.Drawing.Size(7, 7);
 			this.ilChartImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilChartImages.ImageStream")));
 			this.ilChartImages.TransparentColor = System.Drawing.Color.White;
-			//
+			// 
 			// ilShipImages
-			//
+			// 
 			this.ilShipImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
 			this.ilShipImages.ImageSize = new System.Drawing.Size(64, 52);
 			this.ilShipImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilShipImages.ImageStream")));
 			this.ilShipImages.TransparentColor = System.Drawing.Color.White;
-			//
+			// 
 			// SpaceTrader
-			//
+			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(768, 505);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
@@ -3074,6 +3087,7 @@ namespace Fryz.Apps.SpaceTrader
 				lblEscapePod.Text			= "";
 				btnPod.Visible				= false;
 				btnBuyShip.Visible		= false;
+				btnDesign.Visible			= false;
 				btnEquip.Visible			= false;
 			}
 			else
@@ -3083,6 +3097,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				lblShipsForSale.Text	= noTech ? Strings.ShipyardShipNoSale : Strings.ShipyardShipForSale;
 				btnBuyShip.Visible		= true;
+				btnDesign.Visible			= (Game.CurrentGame.Commander.CurrentSystem.Shipyard != null);
 
 				lblEquipForSale.Text	= noTech ? Strings.ShipyardEquipNoSale : Strings.ShipyardEquipForSale;
 				btnEquip.Visible			= true;
@@ -3241,6 +3256,37 @@ namespace Fryz.Apps.SpaceTrader
 		private void btnBuyShip_Click(object sender, System.EventArgs e)
 		{
 			(new FormShipList()).ShowDialog(this);
+			UpdateAll();
+		}
+
+		private void btnDesign_Click(object sender, System.EventArgs e)
+		{
+			Shipyard			yard		= game.Commander.CurrentSystem.Shipyard;
+			Form_Shipyard	form		= new Form_Shipyard(yard, this);
+			DialogResult	result	= form.ShowDialog(this);
+			if (result == DialogResult.Cancel) return;
+
+			Consts.ShipSpecs[(int)ShipType.Custom]	= new ShipSpec(ShipType.Custom, Fryz.Apps.SpaceTrader.Size.Huge,
+				form.Cargo, form.Weapons, form.Shields, form.Gadgets, form.Crew, yard.computeRange(form.HullSize, form.Fuel),
+				yard.computeFuelCost(form.HullSize), yard.computeHullStrength(form.HullSize, form.Armor),
+				yard.computeRepairCost(form.HullSize), yard.computeShipPrice(form.HullSize), 0, Activity.NA, Activity.NA,
+				Activity.NA, TechLevel.Unavailable);
+			Ship ship = new Ship(ShipType.Custom);
+
+			// Pay the design fee and construction price
+			Commander cmdr = Game.CurrentGame.Commander;
+			int price = ship.Price + yard.computeDesignPrice(form.HullSize);
+			if (cmdr.Cash >= price)
+			{
+				cmdr.Ship = ship;
+				cmdr.Cash -= price;
+				result	= (new FormAlert("Thank you!", yard.ThankYouMessage, "Ok", DialogResult.OK, null, DialogResult.None, null)).ShowDialog(this);
+			} 
+			else 
+			{
+				FormAlert.Alert(AlertType.ShipDesignIF, this);
+			}
+
 			UpdateAll();
 		}
 

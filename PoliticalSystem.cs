@@ -71,13 +71,13 @@ namespace Fryz.Apps.SpaceTrader
 			switch (oppType)
 			{
 				case OpponentType.Pirate:
-					likely	= (int)ActivityPirates + diffMod >= Consts.ShipSpecs[(int)shipType].Pirates;
+					likely	= (int)ActivityPirates + diffMod >= (int)Consts.ShipSpecs[(int)shipType].Pirates;
 					break;
 				case OpponentType.Police:
-					likely	= (int)ActivityPirates + diffMod >= Consts.ShipSpecs[(int)shipType].Police;
+					likely	= (int)ActivityPolice + diffMod >= (int)Consts.ShipSpecs[(int)shipType].Police;
 					break;
 				case OpponentType.Trader:
-					likely	= (int)ActivityPirates + diffMod >= Consts.ShipSpecs[(int)shipType].Traders;
+					likely	= (int)ActivityTraders + diffMod >= (int)Consts.ShipSpecs[(int)shipType].Traders;
 					break;
 			}
 

@@ -100,91 +100,91 @@ namespace Fryz.Apps.SpaceTrader
 			((System.ComponentModel.ISupportInitialize)(this.numTrader)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numEngineer)).BeginInit();
 			this.SuspendLayout();
-			//
+			// 
 			// lblName
-			//
+			// 
 			this.lblName.AutoSize = true;
 			this.lblName.Location = new System.Drawing.Point(8, 8);
 			this.lblName.Name = "lblName";
 			this.lblName.Size = new System.Drawing.Size(38, 13);
 			this.lblName.TabIndex = 0;
 			this.lblName.Text = "Name:";
-			//
+			// 
 			// txtName
-			//
+			// 
 			this.txtName.Location = new System.Drawing.Point(72, 5);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(120, 20);
 			this.txtName.TabIndex = 1;
 			this.txtName.Text = "";
 			this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
-			//
+			// 
 			// btnClose
-			//
+			// 
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(28, 29);
+			this.btnClose.Size = new System.Drawing.Size(29, 30);
 			this.btnClose.TabIndex = 33;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			//
+			// 
 			// lblDifficulty
-			//
+			// 
 			this.lblDifficulty.AutoSize = true;
 			this.lblDifficulty.Location = new System.Drawing.Point(8, 40);
 			this.lblDifficulty.Name = "lblDifficulty";
 			this.lblDifficulty.Size = new System.Drawing.Size(50, 13);
 			this.lblDifficulty.TabIndex = 34;
 			this.lblDifficulty.Text = "Difficulty:";
-			//
+			// 
 			// lblSkillPoints
-			//
+			// 
 			this.lblSkillPoints.AutoSize = true;
 			this.lblSkillPoints.Location = new System.Drawing.Point(8, 72);
 			this.lblSkillPoints.Name = "lblSkillPoints";
 			this.lblSkillPoints.Size = new System.Drawing.Size(63, 13);
 			this.lblSkillPoints.TabIndex = 35;
 			this.lblSkillPoints.Text = "Skill Points:";
-			//
+			// 
 			// lblPilot
-			//
+			// 
 			this.lblPilot.AutoSize = true;
 			this.lblPilot.Location = new System.Drawing.Point(16, 96);
 			this.lblPilot.Name = "lblPilot";
 			this.lblPilot.Size = new System.Drawing.Size(29, 13);
 			this.lblPilot.TabIndex = 36;
 			this.lblPilot.Text = "Pilot:";
-			//
+			// 
 			// lblFighter
-			//
+			// 
 			this.lblFighter.AutoSize = true;
 			this.lblFighter.Location = new System.Drawing.Point(16, 120);
 			this.lblFighter.Name = "lblFighter";
 			this.lblFighter.Size = new System.Drawing.Size(43, 13);
 			this.lblFighter.TabIndex = 37;
 			this.lblFighter.Text = "Fighter:";
-			//
+			// 
 			// lblTrader
-			//
+			// 
 			this.lblTrader.AutoSize = true;
 			this.lblTrader.Location = new System.Drawing.Point(16, 144);
 			this.lblTrader.Name = "lblTrader";
 			this.lblTrader.Size = new System.Drawing.Size(41, 13);
 			this.lblTrader.TabIndex = 38;
 			this.lblTrader.Text = "Trader:";
-			//
+			// 
 			// lblEngineer
-			//
+			// 
 			this.lblEngineer.AutoSize = true;
 			this.lblEngineer.Location = new System.Drawing.Point(16, 168);
 			this.lblEngineer.Name = "lblEngineer";
 			this.lblEngineer.Size = new System.Drawing.Size(53, 13);
 			this.lblEngineer.TabIndex = 39;
 			this.lblEngineer.Text = "Engineer:";
-			//
+			// 
 			// selDifficulty
-			//
+			// 
 			this.selDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.selDifficulty.Items.AddRange(new object[] {
 																											 "Beginner",
@@ -196,9 +196,9 @@ namespace Fryz.Apps.SpaceTrader
 			this.selDifficulty.Name = "selDifficulty";
 			this.selDifficulty.Size = new System.Drawing.Size(120, 21);
 			this.selDifficulty.TabIndex = 2;
-			//
+			// 
 			// numPilot
-			//
+			// 
 			this.numPilot.Location = new System.Drawing.Point(72, 94);
 			this.numPilot.Maximum = new System.Decimal(new int[] {
 																														 10,
@@ -219,11 +219,12 @@ namespace Fryz.Apps.SpaceTrader
 																													 0,
 																													 0,
 																													 0});
+			this.numPilot.Enter += new System.EventHandler(this.num_ValueEnter);
 			this.numPilot.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numPilot.Leave += new System.EventHandler(this.num_ValueChanged);
-			//
+			// 
 			// numFighter
-			//
+			// 
 			this.numFighter.Location = new System.Drawing.Point(72, 118);
 			this.numFighter.Maximum = new System.Decimal(new int[] {
 																															 10,
@@ -246,9 +247,9 @@ namespace Fryz.Apps.SpaceTrader
 																														 0});
 			this.numFighter.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numFighter.Leave += new System.EventHandler(this.num_ValueChanged);
-			//
+			// 
 			// numTrader
-			//
+			// 
 			this.numTrader.Location = new System.Drawing.Point(72, 142);
 			this.numTrader.Maximum = new System.Decimal(new int[] {
 																															10,
@@ -271,9 +272,9 @@ namespace Fryz.Apps.SpaceTrader
 																														0});
 			this.numTrader.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numTrader.Leave += new System.EventHandler(this.num_ValueChanged);
-			//
+			// 
 			// numEngineer
-			//
+			// 
 			this.numEngineer.Location = new System.Drawing.Point(72, 166);
 			this.numEngineer.Maximum = new System.Decimal(new int[] {
 																																10,
@@ -296,9 +297,9 @@ namespace Fryz.Apps.SpaceTrader
 																															0});
 			this.numEngineer.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numEngineer.Leave += new System.EventHandler(this.num_ValueChanged);
-			//
+			// 
 			// btnOk
-			//
+			// 
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOk.Enabled = false;
 			this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -307,27 +308,27 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnOk.Size = new System.Drawing.Size(36, 22);
 			this.btnOk.TabIndex = 7;
 			this.btnOk.Text = "Ok";
-			//
+			// 
 			// lblPointsRemaining
-			//
+			// 
 			this.lblPointsRemaining.AutoSize = true;
 			this.lblPointsRemaining.Location = new System.Drawing.Point(91, 72);
 			this.lblPointsRemaining.Name = "lblPointsRemaining";
 			this.lblPointsRemaining.Size = new System.Drawing.Size(90, 13);
 			this.lblPointsRemaining.TabIndex = 40;
 			this.lblPointsRemaining.Text = "points remaining.";
-			//
+			// 
 			// lblPoints
-			//
+			// 
 			this.lblPoints.Location = new System.Drawing.Point(73, 72);
 			this.lblPoints.Name = "lblPoints";
 			this.lblPoints.Size = new System.Drawing.Size(17, 13);
 			this.lblPoints.TabIndex = 41;
 			this.lblPoints.Text = "16";
 			this.lblPoints.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			//
+			// 
 			// FormNewCommander
-			//
+			// 
 			this.AcceptButton = this.btnOk;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
@@ -362,6 +363,7 @@ namespace Fryz.Apps.SpaceTrader
 			((System.ComponentModel.ISupportInitialize)(this.numTrader)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numEngineer)).EndInit();
 			this.ResumeLayout(false);
+
 		}
 		#endregion
 
@@ -384,6 +386,11 @@ namespace Fryz.Apps.SpaceTrader
 			numEngineer.Maximum	= Math.Min(10, Engineer + points);
 
 			UpdateOkEnabled();
+		}
+
+		private void num_ValueEnter(object sender, System.EventArgs e)
+		{
+			((NumericUpDown)sender).Select(0, ((NumericUpDown)sender).Value.ToString().Length);
 		}
 
 		private void txtName_TextChanged(object sender, System.EventArgs e)

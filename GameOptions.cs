@@ -102,8 +102,9 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(Consts.DefaultSettingsFile, FileMode.Open);
-				defaults									= (GameOptions)formatter.Deserialize(stream);
+				Hashtable				hash			= (Hashtable)formatter.Deserialize(stream);
 				stream.Close();
+				defaults									= new GameOptions(hash);
 			}
 			catch (FileNotFoundException ex)
 			{
@@ -111,7 +112,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (errorIfFileNotFound && Game.CurrentGame != null)
 					FormAlert.Alert(AlertType.FileErrorOpen, Game.CurrentGame.ParentWindow, Consts.DefaultSettingsFile, ex.Message);
 			}
-			catch (IOException ex)
+			catch (Exception ex)
 			{
 				defaults									= new GameOptions(false);
 				if (Game.CurrentGame != null)
@@ -127,7 +128,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				BinaryFormatter	formatter	= new BinaryFormatter();
 				FileStream			stream		= new FileStream(Consts.DefaultSettingsFile, FileMode.Create);
-				formatter.Serialize(stream, this);
+				formatter.Serialize(stream, Serialize());
 				stream.Close();
 			}
 			catch (IOException ex)

@@ -24,6 +24,7 @@
  ******************************************************************************/
 using System;
 using System.Collections;
+using System.Drawing;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -70,17 +71,22 @@ namespace Fryz.Apps.SpaceTrader
 			return hash;
 		}
 
+		public override string ToString()
+		{
+			return Name;
+		}
+
 		public abstract bool TypeEquals(object type);
 
 		#endregion
 
 		#region Properties
 
-		public virtual string Name
+		public int Chance
 		{
 			get
 			{
-				return "";
+				return _chance;
 			}
 		}
 
@@ -89,6 +95,30 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _equipType;
+			}
+		}
+
+		public System.Drawing.Image Image
+		{
+			get
+			{
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)ShipType.Bottle * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
+			}
+		}
+
+		public TechLevel MinimumTechLevel
+		{
+			get
+			{
+				return _minTech;
+			}
+		}
+
+		public virtual string Name
+		{
+			get
+			{
+				return "";
 			}
 		}
 
@@ -103,22 +133,6 @@ namespace Fryz.Apps.SpaceTrader
 					price	= (_price * (100 - cmdr.Ship.Trader)) / 100;
 
 				return price;
-			}
-		}
-
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
-			}
-		}
-
-		public int Chance
-		{
-			get
-			{
-				return _chance;
 			}
 		}
 

@@ -671,6 +671,9 @@ namespace Fryz.Apps.SpaceTrader
 				case AlertType.ShipBuyTransfer:
 					result	= (new FormAlert("Transfer ^1", "I see you have a ^2. I'll transfer it to your new ship for ^3 credits.", "Do it!", DialogResult.Yes, "No thanks", DialogResult.No, args)).ShowDialog(owner);
 					break;
+				case AlertType.ShipDesignIF:
+					result	= (new FormAlert("Not Enough Money", "You don't have enough money to create this design.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.ShipHullUpgraded:
 					result	= (new FormAlert("Hull Upgraded", "Technicians spend the day retrofitting the hull of your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;

@@ -24,6 +24,7 @@
  ******************************************************************************/
 using System;
 using System.Collections;
+using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Permissions;
@@ -87,6 +88,11 @@ namespace Fryz.Apps.SpaceTrader
 		public static int Distance(StarSystem a, int x, int y)
 		{
 			return (int)Math.Floor(Math.Sqrt(Math.Pow(a.X - x, 2) + Math.Pow(a.Y - y, 2)));
+		}
+
+		private static void DrawPartialImage(Graphics g, Image img, int start, int stop)
+		{
+			g.DrawImage(img, 2 + start, 2, new Rectangle(start, 0, stop - start, img.Height), GraphicsUnit.Pixel);
 		}
 
 		public static string FormatNumber(int num)
@@ -180,6 +186,32 @@ namespace Fryz.Apps.SpaceTrader
 		public static string Multiples(int num, string unit)
 		{
 			return FormatNumber(num) + " " + unit + (num == 1 ? "" : "s");
+		}
+
+		public static void PaintShipImage(Ship ship, Graphics g, Color backgroundColor)
+		{
+			int		x							= Consts.ShipImageOffsets[(int)ship.Type].X;
+			int		width					= Consts.ShipImageOffsets[(int)ship.Type].Width;
+			int		startDamage		= x + width - ship.Hull * width / ship.HullStrength;
+			int		startShield		= x + width + 2 - (ship.ShieldStrength > 0 ? ship.ShieldCharge * (width + 4) /
+				ship.ShieldStrength : 0);
+
+			g.Clear(backgroundColor);
+
+			if (startDamage > x)
+			{
+				if (startShield > x)
+					DrawPartialImage(g, ship.ImageDamaged, x, Math.Min(startDamage, startShield));
+
+				if (startShield < startDamage)
+					DrawPartialImage(g, ship.ImageDamagedWithShields, startShield, startDamage);
+			}
+
+			if (startShield > startDamage)
+				DrawPartialImage(g, ship.Image, startDamage, startShield);
+
+			if (startShield < x + width + 2)
+				DrawPartialImage(g, ship.ImageWithShields, startShield, x + width + 2);
 		}
 
 		private static long Rand()

@@ -30,7 +30,28 @@ namespace Fryz.Apps.SpaceTrader
 	public class Consts
 	{
 		#region Individual Constants
+
+		// Price paid by government for each negative PoliceScore point
 		public const	int			BountyModifier								= 1000;
+
+		// Price of a unit of size when designing a ship
+		public const	long		Buy_BasePrice									= 300;
+		public const	long		Design_BasePrice							= 300;
+		public const	float		Design_PriceMultiplier				= 1.005f;
+
+		// Space taken by the different equipments
+		public const	int			SpaceTakenByWeapon						= 15;
+		public const	int			SpaceTakenByShield						= 10;
+		public const	int			SpaceTakenByGadget						= 5;
+		public const	int			SpaceTakenByFuel							= 3;
+		public const	int			SpaceTakenByCrew							= 10;
+		public const  int			SpaceTakenByArmor							= 35;
+
+		// Fuel costs (for jumping one parsec, for each unit of size)
+		public const	float		FuelCostBySize								= 0.005f;
+
+		// Repair costs, by unit of size
+		public const	float		RepairCostBySize							= 0.1f;
 
 		public const	string	HighScoreFile									= "HighScores.bin";
 		public const	string	DefaultSettingsFile						= "DefaultSettings.bin";
@@ -38,7 +59,7 @@ namespace Fryz.Apps.SpaceTrader
 		public const	int			GalaxyWidth										= 154;
 		public const	int			GalaxyHeight									= 110;
 		public const	int			MinDistance										= 7;
-		public const	int			CloseDistance									= 13;
+		public const	int			CloseDistance									= 11;
 		public const	int			MaxRange											= 20;
 		public const	int			WormDist											= 25;
 
@@ -219,22 +240,35 @@ namespace Fryz.Apps.SpaceTrader
 		#region ShipSpecs
 		public static ShipSpec[]	ShipSpecs = new ShipSpec[]
 		{
-			new ShipSpec(ShipType.Flea,         Size.Tiny,   10, 0, 0, 0, 1, 20, 1,  25,  1,   2000,  2, -1, -1,  0, TechLevel.EarlyIndustrial),
-			new ShipSpec(ShipType.Gnat,         Size.Small,  15, 1, 0, 1, 1, 14, 1, 100,  2,  10000, 28,  0,  0,  0, TechLevel.Industrial),
-			new ShipSpec(ShipType.Firefly,      Size.Small,  20, 1, 1, 1, 1, 17, 1, 100,  3,  25000, 20,  0,  0,  0, TechLevel.Industrial),
-			new ShipSpec(ShipType.Mosquito,     Size.Small,  15, 2, 1, 1, 1, 13, 1, 100,  5,  30000, 20,  0,  1,  0, TechLevel.Industrial),
-			new ShipSpec(ShipType.Bumblebee,    Size.Medium, 25, 1, 2, 2, 2, 15, 1, 100,  7,  60000, 15,  1,  1,  0, TechLevel.Industrial),
-			new ShipSpec(ShipType.Beetle,       Size.Medium, 50, 0, 1, 1, 3, 14, 1,  50, 10,  80000,  3, -1, -1,  0, TechLevel.Industrial),
-			new ShipSpec(ShipType.Hornet,       Size.Large,  20, 3, 2, 1, 2, 16, 2, 150, 15, 100000,  6,  2,  3,  1, TechLevel.PostIndustrial),
-			new ShipSpec(ShipType.Grasshopper,  Size.Large,  30, 2, 2, 3, 3, 15, 3, 150, 15, 150000,  2,  3,  4,  2, TechLevel.PostIndustrial),
-			new ShipSpec(ShipType.Termite,      Size.Huge,   60, 1, 3, 2, 3, 13, 4, 200, 20, 225000,  2,  4,  5,  3, TechLevel.HiTech),
-			new ShipSpec(ShipType.Wasp,         Size.Huge,   35, 3, 2, 2, 3, 14, 5, 200, 20, 300000,  2,  5,  6,  4, TechLevel.HiTech),
-			// The ships below can't be bought
-			new ShipSpec(ShipType.SpaceMonster, Size.Huge,    0, 3, 0, 0, 1,  1, 1, 500,  1, 500000,  0,  8,  8,  8, TechLevel.Unavailable),
-			new ShipSpec(ShipType.Dragonfly,    Size.Small,   0, 2, 3, 2, 1,  1, 1,  10,  1, 500000,  0,  8,  8,  8, TechLevel.Unavailable),
-			new ShipSpec(ShipType.Mantis,       Size.Medium,  0, 3, 1, 3, 3,  1, 1, 300,  1, 500000,  0,  8,  8,  8, TechLevel.Unavailable),
-			new ShipSpec(ShipType.Scarab,       Size.Large,  20, 2, 0, 0, 2,  1, 1, 400,  1, 500000,  0,  8,  8,  8, TechLevel.Unavailable),
-			new ShipSpec(ShipType.Bottle,       Size.Small,   0, 0, 0, 0, 0,  1, 1,  10,  1,    100,  0,  8,  8,  8, TechLevel.Unavailable)
+			//           Type                   Size        Bays W  S  G Cr   F FC Hull  RC   Price   %  Police             Pirates            Traders            MinTechLevel
+			new ShipSpec(ShipType.Flea,         Size.Tiny,   10, 0, 0, 0, 1, 20, 1,  25,  1,   2000,  2, Activity.NA,       Activity.NA,       Activity.Absent,   TechLevel.EarlyIndustrial),
+			new ShipSpec(ShipType.Gnat,         Size.Small,  15, 1, 0, 1, 1, 14, 1, 100,  2,  10000, 28, Activity.Absent,   Activity.Absent,   Activity.Absent,   TechLevel.Industrial),
+			new ShipSpec(ShipType.Firefly,      Size.Small,  20, 1, 1, 1, 1, 17, 1, 100,  3,  25000, 20, Activity.Absent,   Activity.Absent,   Activity.Absent,   TechLevel.Industrial),
+			new ShipSpec(ShipType.Mosquito,     Size.Small,  15, 2, 1, 1, 1, 13, 1, 100,  5,  30000, 20, Activity.Absent,   Activity.Minimal,  Activity.Absent,   TechLevel.Industrial),
+			new ShipSpec(ShipType.Bumblebee,    Size.Medium, 25, 1, 2, 2, 2, 15, 1, 100,  7,  60000, 15, Activity.Minimal,  Activity.Minimal,  Activity.Absent,   TechLevel.Industrial),
+			new ShipSpec(ShipType.Beetle,       Size.Medium, 50, 0, 1, 1, 3, 14, 1,  50, 10,  80000,  3, Activity.NA,       Activity.NA,       Activity.Absent,   TechLevel.Industrial),
+			new ShipSpec(ShipType.Hornet,       Size.Large,  20, 3, 2, 1, 2, 16, 2, 150, 15, 100000,  6, Activity.Few,      Activity.Some,     Activity.Minimal,  TechLevel.PostIndustrial),
+			new ShipSpec(ShipType.Grasshopper,  Size.Large,  30, 2, 2, 3, 3, 15, 3, 150, 15, 150000,  2, Activity.Some,     Activity.Moderate, Activity.Few,      TechLevel.PostIndustrial),
+			new ShipSpec(ShipType.Termite,      Size.Huge,   60, 1, 3, 2, 3, 13, 4, 200, 20, 225000,  2, Activity.Moderate, Activity.Many,     Activity.Some,     TechLevel.HiTech),
+			new ShipSpec(ShipType.Wasp,         Size.Huge,   35, 3, 2, 2, 3, 14, 5, 200, 20, 300000,  2, Activity.Many,     Activity.Abundant, Activity.Moderate, TechLevel.HiTech),
+			// The ships below can't be bought (mostly)
+			new ShipSpec(ShipType.SpaceMonster, Size.Huge,    0, 3, 0, 0, 1,  1, 1, 500,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Dragonfly,    Size.Small,   0, 2, 3, 2, 1,  1, 1,  10,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Mantis,       Size.Medium,  0, 3, 1, 3, 3,  1, 1, 300,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Scarab,       Size.Large,  20, 2, 0, 0, 2,  1, 1, 400,  1, 500000,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Bottle,       Size.Small,   0, 0, 0, 0, 0,  1, 1,  10,  1,    100,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable),
+			new ShipSpec(ShipType.Custom,       Size.Huge,    0, 0, 0, 0, 0,  0, 0,   0,  0,      0,  0, Activity.NA,       Activity.NA,       Activity.NA,       TechLevel.Unavailable)
+	};
+		#endregion
+
+		#region Shipyards
+		public static Shipyard[]	Shipyards = new Shipyard[]
+		{
+			new Shipyard("Hoersh-Kessel Drive, Inc.",        "Luke S.",    null, null), 
+			new Shipyard("Loronar Corporation",              "Lando C.",   null, null), 
+			new Shipyard("Republic Engineering Corporation", "Obi-Wan K.", null, null), 
+			new Shipyard("Sienar Fleet Systems",             "Mara J.",    null, null), 
+			new Shipyard("Sorosuub",                         "Wedge A.",   null, null)
 		};
 		#endregion
 
@@ -277,12 +311,7 @@ namespace Fryz.Apps.SpaceTrader
 			new SpecialEvent(SpecialEventType.Tribble,              1000, 1, false),
 			new SpecialEvent(SpecialEventType.TribbleBuyer,            0, 3, false),
 			new SpecialEvent(SpecialEventType.Wild,                    0, 1, false),
-			new	SpecialEvent(SpecialEventType.WildGetsOut,			   0, 0, true),
-			new	SpecialEvent(SpecialEventType.KesselShipyard,	  150000, 0, false),
-			new	SpecialEvent(SpecialEventType.LoronarShipyard,	  150000, 0, false),
-			new	SpecialEvent(SpecialEventType.SienarShipyard,	  150000, 0, false),
-			new	SpecialEvent(SpecialEventType.RepublicShipyard,	  150000, 0, false),
-			new	SpecialEvent(SpecialEventType.SorosuubShipyard,	  150000, 0, false)
+			new	SpecialEvent(SpecialEventType.WildGetsOut,             0, 0, true)
 		};
 		#endregion
 
@@ -305,7 +334,7 @@ namespace Fryz.Apps.SpaceTrader
 		#region Weapons
 		public static Weapon[]	Weapons	= new Weapon[]
 		{
-			new Weapon(WeaponType.PulseLaser,    15,  2000, TechLevel.Industrial,	    50),
+			new Weapon(WeaponType.PulseLaser,    15,  2000, TechLevel.Industrial,     50),
 			new Weapon(WeaponType.BeamLaser,     25, 12500, TechLevel.PostIndustrial, 35),
 			new Weapon(WeaponType.MilitaryLaser, 35, 35000, TechLevel.HiTech,         15),
 			// The weapons below cannot be bought

@@ -162,6 +162,7 @@ namespace Fryz.Apps.SpaceTrader
 		ShipBuyPassengerQuarters,
 		ShipBuyReactor,
 		ShipBuyTransfer,
+		ShipDesignIF,
 		ShipHullUpgraded,
 		SpecialCleanRecord,
 		SpecialExperimentPerformed,
@@ -212,7 +213,8 @@ namespace Fryz.Apps.SpaceTrader
 		Moderate						= 4,
 		Many								= 5,
 		Abundant						= 6,
-		Swarms							= 7
+		Swarms							= 7,
+		NA									= 100
 	};
 	#endregion
 
@@ -497,7 +499,20 @@ namespace Fryz.Apps.SpaceTrader
 		Dragonfly						= 11,
 		Mantis							= 12,
 		Scarab							= 13,
-		Bottle							= 14
+		Bottle							= 14,
+		Custom							= 15
+	};
+	#endregion
+
+	#region ShipyardId
+	public enum ShipyardId: int
+	{
+		NA									= -1,
+		Kessel							= 0,
+		Loronar							= 1,
+		Republic						= 2,
+		Sienar							= 3,
+		Sorosuub						= 4
 	};
 	#endregion
 
@@ -552,12 +567,7 @@ namespace Fryz.Apps.SpaceTrader
 		Tribble							= 33,
 		TribbleBuyer				= 34,
 		Wild								= 35,
-		WildGetsOut			= 36,
-		KesselShipyard		= 37,
-		LoronarShipyard		= 38,
-		SienarShipyard		= 39,
-		RepublicShipyard	= 40,
-		SorosuubShipyard	= 41
+		WildGetsOut					= 36
 	};
 	#endregion
 

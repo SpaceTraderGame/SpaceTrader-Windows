@@ -1,12 +1,16 @@
 20040326:
 Added to the "View Commander" screen the bounty offered for the capture of the player, if he's at least a crook, and the numbers of kingpins wanting to kill him, if he's at least trusted ; this helps keeping track with the PoliceRecordScore
-Added the shipyard special event (5 different events, in fact) that are randomly placed on 5 High-Tech planets among the galaxy. You'll be proposed to design your own ship, for 150,000 cr. ; the special event stays here even if it has been used
+Added the shipyards, that are randomly placed on 5 High-Tech planets among the galaxy. You'll be proposed to design your own ship
+Modified the ship and shipspec structures to allow for custom ship designs
+Modified the buy/sell equipment screen
 Modified the color of the "Special" button to yellow, so it is more remarkable
 Added a tooltip to the "Special" button to show the title of the special event
 Added a tooltip to the "Mercenary for hire" button to show the name of the mercenary
 
 
+
 TODO:
 in Form_Alert.cs : move the strings to a resource
 in Form_Encounter.cs: move as much code as possible out of the GUI class
-
+in the news system : add a news item explaining where the shipyards are
+in Form_Shipyard.cs : allow saving ship templates

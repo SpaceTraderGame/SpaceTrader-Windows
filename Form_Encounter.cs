@@ -101,7 +101,6 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.PictureBox picTrib54;
 		private System.Windows.Forms.PictureBox picTrib55;
 		private System.Windows.Forms.Timer tmrTick;
-		private ImageList.ImageCollection	shipImages;
 		private System.ComponentModel.IContainer components;
 
 		private Button[]									buttons;
@@ -149,7 +148,6 @@ namespace Fryz.Apps.SpaceTrader
 			if (game.EasyEncounters)
 				ControlBox	= true;
 
-			shipImages	= game.ParentWindow.ShipImages.Images;
 			buttons			= new Button[]
 										{
 											btnAttack,
@@ -1037,11 +1035,6 @@ namespace Fryz.Apps.SpaceTrader
 			tmrTick.Stop();
 		}
 
-		private void DrawPartialImage(Graphics g, Image img, int start, int stop)
-		{
-			g.DrawImage(img, 2 + start, 2, new Rectangle(start, 0, stop - start, shipImages[0].Height), GraphicsUnit.Pixel);
-		}
-
 		private void ExecuteAction(bool commanderFleeing)
 		{
 			DisableAuto();
@@ -1218,37 +1211,6 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			_result	= result;
 			Close();
-		}
-
-		private void PaintShipImage(Ship ship, Graphics g)
-		{
-			int		x							= Consts.ShipImageOffsets[(int)ship.Type].X;
-			int		width					= Consts.ShipImageOffsets[(int)ship.Type].Width;
-			int		startDamage		= x + width - ship.Hull * width / ship.HullStrength;
-			int		startShield		= x + width + 2 - (ship.ShieldStrength > 0 ? ship.ShieldCharge * (width + 4) /
-				ship.ShieldStrength : 0);
-
-			Image	imgShip				= shipImages[(int)ship.Type * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
-			Image	imgDamage			= shipImages[(int)ship.Type * Consts.ImagesPerShip + Consts.ShipImgOffsetDamage];
-			Image	imgShield			= shipImages[(int)ship.Type * Consts.ImagesPerShip + Consts.ShipImgOffsetShield];
-			Image	imgDmgShield	= shipImages[(int)ship.Type * Consts.ImagesPerShip + Consts.ShipImgOffsetSheildDamage];
-
-			g.Clear(picShipYou.BackColor);
-
-			if (startDamage > x)
-			{
-				if (startShield > x)
-					DrawPartialImage(g, imgDamage, x, Math.Min(startDamage, startShield));
-
-				if (startShield < startDamage)
-					DrawPartialImage(g, imgDmgShield, startShield, startDamage);
-			}
-
-			if (startShield > startDamage)
-				DrawPartialImage(g, imgShip, startDamage, startShield);
-
-			if (startShield < x + width + 2)
-				DrawPartialImage(g, imgShield, startShield, x + width + 2);
 		}
 
 		private void Scoop()
@@ -2236,12 +2198,12 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void picShipOpponent_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
 		{
-			PaintShipImage(opponent, e.Graphics);
+			Functions.PaintShipImage(opponent, e.Graphics, picShipOpponent.BackColor);
 		}
 
 		private void picShipYou_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
 		{
-			PaintShipImage(cmdrship, e.Graphics);
+			Functions.PaintShipImage(cmdrship, e.Graphics, picShipYou.BackColor);
 		}
 
 		private void picTrib_Click(object sender, System.EventArgs e)

@@ -118,6 +118,11 @@ namespace Fryz.Apps.SpaceTrader
 
 			if (Difficulty < Difficulty.Normal)
 				Commander.CurrentSystem.SpecialEvent	= Consts.SpecialEvents[(int)SpecialEventType.Lottery];
+
+			// JAF - DEBUG
+			Commander.Cash	= 1000000;
+			CheatEnabled		= true;
+			EasyEncounters	= true;
 		}
 
 		public void Arrested()
@@ -1423,17 +1428,6 @@ namespace Fryz.Apps.SpaceTrader
 					Commander.Ship.Fire(Commander.Ship.Crew[1].Id == CrewMemberId.Wild ? 1 : 2);
 					RecalculateSellPrices(curSys);
 					break;
-				case SpecialEventType.KesselShipyard:
-				case SpecialEventType.LoronarShipyard:
-				case SpecialEventType.SienarShipyard:
-				case SpecialEventType.RepublicShipyard:
-				case SpecialEventType.SorosuubShipyard:
-					money = true;
-					remove = false;
-					// (dpi) TODO call the ship design dialog
-					FormAlert alert = new FormAlert("Thank you !", curSys.SpecialEvent.Title + " thanks you and hopes to see you soon !", "You're welcome", DialogResult.OK, null, DialogResult.None, null);
-					alert.ShowDialog();
-					break;
 			}
 
 			if (money)
@@ -1724,18 +1718,16 @@ namespace Fryz.Apps.SpaceTrader
 					goodUniverse	= false;
 
 			// Assign the shipyards to High-Tech systems without a special event.
+			// TODO: JAF - use enum for assignment.
 			if (goodUniverse)
 			{
-				int nbShipyards = 5;
-				while (nbShipyards-- > 0)
+				int	shipyards	= 0;
+				for (system = 0; system < Universe.Length && shipyards < Consts.Shipyards.Length; system++)
 				{
-					for (system = 0; system < Universe.Length &&
-						!(Universe[system].SpecialEvent == null && Universe[system].TechLevel == TechLevel.HiTech); system++);
-					if (system < Universe.Length)
-						Universe[system].SpecialEvent	= Consts.SpecialEvents[((int)SpecialEventType.KesselShipyard)+nbShipyards];
-					else
-						goodUniverse	= false;
+					if (Universe[system].TechLevel == TechLevel.HiTech)
+						Universe[system].ShipyardId	= (ShipyardId)shipyards++;
 				}
+				goodUniverse	= (shipyards == Consts.Shipyards.Length);
 			}
 
 			// Assign the rest of the events randomly.

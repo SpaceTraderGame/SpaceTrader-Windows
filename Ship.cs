@@ -41,6 +41,7 @@ namespace Fryz.Apps.SpaceTrader
 		private CrewMember[]	_crew;
 		private bool					_pod						= false;
 
+		// The following does not need to be saved. It's more of a temp variable.
 		private bool[]				_tradeableItems;
 
 		#endregion
@@ -104,7 +105,6 @@ namespace Fryz.Apps.SpaceTrader
 			_gadgets				= (Gadget[])hash["_gadgets"];
 			_crew						= (CrewMember[])hash["_crew"];
 			_pod						= (bool)hash["_pod"];
-			_tradeableItems	= (bool[])hash["_tradeableItems"];
 		}
 
 		public override Hashtable Serialize()
@@ -125,7 +125,6 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
 			hash.Add("_crew",						crewIds);
 			hash.Add("_pod",						_pod);
-			hash.Add("_tradeableItems", _tradeableItems);
 
 			return hash;
 		}
@@ -697,39 +696,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public int Fuel
+		public bool ArtifactOnBoard
 		{
 			get
 			{
-				return _fuel;
-			}
-			set
-			{
-				_fuel	= value;
-			}
-		}
-
-		public int Hull
-		{
-			get
-			{
-				return _hull;
-			}
-			set
-			{
-				_hull	= value;
-			}
-		}
-
-		public int Tribbles
-		{
-			get
-			{
-				return _tribbles;
-			}
-			set
-			{
-				_tribbles	= value;
+				return CommandersShip && Game.CurrentGame.QuestStatusArtifact == SpecialEvent.StatusArtifactOnBoard;
 			}
 		}
 
@@ -738,78 +709,6 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _cargo;
-			}
-		}
-
-		public Weapon[] Weapons
-		{
-			get
-			{
-				return _weapons;
-			}
-		}
-
-		public Shield[] Shields
-		{
-			get
-			{
-				return _shields;
-			}
-		}
-
-		public Gadget[] Gadgets
-		{
-			get
-			{
-				return _gadgets;
-			}
-		}
-
-		public CrewMember[] Crew
-		{
-			get
-			{
-				return _crew;
-			}
-		}
-
-		public int CrewCount
-		{
-			get
-			{
-				int	total	= 0;
-				for (int i = 0; i < Crew.Length; i++)
-					if (Crew[i] != null)
-						total++;
-				return total;
-			}
-		}
-
-		public bool EscapePod
-		{
-			get
-			{
-				return _pod;
-			}
-			set
-			{
-				_pod	= value;
-			}
-		}
-
-		public bool[] TradeableItems
-		{
-			get
-			{
-				return _tradeableItems;
-			}
-		}
-
-		public bool ArtifactOnBoard
-		{
-			get
-			{
-				return CommandersShip && Game.CurrentGame.QuestStatusArtifact == SpecialEvent.StatusArtifactOnBoard;
 			}
 		}
 
@@ -847,6 +746,26 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public CrewMember[] Crew
+		{
+			get
+			{
+				return _crew;
+			}
+		}
+
+		public int CrewCount
+		{
+			get
+			{
+				int	total	= 0;
+				for (int i = 0; i < Crew.Length; i++)
+					if (Crew[i] != null)
+						total++;
+				return total;
+			}
+		}
+
 		public int Engineer
 		{
 			get
@@ -881,6 +800,18 @@ namespace Fryz.Apps.SpaceTrader
 					equip[6 + i]	= Gadgets[i];
 
 				return equip;
+			}
+		}
+
+		public bool EscapePod
+		{
+			get
+			{
+				return _pod;
+			}
+			set
+			{
+				_pod	= value;
 			}
 		}
 
@@ -1007,6 +938,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int Fuel
+		{
+			get
+			{
+				return _fuel;
+			}
+			set
+			{
+				_fuel	= value;
+			}
+		}
+
 		public override int FuelTanks
 		{
 			get
@@ -1015,6 +958,26 @@ namespace Fryz.Apps.SpaceTrader
 					return Consts.MaxFuelTanks;
 				else
 					return base.FuelTanks;
+			}
+		}
+
+		public Gadget[] Gadgets
+		{
+			get
+			{
+				return _gadgets;
+			}
+		}
+
+		public int Hull
+		{
+			get
+			{
+				return _hull;
+			}
+			set
+			{
+				_hull	= value;
 			}
 		}
 
@@ -1073,6 +1036,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public Shield[] Shields
+		{
+			get
+			{
+				return _shields;
+			}
+		}
+
 		public int ShieldStrength
 		{
 			get
@@ -1107,6 +1078,14 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public bool[] TradeableItems
+		{
+			get
+			{
+				return _tradeableItems;
+			}
+		}
+
 		public int Trader
 		{
 			get
@@ -1123,6 +1102,26 @@ namespace Fryz.Apps.SpaceTrader
 					max++;
 
 				return Functions.AdjustSkillForDifficulty(max);
+			}
+		}
+
+		public int Tribbles
+		{
+			get
+			{
+				return _tribbles;
+			}
+			set
+			{
+				_tribbles	= value;
+			}
+		}
+
+		public Weapon[] Weapons
+		{
+			get
+			{
+				return _weapons;
 			}
 		}
 

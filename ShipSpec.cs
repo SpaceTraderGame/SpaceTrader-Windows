@@ -24,6 +24,7 @@
  ******************************************************************************/
 using System;
 using System.Collections;
+using System.Drawing;
 
 namespace Fryz.Apps.SpaceTrader
 {
@@ -44,9 +45,9 @@ namespace Fryz.Apps.SpaceTrader
 		private int				_repairCost;
 		private int				_price;
 		private int				_occurance;
-		private int				_police;
-		private int				_pirates;
-		private int				_traders;
+		private Activity	_police;
+		private Activity	_pirates;
+		private Activity	_traders;
 		private TechLevel	_minTech;
 		private bool			_hullUpgraded	= false;
 
@@ -60,7 +61,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		public ShipSpec(ShipType type, Size size, int cargoBays, int weaponSlots, int shieldSlots, int gadgetSlots,
 			int crewQuarters, int fuelTanks, int fuelCost, int hullStrength, int repairCost, int price, int occurance,
-			int police, int pirates, int traders, TechLevel minTechLevel)
+			Activity police, Activity pirates, Activity traders, TechLevel minTechLevel)
 		{
 			_type					= type;
 			_size					= size;
@@ -96,9 +97,9 @@ namespace Fryz.Apps.SpaceTrader
 			_repairCost		= (int)hash["_repairCost"];
 			_price				= (int)hash["_price"];
 			_occurance		= (int)hash["_occurance"];
-			_police				= (int)hash["_police"];
-			_pirates			= (int)hash["_pirates"];
-			_traders			= (int)hash["_traders"];
+			_police				= (Activity)hash["_police"];
+			_pirates			= (Activity)hash["_pirates"];
+			_traders			= (Activity)hash["_traders"];
 			_minTech			= (TechLevel)hash["_minTech"];
 			_hullUpgraded	= (bool)hash["_hullUpgraded"];
 		}
@@ -120,9 +121,9 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_repairCost",		_repairCost);
 			hash.Add("_price",				_price);
 			hash.Add("_occurance",		_occurance);
-			hash.Add("_police",				_police);
-			hash.Add("_pirates",			_pirates);
-			hash.Add("_traders",			_traders);
+			hash.Add("_police",				(int)_police);
+			hash.Add("_pirates",			(int)_pirates);
+			hash.Add("_traders",			(int)_traders);
 			hash.Add("_minTech",			(int)_minTech);
 			hash.Add("_hullUpgraded",	_hullUpgraded);
 
@@ -176,59 +177,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public ShipType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return Strings.ShipNames[(int)_type];
-			}
-		}
-
-		public Size Size
-		{
-			get
-			{
-				return _size;
-			}
-		}
-
 		public virtual int CargoBays
 		{
 			get
 			{
 				return _cargoBays;
-			}
-		}
-
-		public int WeaponSlots
-		{
-			get
-			{
-				return _weaponSlots;
-			}
-		}
-
-		public int ShieldSlots
-		{
-			get
-			{
-				return _shieldSlots;
-			}
-		}
-
-		public int GadgetSlots
-		{
-			get
-			{
-				return _gadgetSlots;
 			}
 		}
 
@@ -240,14 +193,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public virtual int FuelTanks
-		{
-			get
-			{
-				return _fuelTanks;
-			}
-		}
-
 		public int FuelCost
 		{
 			get
@@ -256,67 +201,27 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public virtual int FuelTanks
+		{
+			get
+			{
+				return _fuelTanks;
+			}
+		}
+
+		public int GadgetSlots
+		{
+			get
+			{
+				return _gadgetSlots;
+			}
+		}
+
 		public int HullStrength
 		{
 			get
 			{
 				return _hullStrength + (HullUpgraded ? Consts.HullUpgrade : 0);
-			}
-		}
-
-		public int RepairCost
-		{
-			get
-			{
-				return _repairCost;
-			}
-		}
-
-		public int Price
-		{
-			get
-			{
-				return _price;
-			}
-		}
-
-		public int Occurance
-		{
-			get
-			{
-				return _occurance;
-			}
-		}
-
-		public int Police
-		{
-			get
-			{
-				return _police;
-			}
-		}
-
-		public int Pirates
-		{
-			get
-			{
-				return _pirates;
-			}
-		}
-
-		public int Traders
-		{
-			get
-			{
-				return _traders;
-			}
-		}
-
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
 			}
 		}
 
@@ -329,6 +234,134 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_hullUpgraded = value;
+			}
+		}
+
+		public Image Image
+		{
+			get
+			{
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
+			}
+		}
+
+		public Image ImageDamaged
+		{
+			get
+			{
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetDamage];
+			}
+		}
+
+		public Image ImageDamagedWithShields
+		{
+			get
+			{
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetSheildDamage];
+			}
+		}
+
+		public Image ImageWithShields
+		{
+			get
+			{
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetShield];
+			}
+		}
+
+		public TechLevel MinimumTechLevel
+		{
+			get
+			{
+				return _minTech;
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return Strings.ShipNames[(int)Type];
+			}
+		}
+
+		public int Occurance
+		{
+			get
+			{
+				return _occurance;
+			}
+		}
+
+		public Activity Police
+		{
+			get
+			{
+				return _police;
+			}
+		}
+
+		public Activity Pirates
+		{
+			get
+			{
+				return _pirates;
+			}
+		}
+
+		public int Price
+		{
+			get
+			{
+				return _price;
+			}
+		}
+
+		public int RepairCost
+		{
+			get
+			{
+				return _repairCost;
+			}
+		}
+
+		public int ShieldSlots
+		{
+			get
+			{
+				return _shieldSlots;
+			}
+		}
+
+		public Size Size
+		{
+			get
+			{
+				return _size;
+			}
+		}
+
+		public Activity Traders
+		{
+			get
+			{
+				return _traders;
+			}
+		}
+
+		public ShipType Type
+		{
+			get
+			{
+				return _type;
+			}
+		}
+
+		public int WeaponSlots
+		{
+			get
+			{
+				return _weaponSlots;
 			}
 		}
 

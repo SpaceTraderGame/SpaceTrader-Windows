@@ -42,6 +42,7 @@ namespace Fryz.Apps.SpaceTrader
 		private int[]						_tradeItems				= new int[10];
 		private int							_countDown				= 0;
 		private bool						_visited					= false;
+		private ShipyardId			_shipyardId				= ShipyardId.NA;
 
 		#endregion
 
@@ -212,13 +213,6 @@ namespace Fryz.Apps.SpaceTrader
 						break;
 					case SpecialEventType.WildGetsOut:
 						show	= game.Commander.Ship.WildOnBoard;
-						break;
-					case SpecialEventType.KesselShipyard:
-					case SpecialEventType.LoronarShipyard:
-					case SpecialEventType.SienarShipyard:
-					case SpecialEventType.RepublicShipyard:
-					case SpecialEventType.SorosuubShipyard:
-						show = true;
 						break;
 					default:
 						break;
@@ -405,6 +399,25 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public Shipyard Shipyard
+		{
+			get
+			{
+				return (_shipyardId == ShipyardId.NA ? null : Consts.Shipyards[(int)_shipyardId]);
+			}
+		}
+
+		public ShipyardId ShipyardId
+		{
+			get
+			{
+				return _shipyardId;
+			}
+			set
+			{
+				_shipyardId	= value;
+			}
+		}
 		#endregion
 	}
 }
