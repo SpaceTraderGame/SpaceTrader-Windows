@@ -134,6 +134,8 @@ namespace Fryz.Apps.SpaceTrader
 			InitializeComponent();
 
 			this.Text									= Functions.StringVars(Strings.ShipyardTitle, shipyard.Name);
+			picLogo.Image							= ilShipyardLogos.Images[(int)shipyard.Id];
+			lblWelcome.Text						= Functions.StringVars(Strings.ShipyardWelcome, shipyard.Name, shipyard.Engineer);
 			lblSizeSpecialty.Text			= Strings.Sizes[(int)shipyard.SpecialtySize];
 			lblSkill.Text							= Strings.ShipyardSkills[(int)shipyard.Skill];
 			lblSkillDescription.Text	= Strings.ShipyardSkillDescriptions[(int)shipyard.Skill];
@@ -250,9 +252,9 @@ namespace Fryz.Apps.SpaceTrader
 																																						 this.lblSizeSpecialty,
 																																						 this.lblSkillLabel,
 																																						 this.lblSizeSpecialtyLabel,
-																																						 this.lblWelcome,
 																																						 this.lblWarning,
-																																						 this.picLogo});
+																																						 this.picLogo,
+																																						 this.lblWelcome});
 			this.boxWelcome.Location = new System.Drawing.Point(8, 0);
 			this.boxWelcome.Name = "boxWelcome";
 			this.boxWelcome.Size = new System.Drawing.Size(270, 204);
@@ -269,7 +271,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblSkill
 			// 
-			this.lblSkill.Location = new System.Drawing.Point(180, 76);
+			this.lblSkill.Location = new System.Drawing.Point(180, 79);
 			this.lblSkill.Name = "lblSkill";
 			this.lblSkill.Size = new System.Drawing.Size(87, 13);
 			this.lblSkill.TabIndex = 26;
@@ -277,7 +279,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblSizeSpecialty
 			// 
-			this.lblSizeSpecialty.Location = new System.Drawing.Point(180, 60);
+			this.lblSizeSpecialty.Location = new System.Drawing.Point(180, 65);
 			this.lblSizeSpecialty.Name = "lblSizeSpecialty";
 			this.lblSizeSpecialty.Size = new System.Drawing.Size(64, 13);
 			this.lblSizeSpecialty.TabIndex = 25;
@@ -287,7 +289,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblSkillLabel.AutoSize = true;
 			this.lblSkillLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblSkillLabel.Location = new System.Drawing.Point(92, 76);
+			this.lblSkillLabel.Location = new System.Drawing.Point(92, 79);
 			this.lblSkillLabel.Name = "lblSkillLabel";
 			this.lblSkillLabel.Size = new System.Drawing.Size(72, 13);
 			this.lblSkillLabel.TabIndex = 24;
@@ -297,7 +299,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblSizeSpecialtyLabel.AutoSize = true;
 			this.lblSizeSpecialtyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.lblSizeSpecialtyLabel.Location = new System.Drawing.Point(92, 60);
+			this.lblSizeSpecialtyLabel.Location = new System.Drawing.Point(92, 65);
 			this.lblSizeSpecialtyLabel.Name = "lblSizeSpecialtyLabel";
 			this.lblSizeSpecialtyLabel.Size = new System.Drawing.Size(82, 13);
 			this.lblSizeSpecialtyLabel.TabIndex = 23;
@@ -307,10 +309,10 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.lblWelcome.Location = new System.Drawing.Point(92, 12);
 			this.lblWelcome.Name = "lblWelcome";
-			this.lblWelcome.Size = new System.Drawing.Size(174, 40);
+			this.lblWelcome.Size = new System.Drawing.Size(176, 52);
 			this.lblWelcome.TabIndex = 3;
-			this.lblWelcome.Text = "Welcome to Loronar Corporation Shipyards! Our best engineer, Obi-Wan, is at your " +
-				"service.";
+			this.lblWelcome.Text = "Welcome to Sorosuub Engineering Shipyards! Our best engineer, Obi-Wan, is at your" +
+				" service.";
 			// 
 			// lblWarning
 			// 
@@ -324,7 +326,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// picLogo
 			// 
-			this.picLogo.Image = ((System.Drawing.Bitmap)(resources.GetObject("picLogo.Image")));
+			this.picLogo.BackColor = System.Drawing.Color.Black;
 			this.picLogo.Location = new System.Drawing.Point(8, 12);
 			this.picLogo.Name = "picLogo";
 			this.picLogo.Size = new System.Drawing.Size(80, 80);
@@ -877,9 +879,10 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilShipyardLogos
 			// 
-			this.ilShipyardLogos.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.ilShipyardLogos.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
 			this.ilShipyardLogos.ImageSize = new System.Drawing.Size(80, 80);
-			this.ilShipyardLogos.TransparentColor = System.Drawing.Color.Transparent;
+			this.ilShipyardLogos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilShipyardLogos.ImageStream")));
+			this.ilShipyardLogos.TransparentColor = System.Drawing.Color.Black;
 			// 
 			// dlgOpen
 			// 
@@ -927,11 +930,11 @@ namespace Fryz.Apps.SpaceTrader
 			this.ClientSize = new System.Drawing.Size(478, 375);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
 																																	this.lblDisabledPct,
+																																	this.boxWelcome,
 																																	this.lblDisabledName,
 																																	this.boxAllocation,
 																																	this.boxCosts,
 																																	this.boxInfo,
-																																	this.boxWelcome,
 																																	this.btnCancel,
 																																	this.btnConstruct});
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1057,7 +1060,11 @@ namespace Fryz.Apps.SpaceTrader
 			// Add the user-created templates.
 			ArrayList	userTemplates	= new ArrayList();
 			foreach (string fileName in Directory.GetFiles(Consts.CustomTemplatesDirectory, "*.sst"))
-				userTemplates.Add(new ShipTemplate((Hashtable)Functions.LoadFile(fileName, true, this)));
+			{
+				ShipTemplate	template	= new ShipTemplate((Hashtable)Functions.LoadFile(fileName, true, this));
+				if (sizes.Contains(template.Size))
+					userTemplates.Add(template);
+			}
 			userTemplates.Sort();
 			selTemplate.Items.AddRange((ShipTemplate[])userTemplates.ToArray(typeof(ShipTemplate)));
 
