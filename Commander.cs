@@ -67,7 +67,7 @@ namespace Fryz.Apps.SpaceTrader
 			_days																									= (int)hash["_days"];
 			_insurance																						= (bool)hash["_insurance"];
 			_noclaim																							= (int)hash["_noclaim"];
-//			_ship																									= new Ship((Hashtable)hash["_ship"]);
+			_ship																									= new Ship((Hashtable)hash["_ship"]);
 			_priceCargo																						= (int[])hash["_priceCargo"];
 			Strings.CrewMemberNames[(int)CrewMemberId.Commander]	= (string)hash["_name"];
 		}
