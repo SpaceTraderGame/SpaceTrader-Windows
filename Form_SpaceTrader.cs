@@ -3205,7 +3205,8 @@ namespace Fryz.Apps.SpaceTrader
 				lblTargetSize.Text						= Strings.Sizes[(int)system.Size];
 				lblTargetTech.Text						= Strings.TechLevelNames[(int)system.TechLevel];
 				lblTargetPolSys.Text					= system.PoliticalSystem.Name;
-				lblTargetResource.Text				= Strings.SpecialResources[(int)system.SpecialResource];
+				lblTargetResource.Text				= system.Visited ? Strings.SpecialResources[(int)system.SpecialResource] :
+																				Strings.Unknown;
 				lblTargetPolice.Text					= Strings.ActivityLevels[(int)system.PoliticalSystem.ActivityPolice];
 				lblTargetPirates.Text					= Strings.ActivityLevels[(int)system.PoliticalSystem.ActivityPirates];
 				lblTargetDistance.Text				= distance.ToString();

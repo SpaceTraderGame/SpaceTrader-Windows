@@ -406,7 +406,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _specialResource;
+				return Visited ? _specialResource : SpecialResource.Nothing;
 			}
 		}
 
