@@ -997,7 +997,7 @@ namespace Fryz.Apps.SpaceTrader
 				else
 					txtName.Text					= template.Name;
 
-				selSize.SelectedIndex		= (int)template.Size;
+				selSize.SelectedIndex		= Math.Max(0, sizes.IndexOf(template.Size));
 				imgIndex								= template.ImageIndex == (int)ShipType.Custom ? imgTypes.Length - 1 : template.ImageIndex;
 
 				if (template.Images != null)

@@ -115,6 +115,25 @@ namespace Fryz.Apps.SpaceTrader
 			return String.Format("{0:n0}%", num);
 		}
 
+		public static int GetColumnOfFirstNonWhitePixel(Image image, int direction)
+		{
+			Bitmap	bitmap	= new Bitmap(image);
+			int			step		= direction < 0 ? -1 : 1;
+			int			col			= step > 0 ? 0 : bitmap.Width - 1;
+			int			stop		= step > 0 ? bitmap.Width : -1;
+
+			for (; col != stop; col += step)
+			{
+				for (int row = 0; row < bitmap.Height; row++)
+				{
+					if (bitmap.GetPixel(col, row).ToArgb() != 0)
+						return col;
+				}
+			}
+
+			return -1;
+		}
+
 		public static HighScoreRecord[] GetHighScores(System.Windows.Forms.IWin32Window owner)
 		{
 			HighScoreRecord[]	highScores	= new HighScoreRecord[3];

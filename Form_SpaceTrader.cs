@@ -4051,9 +4051,16 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				Image[]	images		= value;
-				int			baseIndex	= (int)ShipType.Custom * Consts.ImagesPerShip;
+				int			custIndex	= (int)ShipType.Custom;
+				int			baseIndex	= custIndex * Consts.ImagesPerShip;
 				for (int index = 0; index < Consts.ImagesPerShip; index++)
 					ilShipImages.Images[baseIndex + index]	= images[index];
+
+				// Find the first column of pixels that has a non-white pixel for the X value, and the last column for the width.
+				int			x																	= Functions.GetColumnOfFirstNonWhitePixel(images[0], 1);
+				int			width															= Functions.GetColumnOfFirstNonWhitePixel(images[0], -1) - x + 1;
+				Consts.ShipImageOffsets[custIndex].X			= Math.Max(2, x);
+				Consts.ShipImageOffsets[custIndex].Width	= Math.Min(62 - Consts.ShipImageOffsets[custIndex].X, width);
 			}
 		}
 
