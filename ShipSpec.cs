@@ -50,6 +50,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Activity	_traders			= Activity.NA;
 		private TechLevel	_minTech			= TechLevel.Unavailable;
 		private bool			_hullUpgraded	= false;
+		private int				_imageIndex		= -1;
 
 		#endregion
 
@@ -103,6 +104,9 @@ namespace Fryz.Apps.SpaceTrader
 			_minTech			= (TechLevel)hash["_minTech"];
 			_hullUpgraded	= (bool)hash["_hullUpgraded"];
 
+			if (hash.ContainsKey("_imageIndex"))
+				_imageIndex	= (int)hash["_imageIndex"];
+
 			if (Type == ShipType.Custom)
 				Strings.ShipNames[(int)ShipType.Custom]	= (string)hash["_name"];
 		}
@@ -129,6 +133,10 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_traders",			(int)_traders);
 			hash.Add("_minTech",			(int)_minTech);
 			hash.Add("_hullUpgraded",	_hullUpgraded);
+
+			// Only save image index if it's not the default.
+			if (_imageIndex != Consts.ShipImgUseDefault)
+				hash.Add("_imageIndex",	_imageIndex);
 
 			if (Type == ShipType.Custom)
 				hash.Add("_name",				Name);
@@ -271,7 +279,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[ImageIndex * Consts.ImagesPerShip + Consts.ShipImgOffsetNormal];
 			}
 		}
 
@@ -279,7 +287,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetDamage];
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[ImageIndex * Consts.ImagesPerShip + Consts.ShipImgOffsetDamage];
 			}
 		}
 
@@ -287,7 +295,19 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetSheildDamage];
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[ImageIndex * Consts.ImagesPerShip + Consts.ShipImgOffsetSheildDamage];
+			}
+		}
+
+		public int ImageIndex
+		{
+			get
+			{
+				return (_imageIndex == Consts.ShipImgUseDefault ? (int)Type : _imageIndex);
+			}
+			set
+			{
+				_imageIndex	= value;
 			}
 		}
 
@@ -295,7 +315,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return Game.CurrentGame.ParentWindow.ShipImages.Images[(int)Type * Consts.ImagesPerShip + Consts.ShipImgOffsetShield];
+				return Game.CurrentGame.ParentWindow.ShipImages.Images[ImageIndex * Consts.ImagesPerShip + Consts.ShipImgOffsetShield];
 			}
 		}
 
