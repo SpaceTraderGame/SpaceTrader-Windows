@@ -307,7 +307,7 @@ namespace Fryz.Apps.SpaceTrader
 			}
 			set
 			{
-				_imageIndex	= value;
+				_imageIndex	= (value == (int)Type ? Consts.ShipImgUseDefault : value) ;
 			}
 		}
 
