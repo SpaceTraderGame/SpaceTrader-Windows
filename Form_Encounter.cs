@@ -1934,7 +1934,8 @@ namespace Fryz.Apps.SpaceTrader
 					game.Commander.PoliceRecordScore	= Math.Min(game.Commander.PoliceRecordScore + scoreMod, scoreMin);
 				}
 
-				ExecuteAction(true);
+				if (game.EncounterType != EncounterType.MarieCelestePolice)
+					ExecuteAction(true);
 
 				if (Result != EncounterResult.Continue)
 					Close();
@@ -2163,21 +2164,24 @@ namespace Fryz.Apps.SpaceTrader
 			if (cmdrship.IllegalSpecialCargo)
 			{
 				if (FormAlert.Alert(AlertType.EncounterPoliceSurrender, this,
-					new string[] { cmdrship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, false),
-					cmdrship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
+					new string[] { cmdrship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, true),
+												 cmdrship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
 					Exit(EncounterResult.Arrested);
 			}
 			else
 			{
-				// Police Record becomes dubious, if it wasn't already.
-				if (game.Commander.PoliceRecordScore > Consts.PoliceRecordScoreDubious)
-					game.Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
+				string	str1	= cmdrship.IllegalSpecialCargoDescription("", false, true);
 
-				cmdrship.RemoveIllegalGoods();
+				if (FormAlert.Alert(AlertType.EncounterPoliceSubmit, this, str1, "") == DialogResult.Yes)
+				{
+					// Police Record becomes dubious, if it wasn't already.
+					if (game.Commander.PoliceRecordScore > Consts.PoliceRecordScoreDubious)
+						game.Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
 
-				FormAlert.Alert(AlertType.EncounterPoliceSubmit, this);
+					cmdrship.RemoveIllegalGoods();
 
-				Exit(EncounterResult.Normal);
+					Exit(EncounterResult.Normal);
+				}
 			}
 		}
 
