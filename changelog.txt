@@ -20,5 +20,6 @@ TODO:
 	make shipyard news advertisements
 	rework escape pod sequence
 	kidnapped "princess" quest
-	create images for equipment
+	create images & descriptions for equipment
 	create images for trade goods
+	special resources should be unknown until visited
