@@ -3,6 +3,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fryz.Apps.SpaceTrader", "Fr
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SpaceTraderSetup", "SpaceTraderSetup\SpaceTraderSetup.vdproj", "{E95E187E-B31B-438C-B31A-90C68DED0752}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STConvert", "STConvert\STConvert.csproj", "{F5B9876B-38E4-468A-8780-3621A6901695}"
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		ConfigName.0 = Debug
@@ -18,6 +20,10 @@ Global
 		{E95E187E-B31B-438C-B31A-90C68DED0752}.Debug.ActiveCfg = Debug
 		{E95E187E-B31B-438C-B31A-90C68DED0752}.Release.ActiveCfg = Release
 		{E95E187E-B31B-438C-B31A-90C68DED0752}.Release.Build.0 = Release
+		{F5B9876B-38E4-468A-8780-3621A6901695}.Debug.ActiveCfg = Debug|.NET
+		{F5B9876B-38E4-468A-8780-3621A6901695}.Debug.Build.0 = Debug|.NET
+		{F5B9876B-38E4-468A-8780-3621A6901695}.Release.ActiveCfg = Release|.NET
+		{F5B9876B-38E4-468A-8780-3621A6901695}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
