@@ -472,6 +472,7 @@ namespace Fryz.Apps.SpaceTrader
 				UpdateSell();
 				game.ParentWindow.UpdateAll();
 			}
+			EnableDisableButtons();
 		}
 
 		private void Sell(EquipmentType type, int item)
@@ -501,6 +502,7 @@ namespace Fryz.Apps.SpaceTrader
 				UpdateSell();
 				game.ParentWindow.UpdateAll();
 			}
+			EnableDisableButtons();
 		}
 
 		private void UpdateBuy()
@@ -651,8 +653,7 @@ namespace Fryz.Apps.SpaceTrader
 				picEquipment.Visible = true;
 			}
 			inUnselect = false;
-			btnBuy.Enabled = canBuy(currentlySelectedEquipment);
-			btnSell.Enabled = canSell(currentlySelectedEquipment);
+			EnableDisableButtons();
 		}
 
 		private bool canSell(Equipment equip)
@@ -678,6 +679,12 @@ namespace Fryz.Apps.SpaceTrader
 				(type == EquipmentType.Gadget && cmdr.Ship.FreeSlotsGadget == 0))
 				return false;
 			else return buySideSelected;
+		}
+
+		private void EnableDisableButtons()
+		{
+			btnBuy.Enabled = canBuy(currentlySelectedEquipment);
+			btnSell.Enabled = canSell(currentlySelectedEquipment);
 		}
 
 		public void SetReadOnlyMode()
@@ -709,6 +716,11 @@ namespace Fryz.Apps.SpaceTrader
 			if ((currentlySelectedEquipment != null) && canSell(currentlySelectedEquipment))
 				Sell(currentlySelectedEquipment.EquipmentType, currentlySelectedIndex);
 		}
+
+/* DPI	private void picShip_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+		{
+			Game.CurrentGame.Commander.Ship.PaintShipImage(e.Graphics, picShip.BackColor);		
+		} */
 
 		private void lstSellWeapon_DoubleClick(object sender, System.EventArgs e)
 		{

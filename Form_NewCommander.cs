@@ -124,7 +124,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(29, 30);
+			this.btnClose.Size = new System.Drawing.Size(30, 31);
 			this.btnClose.TabIndex = 33;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
@@ -245,6 +245,7 @@ namespace Fryz.Apps.SpaceTrader
 																														 0,
 																														 0,
 																														 0});
+			this.numFighter.Enter += new System.EventHandler(this.num_ValueEnter);
 			this.numFighter.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numFighter.Leave += new System.EventHandler(this.num_ValueChanged);
 			// 
@@ -270,6 +271,7 @@ namespace Fryz.Apps.SpaceTrader
 																														0,
 																														0,
 																														0});
+			this.numTrader.Enter += new System.EventHandler(this.num_ValueEnter);
 			this.numTrader.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numTrader.Leave += new System.EventHandler(this.num_ValueChanged);
 			// 
@@ -295,6 +297,7 @@ namespace Fryz.Apps.SpaceTrader
 																															0,
 																															0,
 																															0});
+			this.numEngineer.Enter += new System.EventHandler(this.num_ValueEnter);
 			this.numEngineer.ValueChanged += new System.EventHandler(this.num_ValueChanged);
 			this.numEngineer.Leave += new System.EventHandler(this.num_ValueChanged);
 			// 

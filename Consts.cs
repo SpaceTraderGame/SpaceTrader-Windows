@@ -233,8 +233,9 @@ namespace Fryz.Apps.SpaceTrader
 			new Rectangle(21, 0, 22, 0),	// Dragonfly
 			new Rectangle(15, 0, 34, 0),	// Mantis
 			new Rectangle( 7, 0, 49, 0),	// Scarab
-			new Rectangle( 9, 0, 46, 0)		// Bottle
-		};
+			new Rectangle( 9, 0, 46, 0),	// Bottle
+			new Rectangle( 2, 0, 60, 0)		// Custom
+	};
 		#endregion
 
 		#region ShipSpecs
