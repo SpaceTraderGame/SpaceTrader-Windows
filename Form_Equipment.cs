@@ -562,7 +562,8 @@ namespace Fryz.Apps.SpaceTrader
 					Commander	cmdr	= game.Commander;
 
 					if (selectedEquipment.EquipmentType == EquipmentType.Gadget &&
-						((Gadget)selectedEquipment).Type == GadgetType.ExtraCargoBays &&
+						(((Gadget)selectedEquipment).Type == GadgetType.ExtraCargoBays ||
+						((Gadget)selectedEquipment).Type == GadgetType.HiddenCargoBays) &&
 						cmdr.Ship.FreeCargoBays < 5)
 					{
 						FormAlert.Alert(AlertType.EquipmentExtraBaysInUse, this);

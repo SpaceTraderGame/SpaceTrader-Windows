@@ -78,6 +78,7 @@ namespace Fryz.Apps.SpaceTrader
 		private int						_questStatusMoon						= 0;									// 0 = not bought, 1 = bought, 2 = claimed
 		private int						_questStatusReactor					= 0;									// 0 = not encountered, 1-20 = days of mission (bays of fuel left = 10 - (ReactorStatus / 2), 21 = delivered, 22 = Done
 		private int						_questStatusScarab					= 0;									// 0 = not given yet, 1 = not destroyed, 2 = destroyed - upgrade not performed, 3 = destroyed - hull upgrade performed
+		private int						_questStatusSculpture				= 0;									// 0 = not given yet, 1 = on board, 2 = delivered, 3 = done
 		private int						_questStatusSpaceMonster		= 0;									// 0 = not available, 1 = Space monster is in Acamar system, 2 = Space monster is destroyed, 3 = Claimed reward
 		private int						_questStatusWild						= 0;									// 0 = not delivered, 1-11 = on board, 12 = delivered
 		private int						_fabricRipProbability				= 0;									// if Experiment = 12, this is the probability of being warped to a random planet.
@@ -118,7 +119,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (Difficulty < Difficulty.Normal)
 				Commander.CurrentSystem.SpecialEventType	= SpecialEventType.Lottery;
 
-			// JAF - DEBUG
+			// TODO: JAF - DEBUG 
 			Commander.Cash	= 1000000;
 			CheatEnabled		= true;
 			EasyEncounters	= true;
@@ -179,6 +180,9 @@ namespace Fryz.Apps.SpaceTrader
 			_chanceOfVeryRareEncounter	= (int)hash["_chanceOfVeryRareEncounter"];
 			_veryRareEncounters					= new ArrayList((int[])hash["_veryRareEncounters"]);
 			_options										= new GameOptions((Hashtable)hash["_options"]);
+
+			if (hash.ContainsKey("_questStatusSculpture"))
+				_questStatusSculpture	= (int)hash["_questStatusSculpture"];
 		}
 
 		public void Arrested()
@@ -193,12 +197,37 @@ namespace Fryz.Apps.SpaceTrader
 			FormAlert.Alert(AlertType.JailConvicted, ParentWindow, Functions.Multiples(term, Strings.TimeUnit),
 				Functions.Multiples(fine, Strings.MoneyUnit));
 
-			if (Commander.Ship.Cargo[(int)TradeItemType.Narcotics] > 0 ||
-					Commander.Ship.Cargo[(int)TradeItemType.Firearms] > 0)
+			if (Commander.Ship.HasGadget(GadgetType.HiddenCargoBays))
+			{
+				while (Commander.Ship.HasGadget(GadgetType.HiddenCargoBays))
+					Commander.Ship.RemoveEquipment(EquipmentType.Gadget, GadgetType.HiddenCargoBays);
+
+				FormAlert.Alert(AlertType.JailHiddenCargoBaysRemoved, ParentWindow);
+			}
+
+			if (Commander.Ship.ReactorOnBoard)
+			{
+				FormAlert.Alert(AlertType.ReactorConfiscated, ParentWindow);
+				QuestStatusReactor		= SpecialEvent.StatusReactorNotStarted;
+			}
+
+			if (Commander.Ship.SculptureOnBoard)
+			{
+				FormAlert.Alert(AlertType.SculptureConfiscated, ParentWindow);
+				QuestStatusSculpture	= SpecialEvent.StatusSculptureNotStarted;
+			}
+
+			if (Commander.Ship.WildOnBoard)
+			{
+				FormAlert.Alert(AlertType.WildArrested, ParentWindow);
+				NewsAddEvent(NewsEvent.WildArrested);
+				QuestStatusWild = SpecialEvent.StatusWildNotStarted;
+			}
+
+			if (Commander.Ship.AnyIllegalCargo)
 			{
 				FormAlert.Alert(AlertType.JailIllegalGoodsImpounded, ParentWindow);
-				Commander.Ship.Cargo[(int)TradeItemType.Narcotics]	= 0;
-				Commander.Ship.Cargo[(int)TradeItemType.Firearms]		= 0;
+				Commander.Ship.RemoveIllegalGoods();
 			}
 
 			if (Commander.Insurance)
@@ -221,23 +250,10 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusJarek	= SpecialEvent.StatusJarekNotStarted;
 			}
 
-			if (Commander.Ship.WildOnBoard)
-			{
-				FormAlert.Alert(AlertType.WildArrested, ParentWindow);
-				NewsAddEvent(NewsEvent.WildArrested);
-				QuestStatusWild = SpecialEvent.StatusWildNotStarted;
-			}
-
 			if (QuestStatusJapori == SpecialEvent.StatusJaporiInTransit)
 			{
 				FormAlert.Alert(AlertType.AntidoteTaken, ParentWindow);
 				QuestStatusJapori	= SpecialEvent.StatusJaporiDone;
-			}
-
-			if (Commander.Ship.ReactorOnBoard)
-			{
-				FormAlert.Alert(AlertType.ReactorConfiscated, ParentWindow);
-				QuestStatusReactor	= SpecialEvent.StatusReactorNotStarted;
 			}
 
 			if (Commander.Cash >= fine)
@@ -268,7 +284,6 @@ namespace Fryz.Apps.SpaceTrader
 
 			Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
 			IncDays(term, ParentWindow);
-			Arrival();
 		}
 
 		private void Arrival()
@@ -885,7 +900,7 @@ namespace Fryz.Apps.SpaceTrader
 					pirate	= !Raided;
 				else if (encounter < (int)WarpSystem.PoliticalSystem.ActivityPirates +
 					(int)WarpSystem.PoliticalSystem.ActivityPolice * policeModifier)
-					// StrengthPolice adapts itself to your criminal record: you'll
+					// policeModifier adapts itself to your criminal record: you'll
 					// encounter more police if you are a hardened criminal.
 					police	= true;
 				else if (encounter < (int)WarpSystem.PoliticalSystem.ActivityPirates +
@@ -1033,16 +1048,24 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			FormAlert.Alert(AlertType.EncounterEscapePodActivated, ParentWindow);
 
+			if (Commander.Ship.SculptureOnBoard)
+				FormAlert.Alert(AlertType.SculptureSaved, ParentWindow);
+
 			if (Commander.Ship.ReactorOnBoard)
 			{
 				FormAlert.Alert(AlertType.ReactorDestroyed, ParentWindow);
 				QuestStatusReactor	= SpecialEvent.StatusReactorDone;
 			}
 
+			if (Commander.Ship.Tribbles > 0)
+				FormAlert.Alert(AlertType.TribblesKilled, ParentWindow);
+
 			if (QuestStatusJapori == SpecialEvent.StatusJaporiInTransit)
 			{
-				FormAlert.Alert(AlertType.AntidoteDestroyed, ParentWindow);
-				QuestStatusJapori = SpecialEvent.StatusJaporiDone;
+				int	system;
+				for (system = 0; system < Universe.Length && Universe[system].SpecialEventType != SpecialEventType.Japori; system++);
+				FormAlert.Alert(AlertType.AntidoteDestroyed, ParentWindow, Universe[system].Name);
+				QuestStatusJapori = SpecialEvent.StatusJaporiNotStarted;
 			}
 
 			if (Commander.Ship.ArtifactOnBoard)
@@ -1065,16 +1088,11 @@ namespace Fryz.Apps.SpaceTrader
 				QuestStatusWild = SpecialEvent.StatusWildNotStarted;
 			}
 
-			if (Commander.Ship.Tribbles > 0)
-				FormAlert.Alert(AlertType.TribblesKilled, ParentWindow);
-
 			if (Commander.Insurance)
 			{
 				FormAlert.Alert(AlertType.InsurancePayoff, ParentWindow);
 				Commander.Cash	+= Commander.Ship.BaseWorth(true);
 			}
-
-			FormAlert.Alert(AlertType.FleaBuilt, ParentWindow);
 
 			if (Commander.Cash > Consts.FleaConversionCost)
 				Commander.Cash	-= Consts.FleaConversionCost;
@@ -1083,6 +1101,8 @@ namespace Fryz.Apps.SpaceTrader
 				Commander.Debt	+= Consts.FleaConversionCost - Commander.Cash;
 				Commander.Cash	 = 0;
 			}
+
+			FormAlert.Alert(AlertType.FleaBuilt, ParentWindow);
 
 			IncDays(3, ParentWindow);
 
@@ -1243,7 +1263,6 @@ namespace Fryz.Apps.SpaceTrader
 		public void HandleSpecialEvent()
 		{
 			StarSystem	curSys	= Commander.CurrentSystem;
-			bool				money		= false;
 			bool				remove	= true;
 
 			switch (curSys.SpecialEventType)
@@ -1253,14 +1272,12 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.ArtifactDelivery:
 					QuestStatusArtifact	= SpecialEvent.StatusArtifactDone;
-					money								= true;
 					break;
 				case SpecialEventType.CargoForSale:
 					FormAlert.Alert(AlertType.SpecialSealedCanisters, ParentWindow);
 					int	tradeItem										 = Functions.GetRandom(Consts.TradeItems.Length);
 					Commander.Ship.Cargo[tradeItem]	+= 3;
 					Commander.PriceCargo[tradeItem]	+= Commander.CurrentSystem.SpecialEvent.Price;
-					money								= true;
 					break;
 				case SpecialEventType.Dragonfly:
 				case SpecialEventType.DragonflyBaratas:
@@ -1287,7 +1304,6 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case SpecialEventType.EraseRecord:
 					FormAlert.Alert(AlertType.SpecialCleanRecord, ParentWindow);
-					money												= true;
 					Commander.PoliceRecordScore	= Consts.PoliceRecordScoreClean;
 					RecalculateSellPrices(curSys);
 					break;
@@ -1322,11 +1338,11 @@ namespace Fryz.Apps.SpaceTrader
 					remove									= false;
 					break;
 				case SpecialEventType.Japori:
+					// The japori quest should not be removed since you can fail and start it over again.
+					remove	= false;
+
 					if (Commander.Ship.FreeCargoBays < 10)
-					{
 						FormAlert.Alert(AlertType.CargoNoEmptyBays, ParentWindow);
-						remove	= false;
-					}
 					else
 					{
 						FormAlert.Alert(AlertType.AntidoteOnBoard, ParentWindow);
@@ -1348,21 +1364,19 @@ namespace Fryz.Apps.SpaceTrader
 					{
 						CrewMember	jarek	= Mercenaries[(int)CrewMemberId.Jarek];
 						FormAlert.Alert(AlertType.SpecialPassengerOnBoard, ParentWindow, jarek.Name);
-						Commander.Ship.Crew[Commander.Ship.Crew[1] == null ? 1 : 2]	= jarek;
+						Commander.Ship.Hire(jarek);
 						QuestStatusJarek	= SpecialEvent.StatusJarekStarted;
 					}
 					break;
 				case SpecialEventType.JarekGetsOut:
 					QuestStatusJarek	= SpecialEvent.StatusJarekDone;
-					Commander.Ship.Fire(Commander.Ship.Crew[1].Id == CrewMemberId.Jarek ? 1 : 2);
+					Commander.Ship.Fire(CrewMemberId.Jarek);
 					break;
 				case SpecialEventType.Lottery:
-					money	= true;
 					break;
 				case SpecialEventType.Moon:
 					FormAlert.Alert(AlertType.SpecialMoonBought, ParentWindow);
 					QuestStatusMoon	= SpecialEvent.StatusMoonBought;
-					money						= true;
 					break;
 				case SpecialEventType.MoonRetirement:
 					QuestStatusMoon	= SpecialEvent.StatusMoonDone;
@@ -1427,21 +1441,40 @@ namespace Fryz.Apps.SpaceTrader
 					QuestStatusScarab						=  SpecialEvent.StatusScarabDone;
 					remove											=  false;
 					break;
+				case SpecialEventType.Sculpture:
+					QuestStatusSculpture	= SpecialEvent.StatusSculptureInTransit;
+					break;
+				case SpecialEventType.SculptureDelivered:
+					QuestStatusSculpture		= SpecialEvent.StatusSculptureDelivered;
+					curSys.SpecialEventType	= SpecialEventType.SculptureHiddenBays;
+					remove									= false;
+					break;
+				case SpecialEventType.SculptureHiddenBays:
+					QuestStatusSculpture	= SpecialEvent.StatusSculptureDone;
+					if (Commander.Ship.FreeSlotsGadget == 0)
+					{
+						FormAlert.Alert(AlertType.EquipmentNotEnoughSlots, ParentWindow);
+						remove	= false;
+					}
+					else
+					{
+						FormAlert.Alert(AlertType.EquipmentHiddenCompartments, ParentWindow);
+						Commander.Ship.AddEquipment(Consts.Gadgets[(int)GadgetType.HiddenCargoBays]);
+						QuestStatusSculpture	= SpecialEvent.StatusSculptureDone;
+					}
+					break;
 				case SpecialEventType.Skill:
 					FormAlert.Alert(AlertType.SpecialSkillIncrease, ParentWindow);
 					Commander.IncreaseRandomSkill();
-					money	= true;
 					break;
 				case SpecialEventType.SpaceMonster:
 					QuestStatusSpaceMonster	= SpecialEvent.StatusSpaceMonsterAtAcamar;
 					break;
 				case SpecialEventType.SpaceMonsterKilled:
 					QuestStatusSpaceMonster	= SpecialEvent.StatusSpaceMonsterDone;
-					money	= true;
 					break;
 				case SpecialEventType.Tribble:
 					FormAlert.Alert(AlertType.TribblesOwn, ParentWindow);
-					money										= true;
 					Commander.Ship.Tribbles	= 1;
 					break;
 				case SpecialEventType.TribbleBuyer:
@@ -1469,8 +1502,11 @@ namespace Fryz.Apps.SpaceTrader
 					{
 						CrewMember	wild	= Mercenaries[(int)CrewMemberId.Wild];
 						FormAlert.Alert(AlertType.SpecialPassengerOnBoard, ParentWindow, wild.Name);
-						Commander.Ship.Crew[Commander.Ship.Crew[1] == null ? 1 : 2]	= wild;
+						Commander.Ship.Hire(wild);
 						QuestStatusWild	= SpecialEvent.StatusWildStarted;
+
+						if (Commander.Ship.SculptureOnBoard)
+							FormAlert.Alert(AlertType.WildSculpture, ParentWindow);
 					}
 					break;
 				case SpecialEventType.WildGetsOut:
@@ -1485,12 +1521,12 @@ namespace Fryz.Apps.SpaceTrader
 
 					QuestStatusWild							= SpecialEvent.StatusWildDone;
 					Commander.PoliceRecordScore	= Consts.PoliceRecordScoreClean;
-					Commander.Ship.Fire(Commander.Ship.Crew[1].Id == CrewMemberId.Wild ? 1 : 2);
+					Commander.Ship.Fire(CrewMemberId.Wild);
 					RecalculateSellPrices(curSys);
 					break;
 			}
 
-			if (money)
+			if (curSys.SpecialEvent.Price != 0)
 				Commander.Cash	-= curSys.SpecialEvent.Price;
 
 			if (remove)
@@ -1500,6 +1536,20 @@ namespace Fryz.Apps.SpaceTrader
 		public void IncDays(int num, IWin32Window owner)
 		{
 			Commander.Days	+= num;
+
+			if (Commander.Insurance)
+				Commander.NoClaim	+= num;
+
+			// Police Record will gravitate towards neutral (0).
+			if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreClean)
+				Commander.PoliceRecordScore	= Math.Max(Consts.PoliceRecordScoreClean, Commander.PoliceRecordScore - num / 3);
+			else if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious)
+				Commander.PoliceRecordScore	= Math.Min(Consts.PoliceRecordScoreDubious, Commander.PoliceRecordScore + num / 
+					(Difficulty <= Difficulty.Normal ? 1 : (int)Difficulty));
+
+			// The Space Monster's strength increases 5% per day until it is back to full strength.
+			if (SpaceMonster.Hull < SpaceMonster.HullStrength)
+				SpaceMonster.Hull	= Math.Min(SpaceMonster.HullStrength, (int)(SpaceMonster.Hull * Math.Pow(1.05, num)));
 
 			if (QuestStatusGemulon > SpecialEvent.StatusGemulonNotStarted &&
 					QuestStatusGemulon < SpecialEvent.StatusGemulonTooLate)
@@ -1673,6 +1723,12 @@ namespace Fryz.Apps.SpaceTrader
 						else if (QuestStatusScarab >= SpecialEvent.StatusScarabDestroyed)
 							NewsAddEvent(NewsEvent.ScarabDestroyed);
 						break;
+					case SpecialEventType.Sculpture:
+						NewsAddEvent(NewsEvent.SculptureStolen);
+						break;
+					case SpecialEventType.SculptureDelivered:
+						NewsAddEvent(NewsEvent.SculptureTracked);
+						break;
 					case SpecialEventType.SpaceMonsterKilled:
 						if (QuestStatusSpaceMonster == SpecialEvent.StatusSpaceMonsterAtAcamar)
 							NewsAddEvent(NewsEvent.SpaceMonster);
@@ -1710,21 +1766,6 @@ namespace Fryz.Apps.SpaceTrader
 			Commander.Ship.Fuel	-= fuel;
 			Commander.PayInterest();
 			IncDays(1, ParentWindow);
-			if (Commander.Insurance)
-				Commander.NoClaim++;
-
-			if (Commander.PoliceRecordScore > Consts.PoliceRecordScoreClean)
-			{
-				if (Commander.Days % 3 == 0)
-					Commander.PoliceRecordScore--;
-			}
-			else if (Commander.PoliceRecordScore < Consts.PoliceRecordScoreDubious)
-			{
-				if (Difficulty <= Difficulty.Normal || Commander.Days % (int)Difficulty == 0)
-					Commander.PoliceRecordScore++;
-			}
-
-			SpaceMonster.Hull	= Math.Min(SpaceMonster.HullStrength, SpaceMonster.Hull * 105 / 100);
 		}
 
 		private bool PlaceSpecialEvents()
@@ -1744,6 +1785,7 @@ namespace Fryz.Apps.SpaceTrader
 			Universe[(int)StarSystemId.Nix].SpecialEventType			= SpecialEventType.ReactorDelivered;
 			Universe[(int)StarSystemId.Acamar].SpecialEventType		= SpecialEventType.SpaceMonsterKilled;
 			Universe[(int)StarSystemId.Kravat].SpecialEventType		= SpecialEventType.WildGetsOut;
+			Universe[(int)StarSystemId.Endor].SpecialEventType		= SpecialEventType.SculptureDelivered;
 
 			// Assign a wormhole location endpoint for the Scarab.
 			for (system = 0; system < Wormholes.Length &&
@@ -1767,15 +1809,19 @@ namespace Fryz.Apps.SpaceTrader
 
 			// Find the closest system at least 70 parsecs away from Nix that doesn't already have a special event.
 			if (goodUniverse && !FindDistantSystem(StarSystemId.Nix, SpecialEventType.Reactor))
-					goodUniverse	= false;
+				goodUniverse	= false;
 
 			// Find the closest system at least 70 parsecs away from Gemulon that doesn't already have a special event.
 			if (goodUniverse && !FindDistantSystem(StarSystemId.Gemulon, SpecialEventType.Gemulon))
-					goodUniverse	= false;
+				goodUniverse	= false;
 
 			// Find the closest system at least 70 parsecs away from Daled that doesn't already have a special event.
 			if (goodUniverse && !FindDistantSystem(StarSystemId.Daled, SpecialEventType.Experiment))
-					goodUniverse	= false;
+				goodUniverse	= false;
+
+			// Find the closest system at least 70 parsecs away from Endor that doesn't already have a special event.
+			if (goodUniverse && !FindDistantSystem(StarSystemId.Endor, SpecialEventType.Sculpture))
+				goodUniverse	= false;
 
 			// Assign the shipyards to High-Tech systems without a special event.
 			if (goodUniverse)
@@ -1792,31 +1838,18 @@ namespace Fryz.Apps.SpaceTrader
 			// Assign the rest of the events randomly.
 			if (goodUniverse)
 			{
-				SpecialEventType[]	random	= new SpecialEventType[]
+				for (int i = 0; i < Consts.SpecialEvents.Length; i++)
 				{
-					SpecialEventType.Artifact,
-					SpecialEventType.CargoForSale,
-					SpecialEventType.Dragonfly,
-					SpecialEventType.EraseRecord,
-					SpecialEventType.Japori,
-					SpecialEventType.Jarek,
-					SpecialEventType.Moon,
-					SpecialEventType.Scarab,
-					SpecialEventType.Skill,
-					SpecialEventType.SpaceMonster,
-					SpecialEventType.Tribble,
-					SpecialEventType.TribbleBuyer,
-					SpecialEventType.Wild
-				};
-
-				for (int i = 0; i < random.Length; i++)
-				{
-					do
+					for (int j = 0; j < Consts.SpecialEvents[i].Occurance; j++)
 					{
-						system	= Functions.GetRandom(Universe.Length);
+						do
+						{
+							system	= Functions.GetRandom(Universe.Length);
+						}
+						while (Universe[system].SpecialEventType != SpecialEventType.NA);
+					
+						Universe[system].SpecialEventType	= Consts.SpecialEvents[i].Type;
 					}
-					while (Universe[system].SpecialEventType != SpecialEventType.NA);
-					Universe[system].SpecialEventType	= random[i];
 				}
 			}
 
@@ -1952,6 +1985,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_questStatusMoon",						_questStatusMoon);
 			hash.Add("_questStatusReactor",					_questStatusReactor);
 			hash.Add("_questStatusScarab",					_questStatusScarab);
+			hash.Add("_questStatusSculpture",				_questStatusSculpture);
 			hash.Add("_questStatusSpaceMonster",		_questStatusSpaceMonster);
 			hash.Add("_questStatusWild",						_questStatusWild);
 			hash.Add("_fabricRipProbability",				_fabricRipProbability);
@@ -2131,16 +2165,6 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_canSuperWarp	= value;
-			}
-		}
-
-		public bool						CarryingIllegalCargo
-		{
-			get
-			{
-				return	Commander.Ship.Cargo[(int)TradeItemType.Firearms] > 0 ||
-					Commander.Ship.Cargo[(int)TradeItemType.Narcotics] > 0 ||
-					Commander.Ship.WildOnBoard || Commander.Ship.ReactorOnBoard;
 			}
 		}
 
@@ -2403,7 +2427,8 @@ namespace Fryz.Apps.SpaceTrader
 				Functions.RandSeed((int)curSys.Id, Commander.Days);
 
 				for (IEnumerator en = NewsEvents.GetEnumerator(); en.MoveNext();)
-					items.Add(Functions.StringVars(Strings.NewsEvent[(int)en.Current], Commander.Name));
+					items.Add(Functions.StringVars(Strings.NewsEvent[(int)en.Current], new string[] { Commander.Name,
+						Commander.CurrentSystem.Name, Commander.Ship.Name }));
 
 				if (curSys.SystemPressure != SystemPressure.None)
 					items.Add(Strings.NewsPressureInternal[(int)curSys.SystemPressure]);
@@ -2460,7 +2485,8 @@ namespace Fryz.Apps.SpaceTrader
 					string[]	headlines	= Strings.NewsHeadlines[(int)curSys.PoliticalSystemType];
 					bool[]		shown			= new bool[headlines.Length];
 
-					for (int i = 0; i <= Functions.GetRandom2(headlines.Length); i++)
+					int				toShow		= Functions.GetRandom2(headlines.Length);
+					for (int i = 0; i <= toShow; i++)
 					{
 						int	index	= Functions.GetRandom2(headlines.Length);
 						if (!shown[index])
@@ -2640,6 +2666,18 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_questStatusScarab	= value;
+			}
+		}
+
+		public int						QuestStatusSculpture
+		{
+			get
+			{
+				return _questStatusSculpture;
+			}
+			set
+			{
+				_questStatusSculpture	= value;
 			}
 		}
 

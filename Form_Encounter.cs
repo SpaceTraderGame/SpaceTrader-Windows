@@ -1756,7 +1756,7 @@ namespace Fryz.Apps.SpaceTrader
 						game.EncounterType	= game.EncounterType - 1;
 						break;
 					case EncounterType.PoliceInspect:
-						if (!game.CarryingIllegalCargo &&
+						if (!cmdrship.IllegalCargoOrPassengers &&
 							FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) != DialogResult.Yes)
 						{
 							cancelAttack	= true;
@@ -1868,13 +1868,12 @@ namespace Fryz.Apps.SpaceTrader
 				FormAlert.Alert(AlertType.EncounterMarieCelesteNoBribe, this);
 			else if (game.WarpSystem.PoliticalSystem.BribeLevel <= 0)
 				FormAlert.Alert(AlertType.EncounterPoliceBribeCant, this);
-			else if (game.CarryingIllegalCargo ||
+			else if (cmdrship.IllegalCargoOrPassengers ||
 				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal, this) == DialogResult.Yes)
 			{
 				// Bribe depends on how easy it is to bribe the police and commander's current worth
 				int diffMod	= 10 + 5 * (Difficulty.Impossible - game.Difficulty);
-				int	passMod	= cmdrship.WildOnBoard || cmdrship.ReactorOnBoard ?
-											(game.Difficulty <= Difficulty.Normal ? 2 : 3) : 0;
+				int	passMod	= cmdrship.IllegalSpecialCargo ? (game.Difficulty <= Difficulty.Normal ? 2 : 3) : 1;
 
 				int	bribe		= Math.Max(100, Math.Min(10000, (int)Math.Ceiling(game.Commander.Worth /
 											game.WarpSystem.PoliticalSystem.BribeLevel / diffMod / 100) * 100 * passMod));
@@ -1918,7 +1917,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			DisableAuto();
 
-			if (game.EncounterType != EncounterType.PoliceInspect || game.CarryingIllegalCargo ||
+			if (game.EncounterType != EncounterType.PoliceInspect || cmdrship.IllegalCargoOrPassengers ||
 				FormAlert.Alert(AlertType.EncounterPoliceNothingIllegal) == DialogResult.Yes)
 			{
 				if (game.EncounterType == EncounterType.PoliceInspect || game.EncounterType == EncounterType.MarieCelestePolice &&
@@ -2021,38 +2020,17 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnSubmit_Click(object sender, System.EventArgs e)
 		{
-			if (game.CarryingIllegalCargo)
+			if (cmdrship.IllegalCargoOrPassengers)
 			{
-				string	str1	= "";
-				string	str2	= "";
-
-				if (cmdrship.WildOnBoard)
-				{
-					str1	= Strings.EncounterPoliceSubmitWild;
-					str2	= Strings.EncounterPoliceSubmitArrested;
-				}
-				else if (cmdrship.ReactorOnBoard)
-				{
-					str1	= Strings.EncounterPoliceSubmitReactor;
-					str2	= Strings.EncounterPoliceSubmitArrested;
-				}
-
-				if (cmdrship.Cargo[(int)TradeItemType.Firearms] > 0 || cmdrship.Cargo[(int)TradeItemType.Narcotics] > 0)
-				{
-					if (str1.Length > 0)
-						str1	+= Strings.EncounterPoliceSubmitSeparator;
-					str1	+= Strings.EncounterPoliceSubmitGoods;
-				}
+				string	str1	= cmdrship.IllegalSpecialCargoDescription("", true, true);
+				string	str2	= cmdrship.IllegalSpecialCargo ? Strings.EncounterPoliceSubmitArrested : "";
 
 				if (FormAlert.Alert(AlertType.EncounterPoliceSubmit, this, str1, str2) == DialogResult.Yes)
 				{
-					if (cmdrship.Cargo[(int)TradeItemType.Firearms] > 0 || cmdrship.Cargo[(int)TradeItemType.Narcotics] > 0)
+					// If you carry illegal goods, they are impounded and you are fined
+					if (cmdrship.DetectableIllegalCargo)
 					{
-						// If you carry illegal goods, they are impounded and you are fined
-						cmdrship.Cargo[(int)TradeItemType.Firearms]							= 0;
-						game.Commander.PriceCargo[(int)TradeItemType.Firearms]	= 0;
-						cmdrship.Cargo[(int)TradeItemType.Narcotics]						= 0;
-						game.Commander.PriceCargo[(int)TradeItemType.Narcotics]	= 0;
+						cmdrship.RemoveIllegalGoods();
 
 						int fine						 = (int)Math.Max(100, Math.Min(10000, Math.Ceiling(game.Commander.Worth /
 																	 ((Difficulty.Impossible - game.Difficulty + 2) * 10) / 50) * 50));
@@ -2065,7 +2043,7 @@ namespace Fryz.Apps.SpaceTrader
 						game.Commander.PoliceRecordScore	+= Consts.ScoreTrafficking;
 					}
 
-					Exit(cmdrship.WildOnBoard || cmdrship.ReactorOnBoard ? EncounterResult.Arrested : EncounterResult.Normal);
+					Exit(cmdrship.IllegalSpecialCargo ? EncounterResult.Arrested : EncounterResult.Normal);
 				}
 			}
 			else
@@ -2100,13 +2078,19 @@ namespace Fryz.Apps.SpaceTrader
 				if (game.Commander.PoliceRecordScore <= Consts.PoliceRecordScorePsychopath)
 					FormAlert.Alert(AlertType.EncounterSurrenderRefused, this);
 				else if (FormAlert.Alert(AlertType.EncounterPoliceSurrender, this,
-					Strings.EncounterPoliceSurrender[cmdrship.WildOnBoard ? 2 : cmdrship.ReactorOnBoard ? 1 : 0]) ==
-					DialogResult.Yes)
+					new string[] { cmdrship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, false),
+					cmdrship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
 					Exit(EncounterResult.Arrested);
 			}
 			else
 			{
 				game.Raided	= true;
+
+				if (cmdrship.SculptureOnBoard)
+				{
+					game.QuestStatusSculpture	= SpecialEvent.StatusSculptureNotStarted;
+					FormAlert.Alert(AlertType.EncounterPiratesTakeSculpture);
+				}
 
 				if (cmdrship.FilledNormalCargoBays == 0)
 				{
@@ -2176,10 +2160,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void btnYield_Click(object sender, System.EventArgs e)
 		{
-			if (cmdrship.WildOnBoard || cmdrship.ReactorOnBoard)
+			if (cmdrship.IllegalSpecialCargo)
 			{
 				if (FormAlert.Alert(AlertType.EncounterPoliceSurrender, this,
-					Strings.EncounterPoliceSurrender[cmdrship.WildOnBoard ? 2 : 1]) == DialogResult.Yes)
+					new string[] { cmdrship.IllegalSpecialCargoDescription(Strings.EncounterPoliceSurrenderCargo, true, false),
+					cmdrship.IllegalSpecialCargoActions() }) == DialogResult.Yes)
 					Exit(EncounterResult.Arrested);
 			}
 			else
@@ -2188,8 +2173,7 @@ namespace Fryz.Apps.SpaceTrader
 				if (game.Commander.PoliceRecordScore > Consts.PoliceRecordScoreDubious)
 					game.Commander.PoliceRecordScore	= Consts.PoliceRecordScoreDubious;
 
-				cmdrship.Cargo[(int)TradeItemType.Narcotics]	= 0;
-				cmdrship.Cargo[(int)TradeItemType.Firearms]		= 0;
+				cmdrship.RemoveIllegalGoods();
 
 				FormAlert.Alert(AlertType.EncounterPoliceSubmit, this);
 
