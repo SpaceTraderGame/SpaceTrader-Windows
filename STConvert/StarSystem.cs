@@ -48,18 +48,18 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			Hashtable	hash	= base.Serialize();
 
-			hash.Add("_id",								(int)_id);
-			hash.Add("_x",								_x);
-			hash.Add("_y",								_y);
-			hash.Add("_size",							(int)_size);
-			hash.Add("_techLevel",				(int)_techLevel);
-			hash.Add("_politicalSystem",	(int)_politicalSystem.Type);
-			hash.Add("_pressure",					(int)_pressure);
-			hash.Add("_specialResource",	(int)_specialResource);
-			hash.Add("_specialEvent",			(int)(_specialEvent == null ? SpecialEventType.NA : _specialEvent.Type));
-			hash.Add("_tradeItems",				_tradeItems);
-			hash.Add("_countDown",				_countDown);
-			hash.Add("_visited",					_visited);
+			hash.Add("_id",										(int)_id);
+			hash.Add("_x",										_x);
+			hash.Add("_y",										_y);
+			hash.Add("_size",									(int)_size);
+			hash.Add("_techLevel",						(int)_techLevel);
+			hash.Add("_politicalSystemType",	(int)_politicalSystem.Type);
+			hash.Add("_pressure",							(int)_pressure);
+			hash.Add("_specialResource",			(int)_specialResource);
+			hash.Add("_specialEventType",			(int)(_specialEvent == null ? SpecialEventType.NA : _specialEvent.Type));
+			hash.Add("_tradeItems",						_tradeItems);
+			hash.Add("_countDown",						_countDown);
+			hash.Add("_visited",							_visited);
 
 			return hash;
 		}
