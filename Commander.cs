@@ -310,7 +310,7 @@ namespace Fryz.Apps.SpaceTrader
 			}
 			set
 			{
-				_noclaim   = value;
+				_noclaim   = Math.Max(0, Math.Min(Consts.MaxNoClaim, value));
 			}
 		}
 
