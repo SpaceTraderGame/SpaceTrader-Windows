@@ -1838,7 +1838,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				for (int i = 0; i < Consts.SpecialEvents.Length; i++)
 				{
-					for (int j = 0; j < Consts.SpecialEvents[i].Occurance; j++)
+					for (int j = 0; j < Consts.SpecialEvents[i].Occurrence; j++)
 					{
 						do
 						{
