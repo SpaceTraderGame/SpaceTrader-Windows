@@ -1203,7 +1203,7 @@ namespace Fryz.Apps.SpaceTrader
 							EncounterDefeatScarab();
 							break;
 						case ShipType.Scorpion:
-							str2	= Strings.EncounterPrincessRescued;
+							str2		= Strings.EncounterPrincessRescued;
 							EncounterDefeatScorpion();
 							break;
 					}
@@ -1211,6 +1211,7 @@ namespace Fryz.Apps.SpaceTrader
 					FormAlert.Alert(AlertType.EncounterDisabledOpponent, owner, EncounterShipText, str2);
 
 					Commander.ReputationScore	+= (int)Opponent.Type / 2 + 1;
+					result										= EncounterResult.Normal;
 				}
 				else
 				{
@@ -2380,6 +2381,7 @@ namespace Fryz.Apps.SpaceTrader
 					throw new GameEndException(GameEndType.BoughtMoon);
 				case SpecialEventType.Princess:
 					curSys.SpecialEventType	= SpecialEventType.PrincessReturned;
+					remove									= false;
 					QuestStatusPrincess++;
 					break;
 				case SpecialEventType.PrincessCentauri:

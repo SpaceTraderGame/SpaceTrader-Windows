@@ -341,7 +341,7 @@ namespace Fryz.Apps.SpaceTrader
 			new SpecialEvent(SpecialEventType.Princess,                0, 0, true),
 			new SpecialEvent(SpecialEventType.PrincessCentauri,        0, 0, true),
 			new SpecialEvent(SpecialEventType.PrincessInthara,         0, 0, true),
-			new SpecialEvent(SpecialEventType.PrincessQonos,           0, 0, true),
+			new SpecialEvent(SpecialEventType.PrincessQonos,           0, 0, false),
 			new SpecialEvent(SpecialEventType.PrincessQuantum,         0, 0, false),
 			new SpecialEvent(SpecialEventType.PrincessReturned,        0, 0, true)
 		};
