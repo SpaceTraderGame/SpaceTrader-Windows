@@ -74,19 +74,17 @@ namespace Fryz.Apps.SpaceTrader
 
 		public ShipTemplate(Hashtable hash)
 		{
-			_name					= (string)hash["_name"];
-			_size					= (Size)hash["_size"];
-			_imageIndex		= (int)hash["_imageIndex"];
-			_cargoBays		= (int)hash["_cargoBays"];
-			_weaponSlots	= (int)hash["_weaponSlots"];
-			_shieldSlots	= (int)hash["_shieldSlots"];
-			_gadgetSlots	= (int)hash["_gadgetSlots"];
-			_crewQuarters	= (int)hash["_crewQuarters"];
-			_fuelTanks		= (int)hash["_fuelTanks"];
-			_hullStrength	= (int)hash["_hullStrength"];
-
-			if (hash.ContainsKey("_images"))
-				_images			= (Image[])hash["_images"];
+			_name					= (string)GetValueFromHash(hash, "_name", _name);
+			_size					= (Size)GetValueFromHash(hash, "_size", _size);
+			_imageIndex		= (int)GetValueFromHash(hash, "_imageIndex", _imageIndex);
+			_cargoBays		= (int)GetValueFromHash(hash, "_cargoBays", _cargoBays);
+			_weaponSlots	= (int)GetValueFromHash(hash, "_weaponSlots", _weaponSlots);
+			_shieldSlots	= (int)GetValueFromHash(hash, "_shieldSlots", _shieldSlots);
+			_gadgetSlots	= (int)GetValueFromHash(hash, "_gadgetSlots", _gadgetSlots);
+			_crewQuarters	= (int)GetValueFromHash(hash, "_crewQuarters", _crewQuarters);
+			_fuelTanks		= (int)GetValueFromHash(hash, "_fuelTanks", _fuelTanks);
+			_hullStrength	= (int)GetValueFromHash(hash, "_hullStrength", _hullStrength);
+			_images				= (Image[])GetValueFromHash(hash, "_images", _images);
 		}
 
 		public int CompareTo(object value)

@@ -66,19 +66,19 @@ namespace Fryz.Apps.SpaceTrader
 
 		public StarSystem(Hashtable hash): base(hash)
 		{
-			_id										= (StarSystemId)hash["_id"];
-			_x										= (int)hash["_x"];
-			_y										= (int)hash["_y"];
-			_size									= (Size)hash["_size"];
-			_techLevel						= (TechLevel)hash["_techLevel"];
-			_politicalSystemType	= (PoliticalSystemType)hash["_politicalSystemType"];
-			_systemPressure				= (SystemPressure)hash["_systemPressure"];
-			_specialResource			= (SpecialResource)hash["_specialResource"];
-			_specialEventType			= (SpecialEventType)hash["_specialEventType"];
-			_tradeItems						= (int[])hash["_tradeItems"];
-			_countDown						= (int)hash["_countDown"];
-			_visited							= (bool)hash["_visited"];
-			_shipyardId						= (ShipyardId)hash["_shipyardId"];
+			_id										= (StarSystemId)GetValueFromHash(hash, "_id", _id);
+			_x										= (int)GetValueFromHash(hash, "_x", _x);
+			_y										= (int)GetValueFromHash(hash, "_y", _y);
+			_size									= (Size)GetValueFromHash(hash, "_size", _size);
+			_techLevel						= (TechLevel)GetValueFromHash(hash, "_techLevel", _techLevel);
+			_politicalSystemType	= (PoliticalSystemType)GetValueFromHash(hash, "_politicalSystemType", _politicalSystemType);
+			_systemPressure				= (SystemPressure)GetValueFromHash(hash, "_systemPressure", _systemPressure);
+			_specialResource			= (SpecialResource)GetValueFromHash(hash, "_specialResource", _specialResource);
+			_specialEventType			= (SpecialEventType)GetValueFromHash(hash, "_specialEventType", _specialEventType);
+			_tradeItems						= (int[])GetValueFromHash(hash, "_tradeItems", _tradeItems);
+			_countDown						= (int)GetValueFromHash(hash, "_countDown", _countDown);
+			_visited							= (bool)GetValueFromHash(hash, "_visited", _visited);
+			_shipyardId						= (ShipyardId)GetValueFromHash(hash, "_shipyardId", _shipyardId);
 		}
 
 		public void InitializeTradeItems()

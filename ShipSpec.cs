@@ -85,36 +85,35 @@ namespace Fryz.Apps.SpaceTrader
 
 		public ShipSpec(Hashtable hash): base(hash)
 		{
-			_type					= (ShipType)hash["_type"];
-			_size					= (Size)hash["_size"];
-			_cargoBays		= (int)hash["_cargoBays"];
-			_weaponSlots	= (int)hash["_weaponSlots"];
-			_shieldSlots	= (int)hash["_shieldSlots"];
-			_gadgetSlots	= (int)hash["_gadgetSlots"];
-			_crewQuarters	= (int)hash["_crewQuarters"];
-			_fuelTanks		= (int)hash["_fuelTanks"];
-			_fuelCost			= (int)hash["_fuelCost"];
-			_hullStrength	= (int)hash["_hullStrength"];
-			_repairCost		= (int)hash["_repairCost"];
-			_price				= (int)hash["_price"];
-			_occurance		= (int)hash["_occurance"];
-			_police				= (Activity)hash["_police"];
-			_pirates			= (Activity)hash["_pirates"];
-			_traders			= (Activity)hash["_traders"];
-			_minTech			= (TechLevel)hash["_minTech"];
-			_hullUpgraded	= (bool)hash["_hullUpgraded"];
-
-			// The image index was only saved if it's not the default.
-			if (hash.ContainsKey("_imageIndex"))
-				_imageIndex	= (int)hash["_imageIndex"];
+			_type					= (ShipType)GetValueFromHash(hash, "_type", _type);
+			_size					= (Size)GetValueFromHash(hash, "_size", _size);
+			_cargoBays		= (int)GetValueFromHash(hash, "_cargoBays", _cargoBays);
+			_weaponSlots	= (int)GetValueFromHash(hash, "_weaponSlots", _weaponSlots);
+			_shieldSlots	= (int)GetValueFromHash(hash, "_shieldSlots", _shieldSlots);
+			_gadgetSlots	= (int)GetValueFromHash(hash, "_gadgetSlots", _gadgetSlots);
+			_crewQuarters	= (int)GetValueFromHash(hash, "_crewQuarters", _crewQuarters);
+			_fuelTanks		= (int)GetValueFromHash(hash, "_fuelTanks", _fuelTanks);
+			_fuelCost			= (int)GetValueFromHash(hash, "_fuelCost", _fuelCost);
+			_hullStrength	= (int)GetValueFromHash(hash, "_hullStrength", _hullStrength);
+			_repairCost		= (int)GetValueFromHash(hash, "_repairCost", _repairCost);
+			_price				= (int)GetValueFromHash(hash, "_price", _price);
+			_occurance		= (int)GetValueFromHash(hash, "_occurance", _occurance);
+			_police				= (Activity)GetValueFromHash(hash, "_police", _police);
+			_pirates			= (Activity)GetValueFromHash(hash, "_pirates", _pirates);
+			_traders			= (Activity)GetValueFromHash(hash, "_traders", _traders);
+			_minTech			= (TechLevel)GetValueFromHash(hash, "_minTech", _minTech);
+			_hullUpgraded	= (bool)GetValueFromHash(hash, "_hullUpgraded", _hullUpgraded);
+			_imageIndex		= (int)GetValueFromHash(hash, "_imageIndex", Consts.ShipImgUseDefault);
 
 			// Get the name if the ship is a custom design.
 			if (Type == ShipType.Custom)
-				Strings.ShipNames[(int)ShipType.Custom]	= (string)hash["_name"];
+				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name",
+																									Strings.ShipNames[(int)ShipType.Custom]);
 
 			// Get the images if the ship uses the custom images.
-			if (ImageIndex == (int)ShipType.Custom && hash.ContainsKey("_images"))
-				Game.CurrentGame.ParentWindow.CustomShipImages	= (Image[])hash["_images"];
+			if (ImageIndex == (int)ShipType.Custom)
+				Game.CurrentGame.ParentWindow.CustomShipImages	= (Image[])GetValueFromHash(hash, "_images",
+																													Game.CurrentGame.ParentWindow.CustomShipImages);
 		}
 
 		public override Hashtable Serialize()

@@ -58,21 +58,22 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Commander(Hashtable hash): base(hash)
 		{
-			_cash								= (int)hash["_cash"];
-			_debt								= (int)hash["_debt"];
-			_killsPirate				= (int)hash["_killsPirate"];
-			_killsPolice				= (int)hash["_killsPolice"];
-			_killsTrader				= (int)hash["_killsTrader"];
-			_policeRecordScore	= (int)hash["_policeRecordScore"];
-			_reputationScore		= (int)hash["_reputationScore"];
-			_days								= (int)hash["_days"];
-			_insurance					= (bool)hash["_insurance"];
-			_noclaim						= (int)hash["_noclaim"];
-			_ship								= new Ship((Hashtable)hash["_ship"]);
-			_priceCargo					= (int[])hash["_priceCargo"];
+			_cash								= (int)GetValueFromHash(hash, "_cash", _cash);
+			_debt								= (int)GetValueFromHash(hash, "_debt", _debt);
+			_killsPirate				= (int)GetValueFromHash(hash, "_killsPirate", _killsPirate);
+			_killsPolice				= (int)GetValueFromHash(hash, "_killsPolice", _killsPolice);
+			_killsTrader				= (int)GetValueFromHash(hash, "_killsTrader", _killsTrader);
+			_policeRecordScore	= (int)GetValueFromHash(hash, "_policeRecordScore", _policeRecordScore);
+			_reputationScore		= (int)GetValueFromHash(hash, "_reputationScore", _reputationScore);
+			_days								= (int)GetValueFromHash(hash, "_days", _days);
+			_insurance					= (bool)GetValueFromHash(hash, "_insurance", _insurance);
+			_noclaim						= (int)GetValueFromHash(hash, "_noclaim", _noclaim);
+			_ship								= new Ship((Hashtable)GetValueFromHash(hash, "_ship", _ship));
+			_priceCargo					= (int[])GetValueFromHash(hash, "_priceCargo", _priceCargo);
 
 			Game.CurrentGame.Mercenaries[(int)CrewMemberId.Commander]	= this;
-			Strings.CrewMemberNames[(int)CrewMemberId.Commander]			= (string)hash["_name"];
+			Strings.CrewMemberNames[(int)CrewMemberId.Commander]			= (string)GetValueFromHash(hash, "_name",
+																																	Strings.CrewMemberNames[(int)CrewMemberId.Commander]);
 		}
 
 		public void PayInterest()

@@ -45,7 +45,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Gadget(Hashtable hash): base(hash)
 		{
-			_type	= (GadgetType)hash["_type"];
+			_type	= (GadgetType)GetValueFromHash(hash, "_type");
 		}
 
 		public override Equipment Clone()

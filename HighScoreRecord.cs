@@ -54,12 +54,12 @@ namespace Fryz.Apps.SpaceTrader
 
 		public HighScoreRecord(Hashtable hash): base(hash)
 		{
-			_name				= (string)hash["_name"];
-			_score			= (int)hash["_score"];
-			_type				= (GameEndType)hash["_type"];
-			_days				= (int)hash["_days"];
-			_worth			= (int)hash["_worth"];
-			_difficulty	= (Difficulty)hash["_difficulty"];
+			_name				= (string)GetValueFromHash(hash, "_name");
+			_score			= (int)GetValueFromHash(hash, "_score");
+			_type				= (GameEndType)GetValueFromHash(hash, "_type");
+			_days				= (int)GetValueFromHash(hash, "_days");
+			_worth			= (int)GetValueFromHash(hash, "_worth");
+			_difficulty	= (Difficulty)GetValueFromHash(hash, "_difficulty");
 		}
 
 		public int CompareTo(object value)

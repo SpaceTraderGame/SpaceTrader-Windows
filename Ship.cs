@@ -96,16 +96,16 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Ship(Hashtable hash): base(hash)
 		{
-			_fuel						= (int)hash["_fuel"];
-			_hull						= (int)hash["_hull"];
-			_tribbles				= (int)hash["_tribbles"];
-			_cargo					= (int[])hash["_cargo"];
-			_weapons				= (Weapon[])ArrayListToArray((ArrayList)hash["_weapons"], "Weapon");
-			_shields				= (Shield[])ArrayListToArray((ArrayList)hash["_shields"], "Shield");
-			_gadgets				= (Gadget[])ArrayListToArray((ArrayList)hash["_gadgets"], "Gadget");
-			_pod						= (bool)hash["_pod"];
+			_fuel						= (int)GetValueFromHash(hash, "_fuel");
+			_hull						= (int)GetValueFromHash(hash, "_hull");
+			_tribbles				= (int)GetValueFromHash(hash, "_tribbles", _tribbles);
+			_cargo					= (int[])GetValueFromHash(hash, "_cargo", _cargo);
+			_weapons				= (Weapon[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_weapons"), "Weapon");
+			_shields				= (Shield[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_shields"), "Shield");
+			_gadgets				= (Gadget[])ArrayListToArray((ArrayList)GetValueFromHash(hash, "_gadgets"), "Gadget");
+			_pod						= (bool)GetValueFromHash(hash, "_pod", _pod);
 
-			int[]	crewIds		= (int[])hash["_crewIds"];
+			int[]	crewIds		= (int[])GetValueFromHash(hash, "_crewIds");
 			_crew						= new CrewMember[crewIds.Length];
 			for (int index = 0; index < _crew.Length; index++)
 			{

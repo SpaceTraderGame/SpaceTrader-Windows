@@ -61,9 +61,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		public CrewMember(Hashtable hash): base(hash)
 		{
-			_id						= (CrewMemberId)hash["_id"];
-			_skills				= (int[])hash["_skills"];
-			_curSystemId	= (StarSystemId)hash["_curSystemId"];
+			_id						= (CrewMemberId)GetValueFromHash(hash, "_id");
+			_skills				= (int[])GetValueFromHash(hash, "_skills", _skills);
+			_curSystemId	= (StarSystemId)GetValueFromHash(hash, "_curSystemId", _curSystemId);
 		}
 
 		private void ChangeRandomSkill(int amount)

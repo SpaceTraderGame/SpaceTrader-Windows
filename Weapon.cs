@@ -47,8 +47,8 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Weapon(Hashtable hash): base(hash)
 		{
-			_type		= (WeaponType)hash["_type"];
-			_power	= (int)hash["_power"];
+			_type		= (WeaponType)GetValueFromHash(hash, "_type");
+			_power	= (int)GetValueFromHash(hash, "_power");
 		}
 
 		public override Equipment Clone()

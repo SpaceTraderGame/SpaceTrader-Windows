@@ -51,10 +51,10 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Equipment(Hashtable hash): base(hash)
 		{
-			_equipType	= (EquipmentType)hash["_equipType"];
-			_price			= (int)hash["_price"];
-			_minTech		= (TechLevel)hash["_minTech"];
-			_chance			= (int)hash["_chance"];
+			_equipType	= (EquipmentType)GetValueFromHash(hash, "_equipType");
+			_price			= (int)GetValueFromHash(hash, "_price");
+			_minTech		= (TechLevel)GetValueFromHash(hash, "_minTech");
+			_chance			= (int)GetValueFromHash(hash, "_chance");
 		}
 
 		public abstract Equipment Clone();

@@ -59,23 +59,21 @@ namespace Fryz.Apps.SpaceTrader
 
 		public GameOptions(Hashtable hash): base(hash)
 		{
-			_alwaysIgnorePirates			= (bool)hash["_alwaysIgnorePirates"];
-			_alwaysIgnorePolice				= (bool)hash["_alwaysIgnorePolice"];
-			_alwaysIgnoreTradeInOrbit	= (bool)hash["_alwaysIgnoreTradeInOrbit"];
-			_alwaysIgnoreTraders			= (bool)hash["_alwaysIgnoreTraders"];
-			_autoFuel									= (bool)hash["_autoFuel"];
-			_autoRepair								= (bool)hash["_autoRepair"];
-			_continuousAttack					= (bool)hash["_continuousAttack"];
-			_continuousAttackFleeing	= (bool)hash["_continuousAttackFleeing"];
-			_newsAutoPay							= (bool)hash["_newsAutoPay"];
-			_remindLoans							= (bool)hash["_remindLoans"];
-			_reserveMoney							= (bool)hash["_reserveMoney"];
-			_showTrackedRange					= (bool)hash["_showTrackedRange"];
-			_trackAutoOff							= (bool)hash["_trackAutoOff"];
-			_leaveEmpty								= (int)hash["_leaveEmpty"];
-
-			if (hash.ContainsKey("_newsAutoShow"))
-				_newsAutoShow	= (bool)hash["_newsAutoShow"];
+			_alwaysIgnorePirates			= (bool)GetValueFromHash(hash, "_alwaysIgnorePirates", _alwaysIgnorePirates);
+			_alwaysIgnorePolice				= (bool)GetValueFromHash(hash, "_alwaysIgnorePolice", _alwaysIgnorePolice);
+			_alwaysIgnoreTradeInOrbit	= (bool)GetValueFromHash(hash, "_alwaysIgnoreTradeInOrbit", _alwaysIgnoreTradeInOrbit);
+			_alwaysIgnoreTraders			= (bool)GetValueFromHash(hash, "_alwaysIgnoreTraders", _alwaysIgnoreTraders);
+			_autoFuel									= (bool)GetValueFromHash(hash, "_autoFuel", _autoFuel);
+			_autoRepair								= (bool)GetValueFromHash(hash, "_autoRepair", _autoRepair);
+			_continuousAttack					= (bool)GetValueFromHash(hash, "_continuousAttack", _continuousAttack);
+			_continuousAttackFleeing	= (bool)GetValueFromHash(hash, "_continuousAttackFleeing", _continuousAttackFleeing);
+			_newsAutoPay							= (bool)GetValueFromHash(hash, "_newsAutoPay", _newsAutoPay);
+			_newsAutoShow							= (bool)GetValueFromHash(hash, "_newsAutoShow", _newsAutoShow);
+			_remindLoans							= (bool)GetValueFromHash(hash, "_remindLoans", _remindLoans);
+			_reserveMoney							= (bool)GetValueFromHash(hash, "_reserveMoney", _reserveMoney);
+			_showTrackedRange					= (bool)GetValueFromHash(hash, "_showTrackedRange", _showTrackedRange);
+			_trackAutoOff							= (bool)GetValueFromHash(hash, "_trackAutoOff", _trackAutoOff);
+			_leaveEmpty								= (int)GetValueFromHash(hash, "_leaveEmpty", _leaveEmpty);
 		}
 
 		public void CopyValues(GameOptions source)
@@ -89,7 +87,7 @@ namespace Fryz.Apps.SpaceTrader
 			ContinuousAttack					= source.ContinuousAttack;
 			ContinuousAttackFleeing		= source.ContinuousAttackFleeing;
 			NewsAutoPay								= source.NewsAutoPay;
-			NewsAutoShow							= source.NewsAutoPay;
+			NewsAutoShow							= source.NewsAutoShow;
 			RemindLoans								= source.RemindLoans;
 			ReserveMoney							= source.ReserveMoney;
 			ShowTrackedRange					= source.ShowTrackedRange;

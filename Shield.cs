@@ -50,9 +50,9 @@ namespace Fryz.Apps.SpaceTrader
 
 		public Shield(Hashtable hash): base(hash)
 		{
-			_type		= (ShieldType)hash["_type"];
-			_power	= (int)hash["_power"];
-			_charge	= (int)hash["_charge"];
+			_type		= (ShieldType)GetValueFromHash(hash, "_type");
+			_power	= (int)GetValueFromHash(hash, "_power");
+			_charge	= (int)GetValueFromHash(hash, "_charge");
 		}
 
 		public override Equipment Clone()
