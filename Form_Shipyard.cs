@@ -1209,6 +1209,7 @@ namespace Fryz.Apps.SpaceTrader
 				}
 
 				imgIndex	= imgTypes.Length - 1;
+				UpdateShip();
 			}
 		}
 
