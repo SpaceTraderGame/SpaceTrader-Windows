@@ -28,7 +28,7 @@ using System.Windows.Forms;
 
 namespace Fryz.Apps.SpaceTrader
 {
-	public class Game
+	public class Game: STSerializableObject
 	{
 		#region Member Declarations
 
@@ -42,7 +42,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Ship					_dragonfly									= new Ship(ShipType.Dragonfly);
 		private Ship					_scarab											= new Ship(ShipType.Scarab);
 		private Ship					_spaceMonster								= new Ship(ShipType.SpaceMonster);
-		private Ship					_opponent;
+		private Ship					_opponent										= new Ship(ShipType.Gnat);
 
 		private int						_chanceOfTradeInOrbit				= 100;
 		private int						_clicks											= 0;									// Distance from target system, 0 = arrived
@@ -61,9 +61,9 @@ namespace Fryz.Apps.SpaceTrader
 		private bool					_easyEncounters							= false;
 		private GameEndType		_endStatus									= GameEndType.NA;
 		private EncounterType	_encounterType							= 0;									// Type of current encounter
-		private StarSystem		_selectedSystem							= null;								// Current system on chart
-		private StarSystem		_warpSystem									= null;								// Target system for warp
-		private StarSystem		_trackedSystem							= null;								// The short-range chart will display an arrow towards this system if the value is not null
+		private StarSystemId	_selectedSystemId						= StarSystemId.NA;		// Current system on chart
+		private StarSystemId	_warpSystemId								= StarSystemId.NA;		// Target system for warp
+		private StarSystemId	_trackedSystemId						= StarSystemId.NA;		// The short-range chart will display an arrow towards this system if the value is not null
 		private bool					_targetWormhole							= false;							// Wormhole selected?
 		private int[]					_priceCargoBuy							= new int[10];
 		private int[]					_priceCargoSell							= new int[10];
@@ -89,7 +89,6 @@ namespace Fryz.Apps.SpaceTrader
 		// Options
 		private GameOptions		_options										= new GameOptions(true);
 
-		[NonSerialized()]
 		private SpaceTrader		_parentWin									= null;
 
 		#endregion
@@ -123,6 +122,65 @@ namespace Fryz.Apps.SpaceTrader
 			Commander.Cash	= 1000000;
 			CheatEnabled		= true;
 			EasyEncounters	= true;
+		}
+
+		public Game(Hashtable hash, SpaceTrader parentWin): base(hash)
+		{
+			_game				= this;
+			_parentWin	= parentWin;
+
+			string	version	= (string)hash["_version"];
+			if (version.CompareTo(Consts.CurrentVersion) > 0)
+			{
+				// TODO: abort
+			}
+
+			_universe										= (StarSystem[])ArrayListToArray((ArrayList)hash["_universe"], "StarSystem");
+			_wormholes									= (int[])hash["_wormholes"];
+			_mercenaries								= (CrewMember[])ArrayListToArray((ArrayList)hash["_mercenaries"], "CrewMember");
+			_commander									= new Commander((Hashtable)hash["_commander"]);
+			_dragonfly									= new Ship((Hashtable)hash["_dragonfly"]);
+			_scarab											= new Ship((Hashtable)hash["_scarab"]);
+			_spaceMonster								= new Ship((Hashtable)hash["_spaceMonster"]);
+			_opponent										= new Ship((Hashtable)hash["_opponent"]);
+			_chanceOfTradeInOrbit				= (int)hash["_chanceOfTradeInOrbit"];
+			_clicks											= (int)hash["_clicks"];
+			_raided											= (bool)hash["_raided"];
+			_inspected									= (bool)hash["_inspected"];
+			_tribbleMessage							= (bool)hash["_tribbleMessage"];
+			_arrivedViaWormhole					= (bool)hash["_arrivedViaWormhole"];
+			_paidForNewspaper						= (bool)hash["_paidForNewspaper"];
+			_litterWarning							= (bool)hash["_litterWarning"];
+			_newsEvents									= new ArrayList((int[])hash["_newsEvents"]);
+			_difficulty									= (Difficulty)hash["_difficulty"];
+			_cheatEnabled								= (bool)hash["_cheatEnabled"];
+			_autoSave										= (bool)hash["_autoSave"];
+			_easyEncounters							= (bool)hash["_easyEncounters"];
+			_endStatus									= (GameEndType)hash["_endStatus"];
+			_encounterType							= (EncounterType)hash["_encounterType"];
+			_selectedSystemId						= (StarSystemId)hash["_selectedSystemId"];
+			_warpSystemId								= (StarSystemId)hash["_warpSystemId"];
+			_trackedSystemId						= (StarSystemId)hash["_trackedSystemId"];
+			_targetWormhole							= (bool)hash["_targetWormhole"];
+			_priceCargoBuy							= (int[])hash["_priceCargoBuy"];
+			_priceCargoSell							= (int[])hash["_priceCargoSell"];
+			_questStatusArtifact				= (int)hash["_questStatusArtifact"];
+			_questStatusDragonfly				= (int)hash["_questStatusDragonfly"];
+			_questStatusExperiment			= (int)hash["_questStatusExperiment"];
+			_questStatusGemulon					= (int)hash["_questStatusGemulon"];
+			_questStatusJapori					= (int)hash["_questStatusJapori"];
+			_questStatusJarek						= (int)hash["_questStatusJarek"];
+			_questStatusMoon						= (int)hash["_questStatusMoon"];
+			_questStatusReactor					= (int)hash["_questStatusReactor"];
+			_questStatusScarab					= (int)hash["_questStatusScarab"];
+			_questStatusSpaceMonster		= (int)hash["_questStatusSpaceMonster"];
+			_questStatusWild						= (int)hash["_questStatusWild"];
+			_fabricRipProbability				= (int)hash["_fabricRipProbability"];
+			_justLootedMarie						= (bool)hash["_justLootedMarie"];
+			_canSuperWarp								= (bool)hash["_canSuperWarp"];
+			_chanceOfVeryRareEncounter	= (int)hash["_chanceOfVeryRareEncounter"];
+			_veryRareEncounters					= new ArrayList((int[])hash["_veryRareEncounters"]);
+			_options										= new GameOptions((Hashtable)hash["_options"]);
 		}
 
 		public void Arrested()
@@ -222,7 +280,7 @@ namespace Fryz.Apps.SpaceTrader
 			PaidForNewspaper								= false;
 
 			if (TrackedSystem == Commander.CurrentSystem && Options.TrackAutoOff)
-				TrackedSystem	= null;
+				TrackedSystemId	= StarSystemId.NA;
 
 			ArrivalCheckReactor();
 			ArrivalCheckTribbles();
@@ -1812,7 +1870,7 @@ namespace Fryz.Apps.SpaceTrader
 
 			if (dest.Length > 0)
 			{
-				int	index	= Array.IndexOf(dest, Functions.GetSystemIndex(WarpSystem));
+				int	index	= Array.IndexOf(dest, (int)WarpSystemId);
 
 				if (index < 0)
 					index	= forward ? 0 : dest.Length - 1;
@@ -1821,12 +1879,69 @@ namespace Fryz.Apps.SpaceTrader
 
 				if (Functions.WormholeExists(Commander.CurrentSystem, Universe[dest[index]]))
 				{
-					SelectedSystem	= Commander.CurrentSystem;
-					TargetWormhole	= true;
+					SelectedSystemId	= Commander.CurrentSystemId;
+					TargetWormhole		= true;
 				}
 				else
-					SelectedSystem	= Universe[dest[index]];
+					SelectedSystemId	= (StarSystemId)dest[index];
 			}
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			hash.Add("_version",										"2.00");
+			hash.Add("_universe",										ArrayToArrayList(_universe));
+			hash.Add("_commander",									_commander.Serialize());
+			hash.Add("_wormholes",									_wormholes);
+			hash.Add("_mercenaries",								ArrayToArrayList(_mercenaries));
+			hash.Add("_dragonfly",									_dragonfly.Serialize());
+			hash.Add("_scarab",											_scarab.Serialize());
+			hash.Add("_spaceMonster",								_spaceMonster.Serialize());
+			hash.Add("_opponent",										_opponent.Serialize());
+			hash.Add("_chanceOfTradeInOrbit",				_chanceOfTradeInOrbit);
+			hash.Add("_clicks",											_clicks);
+			hash.Add("_raided",											_raided);
+			hash.Add("_inspected",									_inspected);
+			hash.Add("_tribbleMessage",							_tribbleMessage);
+			hash.Add("_arrivedViaWormhole",					_arrivedViaWormhole);
+			hash.Add("_paidForNewspaper",						_paidForNewspaper);
+			hash.Add("_litterWarning",							_litterWarning);
+			hash.Add("_newsEvents",									(int[])_newsEvents.ToArray(typeof(NewsEvent)));
+			hash.Add("_difficulty",									(int)_difficulty);
+			hash.Add("_cheatEnabled",								_cheatEnabled);
+			hash.Add("_autoSave",										_autoSave);
+			hash.Add("_easyEncounters",							_easyEncounters);
+			hash.Add("_endStatus",									(int)_endStatus);
+			hash.Add("_encounterType",							(int)_encounterType);
+			hash.Add("_selectedSystemId",						(int)_selectedSystemId);
+			hash.Add("_warpSystemId",								(int)_warpSystemId);
+			hash.Add("_trackedSystemId",						(int)_trackedSystemId);
+			hash.Add("_targetWormhole",							_targetWormhole);
+			hash.Add("_priceCargoBuy",							_priceCargoBuy);
+			hash.Add("_priceCargoSell",							_priceCargoSell);
+			hash.Add("_questStatusArtifact",				_questStatusArtifact);
+			hash.Add("_questStatusDragonfly",				_questStatusDragonfly);
+			hash.Add("_questStatusExperiment",			_questStatusExperiment);
+			hash.Add("_questStatusGemulon",					_questStatusGemulon);
+			hash.Add("_questStatusJapori",					_questStatusJapori);
+			hash.Add("_questStatusJarek",						_questStatusJarek);
+			hash.Add("_questStatusMoon",						_questStatusMoon);
+			hash.Add("_questStatusReactor",					_questStatusReactor);
+			hash.Add("_questStatusScarab",					_questStatusScarab);
+			hash.Add("_questStatusSpaceMonster",		_questStatusSpaceMonster);
+			hash.Add("_questStatusWild",						_questStatusWild);
+			hash.Add("_fabricRipProbability",				_fabricRipProbability);
+			hash.Add("_justLootedMarie",						_justLootedMarie);
+			hash.Add("_canSuperWarp",								_canSuperWarp);
+			hash.Add("_chanceOfVeryRareEncounter",	_chanceOfVeryRareEncounter);
+			hash.Add("_veryRareEncounters",					(int[])_veryRareEncounters.ToArray(typeof(VeryRareEncounter)));
+			hash.Add("_options",										_options.Serialize());
+
+			hash.Add("commanderName",								Strings.CrewMemberNames[(int)CrewMemberId.Commander]);
+
+			return hash;
 		}
 
 		// Returns true if an encounter occurred.
@@ -1837,7 +1952,7 @@ namespace Fryz.Apps.SpaceTrader
 				(FabricRipProbability == Consts.FabricRipInitialProbability || Functions.GetRandom(100) < FabricRipProbability))
 			{
 				FormAlert.Alert(AlertType.SpecialTimespaceFabricRip, ParentWindow);
-				SelectedSystem	= Universe[Functions.GetRandom(Universe.Length)];
+				SelectedSystemId	= (StarSystemId)Functions.GetRandom(Universe.Length);
 			}
 
 			bool	uneventful	= true;
@@ -1939,7 +2054,7 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void WarpDirect()
 		{
-			_warpSystem	= SelectedSystem;
+			_warpSystemId	= SelectedSystemId;
 
 			Commander.CurrentSystem.CountDown	= CountDownStart;
 			NewsResetEvents();
@@ -2250,7 +2365,7 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				string[]		heads		= Strings.NewsMastheads[(int)Commander.CurrentSystem.PoliticalSystemType];
-				string			head		= heads[Functions.GetSystemIndex(Commander.CurrentSystem) % heads.Length];
+				string			head		= heads[(int)Commander.CurrentSystem.Id % heads.Length];
 
 				return Functions.StringVars(head, Commander.CurrentSystem.Name);
 			}
@@ -2265,7 +2380,7 @@ namespace Fryz.Apps.SpaceTrader
 
 				// We're using the GetRandom2 function so that the same number is generated each time for the same
 				// "version" of the newspaper. -JAF
-				Functions.RandSeed(Functions.GetSystemIndex(curSys), Commander.Days);
+				Functions.RandSeed((int)curSys.Id, Commander.Days);
 
 				for (IEnumerator en = NewsEvents.GetEnumerator(); en.MoveNext();)
 					items.Add(Functions.StringVars(Strings.NewsEvent[(int)en.Current], Commander.Name));
@@ -2579,13 +2694,21 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _selectedSystem;
+				return (_selectedSystemId == StarSystemId.NA ? null : Universe[(int)_selectedSystemId]);
+			}
+		}
+
+		public StarSystemId		SelectedSystemId
+		{
+			get
+			{
+				return _selectedSystemId;
 			}
 			set
 			{
-				_selectedSystem		= value;
-				_warpSystem				= value;
-				_targetWormhole		= false;
+				_selectedSystemId		= value;
+				_warpSystemId				= value;
+				_targetWormhole			= false;
 			}
 		}
 
@@ -2600,8 +2723,8 @@ namespace Fryz.Apps.SpaceTrader
 					string	name	= Universe[i].Name;
 					if (name.ToLower().IndexOf(nameToFind.ToLower()) >= 0)
 					{
-						SelectedSystem	= Universe[i];
-						found						= true;
+						SelectedSystemId	= (StarSystemId)i;
+						found							= true;
 					}
 				}
 			}
@@ -2627,9 +2750,8 @@ namespace Fryz.Apps.SpaceTrader
 
 				if (_targetWormhole)
 				{
-					int sysIndex	= Functions.GetSystemIndex(_selectedSystem);
-					int wormIndex	= Array.IndexOf(Wormholes, sysIndex);
-					_warpSystem		= Universe[Wormholes[(wormIndex + 1) % Wormholes.Length]];
+					int wormIndex	= Array.IndexOf(Wormholes, (int)SelectedSystemId);
+					_warpSystemId	= (StarSystemId)Wormholes[(wormIndex + 1) % Wormholes.Length];
 				}
 			}
 		}
@@ -2638,11 +2760,19 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _trackedSystem;
+				return (_trackedSystemId == StarSystemId.NA ? null : Universe[(int)_trackedSystemId]);
+			}
+		}
+
+		public StarSystemId		TrackedSystemId
+		{
+			get
+			{
+				return _trackedSystemId;
 			}
 			set
 			{
-				_trackedSystem	= value;
+				_trackedSystemId	= value;
 			}
 		}
 
@@ -2678,7 +2808,15 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _warpSystem;
+				return (_warpSystemId == StarSystemId.NA ? null : Universe[(int)_warpSystemId]);
+			}
+		}
+
+		public StarSystemId		WarpSystemId
+		{
+			get
+			{
+				return _warpSystemId;
 			}
 		}
 
