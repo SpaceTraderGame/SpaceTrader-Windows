@@ -131,10 +131,12 @@ namespace Fryz.Apps.SpaceTrader
 			if (Difficulty < Difficulty.Normal)
 				Commander.CurrentSystem.SpecialEventType	= SpecialEventType.Lottery;
 
-			// TODO: JAF - DEBUG 
+			// TODO: JAF - DEBUG
+			/*
 			Commander.Cash	= 1000000;
 			CheatEnabled		= true;
 			EasyEncounters	= true;
+			*/
 		}
 
 		public Game(Hashtable hash, SpaceTrader parentWin): base(hash)
