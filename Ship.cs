@@ -100,11 +100,18 @@ namespace Fryz.Apps.SpaceTrader
 			_hull						= (int)hash["_hull"];
 			_tribbles				= (int)hash["_tribbles"];
 			_cargo					= (int[])hash["_cargo"];
-			_weapons				= (Weapon[])hash["_weapons"];
-			_shields				= (Shield[])hash["_shields"];
-			_gadgets				= (Gadget[])hash["_gadgets"];
-			_crew						= (CrewMember[])hash["_crew"];
+			_weapons				= (Weapon[])ArrayListToArray((ArrayList)hash["_weapons"], "Weapon");
+			_shields				= (Shield[])ArrayListToArray((ArrayList)hash["_shields"], "Shield");
+			_gadgets				= (Gadget[])ArrayListToArray((ArrayList)hash["_gadgets"], "Gadget");
 			_pod						= (bool)hash["_pod"];
+
+			int[]	crewIds		= (int[])hash["_crewIds"];
+			_crew						= new CrewMember[crewIds.Length];
+			for (int index = 0; index < _crew.Length; index++)
+			{
+				CrewMemberId	id	= (CrewMemberId)crewIds[index];
+				_crew[index]			= (id == CrewMemberId.NA ? null : Game.CurrentGame.Mercenaries[(int)id]);
+			}
 		}
 
 		public override Hashtable Serialize()
@@ -123,7 +130,7 @@ namespace Fryz.Apps.SpaceTrader
 			hash.Add("_weapons",				ArrayToArrayList(_weapons));
 			hash.Add("_shields",				ArrayToArrayList(_shields));
 			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
-			hash.Add("_crew",						crewIds);
+			hash.Add("_crewIds",				crewIds);
 			hash.Add("_pod",						_pod);
 
 			return hash;
