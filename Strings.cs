@@ -180,7 +180,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	ShipBuyGotOne										= "got one";
 		public static string	ShipBuyTransfer									= ", and transfer your unique equipment to the new ship";
 
-		public static string	ShipInfoEscapePod								= "An Escape Pod";
+		public static string	ShipInfoEscapePod								= "Escape Pod";
 
 		public static string	ShipNameCurrentShip							= "<current ship>";
 		public static string	ShipNameCustomShip							= "Custom Ship";

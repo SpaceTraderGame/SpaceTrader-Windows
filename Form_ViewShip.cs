@@ -250,7 +250,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (ship.EscapePod)
 			{
 				lblEquipLabel.Text	+= equipPrinted ? Environment.NewLine : "Equipment:" + Environment.NewLine;
-				lblEquip.Text				+= Strings.ShipInfoEscapePod + Environment.NewLine;
+				lblEquip.Text				+= "1 " + Strings.ShipInfoEscapePod + Environment.NewLine;
 				equipPrinted				= true;
 			}
 

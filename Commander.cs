@@ -146,9 +146,9 @@ namespace Fryz.Apps.SpaceTrader
 					Consts.Gadgets[(int)GadgetType.FuelCompactor],
 					Consts.Gadgets[(int)GadgetType.HiddenCargoBays]
 				};
-				bool[]			add			= new bool[special.Length];
-
-				int	extraCost	= 0;
+				bool[]			add				= new bool[special.Length];
+				bool				addPod		= false;
+				int					extraCost	= 0;
 
 				for (int i = 0; i < special.Length; i++)
 				{
@@ -163,6 +163,12 @@ namespace Fryz.Apps.SpaceTrader
 							add[i]		 = true;
 						}
 					}
+				}
+
+				if (Ship.EscapePod)
+				{
+					addPod		= true;
+					extraCost	+= Consts.PodTransferCost;
 				}
 
 				if (netPrice + extraCost > CashToSpend)
@@ -184,8 +190,19 @@ namespace Fryz.Apps.SpaceTrader
 					}
 				}
 
+				if (addPod)
+				{
+					if (netPrice + extraCost + Consts.PodTransferCost > CashToSpend)
+						FormAlert.Alert(AlertType.ShipBuyNoTransfer, owner, Strings.ShipInfoEscapePod);
+					else if (FormAlert.Alert(AlertType.ShipBuyTransfer, owner, Strings.ShipInfoEscapePod,
+						Strings.ShipInfoEscapePod.ToLower(), Functions.FormatNumber(Consts.PodTransferCost)) == DialogResult.Yes)
+						extraCost	+= Consts.PodTransferCost;
+					else
+						addPod		= false;
+				}
+
 				if (FormAlert.Alert(AlertType.ShipBuyConfirm, owner, Ship.Name, newShipName,
-					(add[0] || add[1] || add[2] ? Strings.ShipBuyTransfer : "")) == DialogResult.Yes)
+					(add[0] || add[1] || add[2] || addPod ? Strings.ShipBuyTransfer : "")) == DialogResult.Yes)
 				{
 					CrewMember[]	oldCrew	 = Ship.Crew;
 
@@ -199,6 +216,14 @@ namespace Fryz.Apps.SpaceTrader
 					{
 						if (add[i])
 							Ship.AddEquipment(special[i]);
+					}
+
+					if (addPod)
+						Ship.EscapePod	= true;
+					else if (Insurance)
+					{
+						Insurance				= false;
+						NoClaim					= 0;
 					}
 
 					traded	= true;
