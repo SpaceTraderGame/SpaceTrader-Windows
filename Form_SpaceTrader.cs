@@ -3158,7 +3158,8 @@ namespace Fryz.Apps.SpaceTrader
 			}
 			else
 			{
-				StarSystem	system						= game.Commander.CurrentSystem;
+				StarSystem		system					= game.Commander.CurrentSystem;
+				CrewMember[]	mercs						= system.MercenariesForHire;
 
 				lblSystemName.Text						= system.Name;
 				lblSystemSize.Text						= Strings.Sizes[(int)system.Size];
@@ -3170,11 +3171,12 @@ namespace Fryz.Apps.SpaceTrader
 				lblSystemPressure.Text				= Strings.SystemPressures[(int)system.SystemPressure];
 				lblSystemPressurePre.Visible	= true;
 				btnNews.Visible								= true;
-				btnMerc.Visible								= system.MercenaryForHire != null;
+				btnMerc.Visible								= mercs.Length > 0;
 				if (btnMerc.Visible)
 				{
 					ToolTip hint = new ToolTip();
-					hint.SetToolTip(btnMerc, system.MercenaryForHire.Name);
+					hint.SetToolTip(btnMerc, Functions.StringVars(Strings.MercenariesForHire, mercs.Length == 1 ? mercs[0].Name :
+						mercs.Length.ToString() + Strings.Mercenaries));
 				}
 				btnSpecial.Visible						= system.ShowSpecialButton();
 				if (btnSpecial.Visible)

@@ -1133,22 +1133,24 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void GenerateCrewMemberList()
 		{
+			// JAF - Changing this to allow multiple mercenaries in each system, but no more
+			// than three.
 			for (int i = 1; i < (int)CrewMemberId.Zeethibal; i++)
 			{
 				StarSystemId	id;
 				bool					ok		= false;
-				bool[]				used	= new bool[Universe.Length];
+				int[]					used	= new int[Universe.Length];
 
-				// can't have another mercenary on Kravat, since Zeethibal could be there
-				used[(int)StarSystemId.Kravat]	= true;
+				// can't have three mercenaries on Kravat, since Zeethibal could be there
+				used[(int)StarSystemId.Kravat]	= 1;
 
 				do
 				{
 					id	= (StarSystemId)Functions.GetRandom(Universe.Length);
-					if (!used[(int)id])
+					if (used[(int)id] < 3)
 					{
-						used[(int)id]	= true;
-						ok						= true;
+						used[(int)id]++;
+						ok	= true;
 					}
 				} while (!ok);
 
