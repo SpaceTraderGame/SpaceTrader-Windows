@@ -32,23 +32,23 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private ShipType	_type;
-		private Size			_size;
-		private int				_cargoBays;
-		private int				_weaponSlots;
-		private int				_shieldSlots;
-		private int				_gadgetSlots;
-		private int				_crewQuarters;
-		private int				_fuelTanks;
-		private int				_fuelCost;
-		private int				_hullStrength;
-		private int				_repairCost;
-		private int				_price;
-		private int				_occurance;
-		private Activity	_police;
-		private Activity	_pirates;
-		private Activity	_traders;
-		private TechLevel	_minTech;
+		private ShipType	_type					= ShipType.Custom;
+		private Size			_size					= Size.Tiny;
+		private int				_cargoBays		= 0;
+		private int				_weaponSlots	= 0;
+		private int				_shieldSlots	= 0;
+		private int				_gadgetSlots	= 0;
+		private int				_crewQuarters	= 0;
+		private int				_fuelTanks		= 0;
+		private int				_fuelCost			= 0;
+		private int				_hullStrength	= 0;
+		private int				_repairCost		= 0;
+		private int				_price				= 0;
+		private int				_occurance		= 0;
+		private Activity	_police				= Activity.NA;
+		private Activity	_pirates			= Activity.NA;
+		private Activity	_traders			= Activity.NA;
+		private TechLevel	_minTech			= TechLevel.Unavailable;
 		private bool			_hullUpgraded	= false;
 
 		#endregion
@@ -183,6 +183,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _cargoBays;
 			}
+			set
+			{
+				_cargoBays	= value;
+			}
 		}
 
 		public int CrewQuarters
@@ -190,6 +194,10 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _crewQuarters;
+			}
+			set
+			{
+				_crewQuarters	= value;
 			}
 		}
 
@@ -207,6 +215,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _fuelTanks;
 			}
+			set
+			{
+				_fuelTanks	= value;
+			}
 		}
 
 		public int GadgetSlots
@@ -215,6 +227,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _gadgetSlots;
 			}
+			set
+			{
+				_gadgetSlots	= value;
+			}
 		}
 
 		public int HullStrength
@@ -222,6 +238,10 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _hullStrength + (HullUpgraded ? Consts.HullUpgrade : 0);
+			}
+			set
+			{
+				_hullStrength	= value;
 			}
 		}
 
@@ -331,6 +351,10 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return _shieldSlots;
 			}
+			set
+			{
+				_shieldSlots	= value;
+			}
 		}
 
 		public Size Size
@@ -338,6 +362,10 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _size;
+			}
+			set
+			{
+				_size	= value;
 			}
 		}
 
@@ -362,6 +390,10 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _weaponSlots;
+			}
+			set
+			{
+				_weaponSlots	= value;
 			}
 		}
 
