@@ -106,6 +106,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "changelog.txt"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "Commander.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
