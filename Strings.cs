@@ -412,6 +412,28 @@ namespace Fryz.Apps.SpaceTrader
 		};
 		#endregion
 
+		#region ShipyardEngineers
+		public static string[]	ShipyardEngineers	= new string[]
+		{
+			"Luke",
+			"Lando",
+			"Obi-Wan",
+			"Wedge",
+			"Mara"
+		};
+		#endregion
+
+		#region ShipyardNames
+		public static string[]	ShipyardNames	= new string[]
+		{
+			"Hoersh-Kessel Drive",
+			"Kuat Drive Yards",
+			"Loronar Corporation",
+			"Sienar Fleet Systems",
+			"Sorosuub Engineering"
+		};
+		#endregion
+
 		#region Sizes
 		public static string[]	Sizes	= new string[]
 		{
