@@ -141,6 +141,16 @@ namespace Fryz.Apps.SpaceTrader
 			return list;
 		}
 
+		public static object GetValueFromHash(Hashtable hash, string key)
+		{
+			return GetValueFromHash(hash, key, null);
+		}
+
+		public static object GetValueFromHash(Hashtable hash, string key, object defaultValue)
+		{
+			return hash.ContainsKey(key) ? hash[key] : defaultValue;
+		}
+
 		public virtual Hashtable Serialize()
 		{
 			return new Hashtable();
