@@ -50,7 +50,7 @@ namespace Fryz.Apps.SpaceTrader
 		private Activity	_traders			= Activity.NA;
 		private TechLevel	_minTech			= TechLevel.Unavailable;
 		private bool			_hullUpgraded	= false;
-		private int				_imageIndex		= -1;
+		private int				_imageIndex		= Consts.ShipImgUseDefault;
 
 		#endregion
 
