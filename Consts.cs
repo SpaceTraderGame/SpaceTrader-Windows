@@ -31,6 +31,8 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Individual Constants
 
+		public const	string	CurrentVersion								= "2.00";
+
 		// Price paid by government for each negative PoliceScore point
 		public const	int			BountyModifier								= 1000;
 
