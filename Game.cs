@@ -1133,36 +1133,17 @@ namespace Fryz.Apps.SpaceTrader
 
 		private void GenerateCrewMemberList()
 		{
-			// JAF - Changing this to allow multiple mercenaries in each system, but no more
-			// than three.
-			for (int i = 1; i < (int)CrewMemberId.Zeethibal; i++)
-			{
-				StarSystemId	id;
-				bool					ok		= false;
-				int[]					used	= new int[Universe.Length];
+			int[]	used	= new int[Universe.Length];
+			int		d			= (int)Difficulty;
 
-				// can't have three mercenaries on Kravat, since Zeethibal could be there
-				used[(int)StarSystemId.Kravat]	= 1;
-
-				do
-				{
-					id	= (StarSystemId)Functions.GetRandom(Universe.Length);
-					if (used[(int)id] < 3)
-					{
-						used[(int)id]++;
-						ok	= true;
-					}
-				} while (!ok);
-
-				Mercenaries[i]	= new CrewMember((CrewMemberId)i, Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), id);
-			}
+			// Zeethibal may be on Kravat
+			used[(int)StarSystemId.Kravat]	= 1;
 
 			// special individuals:
 			// Zeethibal, Jonathan Wild's Nephew - skills will be set later.
 			// Wild, Jonathan Wild earns his keep now - JAF.
 			// Jarek, Ambassador Jarek earns his keep now - JAF.
 			// Dummy pilots for opponents.
-			int	d	= (int)Difficulty;
 			Mercenaries[(int)CrewMemberId.Zeethibal]			= new CrewMember(CrewMemberId.Zeethibal,      5,  5,  5,  5, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Opponent]				= new CrewMember(CrewMemberId.Opponent,       5,  5,  5,  5, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Wild]						= new CrewMember(CrewMemberId.Wild,           7, 10,  2,  5, StarSystemId.NA);
@@ -1171,6 +1152,30 @@ namespace Fryz.Apps.SpaceTrader
 			Mercenaries[(int)CrewMemberId.Dragonfly]			= new CrewMember(CrewMemberId.Dragonfly,    4 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.Scarab]					= new CrewMember(CrewMemberId.Scarab,       5 + d, 6 + d, 1, 6 + d, StarSystemId.NA);
 			Mercenaries[(int)CrewMemberId.SpaceMonster]		= new CrewMember(CrewMemberId.SpaceMonster, 8 + d, 8 + d, 1, 1 + d, StarSystemId.NA);
+
+			// JAF - Changing this to allow multiple mercenaries in each system, but no more
+			// than three.
+			for (int i = 1; i < Mercenaries.Length; i++)
+			{
+				// Only create a CrewMember object if one doesn't already exist in this slot in the array.
+				if (Mercenaries[i] == null)
+				{
+					StarSystemId	id;
+					bool					ok	= false;
+
+					do
+					{
+						id	= (StarSystemId)Functions.GetRandom(Universe.Length);
+						if (used[(int)id] < 3)
+						{
+							used[(int)id]++;
+							ok	= true;
+						}
+					} while (!ok);
+
+					Mercenaries[i]	= new CrewMember((CrewMemberId)i, Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), Functions.RandomSkill(), id);
+				}
+			}
 		}
 
 		private void GenerateOpponent(OpponentType oppType)

@@ -136,7 +136,7 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	MercenariesForHire							= "^1 available for hire.";
 		public static string	MercenaryFire										= "Fire";
 		public static string	MercenaryHire										= "Hire";
-		public static string	MercOnBoard											= " (on board ship)";
+		public static string	MercOnBoard											= "Member of Crew (^1)";
 		public static string	MercSystemUnknown								= "Unknown";
 
 		public static string	MoneyRateSuffix									= "^1 daily";
@@ -291,14 +291,31 @@ namespace Fryz.Apps.SpaceTrader
 			"Wesley",
 			"Wonton",
 			"Yorvick",
-			"Zeethibal",		// anagram for Elizabeth
-			"Opponent",			// crew of opponent mantis, pirate, police, and trader ships
-			"Wild",					// now earns his keep! - JAF
-			"Jarek",				// now earns his keep! - JAF
-			"Captain",			// crew of famous captain ships
-			"Dragonfly",		// dummy crew member used in opponent ship - JAF
-			"Scarab",				// dummy crew member used in opponent ship - JAF
-			"SpaceMonster"	// dummy crew member used in opponent ship - JAF
+			"Zeethibal",			// anagram for Elizabeth
+
+			// The rest are mercenaries I added - JAF
+			"Opponent",				// crew of opponent mantis, pirate, police, and trader ships
+			"Wild",						// now earns his keep!
+			"Jarek",					// now earns his keep!
+			"Captain",				// crew of famous captain ships
+			"Dragonfly",			// dummy crew member used in opponent ship
+			"Scarab",					// dummy crew member used in opponent ship
+			"SpaceMonster",		// dummy crew member used in opponent ship
+			"Aragorn",				// My first son's middle name, and from Lord of the Rings
+			"Brady",					// My third son's middle name, and QB of the New England Patriots
+			"Eight Of Nine",	// From Star Trek ;) - Seven's younger sibling
+			"Fangorn",				// From Lord of the Rings
+			"Gagarin",				// The first man in space
+			"Hoshi",					// From ST: Enterprise
+			"Jackson",				// From Stargate - and my nephew's first name
+			"Kaylee",					// From FireFly
+			"Marcus",					// My second son's middle name
+			"O'Neill",				// From Stargate
+			"Ripley",					// From the Alien series
+			"Stilgar",				// From Dune
+			"Taggart",				// From Galaxy Quest
+			"Vansen",					// From Space: Above and Beyond
+			"Xizor"						// From Star Wars: Shadows of the Empire
 		};
 		#endregion
 

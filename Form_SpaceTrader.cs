@@ -3390,8 +3390,8 @@ namespace Fryz.Apps.SpaceTrader
 							game.AutoSave	= true;
 							break;
 						case "Posse":
-							if (num1 > 0 && num1 < ship.Crew.Length &&
-								num2 > (int)CrewMemberId.Commander && num2 <= (int)CrewMemberId.Zeethibal)
+							if (num1 > 0 && num1 < ship.Crew.Length && num2 > 0 && num2 < game.Mercenaries.Length &&
+								!Consts.SpecialCrewMemberIds.Contains((CrewMemberId)num2))
 							{
 								int	skill	= ship.Trader;
 								ship.Crew[num1]	= game.Mercenaries[num2];

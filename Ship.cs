@@ -194,12 +194,16 @@ namespace Fryz.Apps.SpaceTrader
 
 		public void Fire(CrewMemberId crewId)
 		{
-			int		skill	= Trader;
-			bool	found	= false;
+			int					skill	= Trader;
+			bool				found	= false;
+			CrewMember	merc	= null;
 			for (int i = 0; i < Crew.Length; i++)
 			{
 				if (Crew[i] != null && Crew[i].Id == crewId)
+				{
 					found	= true;
+					merc	= Crew[i];
+				}
 
 				if (found)
 					Crew[i]	= (i < Crew.Length - 1) ? Crew[i + 1] : null;
@@ -207,6 +211,20 @@ namespace Fryz.Apps.SpaceTrader
 
 			if (Trader != skill)
 				Game.CurrentGame.RecalculateBuyPrices(Game.CurrentGame.Commander.CurrentSystem);
+
+			if (merc != null && !Consts.SpecialCrewMemberIds.Contains(merc.Id))
+			{
+				StarSystem[]	universe	= Game.CurrentGame.Universe;
+
+				// The leaving Mercenary travels to a nearby random system.
+				merc.CurrentSystemId	= StarSystemId.NA;
+				while (merc.CurrentSystemId == StarSystemId.NA)
+				{
+					StarSystem	system	= universe[Functions.GetRandom(universe.Length)];
+					if (Functions.Distance(system, Game.CurrentGame.Commander.CurrentSystem) < Consts.MaxRange)
+						merc.CurrentSystemId	= system.Id;
+				}
+			}
 		}
 
 		private void GenerateOpponentAddCargo(bool pirate)
@@ -262,7 +280,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			for (int i = 1; i < numCrew; i++)
-				Crew[i]	= mercs[Functions.GetRandom((int)CrewMemberId.Zeethibal)];
+			{
+				// Keep getting a new random mercenary until we have a non-special one.
+				while (Crew[i] == null || Consts.SpecialCrewMemberIds.Contains(Crew[i].Id))
+					Crew[i] = mercs[Functions.GetRandom(mercs.Length)];
+			}
 		}
 
 		private void GenerateOpponentAddGadgets(int tries)
@@ -1199,7 +1221,7 @@ namespace Fryz.Apps.SpaceTrader
 				ArrayList	list	= new ArrayList();
 				for (int i = 0; i < Crew.Length; i++)
 				{
-					if (Crew[i] != null && (Crew[i].Id == CrewMemberId.Commander || Crew[i].Id > CrewMemberId.Zeethibal))
+					if (Crew[i] != null && Consts.SpecialCrewMemberIds.Contains(Crew[i].Id))
 						list.Add(Crew[i]);
 				}
 

@@ -248,8 +248,7 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			get
 			{
-				return _id > CrewMemberId.Commander && _id < CrewMemberId.Zeethibal ?
-					(Pilot + Fighter + Trader + Engineer) * 3 : 0;
+				return Consts.SpecialCrewMemberIds.Contains(_id) ? 0 : (Pilot + Fighter + Trader + Engineer) * 3;
 			}
 		}
 

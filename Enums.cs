@@ -285,7 +285,22 @@ namespace Fryz.Apps.SpaceTrader
 		FamousCaptain				= 34,
 		Dragonfly						= 35,
 		Scarab							= 36,
-		SpaceMonster				= 37
+		SpaceMonster				= 37,
+		Aragorn							= 38,
+		Brady								= 39,
+		EightOfNine					= 40,
+		Fangorn							= 41,
+		Gagarin							= 42,
+		Hoshi								= 43,
+		Jackson							= 44,
+		Kaylee							= 45,
+		Marcus							= 46,
+		ONeill							= 47,
+		Ripley							= 48,
+		Stilgar							= 49,
+		Taggart							= 50,
+		Vansen							= 51,
+		Xizor								= 52
 	};
 	#endregion
 

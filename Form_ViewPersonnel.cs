@@ -37,6 +37,7 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Button btnClose;
 		private System.Windows.Forms.GroupBox boxForHire;
 		private System.Windows.Forms.GroupBox boxInfo;
+		private System.Windows.Forms.GroupBox boxCurrentCrew;
 		private System.Windows.Forms.Button btnHireFire;
 		private System.Windows.Forms.Label lblRate;
 		private System.Windows.Forms.Label lblName;
@@ -49,6 +50,7 @@ namespace Fryz.Apps.SpaceTrader
 		private System.Windows.Forms.Label lblFighterLabel;
 		private System.Windows.Forms.Label lblPilotLabel;
 		private System.Windows.Forms.ListBox lstForHire;
+		private System.Windows.Forms.ListBox lstCrew;
 		private System.ComponentModel.Container components = null;
 
 		#endregion
@@ -57,8 +59,6 @@ namespace Fryz.Apps.SpaceTrader
 
 		private Game				game								= Game.CurrentGame;
 		private CrewMember	selectedCrewMember	= null;
-		private System.Windows.Forms.GroupBox boxCurrentCrew;
-		private System.Windows.Forms.ListBox lstCrew;
 		private bool				handlingSelect			= false;
 
 		#endregion
@@ -325,6 +325,9 @@ namespace Fryz.Apps.SpaceTrader
 					lstCrew.Items.Add(crew[i]);
 			}
 
+			if (lstCrew.Items.Count == 0)
+				lstCrew.Items.Add(Strings.PersonnelNoQuarters);
+
 			lstCrew.Height	= lstCrew.ItemHeight * Math.Min(lstCrew.Items.Count, 6) + 2;
 		}
 
@@ -350,7 +353,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (selectedCrewMember != null)
 			{
 				visible									= true;
-				if (selectedCrewMember.Id <= CrewMemberId.Zeethibal)
+				if (selectedCrewMember.Rate > 0)
 					rateVisible						= true;
 
 				lblName.Text						= selectedCrewMember.Name;

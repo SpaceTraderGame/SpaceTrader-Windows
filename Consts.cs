@@ -23,6 +23,7 @@
  *
  ******************************************************************************/
 using System;
+using System.Collections;
 using System.Drawing;
 using System.IO;
 
@@ -276,6 +277,20 @@ namespace Fryz.Apps.SpaceTrader
 			new Shipyard(ShipyardId.Sienar,			Size.Tiny,		ShipyardSkill.WeaponSlotUnits),
 			new Shipyard(ShipyardId.Sorosuub,		Size.Small,		ShipyardSkill.FuelBase)
 		};
+		#endregion
+
+		#region SpecialCrewMemberIds
+		public static ArrayList	SpecialCrewMemberIds = new ArrayList(new CrewMemberId[]
+		{
+			CrewMemberId.Commander,
+			CrewMemberId.Opponent,
+			CrewMemberId.Wild,
+			CrewMemberId.Jarek,
+			CrewMemberId.FamousCaptain,
+			CrewMemberId.Dragonfly,
+			CrewMemberId.Scarab,
+			CrewMemberId.SpaceMonster
+		});
 		#endregion
 
 		#region SpecialEvents
