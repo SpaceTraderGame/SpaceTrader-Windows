@@ -116,6 +116,7 @@ namespace Fryz.Apps.SpaceTrader
 				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name",
 																									Strings.ShipNames[(int)ShipType.Custom]);
 
+				Consts.ShipSpecs[(int)ShipType.Custom]	= this;
 				UpdateCustomImageOffsetConstants();
 			}
 		}
