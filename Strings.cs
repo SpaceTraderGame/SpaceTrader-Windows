@@ -831,6 +831,8 @@ namespace Fryz.Apps.SpaceTrader
 		public static string	MoneyRateSuffix									= "^1 daily";
 		public static string	MoneyUnit												= "credit";
 
+		public static string	NA															= "N/A";
+
 		public static string	NewsMoonForSale									= "Seller in ^1 System has Utopian Moon available.";
 		public static string	NewsTribbleBuyer								= "Collector in ^1 System seeks to purchase Tribbles.";
 
