@@ -792,24 +792,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public Equipment[] Equipment
-		{
-			get
-			{
-				Equipment[]	equip	= new Equipment[9];
-				int					i;
-
-				for (i = 0; i < Weapons.Length; i++)
-					equip[i]			= Weapons[i];
-				for (i = 0; i < Shields.Length; i++)
-					equip[3 + i]	= Shields[i];
-				for (i = 0; i < Gadgets.Length; i++)
-					equip[6 + i]	= Gadgets[i];
-
-				return equip;
-			}
-		}
-
 		public bool EscapePod
 		{
 			get
