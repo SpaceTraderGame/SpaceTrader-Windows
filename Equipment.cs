@@ -53,8 +53,8 @@ namespace Fryz.Apps.SpaceTrader
 		{
 			_equipType	= (EquipmentType)hash["_equipType"];
 			_price			= (int)hash["_price"];
-			_minTech		= (TechLevel)hash["minTechLevel"];
-			_chance			= (int)hash["chance"];
+			_minTech		= (TechLevel)hash["_minTech"];
+			_chance			= (int)hash["_chance"];
 		}
 
 		public abstract Equipment Clone();
