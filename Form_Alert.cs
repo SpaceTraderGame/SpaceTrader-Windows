@@ -676,6 +676,7 @@ namespace Fryz.Apps.SpaceTrader
 					break;
 				case AlertType.ShipDesignThanks:
 					result	= (new FormAlert("Thank you!", "^1 thanks you for your business!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					break;
 				case AlertType.ShipHullUpgraded:
 					result	= (new FormAlert("Hull Upgraded", "Technicians spend the day retrofitting the hull of your ship.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
