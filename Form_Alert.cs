@@ -753,7 +753,7 @@ namespace Fryz.Apps.SpaceTrader
 					result	= (new FormAlert("Ship's Comm.", "Commander! Wild here. What's taking us so long?!", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialPassengerOnBoard:
-					result	= (new FormAlert("Passenger On Board", "You have taken ^1 on board. While they are on board they'll lend their expertise, but may stop helping if the journey takes too long.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
+					result	= (new FormAlert("Passenger On Board", "You have taken ^1 on board. While on board ^1 will lend you expertise, but may stop helping if the journey takes too long.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
 					break;
 				case AlertType.SpecialSealedCanisters:
 					result	= (new FormAlert("Sealed Canisters", "You bought the sealed canisters and put them in your cargo bays.", "Ok", DialogResult.OK, null, DialogResult.None, args)).ShowDialog(owner);
