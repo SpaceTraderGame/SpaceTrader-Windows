@@ -1,10 +1,8 @@
 /*******************************************************************************
  *
- * Space Trader for Windows 1.3.0
+ * Space Trader for Windows File Converter 2.0.0
  *
  * Copyright (C) 2004 Jay French, All Rights Reserved
- *
- * Original coding by Pieter Spronck, Sam Anderson, Samuel Goldstein, Matt Lee
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,8 +15,6 @@
  *
  * If you'd like a copy of the GNU General Public License, go to
  * http://www.gnu.org/copyleft/gpl.html.
- * 
- * You can contact the author at spacetrader@frenchfryz.com
  *
  ******************************************************************************/
 using System;
@@ -38,26 +34,109 @@ namespace Fryz.Apps.SpaceTrader
 		private PoliticalSystem	_politicalSystem;
 		private SystemPressure	_pressure;
 		private SpecialResource	_specialResource;
-		private SpecialEvent		_specialEvent			= null;
-		private int[]						_tradeItems				= new int[10];
-		private int							_countDown				= 0;
-		private bool						_visited					= false;
+		private SpecialEvent		_specialEvent;
+		private int[]						_tradeItems;
+		private int							_countDown;
+		private bool						_visited;
 
 		#endregion
 
-		#region Methods
+		#region Properties
 
-		public StarSystem(StarSystemId id, int x, int y, Size size, TechLevel techLevel, PoliticalSystem politicalSystem,
-			SystemPressure pressure, SpecialResource specialResource)
+		public StarSystemId Id
 		{
-			_id								= id;
-			_x								= x;
-			_y								= y;
-			_size							= size;
-			_techLevel				= techLevel;
-			_politicalSystem	= politicalSystem;
-			_pressure					= pressure;
-			_specialResource	= specialResource;
+			get
+			{
+				return _id;
+			}
+		}
+
+		public int X
+		{
+			get
+			{
+				return _x;
+			}
+		}
+
+		public int Y
+		{
+			get
+			{
+				return _y;
+			}
+		}
+
+		public Size Size
+		{
+			get
+			{
+				return _size;
+			}
+		}
+
+		public TechLevel TechLevel
+		{
+			get
+			{
+				return _techLevel;
+			}
+		}
+
+		public PoliticalSystem PoliticalSystem
+		{
+			get
+			{
+				return _politicalSystem;
+			}
+		}
+
+		public SystemPressure Pressure
+		{
+			get
+			{
+				return _pressure;
+			}
+		}
+
+		public SpecialResource SpecialResource
+		{
+			get
+			{
+				return _specialResource;
+			}
+		}
+
+		public SpecialEvent SpecialEvent
+		{
+			get
+			{
+				return _specialEvent;
+			}
+		}
+
+		public int[] TradeItems
+		{
+			get
+			{
+				return _tradeItems;
+			}
+		}
+
+		public int CountDown
+		{
+			get
+			{
+				return _countDown;
+			}
+		}
+
+		public bool Visited
+		{
+			get
+			{
+				return _visited;
+			}
 		}
 
 		#endregion
