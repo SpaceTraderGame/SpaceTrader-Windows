@@ -1,16 +1,39 @@
-Microsoft Visual Studio Solution File, Format Version 7.00
+Microsoft Visual Studio Solution File, Format Version 8.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fryz.Apps.SpaceTrader", "Fryz.Apps.SpaceTrader.csproj", "{0ED352CE-6DA4-49C4-A458-93630C48F40D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SpaceTraderSetup", "SpaceTraderSetup\SpaceTraderSetup.vdproj", "{E95E187E-B31B-438C-B31A-90C68DED0752}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STConvert", "STConvert\STConvert.csproj", "{F5B9876B-38E4-468A-8780-3621A6901695}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		ConfigName.0 = Debug
-		ConfigName.1 = Release
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 4
+		SccProjectName0 = SpaceTraderWinSource
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:PushOk\u0020CVS\u0020Proxy
+		CanCheckoutShared = true
+		SolutionUniqueID = {D2C652E9-B6B6-44CF-8D2B-96E6C5AA200C}
+		SccProjectUniqueName1 = Fryz.Apps.SpaceTrader.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = true
+		SccProjectUniqueName2 = SpaceTraderSetup\\SpaceTraderSetup.vdproj
+		SccLocalPath2 = .
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection2 = SpaceTraderSetup\\
+		SccProjectUniqueName3 = STConvert\\STConvert.csproj
+		SccLocalPath3 = .
+		CanCheckoutShared = true
+		SccProjectFilePathRelativizedFromConnection3 = STConvert\\
 	EndGlobalSection
-	GlobalSection(ProjectDependencies) = postSolution
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{0ED352CE-6DA4-49C4-A458-93630C48F40D}.Debug.ActiveCfg = Debug|.NET
