@@ -75,7 +75,7 @@ namespace Fryz.Apps.SpaceTrader
 			if (target.ItemUsed(this))
 			{
 				// Determine base price on techlevel of system
-				price	= PiceLowTech + (int)target.TechLevel * PriceInc;
+				price	= PriceLowTech + (int)target.TechLevel * PriceInc;
 
 				// If a good is highly requested, increase the price
 				if (target.PoliticalSystem.Wanted == Type)
@@ -101,99 +101,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public string Name
+		public bool Illegal
 		{
 			get
 			{
-				return Strings.TradeItemNames[(int)_type];
-			}
-		}
-
-		public TradeItemType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
-		public TechLevel TechProduction
-		{
-			get
-			{
-				return _techProduction;
-			}
-		}
-
-		public TechLevel TechUsage
-		{
-			get
-			{
-				return _techUsage;
-			}
-		}
-
-		public TechLevel TechTopProduction
-		{
-			get
-			{
-				return _techTopProduction;
-			}
-		}
-
-		public int PiceLowTech
-		{
-			get
-			{
-				return _piceLowTech;
-			}
-		}
-
-		public int PriceInc
-		{
-			get
-			{
-				return _priceInc;
-			}
-		}
-
-		public int PriceVariance
-		{
-			get
-			{
-				return _priceVariance;
-			}
-		}
-
-		public SystemPressure PressurePriceHike
-		{
-			get
-			{
-				return _pressurePriceHike;
-			}
-		}
-
-		public SpecialResource ResourceLowPrice
-		{
-			get
-			{
-				return _resourceLowPrice;
-			}
-		}
-
-		public SpecialResource ResourceHighPrice
-		{
-			get
-			{
-				return _resourceHighPrice;
-			}
-		}
-
-		public int MinTradePrice
-		{
-			get
-			{
-				return _minTradePrice;
+				return Type == TradeItemType.Firearms || Type == TradeItemType.Narcotics;
 			}
 		}
 
@@ -205,6 +117,70 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int MinTradePrice
+		{
+			get
+			{
+				return _minTradePrice;
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return Strings.TradeItemNames[(int)_type];
+			}
+		}
+
+		public SystemPressure PressurePriceHike
+		{
+			get
+			{
+				return _pressurePriceHike;
+			}
+		}
+
+		public int PriceInc
+		{
+			get
+			{
+				return _priceInc;
+			}
+		}
+
+		public int PriceLowTech
+		{
+			get
+			{
+				return _piceLowTech;
+			}
+		}
+
+		public int PriceVariance
+		{
+			get
+			{
+				return _priceVariance;
+			}
+		}
+
+		public SpecialResource ResourceHighPrice
+		{
+			get
+			{
+				return _resourceHighPrice;
+			}
+		}
+
+		public SpecialResource ResourceLowPrice
+		{
+			get
+			{
+				return _resourceLowPrice;
+			}
+		}
+
 		public int RoundOff
 		{
 			get
@@ -213,11 +189,35 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public bool Illegal
+		public TechLevel TechProduction
 		{
 			get
 			{
-				return Type == TradeItemType.Firearms || Type == TradeItemType.Narcotics;
+				return _techProduction;
+			}
+		}
+
+		public TechLevel TechTopProduction
+		{
+			get
+			{
+				return _techTopProduction;
+			}
+		}
+
+		public TechLevel TechUsage
+		{
+			get
+			{
+				return _techUsage;
+			}
+		}
+
+		public TradeItemType Type
+		{
+			get
+			{
+				return _type;
 			}
 		}
 

@@ -31,6 +31,8 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Constants
 
+		public const int MoonCost											= 500000;
+
 		public const int StatusArtifactNotStarted			= 0;
 		public const int StatusArtifactOnBoard				= 1;
 		public const int StatusArtifactDone						= 2;
@@ -90,8 +92,6 @@ namespace Fryz.Apps.SpaceTrader
 		public const int StatusWildImpatient					= 11;
 		public const int StatusWildDone								= 12;
 
-		public const int MoonCost											= 500000;
-
 		#endregion
 
 		#region Member Declarations
@@ -117,54 +117,6 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public string Title
-		{
-			get
-			{
-				return Strings.SpecialEventTitles[(int)_type];
-			}
-		}
-
-		public string String
-		{
-			get
-			{
-				return Strings.SpecialEventStrings[(int)_type];
-			}
-		}
-
-		public SpecialEventType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
-		public int Price
-		{
-			get
-			{
-				return _price;
-			}
-		}
-
-		public int Occurance
-		{
-			get
-			{
-				return _occurance;
-			}
-		}
-
-		public bool MessageOnly
-		{
-			get
-			{
-				return _messageOnly;
-			}
-		}
-
 		public StarSystem Location
 		{
 			get
@@ -177,6 +129,54 @@ namespace Fryz.Apps.SpaceTrader
 						location	= universe[i];
 
 				return location;
+			}
+		}
+
+		public bool MessageOnly
+		{
+			get
+			{
+				return _messageOnly;
+			}
+		}
+
+		public int Occurance
+		{
+			get
+			{
+				return _occurance;
+			}
+		}
+
+		public int Price
+		{
+			get
+			{
+				return _price;
+			}
+		}
+
+		public string String
+		{
+			get
+			{
+				return Strings.SpecialEventStrings[(int)_type];
+			}
+		}
+
+		public string Title
+		{
+			get
+			{
+				return Strings.SpecialEventTitles[(int)_type];
+			}
+		}
+
+		public SpecialEventType Type
+		{
+			get
+			{
+				return _type;
 			}
 		}
 

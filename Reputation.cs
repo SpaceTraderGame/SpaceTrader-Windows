@@ -54,6 +54,14 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
+		public int MinScore
+		{
+			get
+			{
+				return _minScore;
+			}
+		}
+
 		public string Name
 		{
 			get
@@ -67,14 +75,6 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _type;
-			}
-		}
-
-		public int MinScore
-		{
-			get
-			{
-				return _minScore;
 			}
 		}
 

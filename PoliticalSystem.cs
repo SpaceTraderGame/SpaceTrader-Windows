@@ -88,27 +88,11 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public string Name
+		public Activity ActivityPirates
 		{
 			get
 			{
-				return Strings.PoliticalSystemNames[(int)_type];
-			}
-		}
-
-		public PoliticalSystemType Type
-		{
-			get
-			{
-				return _type;
-			}
-		}
-
-		public int ReactionIllegal
-		{
-			get
-			{
-				return _reactionIllegal;
+				return _activityPirates;
 			}
 		}
 
@@ -120,35 +104,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public Activity ActivityPirates
-		{
-			get
-			{
-				return _activityPirates;
-			}
-		}
-
 		public Activity ActivityTraders
 		{
 			get
 			{
 				return _activityTraders;
-			}
-		}
-
-		public TechLevel MinimumTechLevel
-		{
-			get
-			{
-				return _minTech;
-			}
-		}
-
-		public TechLevel MaximumTechLevel
-		{
-			get
-			{
-				return _maxTech;
 			}
 		}
 
@@ -173,6 +133,46 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _firearmsOk;
+			}
+		}
+
+		public TechLevel MaximumTechLevel
+		{
+			get
+			{
+				return _maxTech;
+			}
+		}
+
+		public TechLevel MinimumTechLevel
+		{
+			get
+			{
+				return _minTech;
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return Strings.PoliticalSystemNames[(int)_type];
+			}
+		}
+
+		public int ReactionIllegal
+		{
+			get
+			{
+				return _reactionIllegal;
+			}
+		}
+
+		public PoliticalSystemType Type
+		{
+			get
+			{
+				return _type;
 			}
 		}
 

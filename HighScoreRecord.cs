@@ -119,6 +119,22 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
+		public int Days
+		{
+			get
+			{
+				return _days;
+			}
+		}
+
+		public Difficulty Difficulty
+		{
+			get
+			{
+				return _difficulty;
+			}
+		}
+
 		public string Name
 		{
 			get
@@ -143,27 +159,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Days
-		{
-			get
-			{
-				return _days;
-			}
-		}
-
 		public int Worth
 		{
 			get
 			{
 				return _worth;
-			}
-		}
-
-		public Difficulty Difficulty
-		{
-			get
-			{
-				return _difficulty;
 			}
 		}
 

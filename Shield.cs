@@ -103,14 +103,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public int Power
-		{
-			get
-			{
-				return _power;
-			}
-		}
-
 		public override string Name
 		{
 			get
@@ -119,11 +111,11 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public override object SubType
+		public int Power
 		{
 			get
 			{
-				return Type;
+				return _power;
 			}
 		}
 
@@ -132,6 +124,14 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return _type;
+			}
+		}
+
+		public override object SubType
+		{
+			get
+			{
+				return Type;
 			}
 		}
 

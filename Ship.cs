@@ -114,40 +114,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public override Hashtable Serialize()
-		{
-			Hashtable	hash	= base.Serialize();
-
-			// We don't want the actual CrewMember objects - we just want the ids.
-			int[]	crewIds	= new int[_crew.Length];
-			for (int i = 0; i < crewIds.Length; i++)
-				crewIds[i]	= (int)(_crew[i] == null ? CrewMemberId.NA : _crew[i].Id);
-
-			hash.Add("_fuel",						_fuel);
-			hash.Add("_hull",						_hull);
-			hash.Add("_tribbles",				_tribbles);
-			hash.Add("_cargo",					_cargo);
-			hash.Add("_weapons",				ArrayToArrayList(_weapons));
-			hash.Add("_shields",				ArrayToArrayList(_shields));
-			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
-			hash.Add("_crewIds",				crewIds);
-			hash.Add("_pod",						_pod);
-
-			return hash;
-		}
-
-		protected override void SetValues(ShipType type)
-		{
-			base.SetValues(type);
-
-			_weapons	= new Weapon[WeaponSlots];
-			_shields	= new Shield[ShieldSlots];
-			_gadgets	= new Gadget[GadgetSlots];
-			_crew			= new CrewMember[CrewQuarters];
-			_fuel			= FuelTanks;
-			_hull			= HullStrength;
-		}
-
 		public void AddEquipment(Equipment item)
 		{
 			Equipment[] equip	= EquipmentByType(item.EquipmentType);
@@ -672,6 +638,40 @@ namespace Fryz.Apps.SpaceTrader
 					found	= true;
 				}
 			}
+		}
+
+		public override Hashtable Serialize()
+		{
+			Hashtable	hash	= base.Serialize();
+
+			// We don't want the actual CrewMember objects - we just want the ids.
+			int[]	crewIds	= new int[_crew.Length];
+			for (int i = 0; i < crewIds.Length; i++)
+				crewIds[i]	= (int)(_crew[i] == null ? CrewMemberId.NA : _crew[i].Id);
+
+			hash.Add("_fuel",						_fuel);
+			hash.Add("_hull",						_hull);
+			hash.Add("_tribbles",				_tribbles);
+			hash.Add("_cargo",					_cargo);
+			hash.Add("_weapons",				ArrayToArrayList(_weapons));
+			hash.Add("_shields",				ArrayToArrayList(_shields));
+			hash.Add("_gadgets",				ArrayToArrayList(_gadgets));
+			hash.Add("_crewIds",				crewIds);
+			hash.Add("_pod",						_pod);
+
+			return hash;
+		}
+
+		protected override void SetValues(ShipType type)
+		{
+			base.SetValues(type);
+
+			_weapons	= new Weapon[WeaponSlots];
+			_shields	= new Shield[ShieldSlots];
+			_gadgets	= new Gadget[GadgetSlots];
+			_crew			= new CrewMember[CrewQuarters];
+			_fuel			= FuelTanks;
+			_hull			= HullStrength;
 		}
 
 		public int WeaponStrength()

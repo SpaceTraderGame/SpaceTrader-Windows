@@ -262,11 +262,41 @@ namespace Fryz.Apps.SpaceTrader
 
 		#region Properties
 
-		public string Name
+		public int CountDown
 		{
 			get
 			{
-				return Strings.SystemNames[(int)_id];
+				return _countDown;
+			}
+			set
+			{
+				_countDown	= value;
+			}
+		}
+
+		public bool DestOk
+		{
+			get
+			{
+				Commander	comm	= Game.CurrentGame.Commander;
+				return this != comm.CurrentSystem && (Distance <= comm.Ship.Fuel ||
+					Functions.WormholeExists(comm.CurrentSystem, this));
+			}
+		}
+
+		public int Distance
+		{
+			get
+			{
+				return Functions.Distance(this, Game.CurrentGame.Commander.CurrentSystem);
+			}
+		}
+
+		public StarSystemId Id
+		{
+			get
+			{
+				return _id;
 			}
 		}
 
@@ -289,11 +319,130 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public StarSystemId Id
+		public string Name
 		{
 			get
 			{
-				return _id;
+				return Strings.SystemNames[(int)_id];
+			}
+		}
+
+		public PoliticalSystem PoliticalSystem
+		{
+			get
+			{
+				return Consts.PoliticalSystems[(int)_politicalSystemType];
+			}
+		}
+
+		public PoliticalSystemType PoliticalSystemType
+		{
+			get
+			{
+				return _politicalSystemType;
+			}
+			set
+			{
+				_politicalSystemType	= value;
+			}
+		}
+
+		public SystemPressure Pressure
+		{
+			get
+			{
+				return _pressure;
+			}
+			set
+			{
+				_pressure   = value;
+			}
+		}
+
+		public Shipyard Shipyard
+		{
+			get
+			{
+				return (_shipyardId == ShipyardId.NA ? null : Consts.Shipyards[(int)_shipyardId]);
+			}
+		}
+
+		public ShipyardId ShipyardId
+		{
+			get
+			{
+				return _shipyardId;
+			}
+			set
+			{
+				_shipyardId	= value;
+			}
+		}
+		public Size Size
+		{
+			get
+			{
+				return _size;
+			}
+		}
+
+		public SpecialEvent SpecialEvent
+		{
+			get
+			{
+				return (_specialEventType == SpecialEventType.NA ? null : Consts.SpecialEvents[(int)_specialEventType]);
+			}
+		}
+
+		public SpecialEventType SpecialEventType
+		{
+			get
+			{
+				return _specialEventType;
+			}
+			set
+			{
+				_specialEventType   = value;
+			}
+		}
+
+		public SpecialResource SpecialResource
+		{
+			get
+			{
+				return _specialResource;
+			}
+		}
+
+		public TechLevel TechLevel
+		{
+			get
+			{
+				return _techLevel;
+			}
+			set
+			{
+				_techLevel	= value;
+			}
+		}
+
+		public int[] TradeItems
+		{
+			get
+			{
+				return _tradeItems;
+			}
+		}
+
+		public bool Visited
+		{
+			get
+			{
+				return _visited;
+			}
+			set
+			{
+				_visited	= value;
 			}
 		}
 
@@ -321,155 +470,6 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
-		public Size Size
-		{
-			get
-			{
-				return _size;
-			}
-		}
-
-		public TechLevel TechLevel
-		{
-			get
-			{
-				return _techLevel;
-			}
-			set
-			{
-				_techLevel	= value;
-			}
-		}
-
-		public PoliticalSystemType PoliticalSystemType
-		{
-			get
-			{
-				return _politicalSystemType;
-			}
-			set
-			{
-				_politicalSystemType	= value;
-			}
-		}
-
-		public PoliticalSystem PoliticalSystem
-		{
-			get
-			{
-				return Consts.PoliticalSystems[(int)_politicalSystemType];
-			}
-		}
-
-		public SystemPressure Pressure
-		{
-			get
-			{
-				return _pressure;
-			}
-			set
-			{
-				_pressure   = value;
-			}
-		}
-
-		public SpecialResource SpecialResource
-		{
-			get
-			{
-				return _specialResource;
-			}
-		}
-
-		public SpecialEventType SpecialEventType
-		{
-			get
-			{
-				return _specialEventType;
-			}
-			set
-			{
-				_specialEventType   = value;
-			}
-		}
-
-		public SpecialEvent SpecialEvent
-		{
-			get
-			{
-				return (_specialEventType == SpecialEventType.NA ? null : Consts.SpecialEvents[(int)_specialEventType]);
-			}
-		}
-
-		public int[] TradeItems
-		{
-			get
-			{
-				return _tradeItems;
-			}
-		}
-
-		public int CountDown
-		{
-			get
-			{
-				return _countDown;
-			}
-			set
-			{
-				_countDown	= value;
-			}
-		}
-
-		public bool Visited
-		{
-			get
-			{
-				return _visited;
-			}
-			set
-			{
-				_visited	= value;
-			}
-		}
-
-		public int Distance
-		{
-			get
-			{
-				return Functions.Distance(this, Game.CurrentGame.Commander.CurrentSystem);
-			}
-		}
-
-		public bool DestOk
-		{
-			get
-			{
-				Commander	comm	= Game.CurrentGame.Commander;
-				return this != comm.CurrentSystem && (Distance <= comm.Ship.Fuel ||
-					Functions.WormholeExists(comm.CurrentSystem, this));
-			}
-		}
-
-		public Shipyard Shipyard
-		{
-			get
-			{
-				return (_shipyardId == ShipyardId.NA ? null : Consts.Shipyards[(int)_shipyardId]);
-			}
-		}
-
-		public ShipyardId ShipyardId
-		{
-			get
-			{
-				return _shipyardId;
-			}
-			set
-			{
-				_shipyardId	= value;
-			}
-		}
 		#endregion
 	}
 }

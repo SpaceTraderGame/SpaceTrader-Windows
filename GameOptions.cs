@@ -259,6 +259,18 @@ namespace Fryz.Apps.SpaceTrader
 			}
 		}
 
+		public int LeaveEmpty
+		{
+			get
+			{
+				return _leaveEmpty;
+			}
+			set
+			{
+				_leaveEmpty	= value;
+			}
+		}
+
 		public bool NewsAutoPay
 		{
 			get
@@ -316,18 +328,6 @@ namespace Fryz.Apps.SpaceTrader
 			set
 			{
 				_trackAutoOff = value;
-			}
-		}
-
-		public int LeaveEmpty
-		{
-			get
-			{
-				return _leaveEmpty;
-			}
-			set
-			{
-				_leaveEmpty	= value;
 			}
 		}
 

@@ -39,21 +39,6 @@ namespace Fryz.Apps.SpaceTrader
 		{
 		}
 
-		public static ArrayList ArrayToArrayList(STSerializableObject[] array)
-		{
-			ArrayList list	= null;
-
-			if (array != null)
-			{
-				list	= new ArrayList();
-
-				foreach (STSerializableObject obj in array)
-					list.Add(obj == null ? null : obj.Serialize());
-			}
-
-			return list;
-		}
-
 		/*
 		 * Types currently supported:
 		 * CrewMember
@@ -129,6 +114,21 @@ namespace Fryz.Apps.SpaceTrader
 			}
 
 			return array;
+		}
+
+		public static ArrayList ArrayToArrayList(STSerializableObject[] array)
+		{
+			ArrayList list	= null;
+
+			if (array != null)
+			{
+				list	= new ArrayList();
+
+				foreach (STSerializableObject obj in array)
+					list.Add(obj == null ? null : obj.Serialize());
+			}
+
+			return list;
 		}
 
 		public virtual Hashtable Serialize()

@@ -31,18 +31,18 @@ namespace Fryz.Apps.SpaceTrader
 	{
 		#region Member Declarations
 
-		private int					_cash								= 1000;
-		private int					_debt								= 0;
-		private int					_killsPirate				= 0;
-		private int					_killsPolice				= 0;
-		private int					_killsTrader				= 0;
-		private int					_policeRecordScore	= 0;
-		private int					_reputationScore		= 0;
-		private int					_days								= 0;
-		private bool				_insurance					= false;
-		private int					_noclaim						= 0;
-		private Ship				_ship								= new Ship(ShipType.Gnat);
-		private int[]				_priceCargo					= new int[10];								// Total price paid for trade goods
+		private int		_cash								= 1000;
+		private int		_debt								= 0;
+		private int		_killsPirate				= 0;
+		private int		_killsPolice				= 0;
+		private int		_killsTrader				= 0;
+		private int		_policeRecordScore	= 0;
+		private int		_reputationScore		= 0;
+		private int		_days								= 0;
+		private bool	_insurance					= false;
+		private int		_noclaim						= 0;
+		private Ship	_ship								= new Ship(ShipType.Gnat);
+		private int[]	_priceCargo					= new int[10];								// Total price paid for trade goods
 
 		#endregion
 
