@@ -1,20 +1,24 @@
-20040326:
-Added to the "View Commander" screen the bounty offered for the capture of the player, if he's at least a crook, and the numbers of kingpins wanting to kill him, if he's at least trusted ; this helps keeping track with the PoliceRecordScore
-Added the shipyards, that are randomly placed on 5 High-Tech planets among the galaxy. You'll be proposed to design your own ship
-Modified the ship and shipspec structures to allow for custom ship designs
-Modified the buy/sell equipment screen
-Modified the color of the "Special" button to yellow, so it is more remarkable
-Added a tooltip to the "Special" button to show the title of the special event
-Added a tooltip to the "Mercenary for hire" button to show the name of the mercenary
-
+2.0 Enhancements:
+	Bounty offered for capture/killing of player based on their Police Record
+	Custom ship designs in Shipyards, and newspaper will have notice when nearby system has a shipyard
+	Redesigned Equipment screen
+	Redesigned Personnel screen
+	Added color to Special button
+	Added some tooltips
+	Added 15 new mercenaries and 8 new systems; allow up to three mercenaries per system at when new game is started
+	Added option to show newspaper automatically on arrival
+	Redesigned the saved game file format, so that new versions of Space Trader will always be able to open saved games from previous versions (back to 2.0)
+	Created file converter (saved games, high scores, options) to convert 1.3 files to 2.0
+	Added folders to the base folder for the saved games, images, etc. to reside in
+	Added 1 new quest and 1 new gadget
+	Numerous bug fixes
 
 
 TODO:
-in Form_Alert.cs : move the strings to a resource
-in Form_Encounter.cs: move as much code as possible out of the GUI class
-make shipyard news advertisements
-rename some systems and mercs
-rework escape pod sequence
-kidnapped "princess" quest
-create images for equipment
-create images for trade goods
+	in Form_Alert.cs : move the strings to a resource
+	in Form_Encounter.cs: move as much code as possible out of the GUI class
+	make shipyard news advertisements
+	rework escape pod sequence
+	kidnapped "princess" quest
+	create images for equipment
+	create images for trade goods
