@@ -1124,7 +1124,7 @@ namespace Fryz.Apps.SpaceTrader
 			get
 			{
 				return Functions.StringVars(Strings.EncounterHullStrength,
-					Functions.FormatNumber((int)Math.Floor(100 * Hull / HullStrength)));
+					Functions.FormatNumber((int)Math.Floor((double)100 * Hull / HullStrength)));
 			}
 		}
 
@@ -1220,7 +1220,7 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				return (Shields.Length > 0 && Shields[0] != null) ?
 					Functions.StringVars(Strings.EncounterShieldStrength,
-					Functions.FormatNumber((int)Math.Floor(100 * ShieldCharge / ShieldStrength))) :
+					Functions.FormatNumber((int)Math.Floor((double)100 * ShieldCharge / ShieldStrength))) :
 					Strings.EncounterShieldNone;
 			}
 		}

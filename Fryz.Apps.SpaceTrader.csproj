@@ -1,996 +1,473 @@
-<VisualStudioProject>
-    <CSHARP
-        ProjectType = "Local"
-        ProductVersion = "7.10.3077"
-        SchemaVersion = "2.0"
-        ProjectGuid = "{0ED352CE-6DA4-49C4-A458-93630C48F40D}"
-        SccProjectName = "SpaceTraderWinSource"
-        SccLocalPath = "."
-        SccProvider = "MSSCCI:PushOk CVS Proxy"
-    >
-        <Build>
-            <Settings
-                ApplicationIcon = "App.ico"
-                AssemblyKeyContainerName = ""
-                AssemblyName = "SpaceTrader"
-                AssemblyOriginatorKeyFile = ""
-                DefaultClientScript = "JScript"
-                DefaultHTMLPageLayout = "Grid"
-                DefaultTargetSchema = "IE50"
-                DelaySign = "false"
-                OutputType = "WinExe"
-                PreBuildEvent = ""
-                PostBuildEvent = ""
-                RootNamespace = "Fryz.Apps.SpaceTrader"
-                RunPostBuildEvent = "OnBuildSuccess"
-                StartupObject = "Fryz.Apps.SpaceTrader.SpaceTrader"
-            >
-                <Config
-                    Name = "Debug"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "true"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "true"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "false"
-                    OutputPath = "bin\Debug\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-                <Config
-                    Name = "Release"
-                    AllowUnsafeBlocks = "false"
-                    BaseAddress = "285212672"
-                    CheckForOverflowUnderflow = "false"
-                    ConfigurationOverrideFile = ""
-                    DefineConstants = "TRACE"
-                    DocumentationFile = ""
-                    DebugSymbols = "false"
-                    FileAlignment = "4096"
-                    IncrementalBuild = "false"
-                    NoStdLib = "false"
-                    NoWarn = ""
-                    Optimize = "true"
-                    OutputPath = "bin\Release\"
-                    RegisterForComInterop = "false"
-                    RemoveIntegerChecks = "false"
-                    TreatWarningsAsErrors = "false"
-                    WarningLevel = "4"
-                />
-            </Settings>
-            <References>
-                <Reference
-                    Name = "System"
-                    AssemblyName = "System"
-                    HintPath = "..\..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.dll"
-                />
-                <Reference
-                    Name = "System.Data"
-                    AssemblyName = "System.Data"
-                    HintPath = "..\..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.Data.dll"
-                />
-                <Reference
-                    Name = "System.Drawing"
-                    AssemblyName = "System.Drawing"
-                    HintPath = "..\..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.Drawing.dll"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                    HintPath = "..\..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.Windows.Forms.dll"
-                />
-                <Reference
-                    Name = "System.XML"
-                    AssemblyName = "System.Xml"
-                    HintPath = "..\..\..\..\..\..\..\WINNT\Microsoft.NET\Framework\v1.0.3705\System.XML.dll"
-                />
-            </References>
-        </Build>
-        <Files>
-            <Include>
-                <File
-                    RelPath = "App.ico"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "changelog.txt"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "Commander.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Consts.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "CrewMember.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Enums.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Equipment.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_About.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_About.resx"
-                    DependentUpon = "Form_About.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Alert.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Alert.resx"
-                    DependentUpon = "Form_Alert.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_BuyFuel.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_BuyFuel.resx"
-                    DependentUpon = "Form_BuyFuel.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_BuyRepairs.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_BuyRepairs.resx"
-                    DependentUpon = "Form_BuyRepairs.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_CargoBuy.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_CargoBuy.resx"
-                    DependentUpon = "Form_CargoBuy.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_CargoSell.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_CargoSell.resx"
-                    DependentUpon = "Form_CargoSell.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Costs.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Costs.resx"
-                    DependentUpon = "Form_Costs.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Encounter.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Encounter.resx"
-                    DependentUpon = "Form_Encounter.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Equipment.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Equipment.resx"
-                    DependentUpon = "Form_Equipment.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Find.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Find.resx"
-                    DependentUpon = "Form_Find.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_GetLoan.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_GetLoan.resx"
-                    DependentUpon = "Form_GetLoan.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Jettison.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Jettison.resx"
-                    DependentUpon = "Form_Jettison.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Monster.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Monster.resx"
-                    DependentUpon = "Form_Monster.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_NewCommander.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_NewCommander.resx"
-                    DependentUpon = "Form_NewCommander.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Options.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Options.resx"
-                    DependentUpon = "Form_Options.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_PayBackLoan.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_PayBackLoan.resx"
-                    DependentUpon = "Form_PayBackLoan.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Plunder.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Plunder.resx"
-                    DependentUpon = "Form_Plunder.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ShipList.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ShipList.resx"
-                    DependentUpon = "Form_ShipList.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Shipyard.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Shipyard.resx"
-                    DependentUpon = "Form_Shipyard.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_SpaceTrader.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_SpaceTrader.resx"
-                    DependentUpon = "Form_SpaceTrader.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_Test.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_Test.resx"
-                    DependentUpon = "Form_Test.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewBank.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewBank.resx"
-                    DependentUpon = "Form_ViewBank.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewCommander.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewCommander.resx"
-                    DependentUpon = "Form_ViewCommander.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewHighScores.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewHighScores.resx"
-                    DependentUpon = "Form_ViewHighScores.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewPersonnel.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewPersonnel.resx"
-                    DependentUpon = "Form_ViewPersonnel.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewQuests.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewQuests.resx"
-                    DependentUpon = "Form_ViewQuests.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Form_ViewShip.cs"
-                    SubType = "Form"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Form_ViewShip.resx"
-                    DependentUpon = "Form_ViewShip.cs"
-                    BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "Functions.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "FutureVersionException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Gadget.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Game.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GameEndException.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "GameOptions.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "HighScoreRecord.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PoliceRecord.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "PoliticalSystem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Reputation.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Shield.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Ship.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ShipSpec.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "ShipTemplate.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Shipyard.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Space Trader for Windows Documentation.htm"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "SpecialEvent.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "StarSystem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Strings.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "STSerializableObject.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "TradeItem.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Weapon.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "images\alien.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\arrdown.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\arrleft.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\arrright.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\arrup.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\blank.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\bottle.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\bottled.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartlnv.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartlv.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartlw.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsnv.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsnvs.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsv.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsvs.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsw.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\chartsws.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\continuous0.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\continuous1.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\destroyed.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\df.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\dfd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\dfs.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\dfsd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\dummy_ship.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\find.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_bays.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_cloak.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_fuel.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_hbays.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_navsys.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_repsys.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\g_targsys.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\logo.gif"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\mantis.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\mantisd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\mantiss.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\mantissd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\moon.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\moongirl.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\pirate.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\police.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\retire.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_energy.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_lightning.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\s_reflective.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scarab.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scarabd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scarabs.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scarabsd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scorp.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scorpd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scorps.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\scorpsd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship0.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship0d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship1.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship10.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship10d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship10s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship10sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship1d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship2.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship2d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship2s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship2sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship3.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship3d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship3s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship3sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship4.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship4d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship4s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship4sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship5.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship5d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship5s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship5sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship6.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship6d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship6s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship6sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship7.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship7d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship7s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship7sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship8.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship8d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship8s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship8sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship9.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship9d.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship9s.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\ship9sd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sm.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\smd.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\special.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\splash.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\splash.jpg"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sy-corellian.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sy-incom.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sy-kuat.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sy-sienar.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\sy-sorosuub.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trader.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib0.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib1.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib2.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib3.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib4.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib5.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib6.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\trib7.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_beam.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_military.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_morgan.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_photon.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_pulse.bmp"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "images\w_quantum.bmp"
-                    BuildAction = "None"
-                />
-            </Include>
-        </Files>
-    </CSHARP>
-</VisualStudioProject>
-
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0ED352CE-6DA4-49C4-A458-93630C48F40D}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>SpaceTrader</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Fryz.Apps.SpaceTrader</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>Fryz.Apps.SpaceTrader.SpaceTrader</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <SccAuxPath>
+    </SccAuxPath>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Content Include="Space Trader for Windows Documentation.htm" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commander.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Consts.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CrewMember.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Equipment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Form_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Alert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuyFuel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BuyRepairs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CargoBuy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CargoSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Costs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Encounter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Equipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_GetLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Jettison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Monster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NewCommander.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PayBackLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Plunder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ShipList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Shipyard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SpaceTrader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewCommander.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewHighScores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewPersonnel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewQuests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ViewShip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FutureVersionException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Gadget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Game.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameEndException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HighScoreRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PoliceRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PoliticalSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reputation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shield.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ship.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShipSpec.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShipTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shipyard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpecialEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StarSystem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Strings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="STSerializableObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TradeItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weapon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="changelog.txt" />
+    <None Include="images\alien.bmp" />
+    <None Include="images\arrdown.bmp" />
+    <None Include="images\arrleft.bmp" />
+    <None Include="images\arrright.bmp" />
+    <None Include="images\arrup.bmp" />
+    <None Include="images\blank.bmp" />
+    <None Include="images\bottle.bmp" />
+    <None Include="images\bottled.bmp" />
+    <None Include="images\chartlnv.bmp" />
+    <None Include="images\chartlv.bmp" />
+    <None Include="images\chartlw.bmp" />
+    <None Include="images\chartsnv.bmp" />
+    <None Include="images\chartsnvs.bmp" />
+    <None Include="images\chartsv.bmp" />
+    <None Include="images\chartsvs.bmp" />
+    <None Include="images\chartsw.bmp" />
+    <None Include="images\chartsws.bmp" />
+    <None Include="images\continuous0.bmp" />
+    <None Include="images\continuous1.bmp" />
+    <None Include="images\destroyed.bmp" />
+    <None Include="images\df.bmp" />
+    <None Include="images\dfd.bmp" />
+    <None Include="images\dfs.bmp" />
+    <None Include="images\dfsd.bmp" />
+    <None Include="images\dummy_ship.bmp" />
+    <None Include="images\find.bmp" />
+    <None Include="images\g_bays.bmp" />
+    <None Include="images\g_cloak.bmp" />
+    <None Include="images\g_fuel.bmp" />
+    <None Include="images\g_hbays.bmp" />
+    <None Include="images\g_navsys.bmp" />
+    <None Include="images\g_repsys.bmp" />
+    <None Include="images\g_targsys.bmp" />
+    <None Include="images\logo.gif" />
+    <None Include="images\mantis.bmp" />
+    <None Include="images\mantisd.bmp" />
+    <None Include="images\mantiss.bmp" />
+    <None Include="images\mantissd.bmp" />
+    <None Include="images\moon.bmp" />
+    <None Include="images\moongirl.bmp" />
+    <None Include="images\pirate.bmp" />
+    <None Include="images\police.bmp" />
+    <None Include="images\retire.bmp" />
+    <None Include="images\scarab.bmp" />
+    <None Include="images\scarabd.bmp" />
+    <None Include="images\scarabs.bmp" />
+    <None Include="images\scarabsd.bmp" />
+    <None Include="images\scorp.bmp" />
+    <None Include="images\scorpd.bmp" />
+    <None Include="images\scorps.bmp" />
+    <None Include="images\scorpsd.bmp" />
+    <None Include="images\ship0.bmp" />
+    <None Include="images\ship0d.bmp" />
+    <None Include="images\ship1.bmp" />
+    <None Include="images\ship10.bmp" />
+    <None Include="images\ship10d.bmp" />
+    <None Include="images\ship10s.bmp" />
+    <None Include="images\ship10sd.bmp" />
+    <None Include="images\ship1d.bmp" />
+    <None Include="images\ship2.bmp" />
+    <None Include="images\ship2d.bmp" />
+    <None Include="images\ship2s.bmp" />
+    <None Include="images\ship2sd.bmp" />
+    <None Include="images\ship3.bmp" />
+    <None Include="images\ship3d.bmp" />
+    <None Include="images\ship3s.bmp" />
+    <None Include="images\ship3sd.bmp" />
+    <None Include="images\ship4.bmp" />
+    <None Include="images\ship4d.bmp" />
+    <None Include="images\ship4s.bmp" />
+    <None Include="images\ship4sd.bmp" />
+    <None Include="images\ship5.bmp" />
+    <None Include="images\ship5d.bmp" />
+    <None Include="images\ship5s.bmp" />
+    <None Include="images\ship5sd.bmp" />
+    <None Include="images\ship6.bmp" />
+    <None Include="images\ship6d.bmp" />
+    <None Include="images\ship6s.bmp" />
+    <None Include="images\ship6sd.bmp" />
+    <None Include="images\ship7.bmp" />
+    <None Include="images\ship7d.bmp" />
+    <None Include="images\ship7s.bmp" />
+    <None Include="images\ship7sd.bmp" />
+    <None Include="images\ship8.bmp" />
+    <None Include="images\ship8d.bmp" />
+    <None Include="images\ship8s.bmp" />
+    <None Include="images\ship8sd.bmp" />
+    <None Include="images\ship9.bmp" />
+    <None Include="images\ship9d.bmp" />
+    <None Include="images\ship9s.bmp" />
+    <None Include="images\ship9sd.bmp" />
+    <None Include="images\sm.bmp" />
+    <None Include="images\smd.bmp" />
+    <None Include="images\special.bmp" />
+    <None Include="images\splash.bmp" />
+    <None Include="images\splash.jpg" />
+    <None Include="images\sy-corellian.bmp" />
+    <None Include="images\sy-incom.bmp" />
+    <None Include="images\sy-kuat.bmp" />
+    <None Include="images\sy-sienar.bmp" />
+    <None Include="images\sy-sorosuub.bmp" />
+    <None Include="images\s_energy.bmp" />
+    <None Include="images\s_lightning.bmp" />
+    <None Include="images\s_reflective.bmp" />
+    <None Include="images\trader.bmp" />
+    <None Include="images\trib0.bmp" />
+    <None Include="images\trib1.bmp" />
+    <None Include="images\trib2.bmp" />
+    <None Include="images\trib3.bmp" />
+    <None Include="images\trib4.bmp" />
+    <None Include="images\trib5.bmp" />
+    <None Include="images\trib6.bmp" />
+    <None Include="images\trib7.bmp" />
+    <None Include="images\w_beam.bmp" />
+    <None Include="images\w_military.bmp" />
+    <None Include="images\w_morgan.bmp" />
+    <None Include="images\w_photon.bmp" />
+    <None Include="images\w_pulse.bmp" />
+    <None Include="images\w_quantum.bmp" />
+    <EmbeddedResource Include="Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Alert.resx">
+      <DependentUpon>Form_Alert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BuyFuel.resx">
+      <DependentUpon>Form_BuyFuel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BuyRepairs.resx">
+      <DependentUpon>Form_BuyRepairs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CargoBuy.resx">
+      <DependentUpon>Form_CargoBuy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CargoSell.resx">
+      <DependentUpon>Form_CargoSell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Costs.resx">
+      <DependentUpon>Form_Costs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Encounter.resx">
+      <DependentUpon>Form_Encounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Equipment.resx">
+      <DependentUpon>Form_Equipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Find.resx">
+      <DependentUpon>Form_Find.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_GetLoan.resx">
+      <DependentUpon>Form_GetLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Jettison.resx">
+      <DependentUpon>Form_Jettison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Monster.resx">
+      <DependentUpon>Form_Monster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_NewCommander.resx">
+      <DependentUpon>Form_NewCommander.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Options.resx">
+      <DependentUpon>Form_Options.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PayBackLoan.resx">
+      <DependentUpon>Form_PayBackLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Plunder.resx">
+      <DependentUpon>Form_Plunder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ShipList.resx">
+      <DependentUpon>Form_ShipList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Shipyard.resx">
+      <DependentUpon>Form_Shipyard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SpaceTrader.resx">
+      <DependentUpon>Form_SpaceTrader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Test.resx">
+      <DependentUpon>Form_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewBank.resx">
+      <DependentUpon>Form_ViewBank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewCommander.resx">
+      <DependentUpon>Form_ViewCommander.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewHighScores.resx">
+      <DependentUpon>Form_ViewHighScores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewPersonnel.resx">
+      <DependentUpon>Form_ViewPersonnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewQuests.resx">
+      <DependentUpon>Form_ViewQuests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ViewShip.resx">
+      <DependentUpon>Form_ViewShip.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

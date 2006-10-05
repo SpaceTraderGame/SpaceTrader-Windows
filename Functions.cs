@@ -30,7 +30,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Permissions;
 using Microsoft.Win32;
 
-[assembly: RegistryPermissionAttribute(SecurityAction.RequestMinimum, All = "HKEY_CURRENT_USER")]
+[assembly: RegistryPermissionAttribute(SecurityAction.RequestMinimum, ViewAndModify = "HKEY_CURRENT_USER")]
 
 namespace Fryz.Apps.SpaceTrader
 {

@@ -3073,7 +3073,7 @@ namespace Fryz.Apps.SpaceTrader
 				btnFuel.Visible			= tanksEmpty > 0;
 
 				lblHullStatus.Text	= Functions.StringVars(Strings.DockHullStatus,
-					Functions.FormatNumber((int)Math.Floor(100 * ship.Hull / ship.HullStrength)));
+					Functions.FormatNumber((int)Math.Floor((double)100 * ship.Hull / ship.HullStrength)));
 				int	hullLoss				= ship.HullStrength - ship.Hull;
 				lblRepairCost.Text	= hullLoss > 0 ? Functions.StringVars(Strings.DockHullCost,
 					Functions.FormatMoney(hullLoss * ship.RepairCost)) : Strings.DockHullFull;

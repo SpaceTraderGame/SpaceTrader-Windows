@@ -1006,8 +1006,8 @@ namespace Fryz.Apps.SpaceTrader
 					customImages	= game.ParentWindow.CustomShipImages;
 
 				numCargoBays.Value			= template.CargoBays;
-				numFuelTanks.Value			= Math.Max(numFuelTanks.Minimum, template.FuelTanks);
-				numHullStrength.Value		= Math.Max(numHullStrength.Minimum, template.HullStrength);
+				numFuelTanks.Value			= Math.Min(Math.Max(numFuelTanks.Minimum, template.FuelTanks), numFuelTanks.Maximum);
+				numHullStrength.Value		= Math.Min(Math.Max(numHullStrength.Minimum, template.HullStrength), numHullStrength.Maximum);
 				numWeaponSlots.Value		= template.WeaponSlots;
 				numShieldSlots.Value		= template.ShieldSlots;
 				numGadgetSlots.Value		= template.GadgetSlots;

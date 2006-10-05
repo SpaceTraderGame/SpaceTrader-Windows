@@ -1737,7 +1737,7 @@ namespace Fryz.Apps.SpaceTrader
 				int diffMod	= 10 + 5 * (Difficulty.Impossible - Difficulty);
 				int	passMod	= Commander.Ship.IllegalSpecialCargo ? (Difficulty <= Difficulty.Normal ? 2 : 3) : 1;
 
-				int	bribe		= Math.Max(100, Math.Min(10000, (int)Math.Ceiling(Commander.Worth /
+				int	bribe		= Math.Max(100, Math.Min(10000, (int)Math.Ceiling((double)Commander.Worth /
 					WarpSystem.PoliticalSystem.BribeLevel / diffMod / 100) * 100 * passMod));
 
 				if (FormAlert.Alert(AlertType.EncounterPoliceBribe, owner, Functions.Multiples(bribe, Strings.MoneyUnit)) ==
@@ -1799,7 +1799,7 @@ namespace Fryz.Apps.SpaceTrader
 					{
 						Commander.Ship.RemoveIllegalGoods();
 
-						int fine				= (int)Math.Max(100, Math.Min(10000, Math.Ceiling(Commander.Worth /
+						int	fine				= (int)Math.Max(100, Math.Min(10000, Math.Ceiling((double)Commander.Worth /
 							((Difficulty.Impossible - Difficulty + 2) * 10) / 50) * 50));
 						int	cashPayment	= Math.Min(Commander.Cash, fine);
 						Commander.Debt	+= fine - cashPayment;
@@ -1895,7 +1895,7 @@ namespace Fryz.Apps.SpaceTrader
 					// Take most high-priced items - JAF.
 					while (Opponent.FreeCargoBays > 0 && cargoToSteal.Count > 0)
 					{
-						int item	= (int)((TradeItem)cargoToSteal[0]).Type;
+						int item	= (int)cargoToSteal[0];
 
 						Commander.PriceCargo[item]	-= Commander.PriceCargo[item] / Commander.Ship.Cargo[item];
 						Commander.Ship.Cargo[item]--;
