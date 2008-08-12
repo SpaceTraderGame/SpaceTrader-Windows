@@ -3,3 +3,5 @@ obj
 *.bin
 *.sav
 *.bak
+*.suo
+*.user
