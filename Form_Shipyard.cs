@@ -1186,6 +1186,9 @@ namespace Fryz.Apps.SpaceTrader
 				{
 					Strings.ShipNames[(int)ShipType.Custom]	= txtName.Text;
 
+					if (game.QuestStatusScarab == SpecialEvent.StatusScarabDone)
+						game.QuestStatusScarab = SpecialEvent.StatusScarabNotStarted;
+
 					// Replace the current custom images with the new ones.
 					if (game.Commander.Ship.ImageIndex == (int)ShipType.Custom)
 					{
