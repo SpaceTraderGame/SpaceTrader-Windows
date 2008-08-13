@@ -1,10 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fryz.Apps.SpaceTrader", "Fryz.Apps.SpaceTrader.csproj", "{0ED352CE-6DA4-49C4-A458-93630C48F40D}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SpaceTraderSetup", "SpaceTraderSetup\SpaceTraderSetup.vdproj", "{E95E187E-B31B-438C-B31A-90C68DED0752}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STConvert", "STConvert\STConvert.csproj", "{F5B9876B-38E4-468A-8780-3621A6901695}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +12,6 @@ Global
 		{0ED352CE-6DA4-49C4-A458-93630C48F40D}.Debug|Default.Build.0 = Debug|Any CPU
 		{0ED352CE-6DA4-49C4-A458-93630C48F40D}.Release|Default.ActiveCfg = Release|Any CPU
 		{0ED352CE-6DA4-49C4-A458-93630C48F40D}.Release|Default.Build.0 = Release|Any CPU
-		{E95E187E-B31B-438C-B31A-90C68DED0752}.Debug|Default.ActiveCfg = Release
-		{E95E187E-B31B-438C-B31A-90C68DED0752}.Release|Default.ActiveCfg = Release
-		{E95E187E-B31B-438C-B31A-90C68DED0752}.Release|Default.Build.0 = Release
-		{F5B9876B-38E4-468A-8780-3621A6901695}.Debug|Default.ActiveCfg = Debug|Any CPU
-		{F5B9876B-38E4-468A-8780-3621A6901695}.Debug|Default.Build.0 = Debug|Any CPU
-		{F5B9876B-38E4-468A-8780-3621A6901695}.Release|Default.ActiveCfg = Release|Any CPU
-		{F5B9876B-38E4-468A-8780-3621A6901695}.Release|Default.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
