@@ -113,10 +113,9 @@ namespace Fryz.Apps.SpaceTrader
 			// Get the name if the ship is a custom design.
 			if (Type == ShipType.Custom)
 			{
-				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name",
-																									Strings.ShipNames[(int)ShipType.Custom]);
+				Strings.ShipNames[(int)ShipType.Custom]	= (string)GetValueFromHash(hash, "_name", Strings.ShipNames[(int)ShipType.Custom]);
 
-				Consts.ShipSpecs[(int)ShipType.Custom]	= this;
+				Consts.ShipSpecs[(int)ShipType.Custom]	= new ShipSpec(_type, _size, _cargoBays, _weaponSlots, _shieldSlots, _gadgetSlots, _crewQuarters, _fuelTanks, _fuelCost, _hullStrength, _repairCost, _price, _occurrence, _police, _pirates, _traders, _minTech);
 				UpdateCustomImageOffsetConstants();
 			}
 		}
