@@ -66,15 +66,16 @@ namespace Fryz.Apps.SpaceTrader
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(FormAbout));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
 			this.btnClose = new System.Windows.Forms.Button();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.lblAbout = new System.Windows.Forms.Label();
 			this.picLogo = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
 			this.SuspendLayout();
-			//
+			// 
 			// btnClose
-			//
+			// 
 			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnClose.Location = new System.Drawing.Point(-32, -32);
 			this.btnClose.Name = "btnClose";
@@ -82,48 +83,43 @@ namespace Fryz.Apps.SpaceTrader
 			this.btnClose.TabIndex = 32;
 			this.btnClose.TabStop = false;
 			this.btnClose.Text = "X";
-			//
+			// 
 			// lblTitle
-			//
+			// 
 			this.lblTitle.AutoSize = true;
-			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTitle.Location = new System.Drawing.Point(172, 8);
 			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(163, 13);
+			this.lblTitle.Size = new System.Drawing.Size(187, 13);
 			this.lblTitle.TabIndex = 33;
-			this.lblTitle.Text = "Space Trader for Windows " + Consts.CurrentVersion;
-			//
+			this.lblTitle.Text = "Space Trader for Windows 2.01";
+			// 
 			// lblAbout
-			//
+			// 
 			this.lblAbout.Location = new System.Drawing.Point(172, 32);
 			this.lblAbout.Name = "lblAbout";
 			this.lblAbout.Size = new System.Drawing.Size(272, 160);
 			this.lblAbout.TabIndex = 34;
-			this.lblAbout.Text = "Copyright " + Strings.CopyrightChar +
-				" 2005 by Jay French" + Environment.NewLine + "spacetrader@frenchfryz.com" + Environment.NewLine + Environment.NewLine + "Palm version copyright " +
-				Strings.CopyrightChar + " 2000-2002 by Peter Spronk" + Environment.NewLine + "space_trader@hotmail.com" + Environment.NewLine + Environment.NewLine + "Pictures copyright " +
-				Strings.CopyrightChar + " 2000 by Alexander Lawrence" + Environment.NewLine + Environment.NewLine + "This game is freeware under a GNU General " +
-				"Public License." + Environment.NewLine + Environment.NewLine + "http://spacetraderwin.sourceforge.net/";
-			//
+			this.lblAbout.Text = resources.GetString("lblAbout.Text");
+			// 
 			// picLogo
-			//
-			this.picLogo.Image = ((System.Drawing.Bitmap)(resources.GetObject("picLogo.Image")));
+			// 
+			this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
 			this.picLogo.Location = new System.Drawing.Point(8, 8);
 			this.picLogo.Name = "picLogo";
 			this.picLogo.Size = new System.Drawing.Size(160, 160);
 			this.picLogo.TabIndex = 35;
 			this.picLogo.TabStop = false;
-			//
+			// 
 			// FormAbout
-			//
+			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnClose;
 			this.ClientSize = new System.Drawing.Size(446, 191);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																																	this.picLogo,
-																																	this.lblAbout,
-																																	this.lblTitle,
-																																	this.btnClose});
+			this.Controls.Add(this.picLogo);
+			this.Controls.Add(this.lblAbout);
+			this.Controls.Add(this.lblTitle);
+			this.Controls.Add(this.btnClose);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -131,7 +127,10 @@ namespace Fryz.Apps.SpaceTrader
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "About Space Trader";
+			((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
+
 		}
 		#endregion
 
