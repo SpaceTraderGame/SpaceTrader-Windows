@@ -1363,8 +1363,11 @@ namespace Fryz.Apps.SpaceTrader
 								damage				= Math.Min(damage, defender.HullStrength /
 									(defender.CommandersShip ? Math.Max(1, Difficulty.Impossible - Difficulty) : 2));
 
-								defender.Hull	= Math.Max(0, defender.Hull - damage);
+								// If the hull is hardened, damage is halved.
+								if (QuestStatusScarab == SpecialEvent.StatusScarabDone)
+									damage /= 2;
 
+								defender.Hull	= Math.Max(0, defender.Hull - damage);
 							}
 						}
 					}
@@ -1765,8 +1768,12 @@ namespace Fryz.Apps.SpaceTrader
 			{
 				EncounterCmdrFleeing	= true;
 
-				if (EncounterType == EncounterType.PoliceInspect || EncounterType == EncounterType.MarieCelestePolice &&
-					FormAlert.Alert(AlertType.EncounterPostMarieFlee, owner) == DialogResult.Yes)
+				if (EncounterType == EncounterType.MarieCelestePolice &&
+					FormAlert.Alert(AlertType.EncounterPostMarieFlee, owner) == DialogResult.No)
+				{
+					EncounterCmdrFleeing = false;
+				}
+				else if (EncounterType == EncounterType.PoliceInspect || EncounterType == EncounterType.MarieCelestePolice)
 				{
 					int	scoreMod								= EncounterType == EncounterType.PoliceInspect ?
 						Consts.ScoreFleePolice : Consts.ScoreAttackPolice;
