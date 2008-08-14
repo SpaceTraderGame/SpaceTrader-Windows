@@ -1,3 +1,16 @@
+2.01 Changes:
+	Fixed 6 bugs logged at sf.net.
+		1844296	100 Bays truncate to 10 during plunder 
+		1844287	Hull Hardening 
+		1844164	V 2.00 police choice negated 
+		1684012	v2.00 money error 
+		1184044	shipyard design error 
+		1173304	cargo transfer by pirate crashes the game 
+
+	Removed installer and game converter projects
+	Added folders to zip file for custom ship data, saved games, and settings data
+	Added 4 new sets of custom ship images - thanks to William W. Connors!
+
 2.0 Enhancements:
 	Bounty offered for capture/killing of player based on their Police Record
 	Custom ship designs in Shipyards, and newspaper will have notice when nearby system has a shipyard
