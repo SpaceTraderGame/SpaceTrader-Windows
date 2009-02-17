@@ -451,8 +451,8 @@ namespace Fryz.Apps.SpaceTrader
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SpaceTrader));
-			this.mnuMain = new System.Windows.Forms.MainMenu();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpaceTrader));
+			this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
 			this.mnuGame = new System.Windows.Forms.MenuItem();
 			this.mnuGameNew = new System.Windows.Forms.MenuItem();
 			this.mnuGameLoad = new System.Windows.Forms.MenuItem();
@@ -664,6 +664,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.tipSpecial = new System.Windows.Forms.ToolTip(this.components);
 			this.tipMerc = new System.Windows.Forms.ToolTip(this.components);
 			this.ilEquipmentImages = new System.Windows.Forms.ImageList(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.picGalacticChart)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picShortRangeChart)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCash)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelBays)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCosts)).BeginInit();
@@ -672,30 +674,35 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxGalacticChart.SuspendLayout();
 			this.boxTargetSystem.SuspendLayout();
 			this.boxCargo.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine0)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine1)).BeginInit();
 			this.boxSystem.SuspendLayout();
 			this.boxShipYard.SuspendLayout();
 			this.boxDock.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picLine)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mnuMain
 			// 
 			this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																																						this.mnuGame,
-																																						this.mnuView,
-																																						this.mnuHelp});
+            this.mnuGame,
+            this.mnuView,
+            this.mnuHelp});
 			// 
 			// mnuGame
 			// 
 			this.mnuGame.Index = 0;
 			this.mnuGame.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																																						this.mnuGameNew,
-																																						this.mnuGameLoad,
-																																						this.mnuGameSave,
-																																						this.mnuGameSaveAs,
-																																						this.mnuGameLine1,
-																																						this.mnuRetire,
-																																						this.mnuGameLine2,
-																																						this.mnuGameExit});
+            this.mnuGameNew,
+            this.mnuGameLoad,
+            this.mnuGameSave,
+            this.mnuGameSaveAs,
+            this.mnuGameLine1,
+            this.mnuRetire,
+            this.mnuGameLine2,
+            this.mnuGameExit});
 			this.mnuGame.Text = "&Game";
 			// 
 			// mnuGameNew
@@ -754,15 +761,15 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.mnuView.Index = 1;
 			this.mnuView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																																						this.mnuViewCommander,
-																																						this.mnuViewShip,
-																																						this.mnuViewPersonnel,
-																																						this.mnuViewQuests,
-																																						this.mnuViewBank,
-																																						this.mnuViewLine1,
-																																						this.mnuHighScores,
-																																						this.mnuViewLine2,
-																																						this.mnuOptions});
+            this.mnuViewCommander,
+            this.mnuViewShip,
+            this.mnuViewPersonnel,
+            this.mnuViewQuests,
+            this.mnuViewBank,
+            this.mnuViewLine1,
+            this.mnuHighScores,
+            this.mnuViewLine2,
+            this.mnuOptions});
 			this.mnuView.Text = "&View";
 			// 
 			// mnuViewCommander
@@ -831,7 +838,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			this.mnuHelp.Index = 2;
 			this.mnuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																																						this.mnuHelpAbout});
+            this.mnuHelpAbout});
 			this.mnuHelp.Text = "&Help";
 			// 
 			// mnuHelpAbout
@@ -848,8 +855,8 @@ namespace Fryz.Apps.SpaceTrader
 			this.picGalacticChart.Size = new System.Drawing.Size(160, 116);
 			this.picGalacticChart.TabIndex = 0;
 			this.picGalacticChart.TabStop = false;
-			this.picGalacticChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picGalacticChart_Paint);
 			this.picGalacticChart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picGalacticChart_MouseDown);
+			this.picGalacticChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picGalacticChart_Paint);
 			// 
 			// picShortRangeChart
 			// 
@@ -859,18 +866,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.picShortRangeChart.Size = new System.Drawing.Size(160, 145);
 			this.picShortRangeChart.TabIndex = 1;
 			this.picShortRangeChart.TabStop = false;
-			this.picShortRangeChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picShortRangeChart_Paint);
 			this.picShortRangeChart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picShortRangeChart_MouseDown);
+			this.picShortRangeChart.Paint += new System.Windows.Forms.PaintEventHandler(this.picShortRangeChart_Paint);
 			// 
 			// statusBar
 			// 
 			this.statusBar.Location = new System.Drawing.Point(0, 481);
 			this.statusBar.Name = "statusBar";
 			this.statusBar.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-																																								 this.statusBarPanelCash,
-																																								 this.statusBarPanelBays,
-																																								 this.statusBarPanelCosts,
-																																								 this.statusBarPanelExtra});
+            this.statusBarPanelCash,
+            this.statusBarPanelBays,
+            this.statusBarPanelCosts,
+            this.statusBarPanelExtra});
 			this.statusBar.ShowPanels = true;
 			this.statusBar.Size = new System.Drawing.Size(768, 24);
 			this.statusBar.SizingGrip = false;
@@ -880,24 +887,28 @@ namespace Fryz.Apps.SpaceTrader
 			// statusBarPanelCash
 			// 
 			this.statusBarPanelCash.MinWidth = 112;
+			this.statusBarPanelCash.Name = "statusBarPanelCash";
 			this.statusBarPanelCash.Text = " Cash: 88,888,888 cr.";
 			this.statusBarPanelCash.Width = 112;
 			// 
 			// statusBarPanelBays
 			// 
 			this.statusBarPanelBays.MinWidth = 80;
+			this.statusBarPanelBays.Name = "statusBarPanelBays";
 			this.statusBarPanelBays.Text = " Bays: 88/88";
 			this.statusBarPanelBays.Width = 80;
 			// 
 			// statusBarPanelCosts
 			// 
 			this.statusBarPanelCosts.MinWidth = 120;
+			this.statusBarPanelCosts.Name = "statusBarPanelCosts";
 			this.statusBarPanelCosts.Text = " Current Costs: 888 cr.";
 			this.statusBarPanelCosts.Width = 120;
 			// 
 			// statusBarPanelExtra
 			// 
 			this.statusBarPanelExtra.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+			this.statusBarPanelExtra.Name = "statusBarPanelExtra";
 			this.statusBarPanelExtra.Width = 456;
 			// 
 			// boxShortRangeChart
@@ -1102,70 +1113,70 @@ namespace Fryz.Apps.SpaceTrader
 			// lblTargetDistanceLabel
 			// 
 			this.lblTargetDistanceLabel.AutoSize = true;
-			this.lblTargetDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetDistanceLabel.Location = new System.Drawing.Point(8, 128);
 			this.lblTargetDistanceLabel.Name = "lblTargetDistanceLabel";
-			this.lblTargetDistanceLabel.Size = new System.Drawing.Size(53, 16);
+			this.lblTargetDistanceLabel.Size = new System.Drawing.Size(61, 13);
 			this.lblTargetDistanceLabel.TabIndex = 8;
 			this.lblTargetDistanceLabel.Text = "Distance:";
 			// 
 			// lblTargetPiratesLabel
 			// 
 			this.lblTargetPiratesLabel.AutoSize = true;
-			this.lblTargetPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetPiratesLabel.Location = new System.Drawing.Point(8, 112);
 			this.lblTargetPiratesLabel.Name = "lblTargetPiratesLabel";
-			this.lblTargetPiratesLabel.Size = new System.Drawing.Size(44, 16);
+			this.lblTargetPiratesLabel.Size = new System.Drawing.Size(50, 13);
 			this.lblTargetPiratesLabel.TabIndex = 7;
 			this.lblTargetPiratesLabel.Text = "Pirates:";
 			// 
 			// lblTargetPoliceLabel
 			// 
 			this.lblTargetPoliceLabel.AutoSize = true;
-			this.lblTargetPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetPoliceLabel.Location = new System.Drawing.Point(8, 96);
 			this.lblTargetPoliceLabel.Name = "lblTargetPoliceLabel";
-			this.lblTargetPoliceLabel.Size = new System.Drawing.Size(40, 16);
+			this.lblTargetPoliceLabel.Size = new System.Drawing.Size(46, 13);
 			this.lblTargetPoliceLabel.TabIndex = 6;
 			this.lblTargetPoliceLabel.Text = "Police:";
 			// 
 			// lblTargetResourceLabel
 			// 
 			this.lblTargetResourceLabel.AutoSize = true;
-			this.lblTargetResourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetResourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetResourceLabel.Location = new System.Drawing.Point(8, 80);
 			this.lblTargetResourceLabel.Name = "lblTargetResourceLabel";
-			this.lblTargetResourceLabel.Size = new System.Drawing.Size(58, 16);
+			this.lblTargetResourceLabel.Size = new System.Drawing.Size(65, 13);
 			this.lblTargetResourceLabel.TabIndex = 5;
 			this.lblTargetResourceLabel.Text = "Resource:";
 			// 
 			// lblTargetGovtLabel
 			// 
 			this.lblTargetGovtLabel.AutoSize = true;
-			this.lblTargetGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetGovtLabel.Location = new System.Drawing.Point(8, 64);
 			this.lblTargetGovtLabel.Name = "lblTargetGovtLabel";
-			this.lblTargetGovtLabel.Size = new System.Drawing.Size(72, 16);
+			this.lblTargetGovtLabel.Size = new System.Drawing.Size(79, 13);
 			this.lblTargetGovtLabel.TabIndex = 4;
 			this.lblTargetGovtLabel.Text = "Government:";
 			// 
 			// lblTargetTechLabel
 			// 
 			this.lblTargetTechLabel.AutoSize = true;
-			this.lblTargetTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetTechLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblTargetTechLabel.Name = "lblTargetTechLabel";
-			this.lblTargetTechLabel.Size = new System.Drawing.Size(65, 16);
+			this.lblTargetTechLabel.Size = new System.Drawing.Size(75, 13);
 			this.lblTargetTechLabel.TabIndex = 3;
 			this.lblTargetTechLabel.Text = "Tech Level:";
 			// 
 			// lblTargetSizeLabel
 			// 
 			this.lblTargetSizeLabel.AutoSize = true;
-			this.lblTargetSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetSizeLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblTargetSizeLabel.Name = "lblTargetSizeLabel";
-			this.lblTargetSizeLabel.Size = new System.Drawing.Size(31, 16);
+			this.lblTargetSizeLabel.Size = new System.Drawing.Size(35, 13);
 			this.lblTargetSizeLabel.TabIndex = 2;
 			this.lblTargetSizeLabel.Text = "Size:";
 			// 
@@ -1180,10 +1191,10 @@ namespace Fryz.Apps.SpaceTrader
 			// lblTargetNameLabel
 			// 
 			this.lblTargetNameLabel.AutoSize = true;
-			this.lblTargetNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetNameLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblTargetNameLabel.Name = "lblTargetNameLabel";
-			this.lblTargetNameLabel.Size = new System.Drawing.Size(39, 16);
+			this.lblTargetNameLabel.Size = new System.Drawing.Size(43, 13);
 			this.lblTargetNameLabel.TabIndex = 0;
 			this.lblTargetNameLabel.Text = "Name:";
 			// 
@@ -1524,7 +1535,7 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// lblTargetDiff7
 			// 
-			this.lblTargetDiff7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblTargetDiff7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTargetDiff7.Location = new System.Drawing.Point(410, 228);
 			this.lblTargetDiff7.Name = "lblTargetDiff7";
 			this.lblTargetDiff7.Size = new System.Drawing.Size(52, 13);
@@ -2085,7 +2096,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPctLabel.AutoSize = true;
 			this.lblTargetPctLabel.Location = new System.Drawing.Point(476, 34);
 			this.lblTargetPctLabel.Name = "lblTargetPctLabel";
-			this.lblTargetPctLabel.Size = new System.Drawing.Size(14, 16);
+			this.lblTargetPctLabel.Size = new System.Drawing.Size(15, 13);
 			this.lblTargetPctLabel.TabIndex = 49;
 			this.lblTargetPctLabel.Text = "%";
 			// 
@@ -2094,7 +2105,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetDiffLabel.AutoSize = true;
 			this.lblTargetDiffLabel.Location = new System.Drawing.Point(424, 34);
 			this.lblTargetDiffLabel.Name = "lblTargetDiffLabel";
-			this.lblTargetDiffLabel.Size = new System.Drawing.Size(18, 16);
+			this.lblTargetDiffLabel.Size = new System.Drawing.Size(21, 13);
 			this.lblTargetDiffLabel.TabIndex = 48;
 			this.lblTargetDiffLabel.Text = "+/-";
 			// 
@@ -2103,7 +2114,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTargetPriceLabel.AutoSize = true;
 			this.lblTargetPriceLabel.Location = new System.Drawing.Point(360, 34);
 			this.lblTargetPriceLabel.Name = "lblTargetPriceLabel";
-			this.lblTargetPriceLabel.Size = new System.Drawing.Size(30, 16);
+			this.lblTargetPriceLabel.Size = new System.Drawing.Size(31, 13);
 			this.lblTargetPriceLabel.TabIndex = 47;
 			this.lblTargetPriceLabel.Text = "Price";
 			// 
@@ -2226,7 +2237,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeTarget.AutoSize = true;
 			this.lblTradeTarget.Location = new System.Drawing.Point(391, 16);
 			this.lblTradeTarget.Name = "lblTradeTarget";
-			this.lblTradeTarget.Size = new System.Drawing.Size(78, 16);
+			this.lblTradeTarget.Size = new System.Drawing.Size(75, 13);
 			this.lblTradeTarget.TabIndex = 28;
 			this.lblTradeTarget.Text = "Target System";
 			// 
@@ -2235,17 +2246,17 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblBuy.AutoSize = true;
 			this.lblBuy.Location = new System.Drawing.Point(273, 34);
 			this.lblBuy.Name = "lblBuy";
-			this.lblBuy.Size = new System.Drawing.Size(24, 16);
+			this.lblBuy.Size = new System.Drawing.Size(25, 13);
 			this.lblBuy.TabIndex = 27;
 			this.lblBuy.Text = "Buy";
 			// 
 			// lblSell
 			// 
 			this.lblSell.AutoSize = true;
-			this.lblSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSell.Location = new System.Drawing.Point(132, 34);
 			this.lblSell.Name = "lblSell";
-			this.lblSell.Size = new System.Drawing.Size(23, 16);
+			this.lblSell.Size = new System.Drawing.Size(24, 13);
 			this.lblSell.TabIndex = 26;
 			this.lblSell.Text = "Sell";
 			// 
@@ -2254,7 +2265,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty9.AutoSize = true;
 			this.lblTradeCmdty9.Location = new System.Drawing.Point(8, 276);
 			this.lblTradeCmdty9.Name = "lblTradeCmdty9";
-			this.lblTradeCmdty9.Size = new System.Drawing.Size(40, 16);
+			this.lblTradeCmdty9.Size = new System.Drawing.Size(41, 13);
 			this.lblTradeCmdty9.TabIndex = 25;
 			this.lblTradeCmdty9.Text = "Robots";
 			// 
@@ -2263,7 +2274,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty8.AutoSize = true;
 			this.lblTradeCmdty8.Location = new System.Drawing.Point(8, 252);
 			this.lblTradeCmdty8.Name = "lblTradeCmdty8";
-			this.lblTradeCmdty8.Size = new System.Drawing.Size(51, 16);
+			this.lblTradeCmdty8.Size = new System.Drawing.Size(52, 13);
 			this.lblTradeCmdty8.TabIndex = 24;
 			this.lblTradeCmdty8.Text = "Narcotics";
 			// 
@@ -2272,7 +2283,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty2.AutoSize = true;
 			this.lblTradeCmdty2.Location = new System.Drawing.Point(8, 108);
 			this.lblTradeCmdty2.Name = "lblTradeCmdty2";
-			this.lblTradeCmdty2.Size = new System.Drawing.Size(30, 16);
+			this.lblTradeCmdty2.Size = new System.Drawing.Size(31, 13);
 			this.lblTradeCmdty2.TabIndex = 23;
 			this.lblTradeCmdty2.Text = "Food";
 			// 
@@ -2281,7 +2292,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty0.AutoSize = true;
 			this.lblTradeCmdty0.Location = new System.Drawing.Point(8, 60);
 			this.lblTradeCmdty0.Name = "lblTradeCmdty0";
-			this.lblTradeCmdty0.Size = new System.Drawing.Size(34, 16);
+			this.lblTradeCmdty0.Size = new System.Drawing.Size(36, 13);
 			this.lblTradeCmdty0.TabIndex = 22;
 			this.lblTradeCmdty0.Text = "Water";
 			// 
@@ -2290,7 +2301,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty1.AutoSize = true;
 			this.lblTradeCmdty1.Location = new System.Drawing.Point(8, 84);
 			this.lblTradeCmdty1.Name = "lblTradeCmdty1";
-			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 16);
+			this.lblTradeCmdty1.Size = new System.Drawing.Size(27, 13);
 			this.lblTradeCmdty1.TabIndex = 21;
 			this.lblTradeCmdty1.Text = "Furs";
 			// 
@@ -2299,7 +2310,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty6.AutoSize = true;
 			this.lblTradeCmdty6.Location = new System.Drawing.Point(8, 204);
 			this.lblTradeCmdty6.Name = "lblTradeCmdty6";
-			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 16);
+			this.lblTradeCmdty6.Size = new System.Drawing.Size(50, 13);
 			this.lblTradeCmdty6.TabIndex = 20;
 			this.lblTradeCmdty6.Text = "Medicine";
 			// 
@@ -2308,7 +2319,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty5.AutoSize = true;
 			this.lblTradeCmdty5.Location = new System.Drawing.Point(8, 180);
 			this.lblTradeCmdty5.Name = "lblTradeCmdty5";
-			this.lblTradeCmdty5.Size = new System.Drawing.Size(49, 16);
+			this.lblTradeCmdty5.Size = new System.Drawing.Size(46, 13);
 			this.lblTradeCmdty5.TabIndex = 19;
 			this.lblTradeCmdty5.Text = "Firearms";
 			// 
@@ -2317,7 +2328,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty4.AutoSize = true;
 			this.lblTradeCmdty4.Location = new System.Drawing.Point(8, 156);
 			this.lblTradeCmdty4.Name = "lblTradeCmdty4";
-			this.lblTradeCmdty4.Size = new System.Drawing.Size(41, 16);
+			this.lblTradeCmdty4.Size = new System.Drawing.Size(40, 13);
 			this.lblTradeCmdty4.TabIndex = 18;
 			this.lblTradeCmdty4.Text = "Games";
 			// 
@@ -2326,7 +2337,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty3.AutoSize = true;
 			this.lblTradeCmdty3.Location = new System.Drawing.Point(8, 132);
 			this.lblTradeCmdty3.Name = "lblTradeCmdty3";
-			this.lblTradeCmdty3.Size = new System.Drawing.Size(23, 16);
+			this.lblTradeCmdty3.Size = new System.Drawing.Size(24, 13);
 			this.lblTradeCmdty3.TabIndex = 17;
 			this.lblTradeCmdty3.Text = "Ore";
 			// 
@@ -2335,7 +2346,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblTradeCmdty7.AutoSize = true;
 			this.lblTradeCmdty7.Location = new System.Drawing.Point(8, 228);
 			this.lblTradeCmdty7.Name = "lblTradeCmdty7";
-			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 16);
+			this.lblTradeCmdty7.Size = new System.Drawing.Size(53, 13);
 			this.lblTradeCmdty7.TabIndex = 16;
 			this.lblTradeCmdty7.Text = "Machines";
 			// 
@@ -2379,13 +2390,14 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// btnSpecial
 			// 
-			this.btnSpecial.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(255)), ((System.Byte)(255)), ((System.Byte)(128)));
+			this.btnSpecial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.btnSpecial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSpecial.Location = new System.Drawing.Point(58, 174);
 			this.btnSpecial.Name = "btnSpecial";
 			this.btnSpecial.Size = new System.Drawing.Size(52, 22);
 			this.btnSpecial.TabIndex = 2;
 			this.btnSpecial.Text = "Special";
+			this.btnSpecial.UseVisualStyleBackColor = false;
 			this.btnSpecial.Click += new System.EventHandler(this.btnSpecial_Click);
 			// 
 			// btnNews
@@ -2411,7 +2423,7 @@ namespace Fryz.Apps.SpaceTrader
 			this.lblSystemPressurePre.AutoSize = true;
 			this.lblSystemPressurePre.Location = new System.Drawing.Point(8, 134);
 			this.lblSystemPressurePre.Name = "lblSystemPressurePre";
-			this.lblSystemPressurePre.Size = new System.Drawing.Size(122, 16);
+			this.lblSystemPressurePre.Size = new System.Drawing.Size(115, 13);
 			this.lblSystemPressurePre.TabIndex = 17;
 			this.lblSystemPressurePre.Text = "This system is currently";
 			// 
@@ -2466,60 +2478,60 @@ namespace Fryz.Apps.SpaceTrader
 			// lblSystemPiratesLabel
 			// 
 			this.lblSystemPiratesLabel.AutoSize = true;
-			this.lblSystemPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemPiratesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemPiratesLabel.Location = new System.Drawing.Point(8, 112);
 			this.lblSystemPiratesLabel.Name = "lblSystemPiratesLabel";
-			this.lblSystemPiratesLabel.Size = new System.Drawing.Size(44, 16);
+			this.lblSystemPiratesLabel.Size = new System.Drawing.Size(50, 13);
 			this.lblSystemPiratesLabel.TabIndex = 7;
 			this.lblSystemPiratesLabel.Text = "Pirates:";
 			// 
 			// lblSystemPoliceLabel
 			// 
 			this.lblSystemPoliceLabel.AutoSize = true;
-			this.lblSystemPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemPoliceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemPoliceLabel.Location = new System.Drawing.Point(8, 96);
 			this.lblSystemPoliceLabel.Name = "lblSystemPoliceLabel";
-			this.lblSystemPoliceLabel.Size = new System.Drawing.Size(40, 16);
+			this.lblSystemPoliceLabel.Size = new System.Drawing.Size(46, 13);
 			this.lblSystemPoliceLabel.TabIndex = 6;
 			this.lblSystemPoliceLabel.Text = "Police:";
 			// 
 			// lblSystemResourseLabel
 			// 
 			this.lblSystemResourseLabel.AutoSize = true;
-			this.lblSystemResourseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemResourseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemResourseLabel.Location = new System.Drawing.Point(8, 80);
 			this.lblSystemResourseLabel.Name = "lblSystemResourseLabel";
-			this.lblSystemResourseLabel.Size = new System.Drawing.Size(58, 16);
+			this.lblSystemResourseLabel.Size = new System.Drawing.Size(65, 13);
 			this.lblSystemResourseLabel.TabIndex = 5;
 			this.lblSystemResourseLabel.Text = "Resource:";
 			// 
 			// lblSystemGovtLabel
 			// 
 			this.lblSystemGovtLabel.AutoSize = true;
-			this.lblSystemGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemGovtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemGovtLabel.Location = new System.Drawing.Point(8, 64);
 			this.lblSystemGovtLabel.Name = "lblSystemGovtLabel";
-			this.lblSystemGovtLabel.Size = new System.Drawing.Size(72, 16);
+			this.lblSystemGovtLabel.Size = new System.Drawing.Size(79, 13);
 			this.lblSystemGovtLabel.TabIndex = 4;
 			this.lblSystemGovtLabel.Text = "Government:";
 			// 
 			// lblSystemTechLabel
 			// 
 			this.lblSystemTechLabel.AutoSize = true;
-			this.lblSystemTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemTechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemTechLabel.Location = new System.Drawing.Point(8, 48);
 			this.lblSystemTechLabel.Name = "lblSystemTechLabel";
-			this.lblSystemTechLabel.Size = new System.Drawing.Size(65, 16);
+			this.lblSystemTechLabel.Size = new System.Drawing.Size(75, 13);
 			this.lblSystemTechLabel.TabIndex = 3;
 			this.lblSystemTechLabel.Text = "Tech Level:";
 			// 
 			// lblSystemSizeLabel
 			// 
 			this.lblSystemSizeLabel.AutoSize = true;
-			this.lblSystemSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemSizeLabel.Location = new System.Drawing.Point(8, 32);
 			this.lblSystemSizeLabel.Name = "lblSystemSizeLabel";
-			this.lblSystemSizeLabel.Size = new System.Drawing.Size(31, 16);
+			this.lblSystemSizeLabel.Size = new System.Drawing.Size(35, 13);
 			this.lblSystemSizeLabel.TabIndex = 2;
 			this.lblSystemSizeLabel.Text = "Size:";
 			// 
@@ -2534,10 +2546,10 @@ namespace Fryz.Apps.SpaceTrader
 			// lblSystemNameLabel
 			// 
 			this.lblSystemNameLabel.AutoSize = true;
-			this.lblSystemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
+			this.lblSystemNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblSystemNameLabel.Location = new System.Drawing.Point(8, 16);
 			this.lblSystemNameLabel.Name = "lblSystemNameLabel";
-			this.lblSystemNameLabel.Size = new System.Drawing.Size(39, 16);
+			this.lblSystemNameLabel.Size = new System.Drawing.Size(43, 13);
 			this.lblSystemNameLabel.TabIndex = 0;
 			this.lblSystemNameLabel.Text = "Name:";
 			// 
@@ -2708,27 +2720,119 @@ namespace Fryz.Apps.SpaceTrader
 			// 
 			// ilChartImages
 			// 
-			this.ilChartImages.ImageSize = new System.Drawing.Size(7, 7);
 			this.ilChartImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilChartImages.ImageStream")));
 			this.ilChartImages.TransparentColor = System.Drawing.Color.White;
+			this.ilChartImages.Images.SetKeyName(0, "");
+			this.ilChartImages.Images.SetKeyName(1, "");
+			this.ilChartImages.Images.SetKeyName(2, "");
+			this.ilChartImages.Images.SetKeyName(3, "");
+			this.ilChartImages.Images.SetKeyName(4, "");
+			this.ilChartImages.Images.SetKeyName(5, "");
+			this.ilChartImages.Images.SetKeyName(6, "");
+			this.ilChartImages.Images.SetKeyName(7, "");
 			// 
 			// ilShipImages
 			// 
-			this.ilShipImages.ImageSize = new System.Drawing.Size(64, 52);
 			this.ilShipImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilShipImages.ImageStream")));
 			this.ilShipImages.TransparentColor = System.Drawing.Color.White;
+			this.ilShipImages.Images.SetKeyName(0, "");
+			this.ilShipImages.Images.SetKeyName(1, "");
+			this.ilShipImages.Images.SetKeyName(2, "");
+			this.ilShipImages.Images.SetKeyName(3, "");
+			this.ilShipImages.Images.SetKeyName(4, "");
+			this.ilShipImages.Images.SetKeyName(5, "");
+			this.ilShipImages.Images.SetKeyName(6, "");
+			this.ilShipImages.Images.SetKeyName(7, "");
+			this.ilShipImages.Images.SetKeyName(8, "");
+			this.ilShipImages.Images.SetKeyName(9, "");
+			this.ilShipImages.Images.SetKeyName(10, "");
+			this.ilShipImages.Images.SetKeyName(11, "");
+			this.ilShipImages.Images.SetKeyName(12, "");
+			this.ilShipImages.Images.SetKeyName(13, "");
+			this.ilShipImages.Images.SetKeyName(14, "");
+			this.ilShipImages.Images.SetKeyName(15, "");
+			this.ilShipImages.Images.SetKeyName(16, "");
+			this.ilShipImages.Images.SetKeyName(17, "");
+			this.ilShipImages.Images.SetKeyName(18, "");
+			this.ilShipImages.Images.SetKeyName(19, "");
+			this.ilShipImages.Images.SetKeyName(20, "");
+			this.ilShipImages.Images.SetKeyName(21, "");
+			this.ilShipImages.Images.SetKeyName(22, "");
+			this.ilShipImages.Images.SetKeyName(23, "");
+			this.ilShipImages.Images.SetKeyName(24, "");
+			this.ilShipImages.Images.SetKeyName(25, "");
+			this.ilShipImages.Images.SetKeyName(26, "");
+			this.ilShipImages.Images.SetKeyName(27, "");
+			this.ilShipImages.Images.SetKeyName(28, "");
+			this.ilShipImages.Images.SetKeyName(29, "");
+			this.ilShipImages.Images.SetKeyName(30, "");
+			this.ilShipImages.Images.SetKeyName(31, "");
+			this.ilShipImages.Images.SetKeyName(32, "");
+			this.ilShipImages.Images.SetKeyName(33, "");
+			this.ilShipImages.Images.SetKeyName(34, "");
+			this.ilShipImages.Images.SetKeyName(35, "");
+			this.ilShipImages.Images.SetKeyName(36, "");
+			this.ilShipImages.Images.SetKeyName(37, "");
+			this.ilShipImages.Images.SetKeyName(38, "");
+			this.ilShipImages.Images.SetKeyName(39, "");
+			this.ilShipImages.Images.SetKeyName(40, "");
+			this.ilShipImages.Images.SetKeyName(41, "");
+			this.ilShipImages.Images.SetKeyName(42, "");
+			this.ilShipImages.Images.SetKeyName(43, "");
+			this.ilShipImages.Images.SetKeyName(44, "");
+			this.ilShipImages.Images.SetKeyName(45, "");
+			this.ilShipImages.Images.SetKeyName(46, "");
+			this.ilShipImages.Images.SetKeyName(47, "");
+			this.ilShipImages.Images.SetKeyName(48, "");
+			this.ilShipImages.Images.SetKeyName(49, "");
+			this.ilShipImages.Images.SetKeyName(50, "");
+			this.ilShipImages.Images.SetKeyName(51, "");
+			this.ilShipImages.Images.SetKeyName(52, "");
+			this.ilShipImages.Images.SetKeyName(53, "");
+			this.ilShipImages.Images.SetKeyName(54, "");
+			this.ilShipImages.Images.SetKeyName(55, "");
+			this.ilShipImages.Images.SetKeyName(56, "");
+			this.ilShipImages.Images.SetKeyName(57, "");
+			this.ilShipImages.Images.SetKeyName(58, "");
+			this.ilShipImages.Images.SetKeyName(59, "");
+			this.ilShipImages.Images.SetKeyName(60, "");
+			this.ilShipImages.Images.SetKeyName(61, "");
+			this.ilShipImages.Images.SetKeyName(62, "");
+			this.ilShipImages.Images.SetKeyName(63, "");
+			this.ilShipImages.Images.SetKeyName(64, "");
+			this.ilShipImages.Images.SetKeyName(65, "");
+			this.ilShipImages.Images.SetKeyName(66, "");
+			this.ilShipImages.Images.SetKeyName(67, "");
 			// 
 			// ilDirectionImages
 			// 
-			this.ilDirectionImages.ImageSize = new System.Drawing.Size(13, 13);
 			this.ilDirectionImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilDirectionImages.ImageStream")));
 			this.ilDirectionImages.TransparentColor = System.Drawing.Color.White;
+			this.ilDirectionImages.Images.SetKeyName(0, "");
+			this.ilDirectionImages.Images.SetKeyName(1, "");
+			this.ilDirectionImages.Images.SetKeyName(2, "");
+			this.ilDirectionImages.Images.SetKeyName(3, "");
 			// 
 			// ilEquipmentImages
 			// 
-			this.ilEquipmentImages.ImageSize = new System.Drawing.Size(64, 52);
 			this.ilEquipmentImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ilEquipmentImages.ImageStream")));
 			this.ilEquipmentImages.TransparentColor = System.Drawing.Color.Transparent;
+			this.ilEquipmentImages.Images.SetKeyName(0, "");
+			this.ilEquipmentImages.Images.SetKeyName(1, "");
+			this.ilEquipmentImages.Images.SetKeyName(2, "");
+			this.ilEquipmentImages.Images.SetKeyName(3, "");
+			this.ilEquipmentImages.Images.SetKeyName(4, "");
+			this.ilEquipmentImages.Images.SetKeyName(5, "");
+			this.ilEquipmentImages.Images.SetKeyName(6, "");
+			this.ilEquipmentImages.Images.SetKeyName(7, "");
+			this.ilEquipmentImages.Images.SetKeyName(8, "");
+			this.ilEquipmentImages.Images.SetKeyName(9, "");
+			this.ilEquipmentImages.Images.SetKeyName(10, "");
+			this.ilEquipmentImages.Images.SetKeyName(11, "");
+			this.ilEquipmentImages.Images.SetKeyName(12, "");
+			this.ilEquipmentImages.Images.SetKeyName(13, "");
+			this.ilEquipmentImages.Images.SetKeyName(14, "");
+			this.ilEquipmentImages.Images.SetKeyName(15, "");
 			// 
 			// SpaceTrader
 			// 
@@ -2750,8 +2854,10 @@ namespace Fryz.Apps.SpaceTrader
 			this.Name = "SpaceTrader";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Space Trader";
-			this.Closing += new System.ComponentModel.CancelEventHandler(this.SpaceTrader_Closing);
 			this.Load += new System.EventHandler(this.SpaceTrader_Load);
+			this.Closing += new System.ComponentModel.CancelEventHandler(this.SpaceTrader_Closing);
+			((System.ComponentModel.ISupportInitialize)(this.picGalacticChart)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picShortRangeChart)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCash)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelBays)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.statusBarPanelCosts)).EndInit();
@@ -2759,10 +2865,18 @@ namespace Fryz.Apps.SpaceTrader
 			this.boxShortRangeChart.ResumeLayout(false);
 			this.boxGalacticChart.ResumeLayout(false);
 			this.boxTargetSystem.ResumeLayout(false);
+			this.boxTargetSystem.PerformLayout();
 			this.boxCargo.ResumeLayout(false);
+			this.boxCargo.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine0)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picCargoLine1)).EndInit();
 			this.boxSystem.ResumeLayout(false);
+			this.boxSystem.PerformLayout();
 			this.boxShipYard.ResumeLayout(false);
 			this.boxDock.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.picLine)).EndInit();
 			this.ResumeLayout(false);
 
 		}
