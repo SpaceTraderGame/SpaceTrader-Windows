@@ -407,84 +407,111 @@
     <None Include="images\w_quantum.bmp" />
     <EmbeddedResource Include="Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Alert.resx">
       <DependentUpon>Form_Alert.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_BuyFuel.resx">
       <DependentUpon>Form_BuyFuel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_BuyRepairs.resx">
       <DependentUpon>Form_BuyRepairs.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_CargoBuy.resx">
       <DependentUpon>Form_CargoBuy.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_CargoSell.resx">
       <DependentUpon>Form_CargoSell.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Costs.resx">
       <DependentUpon>Form_Costs.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Encounter.resx">
       <DependentUpon>Form_Encounter.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Equipment.resx">
       <DependentUpon>Form_Equipment.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Find.resx">
       <DependentUpon>Form_Find.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_GetLoan.resx">
       <DependentUpon>Form_GetLoan.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Jettison.resx">
       <DependentUpon>Form_Jettison.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Monster.resx">
       <DependentUpon>Form_Monster.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_NewCommander.resx">
       <DependentUpon>Form_NewCommander.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Options.resx">
       <DependentUpon>Form_Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_PayBackLoan.resx">
       <DependentUpon>Form_PayBackLoan.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Plunder.resx">
       <DependentUpon>Form_Plunder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ShipList.resx">
       <DependentUpon>Form_ShipList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Shipyard.resx">
       <DependentUpon>Form_Shipyard.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_SpaceTrader.resx">
       <DependentUpon>Form_SpaceTrader.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Test.resx">
       <DependentUpon>Form_Test.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewBank.resx">
       <DependentUpon>Form_ViewBank.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewCommander.resx">
       <DependentUpon>Form_ViewCommander.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewHighScores.resx">
       <DependentUpon>Form_ViewHighScores.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewPersonnel.resx">
       <DependentUpon>Form_ViewPersonnel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewQuests.resx">
       <DependentUpon>Form_ViewQuests.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ViewShip.resx">
       <DependentUpon>Form_ViewShip.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
