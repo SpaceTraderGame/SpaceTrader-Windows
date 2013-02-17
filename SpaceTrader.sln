@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fryz.Apps.SpaceTrader", "Fryz.Apps.SpaceTrader.csproj", "{0ED352CE-6DA4-49C4-A458-93630C48F40D}"
 EndProject
 Global
@@ -15,24 +15,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 4
-		SccProjectName0 = SpaceTraderWinSource
-		SccLocalPath0 = .
-		SccProvider0 = MSSCCI:PushOk\u0020CVS\u0020Proxy
-		CanCheckoutShared = true
-		SolutionUniqueID = {D2C652E9-B6B6-44CF-8D2B-96E6C5AA200C}
-		SccProjectUniqueName1 = Fryz.Apps.SpaceTrader.csproj
-		SccLocalPath1 = .
-		CanCheckoutShared = true
-		SccProjectUniqueName2 = SpaceTraderSetup\\SpaceTraderSetup.vdproj
-		SccLocalPath2 = .
-		CanCheckoutShared = true
-		SccProjectFilePathRelativizedFromConnection2 = SpaceTraderSetup\\
-		SccProjectUniqueName3 = STConvert\\STConvert.csproj
-		SccLocalPath3 = .
-		CanCheckoutShared = true
-		SccProjectFilePathRelativizedFromConnection3 = STConvert\\
 	EndGlobalSection
 EndGlobal

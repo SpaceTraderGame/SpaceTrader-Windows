@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.21022</ProductVersion>
@@ -32,9 +33,9 @@
     </SccAuxPath>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ManifestCertificateThumbprint>161215E3F0C7C7DA82EB34A448041A4EF78490F1</ManifestCertificateThumbprint>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ManifestCertificateThumbprint>11D879A05629F90429930EDC450B3F1522BA3469</ManifestCertificateThumbprint>
     <ManifestKeyFile>Fryz.Apps.SpaceTrader_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
@@ -103,6 +104,7 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System">
       <Name>System</Name>
