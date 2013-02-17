@@ -761,7 +761,9 @@ namespace Fryz.Apps.SpaceTrader
 				sellBoxes[i].Visible	= entries;
 				sellLabels[i].Visible	= !entries;
 				if (entries)
-					sellBoxes[i].Height	= sellBoxes[i].ItemHeight * Math.Min(sellBoxes[i].Items.Count, 5) + 2;
+				{
+					sellBoxes[i].Height = sellBoxes[i].ItemHeight * Math.Min(sellBoxes[i].Items.Count, 5) + 2;
+				}
 			}
 		}
 
