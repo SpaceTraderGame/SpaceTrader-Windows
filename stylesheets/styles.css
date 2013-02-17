@@ -1008,3 +1008,7 @@ footer {
     width: auto;
   }
 }
+
+#news li {
+	margin-bottom: 0.5em;
+}
